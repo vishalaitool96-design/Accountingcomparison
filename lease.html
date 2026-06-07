@@ -2010,20 +2010,6 @@
           }
         }
 
-        if (diagBtn && diagPanel) {
-          diagBtn.addEventListener("click", () => {
-            diagPanel.classList.toggle("hidden");
-            const isHidden = diagPanel.classList.contains("hidden");
-            diagBtn.textContent = isHidden
-              ? "Diagnostic Mode"
-              : "Close Console";
-            dLog(
-              "Diagnostic pane toggled. Status: " +
-                (isHidden ? "HIDDEN" : "VISIBLE"),
-            );
-          });
-        }
-
         function format(num) {
           return Number(num).toFixed(2);
         }
@@ -2618,6 +2604,51 @@
           copyBtn.addEventListener("click", () => {
             alert("Results functionality not implemented yet.");
           });
+        }
+      });
+    </script>
+
+    <!-- Global Diagnostic UI Fix -->
+    <style>
+      body.diagnostic-active [data-diagnostic="tracked"] {
+        outline: 3px dashed #6366f1 !important;
+        outline-offset: 4px;
+        box-shadow: 0 0 15px rgba(99, 102, 241, 0.4) !important;
+        transition: all 0.3s ease;
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const glDiagBtn = document.getElementById("diagnostic-btn");
+        const glDiagPanel = document.getElementById("diagnostic-panel");
+        const glDiagConsole = document.getElementById("diag-console");
+
+        if (glDiagBtn && glDiagPanel) {
+          if (!glDiagBtn.dataset.listenerAttached) {
+            glDiagBtn.dataset.listenerAttached = "true";
+            glDiagBtn.addEventListener("click", () => {
+              glDiagPanel.classList.toggle("hidden");
+              const isHidden = glDiagPanel.classList.contains("hidden");
+
+              if (isHidden) {
+                glDiagBtn.textContent = "Diagnostic Mode";
+                document.body.classList.remove("diagnostic-active");
+              } else {
+                glDiagBtn.textContent = "Close Console";
+                document.body.classList.add("diagnostic-active");
+                if (glDiagConsole) {
+                  let existing = glDiagConsole.innerHTML;
+                  if (!existing.includes("Tracker highlighting enabled")) {
+                    glDiagConsole.innerHTML =
+                      '<div><span class="text-indigo-300">[' +
+                      new Date().toLocaleTimeString() +
+                      "] [INFO]</span> Diagnostic Mode Active. Tracker highlighting enabled.</div>" +
+                      existing;
+                  }
+                }
+              }
+            });
+          }
         }
       });
     </script>
