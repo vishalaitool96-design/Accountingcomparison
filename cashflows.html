@@ -1,0 +1,2955 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cash Flows | Standards Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+      }
+    </style>
+
+    <style>
+      .custom-scrollbar::-webkit-scrollbar {
+        height: 10px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-[#f7fafc] font-sans h-screen w-full flex flex-col overflow-hidden border-8 border-slate-200 text-slate-800"
+  >
+    <header class="bg-[#1a365d] text-white p-4 shrink-0 shadow-md">
+      <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end">
+        <div>
+          <h1 class="text-2xl font-bold tracking-tight">
+            Accounting Standards Comparison Hub
+          </h1>
+          <p class="text-slate-300 text-sm italic">
+            AS (Old Indian GAAP) vs Ind AS vs IFRS vs US GAAP
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <nav
+      class="bg-white border-b border-slate-200 flex shrink-0 overflow-x-auto custom-scrollbar"
+    >
+      <a
+        href="index.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Home</a
+      >
+      <a
+        href="lease.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Lease</a
+      >
+      <a
+        href="ppe.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >PPE</a
+      >
+      <a
+        href="financial-instruments.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Financial Instruments</a
+      >
+      <a
+        href="revenue.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Revenue</a
+      >
+      <a
+        href="deferred-tax.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Deferred Tax</a
+      >
+      <a
+        href="consolidation.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Consolidation</a
+      >
+      <a
+        href="impairment.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Impairment</a
+      >
+      <a
+        href="esop.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >ESOP</a
+      >
+      <a
+        href="cashflows.html"
+        class="px-6 py-3 text-sm font-semibold border-b-4 border-indigo-600 bg-indigo-50 text-indigo-900 block whitespace-nowrap"
+        >Cash Flows</a
+      >
+    </nav>
+
+    <main
+      class="flex-1 p-4 md:p-6 lg:p-8 flex flex-col gap-10 overflow-y-auto"
+      id="main-content"
+    >
+      <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+        <div class="border-l-8 border-teal-600 pl-4 py-1 shrink-0">
+          <h2 class="text-2xl font-bold text-[#1a365d] uppercase tracking-wide">
+            Statement of Cash Flows
+          </h2>
+          <p class="text-sm text-slate-600">
+            Premium Analysis Guide: AS vs Ind AS vs IFRS vs US GAAP
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button
+            id="diagnostic-btn"
+            class="bg-indigo-600 text-white hover:bg-indigo-700 px-4 py-2 rounded text-sm font-bold shadow-sm transition-colors"
+          >
+            Diagnostic Mode
+          </button>
+        </div>
+      </div>
+
+      <!-- Diagnostic Panel -->
+      <div
+        id="diagnostic-panel"
+        class="hidden mt-4 bg-indigo-50 border-l-4 border-indigo-600 p-4 text-sm text-indigo-900 shadow-sm rounded-r-lg flex flex-col gap-2 shrink-0"
+      >
+        <h3 class="font-bold text-lg mb-2">Diagnostic Mode Console</h3>
+        <div class="mt-2 border-t border-indigo-200 pt-2">
+          <h4 class="font-bold mb-1 flex justify-between">
+            Recent Updates
+            <span id="diag-errors" class="text-red-600 hidden">Errors!</span>
+          </h4>
+          <div
+            id="diag-console"
+            class="bg-indigo-900 text-indigo-100 font-mono p-3 rounded text-xs h-32 overflow-y-auto whitespace-pre-wrap"
+          >
+            System initialized.
+          </div>
+        </div>
+      </div>
+      <!-- SECTION A -->
+      <section
+        id="section-a"
+        data-diagnostic="tracked"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION A: Core Technical Comparison Table
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-[16%]">Parameter</th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">
+                  AS (Old Indian GAAP)
+                </th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">
+                  Ind AS (Ind AS 7)
+                </th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">
+                  IFRS (IAS 7)
+                </th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">
+                  US GAAP (ASC 230)
+                </th>
+                <th class="p-3 w-[16%]">Logic Shift</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Core objective</td>
+                <td class="p-3">
+                  Provide information about historical changes in cash.
+                </td>
+                <td class="p-3">
+                  Provide information about historical changes in cash and cash
+                  equivalents.
+                </td>
+                <td class="p-3">
+                  Provide information about historical changes in cash and cash
+                  equivalents.
+                </td>
+                <td class="p-3">
+                  Provide information about cash receipts and cash payments.
+                </td>
+                <td class="p-3 bg-slate-50 text-slate-800">
+                  Consistent across all frameworks.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Applicability / Scope</td>
+                <td class="p-3">
+                  Exemptions exist for SMCs and certain non-corporate entities.
+                </td>
+                <td class="p-3">
+                  Mandatory for all entities preparing financial statements
+                  under Ind AS.
+                </td>
+                <td class="p-3">Mandatory for all entities.</td>
+                <td class="p-3">Mandatory for all entities.</td>
+                <td class="p-3 bg-slate-50 text-slate-800">
+                  Universal application in modern frameworks.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Classification structure</td>
+                <td class="p-3">Operating, Investing, Financing.</td>
+                <td class="p-3">Operating, Investing, Financing.</td>
+                <td class="p-3">Operating, Investing, Financing.</td>
+                <td class="p-3">Operating, Investing, Financing.</td>
+                <td class="p-3 bg-slate-50 text-slate-800">
+                  Consistent core structure across all frameworks.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">
+                  Definition - Cash and cash equivalents
+                </td>
+                <td class="p-3">
+                  Short-term, highly liquid investments convertible to known
+                  cash.
+                </td>
+                <td class="p-3">
+                  Short-term, highly liquid investments readily convertible to
+                  known cash.
+                </td>
+                <td class="p-3">
+                  Short-term, highly liquid investments readily convertible to
+                  known cash.
+                </td>
+                <td class="p-3">
+                  Similar, but explicit rules on restricted cash.
+                </td>
+                <td class="p-3 bg-slate-50 text-slate-800">
+                  Generally aligned across standards.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Bank overdrafts treatment</td>
+                <td class="p-3">
+                  Classified as financing liabilities. Not part of cash
+                  equivalents.
+                </td>
+                <td class="p-3">
+                  Included in cash equivalents if repayable on demand and form
+                  an integral part of cash management.
+                </td>
+                <td class="p-3">
+                  Included in cash equivalents if repayable on demand and form
+                  an integral part of cash management.
+                </td>
+                <td class="p-3">
+                  Excluded from cash equivalents. Treated as financing
+                  activities.
+                </td>
+                <td class="p-3 text-slate-600">
+                  Significant difference between IFRS/Ind AS and US GAAP/AS 3.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Restricted cash treatment</td>
+                <td class="p-3">Not specifically addressed.</td>
+                <td class="p-3">
+                  Judgment required; generally excluded from cash equivalents if
+                  restricted.
+                </td>
+                <td class="p-3">
+                  Judgment required; generally excluded from cash equivalents if
+                  restricted.
+                </td>
+                <td class="p-3">
+                  Must be included in the total cash balance shown in the cash
+                  flow statement; reconciled to balance sheet.
+                </td>
+                <td class="p-3 text-slate-600">
+                  US GAAP is prescriptive; IFRS/Ind AS require judgment.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  Operating activities - Direct vs Indirect method
+                </td>
+                <td class="p-3">Direct and Indirect permitted.</td>
+                <td class="p-3">
+                  Direct method explicitly encouraged, but Indirect permitted.
+                </td>
+                <td class="p-3">
+                  Direct method encouraged, Indirect permitted.
+                </td>
+                <td class="p-3">
+                  Direct method encouraged, Indirect permitted (if Direct used,
+                  reconciliation to net income required).
+                </td>
+                <td class="p-3 bg-slate-50 text-slate-800">
+                  Indirect method is the practical standard globally.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">
+                  Operating activities - Starting point (Indirect method)
+                </td>
+                <td class="p-3">Net profit or loss.</td>
+                <td class="p-3">Profit or loss (flexible).</td>
+                <td class="p-3">Profit or loss (flexible).</td>
+                <td class="p-3">Net income only.</td>
+                <td class="p-3 bg-slate-50 text-slate-800">
+                  US GAAP is strict on using Net Income.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Interest paid classification</td>
+                <td class="p-3">
+                  Financing activity (for non-financial enterprises).
+                </td>
+                <td class="p-3">
+                  Operating OR Financing activity (policy choice).
+                </td>
+                <td class="p-3">
+                  Operating OR Financing activity (policy choice).
+                </td>
+                <td class="p-3">Operating activity (no choice).</td>
+                <td class="p-3 text-slate-600">
+                  Major comparability issue across standards and peers.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Interest received classification</td>
+                <td class="p-3">
+                  Investing activity (for non-financial enterprises).
+                </td>
+                <td class="p-3">
+                  Operating OR Investing activity (policy choice).
+                </td>
+                <td class="p-3">
+                  Operating OR Investing activity (policy choice).
+                </td>
+                <td class="p-3">Operating activity (no choice).</td>
+                <td class="p-3 text-slate-600">
+                  US GAAP includes all interest in operating.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Dividends paid classification</td>
+                <td class="p-3">Financing activity.</td>
+                <td class="p-3">
+                  Financing OR Operating activity (policy choice).
+                </td>
+                <td class="p-3">
+                  Financing OR Operating activity (policy choice).
+                </td>
+                <td class="p-3">Financing activity (no choice).</td>
+                <td class="p-3 bg-slate-50 text-slate-800">
+                  IFRS/Ind AS flexibility allows variation.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Dividends received classification</td>
+                <td class="p-3">Investing activity.</td>
+                <td class="p-3">
+                  Operating OR Investing activity (policy choice).
+                </td>
+                <td class="p-3">
+                  Operating OR Investing activity (policy choice).
+                </td>
+                <td class="p-3">Operating activity (no choice).</td>
+                <td class="p-3 text-slate-600">
+                  US GAAP treats as operating return on investment.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Taxes paid classification</td>
+                <td class="p-3">Operating activity; separate disclosure.</td>
+                <td class="p-3">
+                  Operating activity unless specifically identifiable with
+                  investing/financing.
+                </td>
+                <td class="p-3">
+                  Operating activity unless specifically identifiable with
+                  investing/financing.
+                </td>
+                <td class="p-3">
+                  Operating activity (no allocation permitted).
+                </td>
+                <td class="p-3 bg-slate-50 text-slate-800">
+                  US GAAP bans allocation to investing/financing.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">
+                  Extraordinary items classification
+                </td>
+                <td class="p-3">
+                  Classified according to nature and separately disclosed.
+                </td>
+                <td class="p-3">Prohibited.</td>
+                <td class="p-3">Prohibited.</td>
+                <td class="p-3">Prohibited.</td>
+                <td class="p-3 text-slate-600">
+                  Elimination of extraordinary items globally.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  Lease payments classification (Lessee)
+                </td>
+                <td class="p-3">
+                  Not specifically addressed (finance leases = financing).
+                </td>
+                <td class="p-3">
+                  Principal = Financing; Interest = Operating/Financing.
+                </td>
+                <td class="p-3">
+                  Principal = Financing; Interest = Operating/Financing.
+                </td>
+                <td class="p-3">
+                  Operating lease = Operating activity; Finance lease =
+                  Financing (principal) &amp; Operating (interest).
+                </td>
+                <td class="p-3 text-slate-600">
+                  US GAAP operating leases remain in operating cash flows.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Foreign currency cash flows</td>
+                <td class="p-3">
+                  Recorded at exchange rate on transaction date.
+                </td>
+                <td class="p-3">
+                  Recorded at exchange rate on transaction date; unrealized
+                  gains/losses separately presented.
+                </td>
+                <td class="p-3">
+                  Recorded at exchange rate on transaction date; unrealized
+                  gains/losses separately presented.
+                </td>
+                <td class="p-3">Similar to Ind AS/IFRS.</td>
+                <td class="p-3 bg-slate-50 text-slate-800">
+                  Consistent approach.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Non-cash transactions</td>
+                <td class="p-3">Excluded.</td>
+                <td class="p-3">Excluded; disclosed elsewhere.</td>
+                <td class="p-3">Excluded; disclosed elsewhere.</td>
+                <td class="p-3">Excluded; disclosed elsewhere.</td>
+                <td class="p-3 bg-slate-50 text-slate-800">
+                  Consistent principle.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">
+                  Changes in ownership interests in subsidiaries (no loss of
+                  control)
+                </td>
+                <td class="p-3">Not specifically addressed.</td>
+                <td class="p-3">Financing activity.</td>
+                <td class="p-3">Financing activity.</td>
+                <td class="p-3">Financing activity.</td>
+                <td class="p-3 bg-slate-50 text-slate-800">
+                  Aligned. Transactions with owners in capacity as owners.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Acquisition/loss of subsidiaries</td>
+                <td class="p-3">
+                  Investing activity (net of cash acquired/disposed).
+                </td>
+                <td class="p-3">
+                  Investing activity (net of cash acquired/disposed).
+                </td>
+                <td class="p-3">
+                  Investing activity (net of cash acquired/disposed).
+                </td>
+                <td class="p-3">
+                  Investing activity (net of cash acquired/disposed).
+                </td>
+                <td class="p-3 bg-slate-50 text-slate-800">
+                  Consistent logic.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">
+                  Investments in associates/joint ventures (equity method)
+                </td>
+                <td class="p-3">Not specifically addressed.</td>
+                <td class="p-3">
+                  Include only cash flows between investor and investee (e.g.,
+                  dividends).
+                </td>
+                <td class="p-3">
+                  Include only cash flows between investor and investee (e.g.,
+                  dividends).
+                </td>
+                <td class="p-3">
+                  Include only cash flows between investor and investee (e.g.,
+                  dividends).
+                </td>
+                <td class="p-3 bg-slate-50 text-slate-800">
+                  Consistent focus on actual cash movements.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  Deferred/contingent consideration in business combinations
+                </td>
+                <td class="p-3">Not specifically addressed.</td>
+                <td class="p-3">
+                  Generally Investing (if related to original
+                  transaction/liability).
+                </td>
+                <td class="p-3">
+                  Generally Investing (if related to original
+                  transaction/liability).
+                </td>
+                <td class="p-3">
+                  Operating (if soon after acquisition - &lt;= 3 months) or
+                  Financing (later).
+                </td>
+                <td class="p-3 text-slate-600">
+                  US GAAP is prescriptive and different.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">
+                  Disclosure of changes in financing liabilities
+                </td>
+                <td class="p-3">Not explicitly required.</td>
+                <td class="p-3">
+                  Explicitly required (roll-forward of debt/lease liabilities,
+                  separating cash and non-cash changes).
+                </td>
+                <td class="p-3">Explicitly required.</td>
+                <td class="p-3">
+                  Not explicitly required as a single roll-forward, but expected
+                  via other disclosures.
+                </td>
+                <td class="p-3 text-slate-600">
+                  IFRS/Ind AS requirement adds significant transparency.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Overall disclosure volume</td>
+                <td class="p-3">Low to moderate.</td>
+                <td class="p-3">High.</td>
+                <td class="p-3">High.</td>
+                <td class="p-3">High.</td>
+                <td class="p-3 bg-slate-50 text-slate-800">
+                  Modern frameworks demand more data.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">
+                  Derivative cash flows - hedging relationships
+                </td>
+                <td class="p-3">Not specifically addressed.</td>
+                <td class="p-3">
+                  Classified in same category as the cash flows of the hedged
+                  item.
+                </td>
+                <td class="p-3">
+                  Classified in same category as the cash flows of the hedged
+                  item.
+                </td>
+                <td class="p-3">
+                  Generally same as Ind AS/IFRS, but some complex exceptions.
+                </td>
+                <td class="p-3 bg-slate-50 text-slate-800">
+                  Consistent matching principle.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="px-4 py-3 bg-blue-50 border-t border-slate-200">
+          <p class="text-sm text-blue-900">
+            <strong class="font-bold">KEY INSIGHT:</strong> The Cash Flow
+            Statement itself does not impact P&amp;L - it is a presentation
+            statement. However, classification differences across standards
+            significantly affect financial ratios and performance metrics
+            derived from cash flow information. Total cash generated from
+            operations is economically identical across all standards - only
+            classification and presentation differ.
+          </p>
+        </div>
+      </section>
+
+      <!-- SECTION B -->
+      <section
+        class="shrink-0 bg-yellow-50 rounded-xl shadow-sm border border-yellow-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-yellow-100 text-yellow-900 px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-yellow-200 flex justify-between items-center"
+        >
+          <span>SECTION B: Transaction Fact Pattern (Editable)</span>
+          <button
+            id="reset-btn"
+            class="bg-yellow-600 text-white px-3 py-1 rounded text-xs font-semibold hover:bg-yellow-700 transition"
+          >
+            Reset to Default
+          </button>
+        </div>
+        <div class="p-4 flex flex-col md:flex-row gap-6">
+          <div class="flex-1 space-y-4">
+            <h3
+              class="font-bold text-slate-800 border-b border-yellow-200 pb-2"
+            >
+              Business Profile (Read-only)
+            </h3>
+            <div class="space-y-2 text-sm text-slate-700">
+              <p>
+                <strong class="font-semibold w-32 inline-block"
+                  >Company:</strong
+                >
+                Apex Technologies Ltd.
+              </p>
+              <p>
+                <strong class="font-semibold w-32 inline-block">Period:</strong>
+                Year ended 31 March 2026
+              </p>
+            </div>
+
+            <h3
+              class="font-bold text-slate-800 border-b border-yellow-200 pb-2 mt-6"
+            >
+              Ind AS / IAS 7 Policy Elections
+            </h3>
+            <div
+              class="space-y-4 text-sm bg-white p-3 rounded border border-yellow-200 shadow-sm"
+            >
+              <div class="flex items-center justify-between">
+                <label class="font-semibold text-slate-700"
+                  >Interest Paid &amp; Received</label
+                >
+                <select
+                  id="sel-interest"
+                  class="p-1 border border-slate-300 rounded focus:ring-yellow-400"
+                >
+                  <option value="Op_Op">
+                    Paid: Operating / Recv: Operating
+                  </option>
+                  <option value="Op_Inv">
+                    Paid: Operating / Recv: Investing
+                  </option>
+                  <option value="Fin_Op">
+                    Paid: Financing / Recv: Operating
+                  </option>
+                  <option value="Fin_Inv" selected>
+                    Paid: Financing / Recv: Investing
+                  </option>
+                </select>
+              </div>
+              <div class="flex items-center justify-between">
+                <label class="font-semibold text-slate-700"
+                  >Dividends Paid &amp; Received</label
+                >
+                <select
+                  id="sel-dividend"
+                  class="p-1 border border-slate-300 rounded focus:ring-yellow-400"
+                >
+                  <option value="Fin_Inv" selected>
+                    Paid: Financing / Recv: Investing
+                  </option>
+                  <option value="Fin_Op">
+                    Paid: Financing / Recv: Operating
+                  </option>
+                  <option value="Op_Inv">
+                    Paid: Operating / Recv: Investing
+                  </option>
+                  <option value="Op_Op">
+                    Paid: Operating / Recv: Operating
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="flex-[2] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+          >
+            <!-- Inputs -->
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Net Profit before tax (Cr)</label
+              >
+              <input
+                type="number"
+                id="inp-pbt"
+                value="100.00"
+                step="0.01"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Depreciation (Cr)</label
+              >
+              <input
+                type="number"
+                id="inp-dep"
+                value="20.00"
+                step="0.01"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Profit on machinery sale (Cr)</label
+              >
+              <input
+                type="number"
+                id="inp-prof-sale"
+                value="5.00"
+                step="0.01"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Increase in trade rec. (Cr)</label
+              >
+              <input
+                type="number"
+                id="inp-inc-rec"
+                value="15.00"
+                step="0.01"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Decrease in inventory (Cr)</label
+              >
+              <input
+                type="number"
+                id="inp-dec-inv"
+                value="8.00"
+                step="0.01"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Increase in payables (Cr)</label
+              >
+              <input
+                type="number"
+                id="inp-inc-pay"
+                value="10.00"
+                step="0.01"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Interest expense (Cr)</label
+              >
+              <input
+                type="number"
+                id="inp-int-exp"
+                value="12.00"
+                step="0.01"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Interest received (Cr)</label
+              >
+              <input
+                type="number"
+                id="inp-int-rec"
+                value="4.00"
+                step="0.01"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Dividend paid (Cr)</label
+              >
+              <input
+                type="number"
+                id="inp-div-paid"
+                value="6.00"
+                step="0.01"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Tax paid (Cr)</label
+              >
+              <input
+                type="number"
+                id="inp-tax-paid"
+                value="25.00"
+                step="0.01"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Purchase of machinery (Cr)</label
+              >
+              <input
+                type="number"
+                id="inp-purch"
+                value="50.00"
+                step="0.01"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Sale proceeds machinery (Cr)</label
+              >
+              <input
+                type="number"
+                id="inp-sale"
+                value="15.00"
+                step="0.01"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Proceeds issue shares (Cr)</label
+              >
+              <input
+                type="number"
+                id="inp-issue"
+                value="40.00"
+                step="0.01"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Repayment of LT loan (Cr)</label
+              >
+              <input
+                type="number"
+                id="inp-repay"
+                value="20.00"
+                step="0.01"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Opening cash (Cr)</label
+              >
+              <input
+                type="number"
+                id="inp-open-cash"
+                value="30.00"
+                step="0.01"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Bank overdraft (Cr)</label
+              >
+              <input
+                type="number"
+                id="inp-od"
+                value="5.00"
+                step="0.01"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Tax rate (%)</label
+              >
+              <input
+                type="number"
+                id="inp-tax-rate"
+                value="25"
+                step="1"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION C -->
+      <section
+        id="section-c"
+        data-diagnostic="tracked"
+        class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col font-sans"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION C: Side-by-Side Treatment
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left font-sans">
+            <thead class="bg-slate-100 text-slate-700 font-bold">
+              <tr>
+                <th class="p-3 border-b border-r border-slate-200 w-1/4">
+                  AS 3 (Old Indian GAAP)
+                </th>
+                <th class="p-3 border-b border-r border-slate-200 w-1/4">
+                  Ind AS 7
+                </th>
+                <th class="p-3 border-b border-r border-slate-200 w-1/4">
+                  IAS 7 (IFRS)
+                </th>
+                <th class="p-3 border-b border-slate-200 w-1/4">
+                  US GAAP (ASC 230)
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 bg-white text-slate-700">
+              <tr>
+                <td
+                  class="p-3 border-r border-slate-200 align-top leading-relaxed space-y-3"
+                >
+                  <div>
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Interest &amp; Dividends (Non-Financial)</span
+                    >
+                    <ul class="text-xs space-y-1 list-disc pl-4 text-slate-600">
+                      <li>
+                        <strong>Interest paid:</strong> Financing activity
+                        (non-financial enterprise)
+                      </li>
+                      <li>
+                        <strong>Interest received:</strong> Investing activity
+                        (non-financial enterprise)
+                      </li>
+                      <li>
+                        <strong>Dividends paid:</strong> Financing activity
+                      </li>
+                      <li>
+                        <strong>Dividends received:</strong> Investing activity
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Taxes Paid</span
+                    >
+                    <span class="text-xs text-slate-600"
+                      >Operating activity (separate disclosure)</span
+                    >
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Extraordinary Items</span
+                    >
+                    <span class="text-xs text-slate-600"
+                      >Required separate classification</span
+                    >
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Bank Overdrafts</span
+                    >
+                    <span class="text-xs text-slate-600"
+                      >Not included in cash equivalents</span
+                    >
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Indirect Method Start Point</span
+                    >
+                    <span class="text-xs text-slate-600 font-semibold"
+                      >Net profit/loss</span
+                    >
+                  </div>
+                </td>
+                <td
+                  class="p-3 border-r border-slate-200 align-top leading-relaxed space-y-3"
+                >
+                  <div>
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Interest &amp; Dividends (Non-Financial)</span
+                    >
+                    <ul class="text-xs space-y-1 list-disc pl-4 text-slate-600">
+                      <li>
+                        <strong>Interest paid:</strong> Operating OR Financing
+                        (policy choice)
+                      </li>
+                      <li>
+                        <strong>Interest received:</strong> Operating OR
+                        Investing (policy choice)
+                      </li>
+                      <li>
+                        <strong>Dividends paid:</strong> Financing OR Operating
+                        (policy choice)
+                      </li>
+                      <li>
+                        <strong>Dividends received:</strong> Operating OR
+                        Investing (policy choice)
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Taxes Paid</span
+                    >
+                    <span class="text-xs text-slate-600"
+                      >Operating unless specifically identifiable with
+                      investing/financing</span
+                    >
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Extraordinary Items</span
+                    >
+                    <span class="text-xs text-slate-600"
+                      >Not applicable (prohibited)</span
+                    >
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Bank Overdrafts &amp; Disclosures</span
+                    >
+                    <ul class="text-xs space-y-1 list-disc pl-4 text-slate-600">
+                      <li>Included if criteria met</li>
+                      <li>
+                        <strong>Changes in financing liabilities:</strong>
+                        Required disclosure
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+                <td
+                  class="p-3 border-r border-slate-200 align-top leading-relaxed space-y-3"
+                >
+                  <div>
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Interest &amp; Dividends (Non-Financial)</span
+                    >
+                    <span class="text-xs text-slate-600 block leading-normal"
+                      >Same as Ind AS 7 (fully converged). Provides choices for
+                      interest and dividends classification.</span
+                    >
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Bank Overdrafts</span
+                    >
+                    <span class="text-xs text-slate-600 block leading-normal"
+                      >Bank overdrafts integral to cash management included in
+                      cash equivalents.</span
+                    >
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Extraordinary Items</span
+                    >
+                    <span class="text-xs text-slate-600 block leading-normal"
+                      >Extraordinary items prohibited.</span
+                    >
+                  </div>
+                </td>
+                <td class="p-3 align-top leading-relaxed space-y-3">
+                  <div>
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Interest &amp; Dividends (Non-Financial)</span
+                    >
+                    <ul class="text-xs space-y-1 list-disc pl-4 text-slate-600">
+                      <li>
+                        <strong>Interest paid:</strong> Operating activity (no
+                        choice)
+                      </li>
+                      <li>
+                        <strong>Interest received:</strong> Operating activity
+                        (no choice)
+                      </li>
+                      <li>
+                        <strong>Dividends paid:</strong> Financing activity (no
+                        choice)
+                      </li>
+                      <li>
+                        <strong>Dividends received:</strong> Operating activity
+                        (no choice)
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Taxes Paid</span
+                    >
+                    <span class="text-xs text-slate-600"
+                      >Always operating (no allocation)</span
+                    >
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Bank Overdrafts &amp; Disclosures</span
+                    >
+                    <ul class="text-xs space-y-1 list-disc pl-4 text-slate-600">
+                      <li>
+                        <strong>Bank overdraft:</strong> Not included (financing
+                        activity)
+                      </li>
+                      <li>
+                        <strong>Restricted cash:</strong> Included in total cash
+                        but separately disclosed
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Indirect Start Point</span
+                    >
+                    <span class="text-xs font-semibold text-slate-800 block"
+                      >Net income only</span
+                    >
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION D IMPACT -->
+      <section
+        class="shrink-0 -mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION D: Side-by-Side Impact Table (Year 1 - Cash Flow
+          Classification)
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200">Cash Flow Item</th>
+                <th class="p-3 border-b border-slate-200">AS 3</th>
+                <th class="p-3 border-b border-slate-200">Ind AS 7</th>
+                <th class="p-3 border-b border-slate-200">IAS 7</th>
+                <th class="p-3 border-b border-slate-200">US GAAP (ASC 230)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  Bank overdraft in cash equivalents
+                </td>
+                <td class="p-3">Not included</td>
+                <td class="p-3">Included if criteria met</td>
+                <td class="p-3">Same as Ind AS</td>
+                <td class="p-3">Not included (financing activity)</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Interest paid - non-financial</td>
+                <td class="p-3 text-slate-600">Financing</td>
+                <td class="p-3 text-blue-800 font-medium bg-blue-50/50">
+                  Operating OR Financing (policy choice)
+                </td>
+                <td class="p-3">Same as Ind AS</td>
+                <td class="p-3 text-slate-600">Operating (no choice)</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Interest received - non-financial</td>
+                <td class="p-3 text-slate-600">Investing</td>
+                <td class="p-3 text-blue-800 font-medium bg-blue-50/50">
+                  Operating OR Investing (policy choice)
+                </td>
+                <td class="p-3">Same as Ind AS</td>
+                <td class="p-3 text-slate-600">Operating (no choice)</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Dividends paid - non-financial</td>
+                <td class="p-3 text-slate-600">Financing</td>
+                <td class="p-3 text-blue-800 font-medium bg-blue-50/50">
+                  Financing OR Operating (policy choice)
+                </td>
+                <td class="p-3">Same as Ind AS</td>
+                <td class="p-3 text-slate-600">Financing (no choice)</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  Dividends received - non-financial
+                </td>
+                <td class="p-3 text-slate-600">Investing</td>
+                <td class="p-3 text-blue-800 font-medium bg-blue-50/50">
+                  Operating OR Investing (policy choice)
+                </td>
+                <td class="p-3">Same as Ind AS</td>
+                <td class="p-3 text-slate-600">Operating (no choice)</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Taxes paid</td>
+                <td class="p-3">Operating (separate disclosure)</td>
+                <td class="p-3">Operating unless specifically identifiable</td>
+                <td class="p-3">Same as Ind AS</td>
+                <td class="p-3">Operating only (no allocation)</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  Extraordinary items classification
+                </td>
+                <td class="p-3">Required separate classification</td>
+                <td class="p-3 text-red-600">Not applicable (prohibited)</td>
+                <td class="p-3 text-red-600">Not applicable</td>
+                <td class="p-3 text-red-600">Not applicable</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Indirect method starting point</td>
+                <td class="p-3">Net profit/loss</td>
+                <td class="p-3">Profit or loss (flexible)</td>
+                <td class="p-3">Profit or loss (flexible)</td>
+                <td class="p-3">Net income only</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  Lease payments - operating lease (lessee)
+                </td>
+                <td class="p-3">Not specifically addressed</td>
+                <td class="p-3">
+                  Principal = financing; Interest = operating/financing
+                </td>
+                <td class="p-3">Same as Ind AS</td>
+                <td class="p-3">Operating activity</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  Changes in financing liabilities disclosure
+                </td>
+                <td class="p-3">Not required</td>
+                <td class="p-3 font-bold text-green-700">Required</td>
+                <td class="p-3 font-bold text-green-700">Required</td>
+                <td class="p-3">Not explicitly required</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION E -->
+      <section
+        class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200 flex justify-between"
+        >
+          <span
+            >SECTION E: P&amp;L Impact - Cash Flow Statement (No direct P&amp;L
+            impact)</span
+          >
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200">Metric</th>
+                <th class="p-3 border-b border-slate-200">AS 3</th>
+                <th class="p-3 border-b border-slate-200 bg-blue-50/50">
+                  Ind AS 7
+                </th>
+                <th class="p-3 border-b border-slate-200">IAS 7</th>
+                <th class="p-3 border-b border-slate-200">US GAAP</th>
+                <th class="p-3 border-b border-slate-200">Key Difference</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 font-mono">
+              <tr class="hover:bg-slate-50 text-slate-800">
+                <td class="p-3 text-left font-sans font-medium">
+                  Operating Cash Flow (CFO) - Example
+                </td>
+                <td class="p-3"><span id="pe-as-cfo">89</span> Cr</td>
+                <td class="p-3 bg-blue-50/50 font-semibold">
+                  <span id="pe-ind-cfo">85</span> Cr*
+                </td>
+                <td class="p-3 font-semibold">
+                  <span id="pe-ifrs-cfo">85</span> Cr*
+                </td>
+                <td class="p-3"><span id="pe-us-cfo">89</span> Cr</td>
+                <td class="p-3 font-sans text-xs text-slate-600">
+                  Varies based on policy choices for interest/dividends
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50 text-slate-800">
+                <td class="p-3 text-left font-sans font-medium">
+                  Investing Cash Flow (CFI)
+                </td>
+                <td class="p-3">(<span id="pe-as-cfi">31</span>) Cr</td>
+                <td class="p-3 bg-blue-50/50 font-semibold">
+                  (<span id="pe-ind-cfi">31</span>) Cr
+                </td>
+                <td class="p-3 font-semibold">
+                  (<span id="pe-ifrs-cfi">31</span>) Cr
+                </td>
+                <td class="p-3">(<span id="pe-us-cfi">35</span>) Cr</td>
+                <td class="p-3 font-sans text-xs text-slate-600">
+                  US GAAP excludes interest received from CFI
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50 text-slate-800">
+                <td class="p-3 text-left font-sans font-medium">
+                  Financing Cash Flow (CFF)
+                </td>
+                <td class="p-3"><span id="pe-as-cff">2</span> Cr</td>
+                <td class="p-3 bg-blue-50/50 font-semibold">
+                  <span id="pe-ind-cff">14</span> Cr*
+                </td>
+                <td class="p-3 font-semibold">
+                  <span id="pe-ifrs-cff">14</span> Cr*
+                </td>
+                <td class="p-3"><span id="pe-us-cff">9</span> Cr</td>
+                <td class="p-3 font-sans text-xs text-slate-600">
+                  Varies based on interest/dividend classification
+                </td>
+              </tr>
+              <tr
+                class="hover:bg-slate-50 font-bold border-t-2 border-slate-200"
+              >
+                <td class="p-3 text-left font-sans">Net Cash Flow</td>
+                <td class="p-3"><span id="pe-as-net">60</span> Cr</td>
+                <td class="p-3 bg-blue-100 text-blue-900">
+                  <span id="pe-ind-net">68</span> Cr*
+                </td>
+                <td class="p-3 text-blue-900">
+                  <span id="pe-ifrs-net">68</span> Cr*
+                </td>
+                <td class="p-3"><span id="pe-us-net">63</span> Cr</td>
+                <td class="p-3 font-sans text-xs text-slate-600 font-normal">
+                  Differences due to overdraft inclusion
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          class="px-4 py-2 bg-slate-50 border-t border-slate-200 text-xs text-slate-600 italic"
+        >
+          *Range depends on policy elections under Ind AS/IAS 7
+        </div>
+      </section>
+
+      <!-- SECTION F -->
+      <section
+        class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col font-mono"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold font-sans uppercase tracking-wider text-sm border-b border-slate-200 flex justify-between"
+        >
+          <span
+            >SECTION F: Balance Sheet vs Cash Flow Statement Presentation (Year
+            1)</span
+          >
+        </div>
+        <div class="overflow-x-auto text-sm">
+          <table class="w-full text-left">
+            <thead class="bg-slate-50 text-slate-700 font-sans">
+              <tr>
+                <th class="p-3 border-b border-slate-200">Item</th>
+                <th class="p-3 border-b border-slate-200">AS 3</th>
+                <th class="p-3 border-b border-slate-200">Ind AS 7 / IAS 7</th>
+                <th class="p-3 border-b border-slate-200">US GAAP</th>
+                <th class="p-3 border-b border-slate-200">Interpretation</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans">
+                  Cash &amp; Bank Balances (Balance Sheet)
+                </td>
+                <td class="p-3" id="f-bs-as">30.00 Cr</td>
+                <td class="p-3 font-bold text-amber-700" id="f-bs-in">
+                  30.00 Cr
+                </td>
+                <td class="p-3" id="f-bs-us">30.00 Cr</td>
+                <td class="p-3 font-sans text-xs text-slate-600">
+                  Assets are identical across frameworks
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans">
+                  Bank Overdraft (Balance Sheet Liability)
+                </td>
+                <td class="p-3" id="f-od-as">5.00 Cr</td>
+                <td class="p-3" id="f-od-in">5.00 Cr</td>
+                <td class="p-3" id="f-od-us">5.00 Cr</td>
+                <td class="p-3 font-sans text-xs text-slate-600">
+                  Always a current liability
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50 bg-slate-50/50">
+                <td class="p-3 font-bold font-sans text-indigo-800">
+                  Opening C&amp;CE (Cash Flow Statement)
+                </td>
+                <td class="p-3 font-bold text-slate-800" id="f-cce-as">
+                  30.00 Cr
+                </td>
+                <td class="p-3 font-bold text-indigo-700" id="f-cce-in">
+                  25.00 Cr
+                </td>
+                <td class="p-3 font-bold text-slate-800" id="f-cce-us">
+                  30.00 Cr
+                </td>
+                <td class="p-3 font-sans text-xs text-slate-600">
+                  Ind AS/IFRS reduces opening cash by overdraft amount
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans">
+                  Closing C&amp;CE (Cash Flow Statement)
+                </td>
+                <td class="p-3" id="f-cc-as">90.00 Cr</td>
+                <td class="p-3 font-bold text-indigo-700" id="f-cc-in">
+                  85.00 Cr
+                </td>
+                <td class="p-3" id="f-cc-us">93.00 Cr</td>
+                <td class="p-3 font-sans text-xs text-slate-600">
+                  Derived after applying net cash flows to opening C&amp;CE
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION G -->
+      <section
+        class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION G: Cash Flow Impact - Reconciliation
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200">Component</th>
+                <th class="p-3 border-b border-slate-200">AS 3</th>
+                <th class="p-3 border-b border-slate-200 bg-blue-50/50">
+                  Ind AS 7
+                </th>
+                <th class="p-3 border-b border-slate-200">IAS 7</th>
+                <th class="p-3 border-b border-slate-200">US GAAP</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 font-mono">
+              <tr class="hover:bg-slate-50 text-slate-800">
+                <td
+                  class="p-3 text-left font-sans font-bold border-b-2 border-slate-200"
+                >
+                  Total cash generated (economic)
+                </td>
+                <td class="p-3 font-bold border-b-2 border-slate-200">
+                  <span id="secg-tot">63</span> Cr
+                </td>
+                <td
+                  class="p-3 font-bold bg-blue-50/50 border-b-2 border-slate-200"
+                >
+                  <span id="secg-tot2">63</span> Cr
+                </td>
+                <td class="p-3 font-bold border-b-2 border-slate-200">
+                  <span id="secg-tot3">63</span> Cr
+                </td>
+                <td class="p-3 font-bold border-b-2 border-slate-200">
+                  <span id="secg-tot4">63</span> Cr
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50 text-slate-700">
+                <td class="p-3 text-left font-sans font-medium">
+                  Presentation as operating CF
+                </td>
+                <td class="p-3"><span id="secg-as-cfo">89</span> Cr</td>
+                <td class="p-3 bg-blue-50/50">
+                  <span id="secg-ind-cfo">85</span> Cr
+                </td>
+                <td class="p-3"><span id="secg-ifrs-cfo">85</span> Cr</td>
+                <td class="p-3"><span id="secg-us-cfo">89</span> Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50 text-slate-700">
+                <td class="p-3 text-left font-sans font-medium">
+                  Presentation as investing CF
+                </td>
+                <td class="p-3">
+                  <span id="secg-as-cfi">31</span> Cr inflow from interest
+                </td>
+                <td class="p-3 bg-blue-50/50">
+                  <span id="secg-ind-cfi">31</span> Cr (depends on choice)
+                </td>
+                <td class="p-3">Same as Ind AS</td>
+                <td class="p-3">
+                  <span id="secg-us-cfi">0</span> from interest (interest in
+                  operating)
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50 text-slate-700">
+                <td class="p-3 text-left font-sans font-medium">
+                  Presentation as financing CF
+                </td>
+                <td class="p-3"><span id="secg-as-cff">2</span> Cr</td>
+                <td class="p-3 bg-blue-50/50">
+                  <span id="secg-ind-cff">14</span> Cr (depends on choice)
+                </td>
+                <td class="p-3">Same as Ind AS</td>
+                <td class="p-3"><span id="secg-us-cff">9</span> Cr</td>
+              </tr>
+              <tr
+                class="hover:bg-green-50 font-bold bg-slate-50/50 border-t-2 border-slate-200"
+              >
+                <td class="p-3 text-left font-sans">
+                  Cash and cash equivalents closing
+                </td>
+                <td class="p-3 text-green-700">
+                  <span id="secg-as-close">90</span> Cr
+                </td>
+                <td class="p-3 bg-blue-100 text-blue-900">
+                  <span id="secg-ind-close">103</span> Cr (including overdraft)
+                </td>
+                <td class="p-3 text-blue-900">
+                  <span id="secg-ifrs-close">103</span> Cr
+                </td>
+                <td class="p-3 text-green-700">
+                  <span id="secg-us-close">93</span> Cr
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          class="px-4 py-2 bg-slate-50 border-t border-slate-200 text-xs text-slate-600 font-bold"
+        >
+          Note: Total cash generated from operations is economically identical
+          across all standards - only classification and presentation differ.
+        </div>
+      </section>
+
+      <!-- SECTION H -->
+      <section
+        id="section-h"
+        class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col mt-6 font-mono"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold font-sans uppercase tracking-wider text-sm border-b border-slate-200 flex justify-between"
+        >
+          <span>SECTION H: Ratio Impact</span>
+        </div>
+        <div
+          class="p-3 bg-amber-50 border-b border-slate-200 font-sans text-xs flex flex-wrap gap-4 items-center"
+        >
+          <span class="font-bold text-[#1a365d]">Ratio Baseline:</span>
+          <div class="flex items-center gap-1">
+            <label>Revenue (Cr):</label
+            ><input
+              type="number"
+              id="inp-rev"
+              value="400"
+              step="1"
+              class="w-20 p-1 border border-slate-300 rounded text-right bg-white"
+            />
+          </div>
+          <div class="flex items-center gap-1">
+            <label>Total Debt (Cr):</label
+            ><input
+              type="number"
+              id="inp-debt"
+              value="100"
+              step="1"
+              class="w-20 p-1 border border-slate-300 rounded text-right bg-white"
+            />
+          </div>
+          <div class="flex items-center gap-1">
+            <label>Total Assets (Cr):</label
+            ><input
+              type="number"
+              id="inp-assets"
+              value="500"
+              step="1"
+              class="w-20 p-1 border border-slate-300 rounded text-right bg-white"
+            />
+          </div>
+          <div class="flex items-center gap-1">
+            <label>Current Liab (Cr):</label
+            ><input
+              type="number"
+              id="inp-cl"
+              value="50"
+              step="1"
+              class="w-20 p-1 border border-slate-300 rounded text-right bg-white"
+            />
+          </div>
+        </div>
+        <div class="overflow-x-auto text-sm">
+          <table class="w-full text-center">
+            <thead class="bg-slate-50 text-slate-700 font-sans">
+              <tr>
+                <th class="p-3 border-b border-slate-200 text-left w-1/5">
+                  Ratio
+                </th>
+                <th class="p-3 border-b border-slate-200">AS 3</th>
+                <th class="p-3 border-b border-slate-200">Ind AS / IFRS</th>
+                <th class="p-3 border-b border-slate-200">US GAAP</th>
+                <th
+                  class="p-3 border-b border-slate-200 text-blue-800 font-bold"
+                >
+                  Direction
+                </th>
+                <th class="p-3 border-b border-slate-200 text-left w-1/4">
+                  Interpretation
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans text-left">
+                  OCF Margin (CFO/Rev)
+                </td>
+                <td class="p-3"><span id="h-ocf-as"></span></td>
+                <td class="p-3 font-bold text-amber-700">
+                  <span id="h-ocf-in"></span>
+                </td>
+                <td class="p-3"><span id="h-ocf-us"></span></td>
+                <td class="p-3 text-red-600 font-bold">Mixed</td>
+                <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                  Varies heavily depending on interest/dividend classification
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans text-left">
+                  Free Cash Flow (CFO - Capex)
+                </td>
+                <td class="p-3"><span id="h-fcf-as"></span></td>
+                <td class="p-3 font-bold text-amber-700">
+                  <span id="h-fcf-in"></span>
+                </td>
+                <td class="p-3"><span id="h-fcf-us"></span></td>
+                <td class="p-3 text-red-600 font-bold">Mixed</td>
+                <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                  Economic FCF unchanged, but standard FCF varies by label
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans text-left">
+                  CF Coverage (CFO/Debt)
+                </td>
+                <td class="p-3"><span id="h-cfc-as"></span></td>
+                <td class="p-3 font-bold text-amber-700">
+                  <span id="h-cfc-in"></span>
+                </td>
+                <td class="p-3"><span id="h-cfc-us"></span></td>
+                <td class="p-3 text-red-600 font-bold">Mixed</td>
+                <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                  Can appear distorted by operating vs financing choices
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans text-left">
+                  Cash ROA (CFO/Assets)
+                </td>
+                <td class="p-3"><span id="h-croa-as"></span></td>
+                <td class="p-3 font-bold text-amber-700">
+                  <span id="h-croa-in"></span>
+                </td>
+                <td class="p-3"><span id="h-croa-us"></span></td>
+                <td class="p-3 text-red-600 font-bold">Mixed</td>
+                <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                  Normalize by using Total Net Cash Flow for pure comparability
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans text-left">
+                  Div Coverage (CFO/Div)
+                </td>
+                <td class="p-3"><span id="h-divc-as"></span></td>
+                <td class="p-3 font-bold text-amber-700">
+                  <span id="h-divc-in"></span>
+                </td>
+                <td class="p-3"><span id="h-divc-us"></span></td>
+                <td class="p-3 text-red-600 font-bold">Mixed</td>
+                <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                  Significant shifts depending on if dividends drop CFO or CFF
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans text-left">
+                  Int Coverage (CFO/Int)
+                </td>
+                <td class="p-3"><span id="h-intc-as"></span></td>
+                <td class="p-3 font-bold text-amber-700">
+                  <span id="h-intc-in"></span>
+                </td>
+                <td class="p-3"><span id="h-intc-us"></span></td>
+                <td class="p-3 text-red-600 font-bold">Mixed</td>
+                <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                  Interest reduces numerator in some regimes, denominator in
+                  others
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans text-left">
+                  Liquidity (CCE/CL)
+                </td>
+                <td class="p-3"><span id="h-liq-as"></span></td>
+                <td class="p-3 font-bold text-amber-700">
+                  <span id="h-liq-in"></span>
+                </td>
+                <td class="p-3"><span id="h-liq-us"></span></td>
+                <td class="p-3 text-red-600 font-bold">Mixed</td>
+                <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                  Overdraft netted in CCE for Ind AS vs separated in others
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION I -->
+      <section
+        class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION I: Earnings Quality - Signals Table
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200">Signal Observed</th>
+                <th class="p-3 border-b border-slate-200">
+                  What It Means Technically
+                </th>
+                <th class="p-3 border-b border-slate-200">
+                  Analyst Interpretation
+                </th>
+                <th class="p-3 border-b border-slate-200">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">CFO > Net Income significantly</td>
+                <td class="p-3">
+                  Non-cash charges or working capital sources exceed uses
+                </td>
+                <td class="p-3">
+                  Quality of earnings may be high if working capital changes are
+                  sustainable; but one-time working capital benefits may reverse
+                </td>
+                <td class="p-3 font-semibold text-blue-700">
+                  Analyze sustainability of working capital changes
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">CFO &lt; Net Income consistently</td>
+                <td class="p-3">
+                  Aggressive revenue recognition, build-up of receivables, or
+                  high non-cash charges
+                </td>
+                <td class="p-3 text-red-600">
+                  Red flag - earnings not converting to cash; potential quality
+                  issues
+                </td>
+                <td class="p-3 font-semibold text-blue-700">
+                  Stress-test revenue recognition policies and receivable
+                  collection
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  Interest classified as operating (Ind AS/IAS 7 policy choice)
+                </td>
+                <td class="p-3">
+                  Company elected to show higher operating cash flow by
+                  excluding interest from CFO (if classified as financing)
+                </td>
+                <td class="p-3">
+                  Presentation choice - not economic; creates artificially
+                  higher CFO compared to peers with different policy
+                </td>
+                <td class="p-3 font-semibold text-blue-700">
+                  Reclassify consistently using cash flow from operations before
+                  interest and taxes
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  Dividends classified as operating (Ind AS/IAS 7 policy choice)
+                </td>
+                <td class="p-3">
+                  Rare - may be used by entities wanting to show lower financing
+                  outflows
+                </td>
+                <td class="p-3">
+                  Unusual policy - check if appropriate for business model; may
+                  mislead on dividend sustainability
+                </td>
+                <td class="p-3 font-semibold text-blue-700">
+                  Normalize by reclassifying dividends to financing for
+                  comparability
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  Bank overdraft included in cash equivalents (Ind AS/IAS 7)
+                </td>
+                <td class="p-3">
+                  Company has right of offset and overdraft is integral to cash
+                  management
+                </td>
+                <td class="p-3">
+                  Legitimate under IFRS/Ind AS but reduces reported net debt
+                  artificially
+                </td>
+                <td class="p-3 font-semibold text-blue-700">
+                  Recalculate net debt excluding overdraft from cash for
+                  leverage analysis
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  Restricted cash included in total cash (US GAAP)
+                </td>
+                <td class="p-3">
+                  Legal or contractual restrictions exist but cash is still
+                  reported in cash flow statement
+                </td>
+                <td class="p-3">
+                  Not available for general use - liquidity may be overstated
+                </td>
+                <td class="p-3 font-semibold text-blue-700">
+                  Adjust available cash by excluding restricted portion
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  Disclosure of changes in financing liabilities (IFRS/Ind AS
+                  only)
+                </td>
+                <td class="p-3">
+                  Company provides roll-forward of debt, leases, and other
+                  financing obligations
+                </td>
+                <td class="p-3 text-green-700">
+                  Good governance - allows tracking of non-cash changes (e.g.,
+                  new leases, conversions)
+                </td>
+                <td class="p-3 font-semibold text-blue-700">
+                  Use this disclosure to understand true financing cash needs
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION J -->
+      <section
+        class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION J: Trend Distortion Matrix
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200">Metric</th>
+                <th class="p-3 border-b border-slate-200">Distortion Type</th>
+                <th class="p-3 border-b border-slate-200">Duration</th>
+                <th class="p-3 border-b border-slate-200">Correction Method</th>
+                <th class="p-3 border-b border-slate-200">Example</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Operating Cash Flow (CFO)</td>
+                <td class="p-3 text-amber-600">
+                  Classification-driven level shift (if interest/dividend
+                  classification changes)
+                </td>
+                <td class="p-3">Persistent as long as policy remains</td>
+                <td class="p-3 font-semibold">
+                  Calculate cash flow from operations before interest and taxes
+                  by adding back interest and taxes to CFO
+                </td>
+                <td class="p-3 text-slate-600">
+                  Ind AS company with interest in financing has higher CFO than
+                  IFRS peer with interest in operating - normalize
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Free Cash Flow (FCF)</td>
+                <td class="p-3 text-green-600">
+                  No economic distortion (only classification)
+                </td>
+                <td class="p-3">Persistent</td>
+                <td class="p-3 font-semibold">
+                  Use consistent definition across periods: FCF = CFO
+                  (standardized) - Capex
+                </td>
+                <td class="p-3 text-slate-600">
+                  Ignore classification; economic FCF identical
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Cash and cash equivalents balance</td>
+                <td class="p-3 text-amber-600">
+                  Level shift (if overdraft included)
+                </td>
+                <td class="p-3">Persistent</td>
+                <td class="p-3 font-semibold">
+                  Calculate unrestricted cash available for operations by
+                  deducting overdrafts and restricted cash
+                </td>
+                <td class="p-3 text-slate-600">
+                  Ind AS shows higher cash balance due to overdraft inclusion
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Net debt</td>
+                <td class="p-3 text-amber-600">
+                  Level shift (if overdraft netted against cash)
+                </td>
+                <td class="p-3">Persistent</td>
+                <td class="p-3 font-semibold">
+                  Calculate gross debt separately from cash
+                </td>
+                <td class="p-3 text-slate-600">
+                  Ind AS net debt lower due to cash overdraft netting
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">CFO/Interest coverage</td>
+                <td class="p-3 text-red-600">
+                  Significant distortion (interest classification changes
+                  denominator)
+                </td>
+                <td class="p-3">Persistent</td>
+                <td class="p-3 font-semibold">
+                  Use cash flow before interest and taxes / interest paid for
+                  all periods
+                </td>
+                <td class="p-3 text-slate-600">
+                  Company with interest in financing shows 2x coverage vs
+                  operating classification - same economics
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION K -->
+      <section
+        class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION K: Ratio Interpretation Guide
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200">Ratio</th>
+                <th class="p-3 border-b border-slate-200">Reported Value</th>
+                <th class="p-3 border-b border-slate-200">
+                  What Analyst Should Do
+                </th>
+                <th class="p-3 border-b border-slate-200">
+                  Correct Interpretation
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  Operating Cash Flow Margin (CFO/Revenue)
+                </td>
+                <td class="p-3">
+                  Higher under US GAAP; varies under IFRS/Ind AS
+                </td>
+                <td class="p-3 font-bold text-blue-700">
+                  Recast all to common basis: CFO before interest and taxes
+                </td>
+                <td class="p-3">
+                  Economic cash generation from operations is identical; only
+                  labels differ
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Cash Flow to Net Income (CFO/NI)</td>
+                <td class="p-3">
+                  >1.0 generally good; but distorted by classification
+                  differences
+                </td>
+                <td class="p-3 font-bold text-blue-700">
+                  Calculate cash flow before interest and taxes / EBIT for
+                  apples-to-apples
+                </td>
+                <td class="p-3">
+                  True cash conversion quality independent of financing
+                  classification
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Free Cash Flow (CFO - Capex)</td>
+                <td class="p-3">
+                  Appears different due to CFO classification differences
+                </td>
+                <td class="p-3 font-bold text-blue-700">
+                  Calculate total net cash flow from all activities -
+                  non-operating investing
+                </td>
+                <td class="p-3">
+                  Economic FCF is identical - ignore classification differences
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  Cash Flow Coverage (CFO/Total Debt)
+                </td>
+                <td class="p-3">
+                  Appears stronger if interest in financing (CFO not reduced)
+                </td>
+                <td class="p-3 font-bold text-blue-700">
+                  Use (CFO + interest paid)/Total Debt or use EBITDA/Total Debt
+                </td>
+                <td class="p-3">
+                  Coverage unaffected by classification; use pre-interest cash
+                  flow
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Net Debt / EBITDA</td>
+                <td class="p-3">
+                  Appears lower under Ind AS (overdraft in cash)
+                </td>
+                <td class="p-3 font-bold text-blue-700">
+                  Add back overdrafts to net debt; exclude restricted cash
+                </td>
+                <td class="p-3">
+                  Leverage higher than reported - adjust for netting
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="px-4 py-3 bg-blue-50 border-t border-slate-200">
+          <p class="text-sm text-blue-900">
+            <strong class="font-bold">Intelligence Note:</strong> The Cash Flow
+            Statement itself does not impact P&amp;L - it is a presentation
+            statement. However, classification differences affect financial
+            ratios and performance metrics. Total cash generated from operations
+            is economically identical across all standards - only classification
+            and presentation differ.
+          </p>
+        </div>
+      </section>
+
+      <!-- SECTION L -->
+      <section
+        class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION L: Analyst Concerns &amp; Answers
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  Analyst question
+                </th>
+                <th class="p-3 border-r border-slate-200 w-1/4">Concern</th>
+                <th class="p-3 border-r border-slate-200 w-1/4">Answer</th>
+                <th class="p-3 w-1/4">Evidence</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  Why does operating cash flow differ between two similar
+                  companies under IFRS?
+                </td>
+                <td class="p-3 text-red-600">Classification inconsistency</td>
+                <td class="p-3">
+                  Under IAS 7/Ind AS 7, companies can choose to classify
+                  interest as operating OR financing, and dividends as operating
+                  OR financing
+                </td>
+                <td class="p-3 text-slate-600">
+                  Two identical companies can show different CFO solely due to
+                  policy choice
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  Should I include bank overdrafts in cash when analyzing
+                  liquidity?
+                </td>
+                <td class="p-3 text-red-600">Overstated available cash</td>
+                <td class="p-3">
+                  Under IFRS/Ind AS, overdrafts included if repayable on demand
+                  AND integral to cash management; under US GAAP, never included
+                </td>
+                <td class="p-3 text-slate-600">
+                  For cross-border comparability, exclude overdrafts from cash
+                  for all companies
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  How do I compare US GAAP and IFRS cash flow statements?
+                </td>
+                <td class="p-3 text-red-600">Cross-border comparability</td>
+                <td class="p-3">
+                  Normalize to common classification - move all interest and
+                  dividends to operating for US GAAP companies; for IFRS,
+                  reclassify interest and dividends to match US GAAP or use
+                  pre-interest CF
+                </td>
+                <td class="p-3 text-slate-600">
+                  Prepare bridge table: IFRS CFO + interest in financing =
+                  comparable to US GAAP CFO
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  Why does Ind AS 7 encourage direct method but no one uses it?
+                </td>
+                <td class="p-3 text-slate-600">Practicality vs principle</td>
+                <td class="p-3">
+                  Direct method requires tracking gross cash receipts/payments -
+                  more costly; most ERP systems not configured to provide this
+                  data easily
+                </td>
+                <td class="p-3 text-slate-600">
+                  Most Indian companies use indirect method despite
+                  encouragement
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  How do I treat restricted cash in analysis?
+                </td>
+                <td class="p-3 text-red-600">Liquidity overstatement</td>
+                <td class="p-3">
+                  US GAAP includes restricted cash in total cash in cash flow
+                  statement but reconciles to balance sheet; IFRS requires
+                  judgment
+                </td>
+                <td class="p-3 text-slate-600">
+                  Exclude restricted cash from available-for-use liquidity
+                  metrics
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  What's the most important disclosure in Ind AS 7 that AS 3
+                  lacked?
+                </td>
+                <td class="p-3 text-red-600">Missing transparency</td>
+                <td class="p-3">
+                  Changes in financing liabilities - shows both cash and
+                  non-cash changes to debt, leases, and other obligations
+                </td>
+                <td class="p-3 text-slate-600">
+                  Critical for understanding true financing cash needs and
+                  non-cash financing activities
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION M -->
+      <section
+        class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION M: Investor Perception Analysis
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  Investor Type
+                </th>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  What they see
+                </th>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  Likely reaction
+                </th>
+                <th class="p-3 w-1/4">Sophisticated response</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Retail</td>
+                <td class="p-3">CFO number in financial highlights</td>
+                <td class="p-3 text-amber-600">
+                  Compare CFO across companies without understanding
+                  classification differences
+                </td>
+                <td class="p-3 font-semibold text-blue-700">
+                  May draw incorrect conclusions about relative performance
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Value Investors</td>
+                <td class="p-3">Free cash flow generation</td>
+                <td class="p-3">
+                  Focus on total cash flow, not operating classification; adjust
+                  for working capital sustainability
+                </td>
+                <td class="p-3 font-semibold text-blue-700">
+                  Reclassify all cash flows to consistent basis before
+                  comparing; ignore presentation differences
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Institutional Long-Only</td>
+                <td class="p-3">CFO trends and cash conversion</td>
+                <td class="p-3">
+                  Understand classification differences; request policy election
+                  disclosures
+                </td>
+                <td class="p-3 font-semibold text-blue-700">
+                  Use standardized cash flow before interest and taxes for peer
+                  comparisons; value based on total FCF
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Credit / Lenders</td>
+                <td class="p-3">CFO coverage ratios for covenant testing</td>
+                <td class="p-3 text-amber-600">
+                  Most impacted - classification differences can artificially
+                  inflate or deflate coverage ratios
+                </td>
+                <td class="p-3 font-semibold text-blue-700">
+                  Write covenants based on cash flow available for debt service
+                  = CFO + interest + taxes - maintenance Capex
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">PE / VC</td>
+                <td class="p-3">Cash burn rate and runway</td>
+                <td class="p-3">
+                  Focus on total cash flow from all activities; less concerned
+                  with classification
+                </td>
+                <td class="p-3 font-semibold text-blue-700">
+                  Use simple cash balance change; operating classification
+                  irrelevant for cash runway analysis
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION N -->
+      <section
+        class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION N: Reporting Signals Decoder
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200">Management Action</th>
+                <th class="p-3 border-r border-slate-200">Signal</th>
+                <th class="p-3 border-r border-slate-200">
+                  What It Really Means
+                </th>
+                <th class="p-3">Your Move</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  Interest classified as financing (IFRS/Ind AS)
+                </td>
+                <td class="p-3 text-blue-600 font-bold">
+                  Conservative policy choice
+                </td>
+                <td class="p-3">
+                  CFO higher than if classified as operating; may be trying to
+                  show stronger operating performance
+                </td>
+                <td class="p-3 font-semibold">
+                  Reclassify interest to operating for apples-to-apples with US
+                  GAAP peers
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  Interest classified as operating (IFRS/Ind AS)
+                </td>
+                <td class="p-3 text-blue-600 font-bold">
+                  More conservative CFO presentation
+                </td>
+                <td class="p-3">
+                  CFO lower but more comparable to US GAAP; may be trying to
+                  show realistic operating cash flow
+                </td>
+                <td class="p-3 font-semibold">
+                  No adjustment needed for US GAAP comparison
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  Dividends classified as operating (IFRS/Ind AS - rare)
+                </td>
+                <td class="p-3 text-red-600 font-bold">
+                  Highly unusual - potential red flag
+                </td>
+                <td class="p-3">
+                  Inflates financing cash flow (less negative) by hiding
+                  dividend outflows in operating; may mislead on dividend
+                  sustainability
+                </td>
+                <td class="p-3 font-semibold">
+                  Always reclassify dividends to financing for analysis
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  Changes classification policy between periods
+                </td>
+                <td class="p-3 text-red-600 font-bold">
+                  Red flag - lack of consistency
+                </td>
+                <td class="p-3">
+                  May be trying to manage reported CFO trends; requires
+                  disclosure and retrospective restatement
+                </td>
+                <td class="p-3 font-semibold">
+                  Restate prior periods to same policy; question management
+                  motivation
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  No disclosure of changes in financing liabilities (IFRS/Ind
+                  AS)
+                </td>
+                <td class="p-3 text-red-600 font-bold">
+                  Non-compliance with Ind AS 7
+                </td>
+                <td class="p-3">
+                  Hiding non-cash financing activities (e.g., new leases, debt
+                  conversions)
+                </td>
+                <td class="p-3 font-semibold">
+                  Request disclosure; adjust analysis to include non-cash
+                  financing
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Uses direct method (rare)</td>
+                <td class="p-3 text-green-700 font-bold">
+                  Very good governance
+                </td>
+                <td class="p-3">
+                  Provides transparent gross cash receipts/payments; most
+                  transparent presentation
+                </td>
+                <td class="p-3 font-semibold">
+                  Highly positive signal - use direct method data for more
+                  accurate cash flow forecasting
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION O: Premium Intelligence Narrative -->
+      <section
+        id="section-o"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION O: Premium Intelligence Narrative
+        </div>
+        <div class="p-5 text-sm space-y-4 text-slate-700 leading-relaxed">
+          <p>
+            <span class="font-bold text-[#1a365d]">Question:</span> "Two
+            different companies report different operating cash flow for the
+            same economic activity. Which one is correct?"
+          </p>
+          <p>
+            <span class="font-bold text-slate-500"
+              >Average Analyst Answer:</span
+            >
+            "Check which accounting standard they follow - IFRS, US GAAP, or
+            Indian AS - and read the policy note on interest classification."
+          </p>
+          <div
+            class="p-4 bg-teal-50 border border-teal-200 rounded-lg text-teal-900"
+          >
+            <p>
+              <span class="font-bold text-teal-800 text-base"
+                >PREMIUM Analyst Answer:</span
+              ><br /><br />
+              The difference in reported operating cash flow is not about
+              'correct' or 'incorrect' - it's about classification philosophy.
+              US GAAP takes a strict approach: interest paid and received are
+              always operating. IFRS and Ind AS offer a choice, recognizing that
+              interest might be a financing cost or an operating return
+              depending on the business model. However, this flexibility creates
+              a trap for the unwary analyst. A company classifying interest paid
+              as financing will artificially inflate its CFO compared to a US
+              GAAP peer. The sophisticated investor recasts all cash flows to a
+              common basis before making allocation decisions.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION P: Red Flags vs Green Flags (Visual Indicator Matrix) -->
+      <section
+        id="section-p"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION P: Red Flags vs Green Flags (Visual Indicator Matrix)
+        </div>
+        <div class="overflow-x-auto flex-1">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-1/2">Scenario</th>
+                <th class="p-3 border-r border-slate-200 text-center w-24">
+                  Flag
+                </th>
+                <th class="p-3">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr class="bg-[#fee]">
+                <td class="p-3 font-medium">
+                  Consistently huge gap between Operating Cash Flow and Net
+                  Income
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-red-700 uppercase tracking-widest"
+                >
+                  <span class="text-red-500 mr-1">🔴</span>RED
+                </td>
+                <td class="p-3 text-red-900">
+                  Check for aggressive working capital management or aggressive
+                  revenue recognition.
+                </td>
+              </tr>
+              <tr class="bg-[#fee]">
+                <td class="p-3 font-medium">
+                  CFO positive only because of delayed payments to suppliers
+                  (payable stretch)
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-red-700 uppercase tracking-widest"
+                >
+                  <span class="text-red-500 mr-1">🔴</span>RED
+                </td>
+                <td class="p-3 text-red-900">
+                  Unsustainable. Recompute CFO assuming normal payable days.
+                </td>
+              </tr>
+              <tr class="bg-[#fee]">
+                <td class="p-3 font-medium">
+                  Capitalizing routine operating expenses into Investing Cash
+                  Flow
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-red-700 uppercase tracking-widest"
+                >
+                  <span class="text-red-500 mr-1">🔴</span>RED
+                </td>
+                <td class="p-3 text-red-900">
+                  Manually move these outflows back to CFO to find true cash
+                  generation.
+                </td>
+              </tr>
+              <tr class="bg-[#efe]">
+                <td class="p-3 font-medium">
+                  CFO covers Capex and Dividends comfortably over a 3-year cycle
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-green-700 uppercase tracking-widest"
+                >
+                  <span class="text-green-500 mr-1">🟢</span>GREEN
+                </td>
+                <td class="p-3 text-green-900">
+                  Strong indicator of a self-sustaining business model.
+                </td>
+              </tr>
+              <tr class="bg-[#efe]">
+                <td class="p-3 font-medium">
+                  Clear breakdown of cash flows by segment or geographical
+                  region
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-green-700 uppercase tracking-widest"
+                >
+                  <span class="text-green-500 mr-1">🟢</span>GREEN
+                </td>
+                <td class="p-3 text-green-900">
+                  Use granularity to model segment-specific terminal growth
+                  rates.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION Q: Final Intelligence Summary -->
+      <section
+        id="section-q"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION Q: Final Intelligence Summary
+        </div>
+        <div class="p-6 bg-white">
+          <p
+            class="font-bold text-lg text-slate-800 pb-3 border-b border-slate-100 mb-4"
+          >
+            The Sophistication Hierarchy
+          </p>
+          <ul class="space-y-4 text-sm text-slate-700">
+            <li class="flex flex-col sm:flex-row sm:items-start gap-2">
+              <span class="font-bold whitespace-nowrap">Level 1 (Retail):</span>
+              <span>
+                &quot;Company A's operating cash flow is higher than Company
+                B's, so Company A is better.&quot; &rarr;
+                <span class="text-red-600 font-bold"
+                  >Wrong action (non-comparable CFO)</span
+                >
+              </span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:items-start gap-2">
+              <span class="font-bold whitespace-nowrap">Level 2 (Basic):</span>
+              <span>
+                &quot;Different accounting standards classify cash flows
+                differently. I'll compare companies only within the same
+                standard.&quot; &rarr;
+                <span class="text-amber-600 font-bold"
+                  >Misses cross-border opportunities</span
+                >
+              </span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:items-start gap-2">
+              <span class="font-bold whitespace-nowrap">Level 3:</span>
+              <span>
+                &quot;Cash flow classification differences across standards are
+                presentation choices, not economic differences. Re-classify
+                interest and dividends to match US GAAP strictness to reveal
+                true peer comparability.&quot; &rarr;
+                <span class="text-green-600 font-bold"
+                  >Finds hidden leverage disguised as operational
+                  efficiency</span
+                >
+              </span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <div
+        class="text-center text-xs text-slate-500 font-mono mt-4 mb-8"
+        id="calc-timestamp"
+      >
+        Last calculated: --
+      </div>
+    </main>
+
+    <script>
+      function formatNumber(num) {
+        if (num === null || num === undefined || isNaN(num)) return "0.00";
+        return Number(num).toFixed(2);
+      }
+
+      function updateCalculations() {
+        const pbt = parseFloat(document.getElementById("inp-pbt").value) || 0;
+        const dep = parseFloat(document.getElementById("inp-dep").value) || 0;
+        const profSale =
+          parseFloat(document.getElementById("inp-prof-sale").value) || 0;
+        const incRec =
+          parseFloat(document.getElementById("inp-inc-rec").value) || 0;
+        const decInv =
+          parseFloat(document.getElementById("inp-dec-inv").value) || 0;
+        const incPay =
+          parseFloat(document.getElementById("inp-inc-pay").value) || 0;
+
+        const intExp =
+          parseFloat(document.getElementById("inp-int-exp").value) || 0;
+        const intRec =
+          parseFloat(document.getElementById("inp-int-rec").value) || 0;
+        const divPaid =
+          parseFloat(document.getElementById("inp-div-paid").value) || 0;
+        const taxPaid =
+          parseFloat(document.getElementById("inp-tax-paid").value) || 0;
+
+        const purchM =
+          parseFloat(document.getElementById("inp-purch").value) || 0;
+        const saleM =
+          parseFloat(document.getElementById("inp-sale").value) || 0;
+        const issueSh =
+          parseFloat(document.getElementById("inp-issue").value) || 0;
+        const repayL =
+          parseFloat(document.getElementById("inp-repay").value) || 0;
+
+        const openCash =
+          parseFloat(document.getElementById("inp-open-cash").value) || 0;
+        const od = parseFloat(document.getElementById("inp-od").value) || 0;
+
+        const selInt = document.getElementById("sel-interest").value;
+        const selDiv = document.getElementById("sel-dividend").value;
+
+        // Base Operating CF before interest, tax, dividends
+        let cfoBase = pbt + dep - profSale - incRec + decInv + incPay;
+
+        // AS 3
+        const asCfo = cfoBase + intExp - intRec - taxPaid;
+        const asCfi = -purchM + saleM + intRec;
+        const asCff = issueSh - repayL - intExp - divPaid;
+        const asNet = asCfo + asCfi + asCff;
+        const asClose = openCash + asNet;
+
+        // US GAAP
+        const usCfo = cfoBase + intExp - intRec - intExp + intRec - taxPaid; // net income starts with interest netted.
+        // effectively: cfoBase - taxPaid. Because intExp reduces NI and is operating. intRec increases NI and is operating.
+        const usCfi = -purchM + saleM;
+        const usCff = issueSh - repayL - divPaid;
+        const usNet = usCfo + usCfi + usCff + od; // overdraft increases cash but is financing
+        const usNetDisplay = usCfo + usCfi + usCff;
+        const usClose = openCash + usNetDisplay;
+
+        // Ind AS / IAS
+        let indCfo = cfoBase - taxPaid;
+        let indCfi = -purchM + saleM;
+        let indCff = issueSh - repayL;
+
+        if (selInt === "Op_Op") {
+          indCfo += -intExp + intRec;
+        } else if (selInt === "Op_Inv") {
+          indCfo -= intExp;
+          indCfi += intRec;
+        } else if (selInt === "Fin_Op") {
+          indCff -= intExp;
+          indCfo += intRec;
+        } else if (selInt === "Fin_Inv") {
+          indCff -= intExp;
+          indCfi += intRec;
+        }
+
+        if (selDiv === "Op_Op") {
+          indCfo -= divPaid;
+          // div receipt is not in our input right now, assume 0
+        } else if (selDiv === "Op_Inv") {
+          indCfo -= divPaid;
+        } else if (selDiv === "Fin_Op") {
+          indCff -= divPaid;
+        } else if (selDiv === "Fin_Inv") {
+          indCff -= divPaid;
+        }
+
+        const indNet = indCfo + indCfi + indCff;
+        const indClose = openCash - od + indNet;
+
+        // Updates for Section E
+        document.getElementById("pe-as-cfo").textContent = formatNumber(asCfo);
+        document.getElementById("pe-ind-cfo").textContent =
+          formatNumber(indCfo);
+        document.getElementById("pe-ifrs-cfo").textContent =
+          formatNumber(indCfo);
+        document.getElementById("pe-us-cfo").textContent = formatNumber(usCfo);
+
+        document.getElementById("pe-as-cfi").textContent = formatNumber(asCfi);
+        document.getElementById("pe-ind-cfi").textContent =
+          formatNumber(indCfi);
+        document.getElementById("pe-ifrs-cfi").textContent =
+          formatNumber(indCfi);
+        document.getElementById("pe-us-cfi").textContent = formatNumber(usCfi);
+
+        document.getElementById("pe-as-cff").textContent = formatNumber(asCff);
+        document.getElementById("pe-ind-cff").textContent =
+          formatNumber(indCff);
+        document.getElementById("pe-ifrs-cff").textContent =
+          formatNumber(indCff);
+        document.getElementById("pe-us-cff").textContent = formatNumber(usCff);
+
+        document.getElementById("pe-as-net").textContent = formatNumber(asNet);
+        document.getElementById("pe-ind-net").textContent =
+          formatNumber(indNet);
+        document.getElementById("pe-ifrs-net").textContent =
+          formatNumber(indNet);
+        document.getElementById("pe-us-net").textContent =
+          formatNumber(usNetDisplay);
+
+        // Updates for Section F
+        document.getElementById("f-bs-as").textContent =
+          formatNumber(openCash) + " Cr";
+        document.getElementById("f-bs-in").textContent =
+          formatNumber(openCash) + " Cr";
+        document.getElementById("f-bs-us").textContent =
+          formatNumber(openCash) + " Cr";
+
+        document.getElementById("f-od-as").textContent =
+          formatNumber(od) + " Cr";
+        document.getElementById("f-od-in").textContent =
+          formatNumber(od) + " Cr";
+        document.getElementById("f-od-us").textContent =
+          formatNumber(od) + " Cr";
+
+        document.getElementById("f-cce-as").textContent =
+          formatNumber(openCash) + " Cr";
+        document.getElementById("f-cce-in").textContent =
+          formatNumber(openCash - od) + " Cr";
+        document.getElementById("f-cce-us").textContent =
+          formatNumber(openCash) + " Cr";
+
+        document.getElementById("f-cc-as").textContent =
+          formatNumber(asClose) + " Cr";
+        document.getElementById("f-cc-in").textContent =
+          formatNumber(indClose) + " Cr";
+        document.getElementById("f-cc-us").textContent =
+          formatNumber(usClose) + " Cr";
+
+        // Updates for Section G
+        const econGen =
+          cfoBase -
+          taxPaid +
+          (-purchM + saleM) +
+          (issueSh - repayL) +
+          (intRec - intExp) -
+          divPaid;
+        document.getElementById("secg-tot").textContent = formatNumber(econGen);
+        document.getElementById("secg-tot2").textContent =
+          formatNumber(econGen);
+        document.getElementById("secg-tot3").textContent =
+          formatNumber(econGen);
+        document.getElementById("secg-tot4").textContent =
+          formatNumber(econGen);
+
+        document.getElementById("secg-as-cfo").textContent =
+          formatNumber(asCfo);
+        document.getElementById("secg-ind-cfo").textContent =
+          formatNumber(indCfo);
+        document.getElementById("secg-ifrs-cfo").textContent =
+          formatNumber(indCfo);
+        document.getElementById("secg-us-cfo").textContent =
+          formatNumber(usCfo);
+
+        document.getElementById("secg-as-cfi").textContent =
+          formatNumber(asCfi);
+        document.getElementById("secg-ind-cfi").textContent =
+          formatNumber(indCfi);
+        document.getElementById("secg-us-cfi").textContent =
+          formatNumber(usCfi);
+
+        document.getElementById("secg-as-cff").textContent =
+          formatNumber(asCff);
+        document.getElementById("secg-ind-cff").textContent =
+          formatNumber(indCff);
+        document.getElementById("secg-us-cff").textContent =
+          formatNumber(usCff);
+
+        document.getElementById("secg-as-close").textContent =
+          formatNumber(asClose);
+        document.getElementById("secg-ind-close").textContent =
+          formatNumber(indClose);
+        document.getElementById("secg-ifrs-close").textContent =
+          formatNumber(indClose);
+        document.getElementById("secg-us-close").textContent =
+          formatNumber(usClose);
+
+        // Section H (Ratio Impact)
+        const rev = parseFloat(document.getElementById("inp-rev"))
+          ? parseFloat(document.getElementById("inp-rev").value)
+          : 400;
+        const totalDebt = parseFloat(document.getElementById("inp-debt"))
+          ? parseFloat(document.getElementById("inp-debt").value)
+          : 100;
+        const assets = parseFloat(document.getElementById("inp-assets"))
+          ? parseFloat(document.getElementById("inp-assets").value)
+          : 500;
+        const currLiab = parseFloat(document.getElementById("inp-cl"))
+          ? parseFloat(document.getElementById("inp-cl").value)
+          : 50;
+
+        // OCF Margin = CFO / Rev
+        document.getElementById("h-ocf-as").textContent =
+          rev !== 0 ? ((asCfo / rev) * 100).toFixed(2) + "%" : "-";
+        document.getElementById("h-ocf-in").textContent =
+          rev !== 0 ? ((indCfo / rev) * 100).toFixed(2) + "%" : "-";
+        document.getElementById("h-ocf-us").textContent =
+          rev !== 0 ? ((usCfo / rev) * 100).toFixed(2) + "%" : "-";
+
+        // FCF = CFO - Capex (Purchases)
+        document.getElementById("h-fcf-as").textContent =
+          formatNumber(asCfo - purchM) + " Cr";
+        document.getElementById("h-fcf-in").textContent =
+          formatNumber(indCfo - purchM) + " Cr";
+        document.getElementById("h-fcf-us").textContent =
+          formatNumber(usCfo - purchM) + " Cr";
+
+        // CF Coverage = CFO / Debt
+        document.getElementById("h-cfc-as").textContent =
+          totalDebt !== 0 ? ((asCfo / totalDebt) * 1).toFixed(2) + "x" : "-";
+        document.getElementById("h-cfc-in").textContent =
+          totalDebt !== 0 ? ((indCfo / totalDebt) * 1).toFixed(2) + "x" : "-";
+        document.getElementById("h-cfc-us").textContent =
+          totalDebt !== 0 ? ((usCfo / totalDebt) * 1).toFixed(2) + "x" : "-";
+
+        // Cash ROA = CFO / Assets
+        document.getElementById("h-croa-as").textContent =
+          assets !== 0 ? ((asCfo / assets) * 100).toFixed(2) + "%" : "-";
+        document.getElementById("h-croa-in").textContent =
+          assets !== 0 ? ((indCfo / assets) * 100).toFixed(2) + "%" : "-";
+        document.getElementById("h-croa-us").textContent =
+          assets !== 0 ? ((usCfo / assets) * 100).toFixed(2) + "%" : "-";
+
+        // Div Coverage = CFO / Div Paid
+        document.getElementById("h-divc-as").textContent =
+          divPaid !== 0 ? ((asCfo / divPaid) * 1).toFixed(2) + "x" : "-";
+        document.getElementById("h-divc-in").textContent =
+          divPaid !== 0 ? ((indCfo / divPaid) * 1).toFixed(2) + "x" : "-";
+        document.getElementById("h-divc-us").textContent =
+          divPaid !== 0 ? ((usCfo / divPaid) * 1).toFixed(2) + "x" : "-";
+
+        // Int Coverage = CFO / Int Paid (Or CFO + Int Paid + Taxes / Int Paid, let's just do CFO / Int for simplicity of delta here or CFO before int?)
+        // Let's use (CFO / Int Paid) just to show the raw ratio change for the exact same input metric.
+        document.getElementById("h-intc-as").textContent =
+          intExp !== 0 ? ((asCfo / intExp) * 1).toFixed(2) + "x" : "-";
+        document.getElementById("h-intc-in").textContent =
+          intExp !== 0 ? ((indCfo / intExp) * 1).toFixed(2) + "x" : "-";
+        document.getElementById("h-intc-us").textContent =
+          intExp !== 0 ? ((usCfo / intExp) * 1).toFixed(2) + "x" : "-";
+
+        // Liquidity = Closing CCE / CL
+        const cceAs = openCash; // Actually we should use closing CCE! Wait, closing CCE is asClose, indClose, usClose.
+        // For Ind AS it includes OD: indClose. For AS and US it just includes the base net flows (asClose, usClose).
+        document.getElementById("h-liq-as").textContent =
+          currLiab !== 0 ? ((asClose / currLiab) * 1).toFixed(2) + "x" : "-";
+        document.getElementById("h-liq-in").textContent =
+          currLiab !== 0 ? ((indClose / currLiab) * 1).toFixed(2) + "x" : "-";
+        document.getElementById("h-liq-us").textContent =
+          currLiab !== 0 ? ((usClose / currLiab) * 1).toFixed(2) + "x" : "-";
+
+        const now = new Date();
+        document.getElementById("calc-timestamp").textContent =
+          "Last calculated: " + now.toLocaleTimeString();
+      }
+
+      function attachListeners() {
+        const inputs = document.querySelectorAll("input, select");
+        inputs.forEach((inp) => {
+          inp.addEventListener("input", updateCalculations);
+          inp.addEventListener("change", updateCalculations);
+        });
+
+        document.getElementById("reset-btn").addEventListener("click", () => {
+          document.getElementById("inp-pbt").value = 100.0;
+          document.getElementById("inp-dep").value = 20.0;
+          document.getElementById("inp-prof-sale").value = 5.0;
+          document.getElementById("inp-inc-rec").value = 15.0;
+          document.getElementById("inp-dec-inv").value = 8.0;
+          document.getElementById("inp-inc-pay").value = 10.0;
+          document.getElementById("inp-int-exp").value = 12.0;
+          document.getElementById("inp-int-rec").value = 4.0;
+          document.getElementById("inp-div-paid").value = 6.0;
+          document.getElementById("inp-tax-paid").value = 25.0;
+          document.getElementById("inp-purch").value = 50.0;
+          document.getElementById("inp-sale").value = 15.0;
+          document.getElementById("inp-issue").value = 40.0;
+          document.getElementById("inp-repay").value = 20.0;
+          document.getElementById("inp-open-cash").value = 30.0;
+          document.getElementById("inp-od").value = 5.0;
+
+          document.getElementById("sel-interest").value = "Fin_Inv";
+          document.getElementById("sel-dividend").value = "Fin_Inv";
+
+          const inpRev = document.getElementById("inp-rev");
+          if (inpRev) inpRev.value = 400;
+          const inpDebt = document.getElementById("inp-debt");
+          if (inpDebt) inpDebt.value = 100;
+          const inpAssets = document.getElementById("inp-assets");
+          if (inpAssets) inpAssets.value = 500;
+          const inpCl = document.getElementById("inp-cl");
+          if (inpCl) inpCl.value = 50;
+
+          updateCalculations();
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        attachListeners();
+        updateCalculations();
+      });
+    </script>
+  </body>
+</html>

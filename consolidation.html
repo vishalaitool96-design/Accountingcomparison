@@ -1,0 +1,2636 @@
+<html lang="en">
+  <head>
+    <style>
+      .custom-scrollbar::-webkit-scrollbar {
+        height: 10px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-[#f7fafc] font-sans h-screen w-full flex flex-col overflow-hidden border-8 border-slate-200 text-slate-800"
+  >
+    const fs = require('fs'); const htmlContent = `
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consolidation | Standards Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+      }
+    </style>
+
+    <style>
+      /* Navbar Container */
+      .navbar {
+        background-color: #1a202c;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1rem;
+        position: relative;
+        z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        font-family: inherit;
+      }
+
+      .nav-brand {
+        font-size: 1.25rem;
+        font-weight: bold;
+        padding: 1rem;
+        color: white;
+        text-decoration: none;
+        letter-spacing: 0.05em;
+      }
+
+      .nav-menu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
+
+      .nav-item {
+        position: relative;
+      }
+
+      .nav-link {
+        display: block;
+        padding: 1.25rem 1.5rem;
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        border: none;
+        background: none;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition:
+          background-color 0.2s,
+          color 0.2s;
+        font-family: inherit;
+      }
+
+      .nav-link:hover,
+      .nav-item:hover > .nav-link {
+        background-color: #2d3748;
+      }
+
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: white;
+        min-width: 220px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        border-radius: 0 0 0.375rem 0.375rem;
+        overflow: hidden;
+        border: 1px solid #e2e8f0;
+        border-top: none;
+        z-index: 1000;
+      }
+
+      .mega-menu {
+        min-width: 400px;
+        left: auto;
+        right: 0;
+      }
+
+      .dropdown-item {
+        display: block;
+        padding: 0.85rem 1.25rem;
+        color: #4a5568;
+        text-decoration: none;
+        border-bottom: 1px solid #edf2f7;
+        transition:
+          background-color 0.15s,
+          color 0.15s;
+        font-size: 0.95rem;
+      }
+
+      .dropdown-item:last-child {
+        border-bottom: none;
+      }
+
+      .dropdown-item:hover {
+        background-color: #f7fafc;
+        color: #2b6cb0;
+      }
+
+      .view-all-link {
+        color: #2b6cb0;
+        font-weight: 600;
+        text-decoration: none;
+        display: block;
+        text-align: center;
+        background-color: #f8fafc;
+      }
+
+      .view-all-link:hover {
+        text-decoration: underline;
+        background-color: #f1f5f9;
+      }
+
+      .mega-grid {
+        display: flex;
+        padding: 1.25rem;
+        gap: 2rem;
+      }
+
+      .mega-column {
+        flex: 1;
+      }
+
+      .mega-title {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        color: #a0aec0;
+        letter-spacing: 0.05em;
+        font-weight: bold;
+        margin-bottom: 0.75rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .mega-link {
+        display: block;
+        padding: 0.4rem 0;
+        color: #4a5568;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: color 0.15s;
+      }
+
+      .mega-link:hover {
+        color: #2b6cb0;
+        text-decoration: underline;
+      }
+
+      .view-all-block {
+        background-color: #f8fafc;
+        border-top: 1px solid #e2e8f0;
+      }
+
+      .mobile-toggle {
+        display: none;
+        background: none;
+        border: 1px solid #4a5568;
+        border-radius: 0.25rem;
+        color: white;
+        font-size: 1.25rem;
+        cursor: pointer;
+        padding: 0.5rem 0.75rem;
+        margin-right: 0.5rem;
+      }
+
+      @media (min-width: 769px) {
+        .nav-item:hover > .dropdown-menu {
+          display: block;
+          animation: fadeIn 0.2s ease-in-out;
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-5px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .nav-link.dropdown-toggle::after {
+        content: "";
+        display: inline-block;
+        margin-left: 0.5em;
+        vertical-align: middle;
+        border-top: 4px solid;
+        border-right: 4px solid transparent;
+        border-bottom: 0;
+        border-left: 4px solid transparent;
+      }
+
+      @media (max-width: 768px) {
+        .mobile-toggle {
+          display: block;
+        }
+        .nav-menu {
+          display: none;
+          flex-direction: column;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          background-color: #2d3748;
+        }
+        .nav-menu.active {
+          display: flex;
+        }
+        .nav-link {
+          padding: 1rem 1.5rem;
+          border-bottom: 1px solid #4a5568;
+          width: 100%;
+          text-align: left;
+        }
+        .nav-link.no-arrow::after {
+          content: none;
+        }
+        .nav-link.dropdown-toggle::after {
+          float: right;
+          margin-top: 0.4rem;
+        }
+        .dropdown-menu {
+          position: static;
+          display: none;
+          box-shadow: none;
+          border-radius: 0;
+          background-color: #1a202c;
+          width: 100%;
+          border: none;
+        }
+        .dropdown-menu.active {
+          display: block;
+        }
+        .dropdown-item {
+          color: #e2e8f0;
+          border-bottom-color: #4a5568;
+          padding-left: 2.5rem;
+        }
+        .mega-menu {
+          min-width: auto;
+        }
+        .mega-grid {
+          flex-direction: column;
+          gap: 1rem;
+          padding: 1rem 2.5rem;
+        }
+        .mega-title {
+          border-bottom-color: #4a5568;
+          color: #a0aec0;
+        }
+        .mega-link {
+          color: #e2e8f0;
+        }
+        .view-all-block {
+          background-color: #1a202c;
+          border-color: #4a5568;
+          padding: 0;
+        }
+        .view-all-block .view-all-link {
+          background-color: #1a202c;
+          color: #90cdf4;
+          padding: 1rem;
+          border-top: 1px solid #4a5568;
+        }
+      }
+    </style>
+    \n
+
+    <header class="bg-[#1a365d] text-white p-4 shrink-0 shadow-md">
+      <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end">
+        <div>
+          <h1 class="text-2xl font-bold tracking-tight">
+            Accounting Standards Comparison Hub
+          </h1>
+          <p class="text-slate-300 text-sm italic">
+            AS (Old Indian GAAP) vs Ind AS vs IFRS vs US GAAP
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <nav
+      class="bg-white border-b border-slate-200 flex shrink-0 overflow-x-auto custom-scrollbar"
+    >
+      <a
+        href="index.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Home</a
+      >
+      <a
+        href="lease.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Lease</a
+      >
+      <a
+        href="ppe.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >PPE</a
+      >
+      <a
+        href="financial-instruments.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Financial Instruments</a
+      >
+      <a
+        href="revenue.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Revenue</a
+      >
+      <a
+        href="deferred-tax.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Deferred Tax</a
+      >
+      <a
+        href="consolidation.html"
+        class="px-6 py-3 text-sm font-semibold border-b-4 border-indigo-600 bg-indigo-50 text-indigo-900 block whitespace-nowrap"
+        >Consolidation</a
+      >
+      <a
+        href="impairment.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Impairment</a
+      >
+      <a
+        href="esop.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >ESOP</a
+      >
+      <a
+        href="cashflows.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Cash Flows</a
+      >
+    </nav>
+
+    <main
+      class="flex-1 p-4 md:p-6 lg:p-8 flex flex-col gap-10 overflow-y-auto"
+      id="main-content"
+    >
+      <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+        <div class="border-l-8 border-teal-600 pl-4 py-1 shrink-0">
+          <h2 class="text-2xl font-bold text-[#1a365d] uppercase tracking-wide">
+            Consolidation
+          </h2>
+          <p class="text-sm text-slate-600">
+            Premium Analysis Guide: AS 21 vs Ind AS 110 vs IFRS 10 vs US GAAP
+            ASC 810
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button
+            id="diagnostic-btn"
+            class="bg-indigo-600 text-white hover:bg-indigo-700 px-4 py-2 rounded text-sm font-bold shadow-sm transition-colors"
+          >
+            Diagnostic Mode
+          </button>
+        </div>
+      </div>
+
+      <!-- Diagnostic Panel -->
+      <div
+        id="diagnostic-panel"
+        class="hidden mt-4 bg-indigo-50 border-l-4 border-indigo-600 p-4 text-sm text-indigo-900 shadow-sm rounded-r-lg flex flex-col gap-2 shrink-0"
+      >
+        <h3 class="font-bold text-lg mb-2">Diagnostic Mode Console</h3>
+        <div class="mt-2 border-t border-indigo-200 pt-2">
+          <h4 class="font-bold mb-1 flex justify-between">
+            Recent Updates
+            <span id="diag-errors" class="text-red-600 hidden">Errors!</span>
+          </h4>
+          <div
+            id="diag-console"
+            class="bg-indigo-900 text-indigo-100 font-mono p-3 rounded text-xs h-32 overflow-y-auto whitespace-pre-wrap"
+          >
+            System initialized.
+          </div>
+        </div>
+      </div>
+      <!-- SECTION A: Core Technical Comparison Table -->
+      <section
+        id="section-a"
+        data-diagnostic="tracked"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION A: Core Technical Comparison Table
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-[16%]">Parameter</th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">
+                  AS 21 (Old Indian GAAP)
+                </th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">
+                  Ind AS 110
+                </th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">IFRS 10</th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">
+                  US GAAP ASC 810
+                </th>
+                <th class="p-3 w-[16%]">Logic shift</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Core Philosophy</td>
+                <td class="p-3">Legal control (voting rights)</td>
+                <td class="p-3">Economic control (power + returns)</td>
+                <td class="p-3">Same as Ind AS 110</td>
+                <td class="p-3">
+                  Dual model: VIE (power/economics) OR Voting (&gt;50%)
+                </td>
+                <td class="p-3 text-slate-600">From form to substance</td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Definition of Control</td>
+                <td class="p-3">&gt;50% voting power OR Board control</td>
+                <td class="p-3">
+                  (1) Power (2) Exposure to variable returns (3) Link power to
+                  returns
+                </td>
+                <td class="p-3">Same as Ind AS 110</td>
+                <td class="p-3">
+                  VIE: Power + Economics | Voting: &gt;50% voting rights
+                </td>
+                <td class="p-3 text-slate-600">
+                  From simple majority to 3-element test
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Control Assessment</td>
+                <td class="p-3">Bright-line test (voting %)</td>
+                <td class="p-3">Principle-based (requires judgment)</td>
+                <td class="p-3">Same as Ind AS 110</td>
+                <td class="p-3">Two separate models (VIE vs Voting)</td>
+                <td class="p-3 text-slate-600">
+                  From mechanical to analytical
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Consolidation Requirement</td>
+                <td class="p-3">Optional (unless mandated by law)</td>
+                <td class="p-3">Mandatory if control exists</td>
+                <td class="p-3">Mandatory if control exists</td>
+                <td class="p-3">Mandatory if control exists</td>
+                <td class="p-3 text-slate-600">From voluntary to mandatory</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Special Purpose Entities (SPEs)</td>
+                <td class="p-3">Not addressed (loophole)</td>
+                <td class="p-3">Must consolidate if control exists</td>
+                <td class="p-3">Same as Ind AS 110</td>
+                <td class="p-3">VIE model specifically targets SPEs</td>
+                <td class="p-3 text-slate-600">
+                  Closes off-balance sheet financing
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Potential Voting Rights</td>
+                <td class="p-3">Ignored (only actual votes count)</td>
+                <td class="p-3">
+                  Considered if substantive (convertibles, options)
+                </td>
+                <td class="p-3">Same as Ind AS 110</td>
+                <td class="p-3">
+                  Considered in VIE model; ignored in voting model
+                </td>
+                <td class="p-3 text-slate-600">
+                  From current to potential control
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">De Facto Control</td>
+                <td class="p-3">Not recognized</td>
+                <td class="p-3">
+                  Recognized (control without majority voting if de facto power
+                  exists)
+                </td>
+                <td class="p-3">Same as Ind AS 110</td>
+                <td class="p-3">Recognized under VIE model</td>
+                <td class="p-3 text-slate-600">Captures shadow control</td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Exclusions from Consolidation</td>
+                <td class="p-3">
+                  Allowed if: (1) Temporary (2) Severe restrictions on transfer
+                </td>
+                <td class="p-3">
+                  Not allowed (except held-for-sale per Ind AS 105)
+                </td>
+                <td class="p-3">Same as Ind AS 110</td>
+                <td class="p-3">Not allowed</td>
+                <td class="p-3 text-slate-600">Eliminates cherry-picking</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Uniform Accounting Policies</td>
+                <td class="p-3">
+                  Desirable but not mandatory (can differ if disclosed)
+                </td>
+                <td class="p-3">
+                  Mandatory (must align all subsidiaries to parent policies)
+                </td>
+                <td class="p-3">Same as Ind AS 110</td>
+                <td class="p-3">Mandatory</td>
+                <td class="p-3 text-slate-600">
+                  From flexibility to consistency
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">NCI Presentation</td>
+                <td class="p-3">
+                  Presented separately between Liabilities and Equity
+                </td>
+                <td class="p-3">Presented within Equity section</td>
+                <td class="p-3">Same as Ind AS 110</td>
+                <td class="p-3">Presented within Equity section</td>
+                <td class="p-3 text-slate-600">NCI = owners, not creditors</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">NCI Measurement</td>
+                <td class="p-3">At proportionate share of net assets</td>
+                <td class="p-3">
+                  Choice: Proportionate share OR Fair value (full goodwill)
+                </td>
+                <td class="p-3">Same as Ind AS 110</td>
+                <td class="p-3">Fair value (full goodwill method) mandatory</td>
+                <td class="p-3 text-slate-600">
+                  From proportionate to fair value option
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Loss of Control</td>
+                <td class="p-3">Not specifically addressed</td>
+                <td class="p-3">
+                  Recognize gain/loss in P&amp;L; remeasure retained interest at
+                  FV
+                </td>
+                <td class="p-3">Same as Ind AS 110</td>
+                <td class="p-3">Recognize gain/loss in P&amp;L</td>
+                <td class="p-3 text-slate-600">
+                  Creates one-time gains/losses
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Investment Entities Exemption</td>
+                <td class="p-3">Not applicable</td>
+                <td class="p-3">
+                  Investment entities don't consolidate; measure at FV through
+                  P&amp;L
+                </td>
+                <td class="p-3">Same as Ind AS 110</td>
+                <td class="p-3">Similar exemption</td>
+                <td class="p-3 text-slate-600">
+                  PE/VC funds measure at fair value
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Consolidation Procedure</td>
+                <td class="p-3">Line-by-line addition; eliminate interco</td>
+                <td class="p-3">Same</td>
+                <td class="p-3">Same</td>
+                <td class="p-3">Same</td>
+                <td class="p-3 text-slate-600">Unchanged</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Date of Consolidation</td>
+                <td class="p-3">Acquisition date (ambiguous)</td>
+                <td class="p-3">Date control obtained</td>
+                <td class="p-3">Same as Ind AS 110</td>
+                <td class="p-3">Date control obtained</td>
+                <td class="p-3 text-slate-600">Clarifies timing</td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Structured Entities</td>
+                <td class="p-3">Not addressed</td>
+                <td class="p-3">
+                  Specific disclosure for unconsolidated structured entities
+                </td>
+                <td class="p-3">Same as Ind AS 110</td>
+                <td class="p-3">Addressed under VIE model</td>
+                <td class="p-3 text-slate-600">Reveals off-BS risks</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Convergence Level</td>
+                <td class="p-3">Old Indian standard</td>
+                <td class="p-3">99% converged with IFRS 10</td>
+                <td class="p-3">Global standard</td>
+                <td class="p-3">70% converged (dual model differs)</td>
+                <td class="p-3 text-slate-600">
+                  Ind AS = IFRS; US GAAP differs
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="px-4 py-3 bg-blue-50 border-t border-slate-200">
+          <p class="text-sm text-blue-900">
+            <strong class="font-bold">Key Insight:</strong> AS 21 asks "Do you
+            own &gt;50% shares?" | Ind AS 110/IFRS 10 ask "Do you economically
+            control?" | US GAAP ASC 810 asks "Is it a VIE or voting entity, then
+            apply different tests."
+          </p>
+        </div>
+      </section>
+
+      <!-- SECTION B -->
+      <div class="shrink-0 mt-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <section
+          id="section-b-container"
+          data-diagnostic="tracked"
+          class="shrink-0 bg-amber-50 rounded-xl shadow-sm border border-amber-200 overflow-hidden flex flex-col font-sans"
+        >
+          <div
+            class="bg-amber-600 text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-amber-300 flex justify-between items-center flex-wrap gap-2"
+          >
+            <span>SECTION B: Transaction Fact Pattern (EDITABLE)</span>
+            <div>
+              <button
+                id="reset-btn"
+                class="bg-white text-amber-700 hover:bg-amber-100 text-xs px-3 py-1 rounded shadow-sm mr-2 transition-colors cursor-pointer font-bold"
+              >
+                Reset to Default
+              </button>
+              <button
+                id="copy-btn"
+                class="bg-amber-800 hover:bg-amber-900 text-white text-xs px-3 py-1 rounded shadow-sm transition-colors border border-amber-500 cursor-pointer font-bold"
+              >
+                Copy Results
+              </button>
+            </div>
+          </div>
+          <div class="p-5 flex-1 relative bg-amber-50">
+            <div
+              class="absolute right-4 top-4 text-amber-700 opacity-10 font-bold text-6xl pointer-events-none select-none"
+            >
+              FACTS
+            </div>
+            <div
+              id="validation-warning"
+              class="hidden mb-4 p-3 bg-red-100 border-l-4 border-red-500 text-red-700 text-sm font-bold"
+            ></div>
+
+            <div
+              class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4 relative z-10 text-sm"
+            >
+              <!-- Column 1: Standalone & SubCo Details -->
+              <div class="space-y-3">
+                <h4
+                  class="font-bold border-b border-amber-200 text-amber-800 pb-1"
+                >
+                  Parent &amp; SubCo Metrics
+                </h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-1"
+                      >Standalone Assets (Cr):</label
+                    >
+                    <input
+                      type="number"
+                      id="inp-sa-assets"
+                      value="1000"
+                      class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-1"
+                      >Standalone Debt (Cr):</label
+                    >
+                    <input
+                      type="number"
+                      id="inp-sa-debt"
+                      value="250"
+                      class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-1"
+                      >Standalone Equity (Cr):</label
+                    >
+                    <input
+                      type="number"
+                      id="inp-sa-equity"
+                      value="750"
+                      class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-1"
+                      >SubCo Voting (%):</label
+                    >
+                    <input
+                      type="number"
+                      id="inp-sub-voting"
+                      value="45"
+                      class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-1"
+                      >SubCo Board Control:</label
+                    >
+                    <input
+                      type="text"
+                      id="inp-sub-board"
+                      value="5 out of 7 directors"
+                      class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-1"
+                      >SubCo Cost (Cr):</label
+                    >
+                    <input
+                      type="number"
+                      id="inp-sub-cost"
+                      value="50"
+                      class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-1"
+                      >SubCo Assets FV (Cr):</label
+                    >
+                    <input
+                      type="number"
+                      id="inp-sub-na"
+                      value="120"
+                      class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-1"
+                      >SubCo Profit (Cr):</label
+                    >
+                    <input
+                      type="number"
+                      id="inp-sub-profit"
+                      value="20"
+                      class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Column 2: SPV & TechVenture Details -->
+              <div class="space-y-3">
+                <h4
+                  class="font-bold border-b border-amber-200 text-amber-800 pb-1"
+                >
+                  SPV &amp; TechVenture Metrics
+                </h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-1"
+                      >SPV Ownership (%):</label
+                    >
+                    <input
+                      type="number"
+                      id="inp-spv-eq"
+                      value="0"
+                      class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-1"
+                      >SPV Debt Guarantee (Cr):</label
+                    >
+                    <input
+                      type="number"
+                      id="inp-spv-debt"
+                      value="100"
+                      class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-1"
+                      >SPV Net Assets (Cr):</label
+                    >
+                    <input
+                      type="number"
+                      id="inp-spv-na"
+                      value="5"
+                      class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-1"
+                      >SPV Profit (Cr):</label
+                    >
+                    <input
+                      type="number"
+                      id="inp-spv-prof"
+                      value="3"
+                      class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-1"
+                      >TechVenture Voting (%):</label
+                    >
+                    <input
+                      type="number"
+                      id="inp-tv-voting"
+                      value="35"
+                      class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-1"
+                      >TechVenture Cost (Cr):</label
+                    >
+                    <input
+                      type="number"
+                      id="inp-tv-cost"
+                      value="30"
+                      class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-1"
+                      >TechVenture Net Assets (Cr):</label
+                    >
+                    <input
+                      type="number"
+                      id="inp-tv-na"
+                      value="100"
+                      class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-1"
+                      >TechVenture Loss (Cr):</label
+                    >
+                    <input
+                      type="number"
+                      id="inp-tv-loss"
+                      value="-10"
+                      class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Subsection for Additional Information & Policy Elections -->
+            <div
+              class="mt-6 pt-4 border-t border-amber-200 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-6 pb-2"
+            >
+              <div>
+                <h4
+                  class="font-bold text-amber-900 text-xs uppercase tracking-wider mb-2"
+                >
+                  Business &amp; Profile Metadata (Read-only)
+                </h4>
+                <div
+                  class="bg-white/80 p-3 rounded border border-amber-200/60 shadow-xs space-y-2 text-xs text-slate-800"
+                >
+                  <p>
+                    <strong class="font-semibold w-24 inline-block"
+                      >Company:</strong
+                    >
+                    ABC Ltd
+                  </p>
+                  <p>
+                    <strong class="font-semibold w-24 inline-block align-top"
+                      >SubCo:</strong
+                    >
+                    <span class="pl-2 inline-block max-w-[calc(100%-8rem)]"
+                      >45% voting shares, rest spread among 100+ public,
+                      appoints 5 out of 7 directors</span
+                    >
+                  </p>
+                  <p>
+                    <strong class="font-semibold w-24 inline-block align-top"
+                      >SPV:</strong
+                    >
+                    <span class="pl-2 inline-block max-w-[calc(100%-8rem)]"
+                      >Created to lease equipment to ABC Ltd, ABC Ltd guarantees
+                      all debt and absorbs all profits/losses</span
+                    >
+                  </p>
+                  <p>
+                    <strong class="font-semibold w-24 inline-block align-top"
+                      >TechVenture:</strong
+                    >
+                    <span class="pl-2 inline-block max-w-[calc(100%-8rem)]"
+                      >Veto rights via drag-along rights</span
+                    >
+                  </p>
+                </div>
+              </div>
+
+              <div>
+                <h4
+                  class="font-bold text-amber-900 text-xs uppercase tracking-wider mb-2"
+                >
+                  Calculated Consolidation Decisions
+                </h4>
+                <div
+                  class="bg-white/80 p-3 rounded border border-amber-200/60 shadow-xs grid grid-cols-3 gap-2 text-[11px] text-center"
+                >
+                  <div
+                    class="p-2 bg-slate-50 border border-slate-200 rounded flex flex-col justify-center"
+                  >
+                    <span
+                      class="block font-bold text-slate-500 uppercase tracking-tight text-[9px] mb-1"
+                      >SubCo</span
+                    >
+                    <div class="text-[10px] text-slate-600">
+                      AS21: <span id="calc-sub-as" class="font-bold">-</span>
+                    </div>
+                    <div class="text-[10px] text-green-700">
+                      IndAS: <span id="calc-sub-ind" class="font-bold">-</span>
+                    </div>
+                    <div class="text-[10px] text-slate-600">
+                      USGAAP: <span id="calc-sub-us" class="font-bold">-</span>
+                    </div>
+                  </div>
+                  <div
+                    class="p-2 bg-slate-50 border border-slate-200 rounded flex flex-col justify-center"
+                  >
+                    <span
+                      class="block font-bold text-slate-500 uppercase tracking-tight text-[9px] mb-1"
+                      >SPV</span
+                    >
+                    <div class="text-[10px] text-slate-600">
+                      AS21: <span id="calc-spv-as" class="font-bold">-</span>
+                    </div>
+                    <div class="text-[10px] text-green-700">
+                      IndAS: <span id="calc-spv-ind" class="font-bold">-</span>
+                    </div>
+                    <div class="text-[10px] text-green-700">
+                      USGAAP: <span id="calc-spv-us" class="font-bold">-</span>
+                    </div>
+                  </div>
+                  <div
+                    class="p-2 bg-slate-50 border border-slate-200 rounded flex flex-col justify-center"
+                  >
+                    <span
+                      class="block font-bold text-slate-500 uppercase tracking-tight text-[9px] mb-1"
+                      >TechVenture</span
+                    >
+                    <div class="text-[10px] text-slate-600">
+                      AS21: <span id="calc-tech-as" class="font-bold">-</span>
+                    </div>
+                    <div class="text-[10px] text-slate-600">
+                      IndAS: <span id="calc-tech-ind" class="font-bold">-</span>
+                    </div>
+                    <div class="text-[10px] text-slate-600">
+                      USGAAP: <span id="calc-tech-us" class="font-bold">-</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="flex justify-between items-end mt-4 pt-4 border-t border-amber-200 relative z-10"
+            >
+              <div class="text-xs text-amber-700 opacity-80">
+                Change inputs above to calculate changes dynamically.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION C -->
+        <section
+          id="section-c"
+          data-diagnostic="tracked"
+          class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col font-sans"
+        >
+          <div
+            class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+          >
+            SECTION C: Side-by-Side Treatment
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm text-left font-sans">
+              <thead class="bg-slate-100 text-slate-700">
+                <tr>
+                  <th class="p-3 border-b border-r border-slate-200 w-1/4">
+                    AS 21 (Old Indian GAAP)
+                  </th>
+                  <th class="p-3 border-b border-r border-slate-200 w-1/4">
+                    Ind AS 110
+                  </th>
+                  <th class="p-3 border-b border-r border-slate-200 w-1/4">
+                    IFRS 10
+                  </th>
+                  <th class="p-3 border-b border-slate-200 w-1/4">
+                    US GAAP (ASC 810)
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 bg-white">
+                <tr>
+                  <td
+                    class="p-3 border-r border-slate-200 align-top text-slate-700 leading-relaxed space-y-3"
+                  >
+                    <div>
+                      <span
+                        class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                        >SubCo</span
+                      >
+                      <span class="text-sm"
+                        ><span id="c-as-sub-p">45</span>% voting, no formal
+                        majority -
+                        <span id="c-as-sub-res" class="font-bold text-red-600"
+                          >NO consolidation</span
+                        ></span
+                      >
+                    </div>
+                    <div class="pt-2 border-t border-slate-100">
+                      <span
+                        class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                        >SPV</span
+                      >
+                      <span class="text-sm"
+                        ><span id="c-as-spv-p">0</span>% equity, SPEs not
+                        addressed -
+                        <span id="c-as-spv-res" class="font-bold text-red-600"
+                          >NO consolidation</span
+                        ></span
+                      >
+                    </div>
+                    <div class="pt-2 border-t border-slate-100">
+                      <span
+                        class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                        >TechVenture</span
+                      >
+                      <span class="text-sm"
+                        ><span id="c-as-tv-p">35</span>% voting, veto control
+                        ignored -
+                        <span id="c-as-tv-res" class="font-bold text-red-600"
+                          >NO consolidation</span
+                        ></span
+                      >
+                    </div>
+                    <div
+                      class="pt-2 border-t border-slate-100 bg-slate-50 p-2 rounded text-[11px] font-medium text-slate-600 border border-slate-100"
+                    >
+                      Result: All three as equity method investments; SPV
+                      completely off-balance-sheet
+                    </div>
+                  </td>
+                  <td
+                    class="p-3 border-r border-slate-200 align-top text-slate-700 leading-relaxed space-y-3"
+                  >
+                    <div>
+                      <span
+                        class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                        >SubCo</span
+                      >
+                      <span class="text-sm"
+                        >Power (<span id="c-ind-sub-board"
+                          >5 out of 7 directors</span
+                        >
+                        board control) + Returns (<span id="c-ind-sub-p"
+                          >45</span
+                        >% exposure) + Link -
+                        <span
+                          id="c-ind-sub-res"
+                          class="font-bold text-green-700"
+                          >YES consolidation (de facto control)</span
+                        ></span
+                      >
+                    </div>
+                    <div class="pt-2 border-t border-slate-100">
+                      <span
+                        class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                        >SPV</span
+                      >
+                      <span class="text-sm"
+                        >Power (directs leasing activities) + Returns (absorbs
+                        all profits/losses) + Link (created for ABC Ltd's
+                        benefit) -
+                        <span
+                          id="c-ind-spv-res"
+                          class="font-bold text-green-700"
+                          >YES consolidation (structured entity control)</span
+                        ></span
+                      >
+                    </div>
+                    <div class="pt-2 border-t border-slate-100">
+                      <span
+                        class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                        >TechVenture</span
+                      >
+                      <span class="text-sm"
+                        >Veto is protective, not power -
+                        <span id="c-ind-tv-res" class="font-bold text-red-600"
+                          >NO consolidation (equity method)</span
+                        ></span
+                      >
+                    </div>
+                  </td>
+                  <td
+                    class="p-3 border-r border-slate-200 align-top text-slate-700 leading-relaxed space-y-3"
+                  >
+                    <div>
+                      <span
+                        class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                        >In Accordance with IFRS 10</span
+                      >
+                      <span class="text-sm text-slate-600 leading-relaxed"
+                        >Historically aligned precisely with Ind AS 110. Single
+                        consolidation model based on:</span
+                      >
+                    </div>
+                    <ul class="text-xs text-slate-600 space-y-1 list-disc pl-4">
+                      <li>Power over the investee</li>
+                      <li>Exposure or rights to variable returns</li>
+                      <li>Ability to use power to affect returns</li>
+                    </ul>
+                    <div
+                      class="bg-indigo-50 border border-indigo-100 text-indigo-800 p-2 rounded text-[11px]"
+                    >
+                      Same outcomes as Ind AS 110: SubCo consolidated, SPV
+                      consolidated, TechVenture treated under equity method.
+                    </div>
+                  </td>
+                  <td
+                    class="p-3 align-top text-slate-700 leading-relaxed space-y-3"
+                  >
+                    <div>
+                      <span
+                        class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                        >SubCo</span
+                      >
+                      <span class="text-sm"
+                        >Not a VIE, Voting Interest model,
+                        <span id="c-us-sub-p1">45</span>% &lt; 50% -
+                        <span id="c-us-sub-res" class="font-bold text-red-600"
+                          >NO consolidation</span
+                        ></span
+                      >
+                    </div>
+                    <div class="pt-2 border-t border-slate-100">
+                      <span
+                        class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                        >SPV</span
+                      >
+                      <span class="text-sm"
+                        >VIE (thinly capitalized), VIE Model -
+                        <span id="c-us-spv-res" class="font-bold text-green-700"
+                          >YES consolidation (primary beneficiary)</span
+                        ></span
+                      >
+                    </div>
+                    <div class="pt-2 border-t border-slate-100">
+                      <span
+                        class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                        >TechVenture</span
+                      >
+                      <span class="text-sm"
+                        >Not a VIE, Voting Interest model,
+                        <span id="c-us-tv-p1">35</span>% &lt; 50% -
+                        <span id="c-us-tv-res" class="font-bold text-red-600"
+                          >NO consolidation</span
+                        ></span
+                      >
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- SECTION D -->
+      <section
+        class="shrink-0 -mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION D: Side-by-Side Impact Table (Consolidated Balance Sheet
+          Comparison)
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200">Item</th>
+                <th class="p-3 border-b border-slate-200">
+                  AS 21 (Standalone)
+                </th>
+                <th class="p-3 border-b border-slate-200">
+                  Ind AS 110 / IFRS 10
+                </th>
+                <th class="p-3 border-b border-slate-200">US GAAP ASC 810</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">Total Assets</td>
+                <td class="p-3 font-mono">200 Cr</td>
+                <td class="p-3 font-mono">359 Cr (+79.5%)</td>
+                <td class="p-3 font-mono">325 Cr (ABC Ltd + SPV only)</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">Debt</td>
+                <td class="p-3 font-mono">50 Cr</td>
+                <td class="p-3 font-mono">180 Cr (+260%)</td>
+                <td class="p-3 font-mono">150 Cr (ABC Ltd + SPV)</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Equity (excl. NCI)
+                </td>
+                <td class="p-3 font-mono">150 Cr</td>
+                <td class="p-3 font-mono">113 Cr</td>
+                <td class="p-3 font-mono">175 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">NCI</td>
+                <td class="p-3 font-mono">Nil</td>
+                <td class="p-3 font-mono">66 Cr</td>
+                <td class="p-3 font-mono">Nil</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">Debt/Equity</td>
+                <td class="p-3 font-mono">0.33</td>
+                <td class="p-3 font-mono">1.59</td>
+                <td class="p-3 font-mono">0.86</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Hidden/Off-BS Debt
+                </td>
+                <td class="p-3 font-mono">100 Cr (SPV)</td>
+                <td class="p-3 font-mono text-green-600">Nil (All on BS)</td>
+                <td class="p-3 font-mono">30 Cr (SubCo liabilities)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          class="px-4 py-3 bg-teal-50 border-t border-slate-200 text-sm text-teal-900 border-l-4 border-l-teal-600"
+        >
+          <strong class="font-bold">Intelligence note:</strong> Ind AS 110
+          brings 130 Cr more liabilities on balance sheet vs AS 21 —
+          transparency win, not leverage deterioration.
+        </div>
+      </section>
+
+      <!-- SECTION E -->
+      <section
+        class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION E: P&amp;L Impact - Year 1
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200">P&amp;L Line Item</th>
+                <th class="p-3 border-b border-slate-200">AS 21</th>
+                <th class="p-3 border-b border-slate-200">
+                  Ind AS 110 / IFRS 10
+                </th>
+                <th class="p-3 border-b border-slate-200">Variance</th>
+                <th class="p-3 border-b border-slate-200">US GAAP ASC 810</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 font-mono">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800 font-sans">
+                  Revenue
+                </td>
+                <td class="p-3 text-right">500 Cr</td>
+                <td class="p-3 text-right">800 Cr (+SubCo 250, +SPV 50)</td>
+                <td class="p-3 text-right text-blue-600">+300 Cr (+60%)</td>
+                <td class="p-3 text-right">550 Cr (+SPV only)</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800 font-sans">
+                  EBITDA
+                </td>
+                <td class="p-3 text-right">105.5 Cr</td>
+                <td class="p-3 text-right">180 Cr (Consolidated)</td>
+                <td class="p-3 text-right text-blue-600">+74.5 Cr (+70%)</td>
+                <td class="p-3 text-right">130 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800 font-sans">
+                  Depreciation
+                </td>
+                <td class="p-3 text-right">15 Cr</td>
+                <td class="p-3 text-right">35 Cr (+ Subsidiaries)</td>
+                <td class="p-3 text-right">+20 Cr</td>
+                <td class="p-3 text-right">20 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50 font-bold bg-slate-50">
+                <td class="p-3 font-sans">EBIT</td>
+                <td class="p-3 text-right">90.5 Cr</td>
+                <td class="p-3 text-right">145 Cr</td>
+                <td class="p-3 text-right">+54.5 Cr</td>
+                <td class="p-3 text-right">110 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800 font-sans">
+                  Interest
+                </td>
+                <td class="p-3 text-right">15 Cr</td>
+                <td class="p-3 text-right">35 Cr (+SPV 15, +SubCo 5)</td>
+                <td class="p-3 text-right text-red-600">+20 Cr</td>
+                <td class="p-3 text-right">30 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50 font-bold">
+                <td class="p-3 font-sans">PBT</td>
+                <td class="p-3 text-right">75.5 Cr</td>
+                <td class="p-3 text-right">110 Cr</td>
+                <td class="p-3 text-right">+34.5 Cr</td>
+                <td class="p-3 text-right">80 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800 font-sans">Tax</td>
+                <td class="p-3 text-right">22.5 Cr</td>
+                <td class="p-3 text-right">33 Cr</td>
+                <td class="p-3 text-right">+10.5 Cr</td>
+                <td class="p-3 text-right">24 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50 font-bold">
+                <td class="p-3 font-sans">PAT</td>
+                <td class="p-3 text-right">53 Cr</td>
+                <td class="p-3 text-right">77 Cr</td>
+                <td class="p-3 text-right">+24 Cr</td>
+                <td class="p-3 text-right">56 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50 text-red-600">
+                <td class="p-3 font-semibold font-sans">Less: NCI</td>
+                <td class="p-3 text-right">Nil</td>
+                <td class="p-3 text-right">-22 Cr (55% of SubCo profit)</td>
+                <td class="p-3 text-right">-22 Cr</td>
+                <td class="p-3 text-right">Nil</td>
+              </tr>
+              <tr
+                class="hover:bg-slate-50 font-bold bg-green-50 text-green-800"
+              >
+                <td class="p-3 font-sans">PAT attributable to parent</td>
+                <td class="p-3 text-right">53 Cr</td>
+                <td class="p-3 text-right">55 Cr</td>
+                <td class="p-3 text-right">+2 Cr (+3.8%)</td>
+                <td class="p-3 text-right">56 Cr</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION F -->
+      <section
+        class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION F: Balance Sheet Impact
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200">
+                  Balance Sheet Item
+                </th>
+                <th class="p-3 border-b border-slate-200">AS 21</th>
+                <th class="p-3 border-b border-slate-200">
+                  Ind AS 110 / IFRS 10
+                </th>
+                <th class="p-3 border-b border-slate-200">Change</th>
+                <th class="p-3 border-b border-slate-200">Impact</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 font-mono">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800 font-sans">
+                  Standalone Assets
+                </td>
+                <td class="p-3">1,000 Cr</td>
+                <td class="p-3">1,000 Cr</td>
+                <td class="p-3">--</td>
+                <td class="p-3 font-sans text-slate-500">--</td>
+              </tr>
+              <tr class="hover:bg-slate-50 text-blue-600">
+                <td class="p-3 font-semibold font-sans">Consolidated Assets</td>
+                <td class="p-3">Nil</td>
+                <td class="p-3">+1,300 Cr (SubCo 750, SPV 550)</td>
+                <td class="p-3">+1,300 Cr</td>
+                <td class="p-3 font-sans">Asset inflation</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800 font-sans">
+                  Less: Invest. Eliminated
+                </td>
+                <td class="p-3">-50 Cr</td>
+                <td class="p-3">-50 Cr</td>
+                <td class="p-3">--</td>
+                <td class="p-3 font-sans text-slate-500">--</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800 font-sans">
+                  Add: Goodwill
+                </td>
+                <td class="p-3">Nil</td>
+                <td class="p-3">20 Cr</td>
+                <td class="p-3">+20 Cr</td>
+                <td class="p-3 font-sans">Acquisition premium</td>
+              </tr>
+              <tr class="hover:bg-slate-50 font-bold bg-slate-50">
+                <td class="p-3 font-sans">Total Assets</td>
+                <td class="p-3">1,000 Cr</td>
+                <td class="p-3">2,270 Cr</td>
+                <td class="p-3">+1,270 Cr</td>
+                <td class="p-3 font-sans">Massive BS expansion</td>
+              </tr>
+              <tr class="hover:bg-slate-50 border-t-2 border-slate-200">
+                <td class="p-3 font-semibold text-slate-800 font-sans">
+                  Standalone Debt
+                </td>
+                <td class="p-3">250 Cr</td>
+                <td class="p-3">250 Cr</td>
+                <td class="p-3">--</td>
+                <td class="p-3 font-sans text-slate-500">--</td>
+              </tr>
+              <tr class="hover:bg-slate-50 text-red-600">
+                <td class="p-3 font-semibold font-sans">
+                  Subsidiary Liabilities
+                </td>
+                <td class="p-3">Off-BS</td>
+                <td class="p-3">+650 Cr (SubCo 150, SPV 500)</td>
+                <td class="p-3">+650 Cr</td>
+                <td class="p-3 font-sans">Debt revelation</td>
+              </tr>
+              <tr class="hover:bg-slate-50 font-bold bg-slate-50">
+                <td class="p-3 font-sans">Total Liabilities</td>
+                <td class="p-3">250 Cr</td>
+                <td class="p-3">900 Cr</td>
+                <td class="p-3 text-red-600">+650 Cr</td>
+                <td class="p-3 font-sans">Leverage spike</td>
+              </tr>
+              <tr class="hover:bg-slate-50 border-t-2 border-slate-200">
+                <td class="p-3 font-semibold text-slate-800 font-sans">
+                  Parent Equity
+                </td>
+                <td class="p-3">750 Cr</td>
+                <td class="p-3">1,040 Cr</td>
+                <td class="p-3">+290 Cr</td>
+                <td class="p-3 font-sans">Subsidiary net assets</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800 font-sans">NCI</td>
+                <td class="p-3">Nil</td>
+                <td class="p-3">330 Cr (55% of SubCo)</td>
+                <td class="p-3">+330 Cr</td>
+                <td class="p-3 font-sans">Third-party ownership</td>
+              </tr>
+              <tr class="hover:bg-slate-50 font-bold bg-slate-50">
+                <td class="p-3 font-sans">Total Equity</td>
+                <td class="p-3">750 Cr</td>
+                <td class="p-3">1,370 Cr</td>
+                <td class="p-3">+620 Cr</td>
+                <td class="p-3 font-sans">NCI is equity, not liab</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION G -->
+      <section
+        id="section-g"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col font-mono"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold font-sans uppercase tracking-wider text-sm border-b border-slate-200 flex justify-between"
+        >
+          <span>SECTION G: Cash Flow Impact (Year 1)</span>
+        </div>
+        <div class="overflow-x-auto text-sm">
+          <table class="w-full text-left">
+            <thead class="bg-slate-50 text-slate-700 font-sans">
+              <tr>
+                <th class="p-3 border-b border-slate-200">Item</th>
+                <th class="p-3 border-b border-slate-200">AS 21 (Old)</th>
+                <th class="p-3 border-b border-slate-200">
+                  Ind AS 110 / IFRS 10
+                </th>
+                <th class="p-3 border-b border-slate-200">US GAAP</th>
+                <th class="p-3 border-b border-slate-200">Interpretation</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans">
+                  Operating Cash Flow (CFO)
+                </td>
+                <td class="p-3" id="g-cfo-as">52.50 Cr</td>
+                <td class="p-3 font-bold text-amber-700" id="g-cfo-in">
+                  87.00 Cr
+                </td>
+                <td class="p-3" id="g-cfo-us">87.00 Cr</td>
+                <td class="p-3 font-sans text-xs text-slate-600">
+                  Full consolidation of subsidiary CFO
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans">
+                  Investing Cash Flow (CFI)
+                </td>
+                <td class="p-3" id="g-cfi-as">-30.00 Cr</td>
+                <td class="p-3 font-bold text-rose-700" id="g-cfi-in">
+                  -60.00 Cr
+                </td>
+                <td class="p-3" id="g-cfi-us">-60.00 Cr</td>
+                <td class="p-3 font-sans text-xs text-slate-600">
+                  Full consolidation of subsidiary capex
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans">
+                  Financing Cash Flow (CFF)
+                </td>
+                <td class="p-3" id="g-cff-as">-15.00 Cr</td>
+                <td class="p-3 font-bold text-rose-700" id="g-cff-in">
+                  -42.00 Cr
+                </td>
+                <td class="p-3" id="g-cff-us">-42.00 Cr</td>
+                <td class="p-3 font-sans text-xs text-slate-600">
+                  Dividends to NCI and debt repayments
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50 bg-slate-50/50">
+                <td
+                  class="p-3 font-bold font-sans text-indigo-800 border-t border-slate-300"
+                >
+                  Total Net Cash Flow
+                </td>
+                <td
+                  class="p-3 font-bold text-slate-800 border-t border-slate-300"
+                  id="g-tot-as"
+                >
+                  7.50 Cr
+                </td>
+                <td
+                  class="p-3 font-bold text-indigo-700 border-t border-slate-300"
+                  id="g-tot-in"
+                >
+                  -15.00 Cr
+                </td>
+                <td
+                  class="p-3 font-bold text-slate-800 border-t border-slate-300"
+                  id="g-tot-us"
+                >
+                  -15.00 Cr
+                </td>
+                <td
+                  class="p-3 font-sans text-xs text-slate-600 border-t border-slate-300"
+                >
+                  Net entity CF including consolidated businesses
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION H -->
+      <section
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col font-mono"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold font-sans uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION H: Ratio Impact - Year 1
+        </div>
+        <div class="overflow-x-auto text-sm">
+          <table class="w-full text-center">
+            <thead class="bg-slate-50 text-slate-700 font-sans">
+              <tr>
+                <th class="p-3 border-b border-slate-200 text-left w-1/6">
+                  Ratio
+                </th>
+                <th class="p-3 border-b border-slate-200">AS 21 (Old)</th>
+                <th class="p-3 border-b border-slate-200">
+                  Ind AS 110 / IFRS 10
+                </th>
+                <th class="p-3 border-b border-slate-200">US GAAP</th>
+                <th
+                  class="p-3 border-b border-slate-200 text-blue-800 font-bold"
+                >
+                  Direction
+                </th>
+                <th class="p-3 border-b border-slate-200 text-left">
+                  Interpretation
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 text-left font-bold font-sans">EBITDA Margin</td>
+                <td class="p-3">21.1%</td>
+                <td class="p-3">22.5%</td>
+                <td class="p-3">22.5%</td>
+                <td class="p-3 text-green-600 font-bold">↑</td>
+                <td class="p-3 text-left font-sans text-xs text-slate-600">
+                  Higher margin business consolidated
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 text-left font-bold font-sans">Net Margin</td>
+                <td class="p-3">10.6%</td>
+                <td class="p-3">6.9%</td>
+                <td class="p-3">6.9%</td>
+                <td class="p-3 text-red-600 font-bold">↓</td>
+                <td class="p-3 text-left font-sans text-xs text-slate-600">
+                  NCI share reduces parent net margin
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 text-left font-bold font-sans">Debt/Equity</td>
+                <td class="p-3">0.33x</td>
+                <td class="p-3">0.66x</td>
+                <td class="p-3">0.66x</td>
+                <td class="p-3 text-red-600 font-bold">↑</td>
+                <td class="p-3 text-left font-sans text-xs text-slate-600">
+                  Full debt of sub added to BS
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 text-left font-bold font-sans">
+                  Net Debt/EBITDA
+                </td>
+                <td class="p-3">2.37x</td>
+                <td class="p-3">5.00x</td>
+                <td class="p-3">5.00x</td>
+                <td class="p-3 text-red-600 font-bold">↑</td>
+                <td class="p-3 text-left font-sans text-xs text-slate-600">
+                  Leverage appears worse
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 text-left font-bold font-sans">
+                  Interest Coverage
+                </td>
+                <td class="p-3">6.0x</td>
+                <td class="p-3">4.1x</td>
+                <td class="p-3">4.1x</td>
+                <td class="p-3 text-red-600 font-bold">↓</td>
+                <td class="p-3 text-left font-sans text-xs text-slate-600">
+                  Coverage ratio deteriorates
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 text-left font-bold font-sans">ROE (Parent)</td>
+                <td class="p-3">7.1%</td>
+                <td class="p-3">5.3%</td>
+                <td class="p-3">5.3%</td>
+                <td class="p-3 text-red-600 font-bold">↓</td>
+                <td class="p-3 text-left font-sans text-xs text-slate-600">
+                  Parent ROE diluted on consolidation
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 text-left font-bold font-sans">EPS</td>
+                <td class="p-3">Rs. 5.30</td>
+                <td class="p-3">Rs. 5.50</td>
+                <td class="p-3">Rs. 5.50</td>
+                <td class="p-3 text-green-600 font-bold">↑</td>
+                <td class="p-3 text-left font-sans text-xs text-slate-600">
+                  Absolute earnings may rise slightly
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION I -->
+      <section
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION I: Earnings Quality - Signals Table
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200">Signal observed</th>
+                <th class="p-3 border-b border-slate-200">
+                  What it means technically
+                </th>
+                <th class="p-3 border-b border-slate-200">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">Revenue +60%</td>
+                <td class="p-3">SubCo and SPV revenues consolidated</td>
+                <td class="p-3 font-medium text-[#1a365d]">
+                  Restate prior year pro forma
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  PAT barely moves
+                </td>
+                <td class="p-3">
+                  Consolidation adds gross profit but also NCI
+                </td>
+                <td class="p-3 text-green-700 font-medium">
+                  Positive: No manipulation
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">NCI = 330 Cr</td>
+                <td class="p-3">55% of SubCo owned by third parties</td>
+                <td class="p-3 font-medium text-[#1a365d]">
+                  Monitor NCI dividends
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Debt jumps 260%
+                </td>
+                <td class="p-3">Previously hidden debt now visible</td>
+                <td class="p-3 text-green-700 font-medium">
+                  Positive: Transparency
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">Goodwill 20 Cr</td>
+                <td class="p-3">Paid premium over net assets</td>
+                <td class="p-3 text-red-600 font-medium">
+                  Alert: Test annually
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION J -->
+      <section
+        id="section-j"
+        class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col mt-6"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION J: Trend Distortion Matrix
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200">Metric</th>
+                <th class="p-3 border-r border-slate-200">Distortion type</th>
+                <th class="p-3 border-r border-slate-200">Duration</th>
+                <th class="p-3 border-r border-slate-200">Correction method</th>
+                <th class="p-3">Example</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Revenue</td>
+                <td class="p-3">One-time level shift upwards</td>
+                <td class="p-3">Permanent</td>
+                <td class="p-3">Restate prior year pro forma.</td>
+                <td class="p-3">Rep. 800 Cr vs Norm. 500 Cr</td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">EBITDA margin</td>
+                <td class="p-3">Dilution (if sub margin &lt; parent)</td>
+                <td class="p-3">Permanent</td>
+                <td class="p-3">Disclose "EBITDA before NCI" or separated.</td>
+                <td class="p-3">Rep. 12.5% vs Norm. 15%</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Net Margin</td>
+                <td class="p-3">Optical drop</td>
+                <td class="p-3">Permanent</td>
+                <td class="p-3">Calculate "Margin attributable to parent".</td>
+                <td class="p-3">Rep. 6.875% vs Norm. 11%</td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Debt Ratio</td>
+                <td class="p-3">Structural spike</td>
+                <td class="p-3">Permanent</td>
+                <td class="p-3">
+                  Separate Parent vs Group (non-recourse) debt.
+                </td>
+                <td class="p-3">Rep. 0.66x vs Norm. 0.33x</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">ROE/ROA</td>
+                <td class="p-3">Level shift downwards</td>
+                <td class="p-3">Permanent</td>
+                <td class="p-3">Use "Parent ROE" vs "Group ROE".</td>
+                <td class="p-3">Rep. 5.3% vs Norm. 7.5%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION K -->
+      <section
+        class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION K: Ratio Interpretation Guide
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200">Ratio</th>
+                <th class="p-3 border-b border-slate-200">Reported Value</th>
+                <th class="p-3 border-b border-slate-200">
+                  What Analyst Should Do
+                </th>
+                <th class="p-3 border-b border-slate-200">
+                  Correct Interpretation
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Debt/Eq = 0.66, Net Margin = 6.9%
+                </td>
+                <td class="p-3 text-red-600">
+                  Appears moderately leveraged / poor
+                </td>
+                <td class="p-3 font-medium">
+                  Separate parent debt (250 Cr) from sub debt. Calculate margin
+                  to parent (55/800 = 6.875%)
+                </td>
+                <td class="p-3 text-green-700">
+                  Parent lev = 0.33. Sub debt = operational. Slight dilution
+                  acceptable
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">ROE = 5.3%</td>
+                <td class="p-3 text-red-600">Appears weak</td>
+                <td class="p-3 font-medium">
+                  Use parent equity only (1,040 Cr): 55/1040 = 5.3%
+                </td>
+                <td class="p-3">Correct, but monitor NCI%</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Interest Coverage = 4.1x
+                </td>
+                <td class="p-3 text-amber-600">Borderline weak</td>
+                <td class="p-3 font-medium">
+                  Separate parent interest (15) from sub (20)
+                </td>
+                <td class="p-3 text-green-700">Parent cov = 6.0x (strong)</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Book Value = 104
+                </td>
+                <td class="p-3 text-green-600">Higher than 75</td>
+                <td class="p-3 font-medium">
+                  Correct - parent's share of sub assets reflected
+                </td>
+                <td class="p-3">True economic value revealed</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          class="px-4 py-3 bg-teal-50 border-t border-slate-200 text-sm text-teal-900 border-l-4 border-l-teal-600"
+        >
+          <strong class="font-bold">Intelligence Note:</strong> Across Ind AS,
+          IFRS, and US GAAP, the same analytical normalization applies - always
+          separate parent vs group metrics, add back off-balance sheet debt, and
+          monitor NCI cash drain.
+        </div>
+      </section>
+
+      <!-- SECTION L -->
+      <section
+        class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION L: Analyst Concerns &amp; Answers
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  Analyst question
+                </th>
+                <th class="p-3 border-r border-slate-200 w-1/4">Concern</th>
+                <th class="p-3 border-r border-slate-200 w-1/4">Answer</th>
+                <th class="p-3 w-1/4">Evidence</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold text-slate-800">
+                  Debt tripled - is company overleveraged?
+                </td>
+                <td class="p-3 text-slate-600">Fear of overleverage.</td>
+                <td class="p-3 text-slate-800">
+                  Partially - 650 Cr sub debt was always there (footnotes)
+                </td>
+                <td class="p-3 text-slate-600 font-mono text-xs">
+                  AS 21 disclosed 650 Cr as contingent liabilities
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold text-slate-800">
+                  Margin collapsed to 6.9% - why?
+                </td>
+                <td class="p-3 text-slate-600">Optical profitability drop.</td>
+                <td class="p-3 text-slate-800">
+                  NCI dilution - 22 Cr profit belongs to minority
+                </td>
+                <td class="p-3 text-slate-600 font-mono text-xs">
+                  NCI share 55%
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold text-slate-800">
+                  Can parent access sub cash?
+                </td>
+                <td class="p-3 text-slate-600">
+                  Fear of restricted cash or trap.
+                </td>
+                <td class="p-3 text-slate-800">
+                  Depends - covenants, regulations may restrict
+                </td>
+                <td class="p-3 text-slate-600 font-mono text-xs">
+                  Check Ind AS 110 restrictions
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold text-slate-800">
+                  Is NCI a claim on assets?
+                </td>
+                <td class="p-3 text-slate-600">General reporting concern.</td>
+                <td class="p-3 text-slate-800">
+                  No - NCI only claims sub's assets, not parent's
+                </td>
+                <td class="p-3 text-slate-600 font-mono text-xs">
+                  NCI in equity
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION M -->
+      <section
+        class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION M: Investor Perception Analysis
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  Investor Type
+                </th>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  What they see
+                </th>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  Likely reaction
+                </th>
+                <th class="p-3 w-1/4">Sophisticated response</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">Retail</td>
+                <td class="p-3 text-red-600">Debt tripled</td>
+                <td class="p-3">Panic sell, misinterpret consolidation</td>
+                <td class="p-3 text-slate-600">
+                  Doesn't understand consolidation accounting
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">Value</td>
+                <td class="p-3 text-red-600">Margin collapsed to 6.9%</td>
+                <td class="p-3">Overcorrection, think company is worse</td>
+                <td class="p-3 text-slate-600">
+                  Debt existed before, just transparent now
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Institutional Analyst
+                </td>
+                <td class="p-3">Consolidated financials</td>
+                <td class="p-3 text-green-700">
+                  Sees through accounting presentation
+                </td>
+                <td class="p-3 font-medium text-[#1a365d]">
+                  Uses parent-only metrics for comparison
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">Credit</td>
+                <td class="p-3 text-red-600">Higher leverage ratios</td>
+                <td class="p-3">More cautious</td>
+                <td class="p-3 font-medium text-[#1a365d]">
+                  Separate recourse vs non-recourse debt
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION N -->
+      <section
+        class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION N: Reporting Signals Decoder
+        </div>
+        <div class="overflow-x-auto border-b border-slate-200">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200">Management Action</th>
+                <th class="p-3 border-r border-slate-200">Signal</th>
+                <th class="p-3 border-r border-slate-200">
+                  What It Really Means
+                </th>
+                <th class="p-3">Your Move</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Provides consolidated AND standalone FS
+                </td>
+                <td class="p-3 font-medium text-[#1a365d]">Best practice</td>
+                <td class="p-3">Helps see parent vs group</td>
+                <td class="p-3 text-green-700 font-bold">
+                  Green flag - use both for analysis
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Discloses NCI with dividend policy
+                </td>
+                <td class="p-3 font-medium text-[#1a365d]">Transparency</td>
+                <td class="p-3">
+                  Shows how much profit truly belongs to parent
+                </td>
+                <td class="p-3 font-medium">Monitor NCI cash drain</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Goodwill appears without acquisition disclosure
+                </td>
+                <td class="p-3 font-bold text-red-600">Possible red flag</td>
+                <td class="p-3">May have acquired control creeping</td>
+                <td class="p-3 font-medium">
+                  Check related party transactions
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="p-4 bg-slate-50">
+          <h3
+            class="font-bold text-[#1a365d] mb-4 border-b border-slate-200 pb-2"
+          >
+            4.7 Special Situations (Ind AS 110)
+          </h3>
+          <div class="space-y-4 text-sm text-slate-700">
+            <div class="flex gap-3">
+              <div
+                class="shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-800 flex items-center justify-center font-bold text-xs mt-0.5"
+              >
+                1
+              </div>
+              <div>
+                <strong class="text-slate-900"
+                  >SPEs (Banks/Real Estate):</strong
+                >
+                Must consolidate Securitization SPVs if risk retained. Toll
+                roads/power SPVs consolidated if sponsor controls. Off-BS loans
+                return to BS.
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <div
+                class="shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-800 flex items-center justify-center font-bold text-xs mt-0.5"
+              >
+                2
+              </div>
+              <div>
+                <strong class="text-slate-900"
+                  >De Facto Control (VCs/Startups):</strong
+                >
+                VCs forced to consolidate portfolio companies if they exercise
+                substantive control (board seats, operations) despite minority
+                stakes.
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <div
+                class="shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-800 flex items-center justify-center font-bold text-xs mt-0.5"
+              >
+                3
+              </div>
+              <div>
+                <strong class="text-slate-900"
+                  >Investment Entities (PE Funds):</strong
+                >
+                PE/VC funds are exempt from consolidation. They measure
+                portfolio at Fair Value through P&amp;L (Ind AS 109).
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION O: Premium Intelligence Narrative -->
+      <section
+        id="section-o"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION O: Premium Intelligence Narrative
+        </div>
+        <div class="p-5 text-sm space-y-4 text-slate-700 leading-relaxed">
+          <p>
+            <span class="font-bold text-[#1a365d]">Question:</span> "ABC Ltd's
+            revenue jumped 60%, debt spiked 260%, but EPS barely moved (+3.8%)
+            after Ind AS 110 adoption. What's happening?"
+          </p>
+          <p>
+            <span class="font-bold text-slate-500"
+              >Average Analyst Answer:</span
+            >
+            "It's just consolidation accounting effects."
+          </p>
+          <div
+            class="p-4 bg-teal-50 border border-teal-200 rounded-lg text-teal-900"
+          >
+            <p>
+              <span class="font-bold text-teal-800 text-base"
+                >PREMIUM Analyst Answer:</span
+              ><br /><br />
+              This is the unveiling of economic reality and it's a POSITIVE
+              development. 1. Revenue reflects the true scale of operations
+              controlled by the parent. 2. Margins dip optically because the
+              subsidiary's lower margin averages in, but actual profit rupees
+              generated remain identical. 3. Debt spikes as non-recourse project
+              debt enters the balance sheet, scaring retail investors. 4. EPS is
+              largely protected due to NCI deduction. Value investors should
+              exploit the optical deterioration in return ratios caused by
+              grossing-up the balance sheet to pick up shares on the cheap.
+              Focus on 'Profit Attributable to Parent', ignore consolidated 'Net
+              Margin', and strip out non-recourse subsidiary debt for
+              corporate-level risk analysis.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION P: Red Flags vs Green Flags (Visual Indicator Matrix) -->
+      <section
+        id="section-p"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION P: Red Flags vs Green Flags (Visual Indicator Matrix)
+        </div>
+        <div class="overflow-x-auto flex-1">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-1/2">Scenario</th>
+                <th class="p-3 border-r border-slate-200 text-center w-24">
+                  Flag
+                </th>
+                <th class="p-3">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr class="bg-[#fee]">
+                <td class="p-3 font-medium">
+                  NCI share of profits >30% while parent holds debt
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-red-700 uppercase tracking-widest"
+                >
+                  <span class="text-red-500 mr-1">🔴</span>RED
+                </td>
+                <td class="p-3 text-red-900">
+                  High risk of cash trap. Parent may struggle to service debt if
+                  subs pay no dividends.
+                </td>
+              </tr>
+              <tr class="bg-[#fee]">
+                <td class="p-3 font-medium">
+                  Constant changes in subsidiary stake percentages
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-red-700 uppercase tracking-widest"
+                >
+                  <span class="text-red-500 mr-1">🔴</span>RED
+                </td>
+                <td class="p-3 text-red-900">
+                  Watch out for earnings management via manufactured step-up
+                  gains.
+                </td>
+              </tr>
+              <tr class="bg-[#fee]">
+                <td class="p-3 font-medium">
+                  Large non-recourse debt in subsidiaries
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-red-700 uppercase tracking-widest"
+                >
+                  <span class="text-red-500 mr-1">🔴</span>RED
+                </td>
+                <td class="p-3 text-red-900">
+                  Treat as off-balance-sheet risk for the parent; covenant
+                  breach in sub affects group optics.
+                </td>
+              </tr>
+              <tr class="bg-[#efe]">
+                <td class="p-3 font-medium">
+                  NCI as % of total equity &lt;10%
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-green-700 uppercase tracking-widest"
+                >
+                  <span class="text-green-500 mr-1">🟢</span>GREEN
+                </td>
+                <td class="p-3 text-green-900">
+                  Parent has almost full control over the free cash flows of the
+                  group.
+                </td>
+              </tr>
+              <tr class="bg-[#efe]">
+                <td class="p-3 font-medium">
+                  Clear narrative bridge from standalone performance to group
+                  consolidated performance
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-green-700 uppercase tracking-widest"
+                >
+                  <span class="text-green-500 mr-1">🟢</span>GREEN
+                </td>
+                <td class="p-3 text-green-900">
+                  Build explicit sum-of-the-parts valuations.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION Q: Final Intelligence Summary -->
+      <section
+        id="section-q"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION Q: Final Intelligence Summary
+        </div>
+        <div class="p-6 bg-white">
+          <p
+            class="font-bold text-lg text-slate-800 pb-3 border-b border-slate-100 mb-4"
+          >
+            The Sophistication Hierarchy
+          </p>
+          <ul class="space-y-4 text-sm text-slate-700">
+            <li class="flex flex-col sm:flex-row sm:items-start gap-2">
+              <span class="font-bold whitespace-nowrap">Level 1 (Retail):</span>
+              <span>
+                &quot;Revenue up 60%, debt up 260% = risky growth!&quot; &rarr;
+                <span class="text-red-600 font-bold">Panic sells</span>
+              </span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:items-start gap-2">
+              <span class="font-bold whitespace-nowrap">Level 2 (Basic):</span>
+              <span>
+                &quot;It's just consolidation accounting, ignore the gross
+                numbers and look at EPS.&quot; &rarr;
+                <span class="text-amber-600 font-bold"
+                  >Misses the true economic scale and leverage risk.</span
+                >
+              </span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:items-start gap-2">
+              <span class="font-bold whitespace-nowrap">Level 3:</span>
+              <span>
+                &quot;Focus purely on 'Profit Attributable to Parent' for
+                earnings, but use the grossed-up balance sheet to identify
+                severe hidden leverage in subsidiaries that could cause
+                group-wide covenants to trip. Exploiting the P/E optical
+                contraction is where the alpha lies.&quot; &rarr;
+                <span class="text-green-600 font-bold"
+                  >Exploits optical mispricing</span
+                >
+              </span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="mt-4 text-center pb-4 shrink-0 border-t border-slate-200">
+        <p class="text-sm text-slate-500 pt-4">
+          Generated for Accounting Standards Comparison Hub | Premium Guide
+        </p>
+        <p class="text-xs text-slate-400 mt-1" id="calc-timestamp">
+          Last calculated: Just now
+        </p>
+      </div>
+    </main>
+
+    <script>
+      function updateCalculations() {
+        // Values are illustrative in form, focusing on the logic requested.
+        const votingSub =
+          parseFloat(document.getElementById("inp-sub-voting").value) || 0;
+        const votingTv =
+          parseFloat(document.getElementById("inp-tv-voting").value) || 0;
+        const spvEq =
+          parseFloat(document.getElementById("inp-spv-eq").value) || 0;
+        const boardStr = document
+          .getElementById("inp-sub-board")
+          .value.toLowerCase();
+
+        // SubCo AS 21
+        const subAsYes = votingSub > 50;
+        const cAsSubRes = document.getElementById("c-as-sub-res");
+        cAsSubRes.textContent = subAsYes
+          ? "YES consolidation"
+          : "NO consolidation";
+        cAsSubRes.className = subAsYes
+          ? "font-bold text-green-700"
+          : "font-bold text-red-600";
+
+        const calcSubAs = document.getElementById("calc-sub-as");
+        calcSubAs.textContent = subAsYes ? "YES" : "NO";
+        calcSubAs.className = subAsYes
+          ? "font-semibold text-green-700"
+          : "font-semibold text-red-600";
+
+        // SubCo Ind AS
+        const hasBoardControl =
+          boardStr.includes("5") && boardStr.includes("7"); // simple mock check for de facto
+        const subIndYes = votingSub > 50 || hasBoardControl;
+        const cIndSubRes = document.getElementById("c-ind-sub-res");
+        cIndSubRes.textContent = subIndYes
+          ? votingSub > 50
+            ? "YES consolidation"
+            : "YES consolidation (de facto control)"
+          : "NO consolidation";
+        cIndSubRes.className = subIndYes
+          ? "font-bold text-green-700"
+          : "font-bold text-red-600";
+
+        const calcSubInd = document.getElementById("calc-sub-ind");
+        calcSubInd.textContent = subIndYes ? "YES" : "NO";
+        calcSubInd.className = subIndYes
+          ? "font-semibold text-green-700"
+          : "font-semibold text-red-600";
+
+        // SubCo US GAAP
+        const subUsYes = votingSub > 50;
+        const cUsSubRes = document.getElementById("c-us-sub-res");
+        cUsSubRes.textContent = subUsYes
+          ? "YES consolidation"
+          : "NO consolidation";
+        cUsSubRes.className = subUsYes
+          ? "font-bold text-green-700"
+          : "font-bold text-red-600";
+
+        const calcSubUs = document.getElementById("calc-sub-us");
+        calcSubUs.textContent = subUsYes ? "YES" : "NO";
+        calcSubUs.className = subUsYes
+          ? "font-semibold text-green-700"
+          : "font-semibold text-red-600";
+
+        // TechVenture
+        const tvAsYes = votingTv > 50;
+        document.getElementById("c-as-tv-p").textContent = votingTv;
+        const cAsTvRes = document.getElementById("c-as-tv-res");
+        cAsTvRes.textContent = tvAsYes
+          ? "YES consolidation"
+          : "NO consolidation";
+        cAsTvRes.className = tvAsYes
+          ? "font-bold text-green-700"
+          : "font-bold text-red-600";
+
+        const calcTvAs = document.getElementById("calc-tech-as");
+        calcTvAs.textContent = tvAsYes ? "YES" : "NO";
+        calcTvAs.className = tvAsYes
+          ? "font-semibold text-green-700"
+          : "font-semibold text-red-600";
+
+        const tvIndYes = votingTv > 50; // assuming veto is just protective
+        const cIndTvRes = document.getElementById("c-ind-tv-res");
+        cIndTvRes.textContent = tvIndYes
+          ? "YES consolidation"
+          : "NO consolidation (equity method)";
+        cIndTvRes.className = tvIndYes
+          ? "font-bold text-green-700"
+          : "font-bold text-red-600";
+
+        const calcTvInd = document.getElementById("calc-tech-ind");
+        calcTvInd.textContent = tvIndYes ? "YES" : "NO";
+        calcTvInd.className = tvIndYes
+          ? "font-semibold text-green-700"
+          : "font-semibold text-red-600";
+
+        const tvUsYes = votingTv > 50;
+        document.getElementById("c-us-tv-p1").textContent = votingTv;
+        const cUsTvRes = document.getElementById("c-us-tv-res");
+        cUsTvRes.textContent = tvUsYes
+          ? "YES consolidation"
+          : "NO consolidation";
+        cUsTvRes.className = tvUsYes
+          ? "font-bold text-green-700"
+          : "font-bold text-red-600";
+
+        const calcTvUs = document.getElementById("calc-tech-us");
+        calcTvUs.textContent = tvUsYes ? "YES" : "NO";
+        calcTvUs.className = tvUsYes
+          ? "font-semibold text-green-700"
+          : "font-semibold text-red-600";
+
+        // Update narrative texts
+        document.getElementById("c-as-sub-p").textContent = votingSub;
+        document.getElementById("c-ind-sub-board").textContent = boardStr;
+        document.getElementById("c-ind-sub-p").textContent = votingSub;
+        document.getElementById("c-us-sub-p1").textContent = votingSub;
+
+        document.getElementById("c-as-spv-p").textContent = spvEq;
+
+        const now = new Date();
+        document.getElementById("calc-timestamp").textContent =
+          "Last calculated: " + now.toLocaleTimeString();
+      }
+
+      function attachListeners() {
+        const inputs = document.querySelectorAll("input");
+        inputs.forEach((inp) => {
+          inp.addEventListener("input", updateCalculations);
+        });
+
+        document.getElementById("reset-btn").addEventListener("click", () => {
+          document.getElementById("inp-sub-voting").value = 45;
+          document.getElementById("inp-sub-board").value =
+            "5 out of 7 directors";
+          document.getElementById("inp-sub-cost").value = 50;
+          document.getElementById("inp-sub-na").value = 120;
+          document.getElementById("inp-sub-profit").value = 20;
+          document.getElementById("inp-spv-eq").value = 0;
+          document.getElementById("inp-spv-debt").value = 100;
+          document.getElementById("inp-spv-na").value = 5;
+          document.getElementById("inp-spv-prof").value = 3;
+          document.getElementById("inp-tv-voting").value = 35;
+          document.getElementById("inp-tv-cost").value = 30;
+          document.getElementById("inp-tv-na").value = 100;
+          document.getElementById("inp-tv-loss").value = -10;
+
+          document.getElementById("inp-sa-assets").value = 1000;
+          document.getElementById("inp-sa-debt").value = 250;
+          document.getElementById("inp-sa-equity").value = 750;
+
+          updateCalculations();
+        });
+
+        const copyBtn = document.getElementById("copy-btn");
+        if (copyBtn) {
+          copyBtn.addEventListener("click", () => {
+            const summary = `CONSOLIDATION TRANSACTION FACTS (ABC LTD)
+-----------------------------------------------------
+Parent Assets: ${document.getElementById("inp-sa-assets").value} Cr
+Parent Debt: ${document.getElementById("inp-sa-debt").value} Cr
+Parent Equity: ${document.getElementById("inp-sa-equity").value} Cr
+SubCo Voting Shares: ${document.getElementById("inp-sub-voting").value}%
+SPV Net Assets: ${document.getElementById("inp-spv-na").value} Cr
+TechVenture Voting Shares: ${document.getElementById("inp-tv-voting").value}%`;
+            navigator.clipboard.writeText(summary).then(() => {
+              const oldText = copyBtn.innerText;
+              copyBtn.innerText = "Copied!";
+              copyBtn.classList.remove("bg-amber-800");
+              copyBtn.classList.add("bg-green-600");
+              setTimeout(() => {
+                copyBtn.innerText = oldText;
+                copyBtn.classList.add("bg-amber-800");
+                copyBtn.classList.remove("bg-green-600");
+              }, 1500);
+            });
+          });
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        attachListeners();
+        updateCalculations();
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const mobileToggle = document.getElementById("mobile-toggle");
+        const navMenu = document.getElementById("nav-menu");
+        const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
+
+        if (mobileToggle) {
+          mobileToggle.addEventListener("click", () => {
+            navMenu.classList.toggle("active");
+          });
+        }
+
+        dropdownToggles.forEach((toggle) => {
+          toggle.addEventListener("click", (e) => {
+            if (window.innerWidth <= 768) {
+              e.preventDefault();
+              const dropdownMenu = toggle.nextElementSibling;
+              dropdownToggles.forEach((otherToggle) => {
+                if (otherToggle !== toggle) {
+                  otherToggle.nextElementSibling.classList.remove("active");
+                  otherToggle.setAttribute("aria-expanded", "false");
+                }
+              });
+              dropdownMenu.classList.toggle("active");
+              toggle.setAttribute(
+                "aria-expanded",
+                dropdownMenu.classList.contains("active"),
+              );
+            }
+          });
+        });
+
+        document.addEventListener("click", (e) => {
+          if (!e.target.closest(".navbar") && window.innerWidth <= 768) {
+            if (navMenu) navMenu.classList.remove("active");
+            document
+              .querySelectorAll(".dropdown-menu")
+              .forEach((menu) => menu.classList.remove("active"));
+          }
+        });
+
+        window.addEventListener("resize", () => {
+          if (window.innerWidth > 768) {
+            if (navMenu) navMenu.classList.remove("active");
+            document
+              .querySelectorAll(".dropdown-menu")
+              .forEach((menu) => menu.classList.remove("active"));
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

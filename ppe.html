@@ -1,0 +1,2670 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PPE | Standards Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      /* Navbar Container */
+      .navbar {
+        background-color: #1a202c;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1rem;
+        position: relative;
+        z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        font-family: inherit;
+      }
+
+      .nav-brand {
+        font-size: 1.25rem;
+        font-weight: bold;
+        padding: 1rem;
+        color: white;
+        text-decoration: none;
+        letter-spacing: 0.05em;
+      }
+
+      .nav-menu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
+
+      .nav-item {
+        position: relative;
+      }
+
+      .nav-link {
+        display: block;
+        padding: 1.25rem 1.5rem;
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        border: none;
+        background: none;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition:
+          background-color 0.2s,
+          color 0.2s;
+        font-family: inherit;
+      }
+
+      .nav-link:hover,
+      .nav-item:hover > .nav-link {
+        background-color: #2d3748;
+      }
+
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: white;
+        min-width: 220px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        border-radius: 0 0 0.375rem 0.375rem;
+        overflow: hidden;
+        border: 1px solid #e2e8f0;
+        border-top: none;
+        z-index: 1000;
+      }
+
+      .mega-menu {
+        min-width: 400px;
+        left: auto;
+        right: 0;
+      }
+
+      .dropdown-item {
+        display: block;
+        padding: 0.85rem 1.25rem;
+        color: #4a5568;
+        text-decoration: none;
+        border-bottom: 1px solid #edf2f7;
+        transition:
+          background-color 0.15s,
+          color 0.15s;
+        font-size: 0.95rem;
+      }
+
+      .dropdown-item:last-child {
+        border-bottom: none;
+      }
+
+      .dropdown-item:hover {
+        background-color: #f7fafc;
+        color: #2b6cb0;
+      }
+
+      .view-all-link {
+        color: #2b6cb0;
+        font-weight: 600;
+        text-decoration: none;
+        display: block;
+        text-align: center;
+        background-color: #f8fafc;
+      }
+
+      .view-all-link:hover {
+        text-decoration: underline;
+        background-color: #f1f5f9;
+      }
+
+      .mega-grid {
+        display: flex;
+        padding: 1.25rem;
+        gap: 2rem;
+      }
+
+      .mega-column {
+        flex: 1;
+      }
+
+      .mega-title {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        color: #a0aec0;
+        letter-spacing: 0.05em;
+        font-weight: bold;
+        margin-bottom: 0.75rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .mega-link {
+        display: block;
+        padding: 0.4rem 0;
+        color: #4a5568;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: color 0.15s;
+      }
+
+      .mega-link:hover {
+        color: #2b6cb0;
+        text-decoration: underline;
+      }
+
+      .view-all-block {
+        background-color: #f8fafc;
+        border-top: 1px solid #e2e8f0;
+      }
+
+      .mobile-toggle {
+        display: none;
+        background: none;
+        border: 1px solid #4a5568;
+        border-radius: 0.25rem;
+        color: white;
+        font-size: 1.25rem;
+        cursor: pointer;
+        padding: 0.5rem 0.75rem;
+        margin-right: 0.5rem;
+      }
+
+      @media (min-width: 769px) {
+        .nav-item:hover > .dropdown-menu {
+          display: block;
+          animation: fadeIn 0.2s ease-in-out;
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-5px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .nav-link.dropdown-toggle::after {
+        content: "";
+        display: inline-block;
+        margin-left: 0.5em;
+        vertical-align: middle;
+        border-top: 4px solid;
+        border-right: 4px solid transparent;
+        border-bottom: 0;
+        border-left: 4px solid transparent;
+      }
+
+      @media (max-width: 768px) {
+        .mobile-toggle {
+          display: block;
+        }
+        .nav-menu {
+          display: none;
+          flex-direction: column;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          background-color: #2d3748;
+        }
+        .nav-menu.active {
+          display: flex;
+        }
+        .nav-link {
+          padding: 1rem 1.5rem;
+          border-bottom: 1px solid #4a5568;
+          width: 100%;
+          text-align: left;
+        }
+        .nav-link.no-arrow::after {
+          content: none;
+        }
+        .nav-link.dropdown-toggle::after {
+          float: right;
+          margin-top: 0.4rem;
+        }
+        .dropdown-menu {
+          position: static;
+          display: none;
+          box-shadow: none;
+          border-radius: 0;
+          background-color: #1a202c;
+          width: 100%;
+          border: none;
+        }
+        .dropdown-menu.active {
+          display: block;
+        }
+        .dropdown-item {
+          color: #e2e8f0;
+          border-bottom-color: #4a5568;
+          padding-left: 2.5rem;
+        }
+        .mega-menu {
+          min-width: auto;
+        }
+        .mega-grid {
+          flex-direction: column;
+          gap: 1rem;
+          padding: 1rem 2.5rem;
+        }
+        .mega-title {
+          border-bottom-color: #4a5568;
+          color: #a0aec0;
+        }
+        .mega-link {
+          color: #e2e8f0;
+        }
+        .view-all-block {
+          background-color: #1a202c;
+          border-color: #4a5568;
+          padding: 0;
+        }
+        .view-all-block .view-all-link {
+          background-color: #1a202c;
+          color: #90cdf4;
+          padding: 1rem;
+          border-top: 1px solid #4a5568;
+        }
+      }
+    </style>
+
+    <style>
+      .custom-scrollbar::-webkit-scrollbar {
+        height: 10px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-slate-50 font-sans h-screen w-full flex flex-col overflow-hidden text-slate-800"
+  >
+    \n
+
+    <header class="bg-[#1a365d] text-white p-4 shrink-0 shadow-md">
+      <div
+        class="flex flex-col sm:flex-row sm:justify-between sm:items-end flex-wrap gap-2"
+      >
+        <div>
+          <h1 class="text-2xl lg:text-3xl font-bold tracking-tight">
+            Accounting Standards Comparison Hub
+          </h1>
+          <p class="text-slate-300 text-sm italic">
+            AS (Old Indian GAAP) vs Ind AS vs IFRS vs US GAAP
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <nav
+      class="bg-white border-b border-slate-200 flex shrink-0 overflow-x-auto custom-scrollbar"
+    >
+      <a
+        href="index.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Home</a
+      >
+      <a
+        href="lease.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Lease</a
+      >
+      <a
+        href="ppe.html"
+        class="px-6 py-3 text-sm font-semibold border-b-4 border-indigo-600 bg-indigo-50 text-indigo-900 block whitespace-nowrap"
+        >PPE</a
+      >
+      <a
+        href="financial-instruments.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Financial Instruments</a
+      >
+      <a
+        href="revenue.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Revenue</a
+      >
+      <a
+        href="deferred-tax.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Deferred Tax</a
+      >
+      <a
+        href="consolidation.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Consolidation</a
+      >
+      <a
+        href="impairment.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Impairment</a
+      >
+      <a
+        href="esop.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >ESOP</a
+      >
+      <a
+        href="cashflows.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Cash Flows</a
+      >
+    </nav>
+
+    <main
+      class="flex-1 p-4 md:p-6 lg:p-8 flex flex-col gap-10 overflow-y-auto"
+      id="main-content"
+    >
+      <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+        <div class="border-l-8 border-teal-600 pl-4 py-1 shrink-0">
+          <h2 class="text-2xl font-bold text-[#1a365d] uppercase tracking-wide">
+            Property, Plant and Equipment
+          </h2>
+          <p class="text-sm text-slate-600">
+            Premium Analysis Guide: AS vs Ind AS vs IFRS vs US GAAP
+          </p>
+        </div>
+        <button
+          id="diagnostic-btn"
+          class="bg-indigo-600 text-white hover:bg-indigo-700 text-sm px-4 py-2 rounded shadow-sm font-bold transition-colors"
+        >
+          Diagnostic Mode
+        </button>
+      </div>
+
+      <!-- Diagnostic Panel -->
+      <div
+        id="diagnostic-panel"
+        class="hidden mt-4 bg-indigo-50 border-l-4 border-indigo-600 p-4 text-sm text-indigo-900 shadow-sm rounded-r-lg flex flex-col gap-2 shrink-0"
+      >
+        <h3 class="font-bold text-lg mb-2">Diagnostic Mode Console</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <h4 class="font-bold border-b border-indigo-200 pb-1 mb-1">
+              Live Updating Sections
+            </h4>
+            <ul
+              id="diag-updating"
+              class="list-disc pl-5 space-y-1 text-indigo-800 font-medium"
+            >
+              <li>SECTION D (Side-by-side Impact Table)</li>
+              <li>SECTIONS E-H (Financial Statement Impact)</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold border-b border-indigo-200 pb-1 mb-1">
+              Static Sections
+            </h4>
+            <ul
+              id="diag-static"
+              class="list-disc pl-5 space-y-1 text-indigo-800 font-medium"
+            >
+              <li>SECTION A (Technical Comparison)</li>
+              <li>SECTIONS I-P (Intelligence Layer)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-4 border-t border-indigo-200 pt-2">
+          <h4 class="font-bold mb-1 flex justify-between">
+            Recent Updates
+            <span id="diag-errors" class="text-red-600 hidden">Errors!</span>
+          </h4>
+          <div
+            id="diag-console"
+            class="bg-indigo-900 text-indigo-100 font-mono p-3 rounded text-xs h-32 overflow-y-auto whitespace-pre-wrap"
+          >
+            System initialized.
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 1: Technical Comparison Table -->
+      <!-- SECTION A: Core Technical Comparison Table -->
+      <section
+        id="section-a"
+        data-diagnostic="tracked"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION A: Core Technical Comparison Table
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-[16%]">Parameter</th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">
+                  AS 10 (Old Indian GAAP)
+                </th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">Ind AS 16</th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">
+                  IAS 16 (IFRS)
+                </th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">
+                  US GAAP ASC 360
+                </th>
+                <th class="p-3 w-[16%]">Logic shift</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Core philosophy</td>
+                <td class="p-3">
+                  Focuses on historical cost with limited revaluation use.
+                </td>
+                <td class="p-3">
+                  Cost model or revaluation model, with component accounting.
+                </td>
+                <td class="p-3">Same broad model as Ind AS.</td>
+                <td class="p-3">
+                  Mostly historical cost, with some limited fair value options.
+                </td>
+                <td class="p-3 text-slate-600">
+                  From simple cost tracking to more judgment-based asset
+                  measurement.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Initial recognition</td>
+                <td class="p-3">
+                  PPE recognized when future economic benefits are probable and
+                  cost can be measured reliably.
+                </td>
+                <td class="p-3">Same.</td>
+                <td class="p-3">Same.</td>
+                <td class="p-3">Same.</td>
+                <td class="p-3 text-slate-600">
+                  Recognition rules are broadly aligned.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Initial measurement</td>
+                <td class="p-3">
+                  At cost, including purchase price, non-refundable taxes,
+                  freight, installation, and directly attributable costs.
+                </td>
+                <td class="p-3">Same.</td>
+                <td class="p-3">Same.</td>
+                <td class="p-3">Same.</td>
+                <td class="p-3 text-slate-600">
+                  Cost includes all directly attributable costs.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Subsequent measurement</td>
+                <td class="p-3">
+                  Usually carried at cost less depreciation and impairment.
+                </td>
+                <td class="p-3">Cost model or revaluation model.</td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  Cost less depreciation and impairment; revaluation model
+                  generally not allowed for PPE.
+                </td>
+                <td class="p-3 text-slate-600">
+                  Ind AS/IFRS allow fair value uplift through revaluation.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Depreciation</td>
+                <td class="p-3">
+                  Based on useful life and residual value; component accounting
+                  less emphasized historically.
+                </td>
+                <td class="p-3">
+                  Separate significant components depreciated separately.
+                </td>
+                <td class="p-3">Same.</td>
+                <td class="p-3">
+                  Component accounting is also required where appropriate.
+                </td>
+                <td class="p-3 text-slate-600">
+                  More precise matching of cost to consumption.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Useful life review</td>
+                <td class="p-3">Less formalized.</td>
+                <td class="p-3">Reviewed at least annually.</td>
+                <td class="p-3">Same.</td>
+                <td class="p-3">Reviewed when events indicate change.</td>
+                <td class="p-3 text-slate-600">
+                  Estimates are updated more actively under Ind AS/IFRS.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Residual value review</td>
+                <td class="p-3">Less structured.</td>
+                <td class="p-3">Reviewed at least annually.</td>
+                <td class="p-3">Same.</td>
+                <td class="p-3">
+                  Reviewed periodically, usually when indicators change.
+                </td>
+                <td class="p-3 text-slate-600">
+                  More frequent reassessment under Ind AS/IFRS.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Impairment</td>
+                <td class="p-3">
+                  Trigger-based impairment under older standards.
+                </td>
+                <td class="p-3">Ind AS 36: recoverable amount approach.</td>
+                <td class="p-3">Same.</td>
+                <td class="p-3">
+                  ASC 360: recoverability test, then impairment loss if carrying
+                  value exceeds fair value.
+                </td>
+                <td class="p-3 text-slate-600">
+                  Different impairment mechanics can affect timing and size of
+                  losses.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Borrowing costs</td>
+                <td class="p-3">
+                  Generally capitalized when directly attributable to qualifying
+                  assets.
+                </td>
+                <td class="p-3">
+                  Capitalize directly attributable borrowing costs during
+                  construction.
+                </td>
+                <td class="p-3">Same.</td>
+                <td class="p-3">
+                  Similar capitalization for qualifying assets.
+                </td>
+                <td class="p-3 text-slate-600">
+                  Construction assets often carry interest into cost.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Government grants</td>
+                <td class="p-3">
+                  Often recognized based on specific guidance, sometimes netted
+                  against asset cost.
+                </td>
+                <td class="p-3">
+                  IAS 20-style treatment: deferred income or deduction from
+                  asset cost depending on policy.
+                </td>
+                <td class="p-3">Same.</td>
+                <td class="p-3">Similar, but presentation can differ.</td>
+                <td class="p-3 text-slate-600">
+                  Grant accounting affects opening PPE carrying value.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Exchange differences</td>
+                <td class="p-3">Treated under foreign currency rules.</td>
+                <td class="p-3">
+                  Certain FX differences on foreign currency borrowings may be
+                  capitalized in some cases.
+                </td>
+                <td class="p-3">Same.</td>
+                <td class="p-3">
+                  FX treatment follows US GAAP foreign currency rules.
+                </td>
+                <td class="p-3 text-slate-600">
+                  Capitalization of FX is more limited and rule-based.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Revaluation surplus</td>
+                <td class="p-3">Not a common feature.</td>
+                <td class="p-3">
+                  Allowed for classes of PPE; revaluation surplus goes to OCI.
+                </td>
+                <td class="p-3">Same.</td>
+                <td class="p-3">Generally not permitted for PPE.</td>
+                <td class="p-3 text-slate-600">
+                  Major divergence between Ind AS/IFRS and US GAAP.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Disposal accounting</td>
+                <td class="p-3">Gain/loss recognized in P&amp;L.</td>
+                <td class="p-3">Same.</td>
+                <td class="p-3">Same.</td>
+                <td class="p-3">Same.</td>
+                <td class="p-3 text-slate-600">Broadly aligned at exit.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          class="p-4 bg-blue-50 border-t border-slate-200 border-l-4 border-l-blue-500 shrink-0 text-sm text-blue-900"
+        >
+          <p class="font-bold mb-2">
+            KEY INSIGHT: PPE is the area where Ind AS and IFRS are very close,
+            while US GAAP usually stays with cost model discipline, and old AS
+            is less detailed on component/revaluation mechanics.
+          </p>
+        </div>
+      </section>
+
+      <!-- SECTION 2: Practical Transaction Example -->
+      <div class="shrink-0 mt-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <section
+          id="section-b-container"
+          data-diagnostic="tracked"
+          class="shrink-0 bg-amber-50 rounded-xl shadow-sm border border-amber-200 overflow-hidden flex flex-col font-sans"
+        >
+          <div
+            class="bg-amber-600 text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-amber-300 flex justify-between items-center flex-wrap gap-2"
+          >
+            <span>SECTION B: Transaction Fact Pattern (EDITABLE)</span>
+            <div>
+              <button
+                id="reset-btn"
+                class="bg-white text-amber-700 hover:bg-amber-100 text-xs px-3 py-1 rounded shadow-sm mr-2 transition-colors cursor-pointer font-bold"
+              >
+                Reset to Default
+              </button>
+              <button
+                id="copy-btn"
+                class="bg-amber-800 hover:bg-amber-900 text-white text-xs px-3 py-1 rounded shadow-sm transition-colors border border-amber-500 cursor-pointer font-bold"
+              >
+                Copy Results
+              </button>
+            </div>
+          </div>
+          <div class="p-5 relative bg-amber-50 flex-1">
+            <div
+              class="absolute right-4 top-4 text-amber-700 opacity-10 font-bold text-6xl pointer-events-none select-none"
+            >
+              FACTS
+            </div>
+            <div
+              id="validation-warning"
+              class="hidden mb-4 p-3 bg-red-100 border-l-4 border-red-500 text-red-700 text-sm font-bold"
+            ></div>
+
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 relative z-10 text-sm"
+            >
+              <!-- Column 1: PPE Inputs -->
+              <div class="space-y-3">
+                <h4
+                  class="font-bold border-b border-amber-200 text-amber-800 pb-1"
+                >
+                  PPE Inputs
+                </h4>
+                <div class="flex items-center justify-between">
+                  <label class="font-bold text-slate-700"
+                    >Purchase price (Cr):</label
+                  >
+                  <input
+                    type="number"
+                    id="input-price"
+                    value="100"
+                    min="0"
+                    step="1"
+                    class="w-24 p-1 border border-slate-300 bg-white rounded text-right"
+                  />
+                </div>
+                <div class="flex items-center justify-between">
+                  <label class="font-bold text-slate-700"
+                    >Freight &amp; install (Cr):</label
+                  >
+                  <input
+                    type="number"
+                    id="input-freight"
+                    value="10"
+                    min="0"
+                    step="1"
+                    class="w-24 p-1 border border-slate-300 bg-white rounded text-right"
+                  />
+                </div>
+                <div class="flex items-center justify-between">
+                  <label class="font-bold text-slate-700">ARO PV (Cr):</label>
+                  <input
+                    type="number"
+                    id="input-aro"
+                    value="5"
+                    min="0"
+                    step="1"
+                    class="w-24 p-1 border border-slate-300 bg-white rounded text-right"
+                  />
+                </div>
+                <div class="flex items-center justify-between">
+                  <label class="font-bold text-slate-700"
+                    >Useful life (years):</label
+                  >
+                  <input
+                    type="number"
+                    id="input-life"
+                    value="10"
+                    min="1"
+                    step="1"
+                    class="w-24 p-1 border border-slate-300 bg-white rounded text-right"
+                  />
+                </div>
+                <div class="flex items-center justify-between">
+                  <label class="font-bold text-slate-700"
+                    >ARO Discount Rate (%):</label
+                  >
+                  <input
+                    type="number"
+                    id="input-aro-rate"
+                    value="10"
+                    min="0"
+                    max="100"
+                    step="0.1"
+                    class="w-24 p-1 border border-slate-300 bg-white rounded text-right"
+                  />
+                </div>
+              </div>
+
+              <!-- Column 2: Company Base -->
+              <div class="space-y-3">
+                <h4
+                  class="font-bold border-b border-amber-200 text-amber-800 pb-1"
+                >
+                  Company Base (Pre-Capex)
+                </h4>
+                <div class="flex items-center justify-between">
+                  <label class="font-bold text-slate-700">Revenue (Cr):</label>
+                  <input
+                    type="number"
+                    id="input-rev"
+                    value="400"
+                    min="0"
+                    step="1"
+                    class="w-24 p-1 border border-slate-300 bg-white rounded text-right"
+                  />
+                </div>
+                <div class="flex items-center justify-between">
+                  <label class="font-bold text-slate-700"
+                    >Base EBITDA (Cr):</label
+                  >
+                  <input
+                    type="number"
+                    id="input-ebitda"
+                    value="80"
+                    step="1"
+                    class="w-24 p-1 border border-slate-300 bg-white rounded text-right"
+                  />
+                </div>
+                <div class="flex items-center justify-between">
+                  <label class="font-bold text-slate-700"
+                    >Pre-Capex Assets (Cr):</label
+                  >
+                  <input
+                    type="number"
+                    id="input-assets"
+                    value="390"
+                    step="1"
+                    class="w-24 p-1 border border-slate-300 bg-white rounded text-right"
+                  />
+                </div>
+                <div class="flex items-center justify-between">
+                  <label class="font-bold text-slate-700"
+                    >Base Equity (Cr):</label
+                  >
+                  <input
+                    type="number"
+                    id="input-eq"
+                    value="300"
+                    step="1"
+                    class="w-24 p-1 border border-slate-300 bg-white rounded text-right"
+                  />
+                </div>
+                <div class="flex items-center justify-between">
+                  <label class="font-bold text-slate-700"
+                    >Base Debt (Cr):</label
+                  >
+                  <input
+                    type="number"
+                    id="input-debt"
+                    value="100"
+                    step="1"
+                    class="w-24 p-1 border border-slate-300 bg-white rounded text-right"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Subsection for Additional Information -->
+            <div class="mt-6 pt-4 border-t border-amber-200 relative z-10">
+              <h4
+                class="font-bold text-amber-900 text-xs uppercase tracking-wider mb-2"
+              >
+                Additional Asset Information
+              </h4>
+              <div
+                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs"
+              >
+                <div
+                  class="bg-white/80 p-3 rounded border border-amber-200/60 shadow-xs"
+                >
+                  <span
+                    class="block font-bold text-slate-500 uppercase tracking-tight text-[10px] mb-1"
+                    >Company</span
+                  >
+                  <span class="text-slate-800 font-medium">ABC Ltd</span>
+                </div>
+                <div
+                  class="bg-white/80 p-3 rounded border border-amber-200/60 shadow-xs"
+                >
+                  <span
+                    class="block font-bold text-slate-500 uppercase tracking-tight text-[10px] mb-1"
+                    >Asset Category</span
+                  >
+                  <span class="text-slate-800 font-medium"
+                    >Heavy Machinery / Industrial Equipment</span
+                  >
+                </div>
+                <div
+                  class="bg-white/80 p-3 rounded border border-amber-200/60 shadow-xs"
+                >
+                  <span
+                    class="block font-bold text-slate-500 uppercase tracking-tight text-[10px] mb-1"
+                    >Asset Life Vesting</span
+                  >
+                  <span class="text-slate-800 font-medium"
+                    >Straight-Line Depreciation</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="flex justify-between items-end mt-4 pt-4 border-t border-amber-200 relative z-10"
+            >
+              <div class="text-xs text-amber-700 opacity-80">
+                Other inputs are editable in sections below.
+              </div>
+              <div class="text-xs font-mono text-slate-500" id="timestamp-text">
+                Last updated: -
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION C: Side-by-Side Treatment -->
+        <section
+          id="section-c"
+          data-diagnostic="tracked"
+          class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+        >
+          <div
+            class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+          >
+            SECTION C: Side-by-Side Treatment
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm text-left">
+              <thead class="bg-slate-100 text-slate-700">
+                <tr>
+                  <th class="p-3 border-b border-r border-slate-200 w-1/4">
+                    AS 10 (Old Indian GAAP)
+                  </th>
+                  <th class="p-3 border-b border-r border-slate-200 w-1/4">
+                    Ind AS 16 / Ind AS 37
+                  </th>
+                  <th class="p-3 border-b border-r border-slate-200 w-1/4">
+                    IFRS 16 / IAS 37
+                  </th>
+                  <th class="p-3 border-b border-slate-200 w-1/4">
+                    ASC 360 / ASC 410
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 bg-white">
+                <tr>
+                  <td class="p-3 border-r border-slate-200 align-top">
+                    Asset recognized at cost + freight. ARO usually ignored or
+                    cash basis. Depreciation generally WDV or SLM over schedule
+                    2 rates.
+                  </td>
+                  <td class="p-3 border-r border-slate-200 align-top">
+                    Cost + Freight + PV of ARO capitalized. Component accounting
+                    mandatory. Depreciation matches consumption profile
+                    precisely.
+                  </td>
+                  <td class="p-3 border-r border-slate-200 align-top">
+                    Identical to Ind AS.
+                  </td>
+                  <td class="p-3 align-top">
+                    Cost + ARO capitalized. Component accounting applied.
+                    Impairment models differ slightly (recoverability test).
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <section
+        class="shrink-0 -mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION D: Side-by-Side Impact Table (Project Only)
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-2 border-b border-slate-200">Framework</th>
+                <th class="p-2 border-b border-slate-200 text-right">
+                  Initial PPE
+                </th>
+                <th class="p-2 border-b border-slate-200 text-right">
+                  Initial liability / provision
+                </th>
+                <th
+                  class="p-2 border-b border-slate-200 text-right text-teal-800"
+                >
+                  Year 1 dep
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 font-mono">
+              <tr class="hover:bg-slate-50 relative group">
+                <td class="p-3 font-bold text-slate-800">AS</td>
+                <td class="p-3 text-right" id="tb-ppe-as">-</td>
+                <td class="p-3 text-right text-slate-500" id="tb-aro-as">-</td>
+                <td
+                  class="p-3 font-bold text-right text-red-600"
+                  id="tb-dep-as"
+                >
+                  -
+                </td>
+              </tr>
+              <tr
+                class="hover:bg-slate-50 relative group border-t-2 border-slate-200"
+              >
+                <td class="p-3 font-bold text-slate-800 flex items-center">
+                  Ind AS
+                </td>
+                <td class="p-3 text-right" id="tb-ppe-in">-</td>
+                <td class="p-3 text-right" id="tb-aro-in">-</td>
+                <td
+                  class="p-3 font-bold text-right text-red-600"
+                  id="tb-dep-in"
+                >
+                  -
+                </td>
+              </tr>
+              <tr
+                class="hover:bg-slate-50 relative group border-t-2 border-slate-200"
+              >
+                <td class="p-3 font-bold text-slate-800 flex items-center">
+                  IFRS
+                </td>
+                <td class="p-3 text-right" id="tb-ppe-if">-</td>
+                <td class="p-3 text-right" id="tb-aro-if">-</td>
+                <td
+                  class="p-3 font-bold text-right text-red-600"
+                  id="tb-dep-if"
+                >
+                  -
+                </td>
+              </tr>
+              <tr
+                class="hover:bg-slate-50 relative group border-t-2 border-slate-200"
+              >
+                <td class="p-3 font-bold text-slate-800 flex items-center">
+                  US GAAP
+                </td>
+                <td class="p-3 text-right" id="tb-ppe-us">-</td>
+                <td class="p-3 text-right" id="tb-aro-us">-</td>
+                <td
+                  class="p-3 font-bold text-right text-red-600"
+                  id="tb-dep-us"
+                >
+                  -
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION 3: Financial Statement Impact -->
+      <!-- SECTION 3.1: P&amp;L Impact -->
+      <section
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200 flex justify-between items-center"
+        >
+          <span>SECTION E: P&amp;L Impact - Year 1</span>
+        </div>
+        <div
+          class="p-3 bg-amber-50 border-b border-slate-200 text-xs flex flex-wrap gap-4 items-center"
+        >
+          <span class="font-bold text-[#1a365d]">Base Business:</span>
+          <div class="flex items-center gap-2">
+            <label class="font-medium text-slate-700">Revenue (Rs. Cr):</label
+            ><input
+              type="number"
+              id="input-base-rev"
+              value="400"
+              step="10"
+              class="w-20 p-1 border border-slate-300 rounded text-right bg-white"
+            />
+          </div>
+          <div class="flex items-center gap-2">
+            <label class="font-medium text-slate-700"
+              >Base EBITDA (Rs. Cr):</label
+            ><input
+              type="number"
+              id="input-base-ebitda"
+              value="80"
+              step="1"
+              class="w-20 p-1 border border-slate-300 rounded text-right bg-white"
+            />
+          </div>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200">Line item</th>
+                <th class="p-3 border-r border-slate-200">AS (Old)</th>
+                <th class="p-3 border-r border-slate-200">Ind AS</th>
+                <th class="p-3 border-r border-slate-200">IFRS</th>
+                <th class="p-3">US GAAP</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-medium">Base EBITDA</td>
+                <td class="p-3" id="pl-base-as">-</td>
+                <td class="p-3" id="pl-base-in">-</td>
+                <td class="p-3" id="pl-base-if">-</td>
+                <td class="p-3" id="pl-base-us">-</td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-medium text-red-700">Depreciation</td>
+                <td class="p-3 text-red-700" id="pl-dep-as">-</td>
+                <td class="p-3 text-red-700" id="pl-dep-in">-</td>
+                <td class="p-3 text-red-700" id="pl-dep-if">-</td>
+                <td class="p-3 text-red-700" id="pl-dep-us">-</td>
+              </tr>
+              <tr class="font-bold bg-slate-100">
+                <td class="p-3">Reported EBITDA</td>
+                <td class="p-3" id="pl-rep-ebitda-as">-</td>
+                <td class="p-3" id="pl-rep-ebitda-in">-</td>
+                <td class="p-3" id="pl-rep-ebitda-if">-</td>
+                <td class="p-3" id="pl-rep-ebitda-us">-</td>
+              </tr>
+              <tr class="hover:bg-slate-50 font-medium">
+                <td class="p-3">EBIT</td>
+                <td class="p-3" id="pl-ebit-as">-</td>
+                <td class="p-3" id="pl-ebit-in">-</td>
+                <td class="p-3" id="pl-ebit-if">-</td>
+                <td class="p-3" id="pl-ebit-us">-</td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-medium text-red-700">
+                  Accretion (Interest)
+                </td>
+                <td class="p-3 text-slate-500">Nil</td>
+                <td class="p-3 text-red-700" id="pl-acc-in">-</td>
+                <td class="p-3 text-red-700" id="pl-acc-if">-</td>
+                <td class="p-3 text-red-700" id="pl-acc-us">-</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-medium">PBT</td>
+                <td class="p-3" id="pl-pbt-as">-</td>
+                <td class="p-3" id="pl-pbt-in">-</td>
+                <td class="p-3" id="pl-pbt-if">-</td>
+                <td class="p-3" id="pl-pbt-us">-</td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-medium text-red-700">Tax @ 25%</td>
+                <td class="p-3 text-red-700" id="pl-tax-as">-</td>
+                <td class="p-3 text-red-700" id="pl-tax-in">-</td>
+                <td class="p-3 text-red-700" id="pl-tax-if">-</td>
+                <td class="p-3 text-red-700" id="pl-tax-us">-</td>
+              </tr>
+              <tr
+                class="font-bold text-[#1a365d] border-t-2 border-slate-300 bg-slate-100"
+              >
+                <td class="p-3">PAT (Profit After Tax)</td>
+                <td class="p-3" id="pl-pat-as">-</td>
+                <td class="p-3" id="pl-pat-in">-</td>
+                <td class="p-3" id="pl-pat-if">-</td>
+                <td class="p-3" id="pl-pat-us">-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION 3.2 & 3.3: Balance Sheet & CF --->
+      <section
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION F: Balance Sheet Impact - End of Year 1
+        </div>
+        <div
+          class="p-3 bg-amber-50 border-b border-slate-200 text-xs flex flex-wrap gap-4 items-center"
+        >
+          <span class="font-bold text-[#1a365d]">Pre-Capex Base BS:</span>
+          <div class="flex items-center gap-2">
+            <label class="font-medium text-slate-700">Assets (Rs. Cr):</label
+            ><input
+              type="number"
+              id="input-base-assets"
+              value="390"
+              step="10"
+              class="w-20 p-1 border border-slate-300 rounded text-right bg-white"
+            />
+          </div>
+          <div class="flex items-center gap-2">
+            <label class="font-medium text-slate-700">Equity (Rs. Cr):</label
+            ><input
+              type="number"
+              id="input-base-eq"
+              value="300"
+              step="10"
+              class="w-20 p-1 border border-slate-300 rounded text-right bg-white"
+            />
+          </div>
+          <div class="flex items-center gap-2">
+            <label class="font-medium text-slate-700">Debt (Rs. Cr):</label
+            ><input
+              type="number"
+              id="input-base-debt"
+              value="100"
+              step="10"
+              class="w-20 p-1 border border-slate-300 rounded text-right bg-white"
+            />
+          </div>
+        </div>
+        <div class="overflow-x-auto flex-1">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200">Line item</th>
+                <th class="p-3 border-r border-slate-200">AS (Old)</th>
+                <th class="p-3 border-r border-slate-200">Ind AS</th>
+                <th class="p-3 border-r border-slate-200">IFRS</th>
+                <th class="p-3">US GAAP</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 font-mono text-xs">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-medium text-blue-700">PPE CV (Net)</td>
+                <td class="p-3 text-blue-700 font-semibold" id="bs-ppe-as">
+                  -
+                </td>
+                <td class="p-3 text-blue-700 font-semibold" id="bs-ppe-in">
+                  -
+                </td>
+                <td class="p-3 text-blue-700 font-semibold" id="bs-ppe-if">
+                  -
+                </td>
+                <td class="p-3 text-blue-700 font-semibold" id="bs-ppe-us">
+                  -
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-medium text-red-700">ARO / Prov. Liab</td>
+                <td class="p-3 text-red-700 font-semibold" id="bs-aro-as">-</td>
+                <td class="p-3 text-red-700 font-semibold" id="bs-aro-in">-</td>
+                <td class="p-3 text-red-700 font-semibold" id="bs-aro-if">-</td>
+                <td class="p-3 text-red-700 font-semibold" id="bs-aro-us">-</td>
+              </tr>
+              <tr class="font-bold bg-slate-100">
+                <td class="p-3">Total Assets</td>
+                <td class="p-3" id="bs-ta-as">-</td>
+                <td class="p-3" id="bs-ta-in">-</td>
+                <td class="p-3" id="bs-ta-if">-</td>
+                <td class="p-3" id="bs-ta-us">-</td>
+              </tr>
+              <tr class="hover:bg-slate-50 font-bold">
+                <td class="p-3">Total Liabilities</td>
+                <td class="p-3" id="bs-tl-as">-</td>
+                <td class="p-3" id="bs-tl-in">-</td>
+                <td class="p-3" id="bs-tl-if">-</td>
+                <td class="p-3" id="bs-tl-us">-</td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold text-[#1a365d]">Equity / Net Worth</td>
+                <td class="p-3 font-semibold" id="bs-eq-as">-</td>
+                <td class="p-3 font-semibold" id="bs-eq-in">-</td>
+                <td class="p-3 font-semibold" id="bs-eq-if">-</td>
+                <td class="p-3 font-semibold" id="bs-eq-us">-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION G: Cash Flow Impact - Year 1
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200">CF Component</th>
+                <th class="p-3 border-r border-slate-200">AS (Old)</th>
+                <th class="p-3 border-r border-slate-200">Ind AS / IFRS</th>
+                <th class="p-3">US GAAP</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 font-mono text-xs">
+              <tr class="">
+                <td class="p-3 font-medium">Capex (CFI)</td>
+                <td class="p-3" id="cf-cfi-as">-</td>
+                <td class="p-3" id="cf-cfi-in">-</td>
+                <td class="p-3" id="cf-cfi-us">-</td>
+              </tr>
+              <tr class="bg-slate-50">
+                <td class="p-3 font-medium">CFO Effect</td>
+                <td class="p-3" id="cf-cfo-as">-</td>
+                <td class="p-3" id="cf-cfo-in">-</td>
+                <td class="p-3" id="cf-cfo-us">-</td>
+              </tr>
+              <tr class="">
+                <td class="p-3 font-medium">CFF Effect</td>
+                <td class="p-3" id="cf-cff-as">-</td>
+                <td class="p-3" id="cf-cff-in">-</td>
+                <td class="p-3" id="cf-cff-us">-</td>
+              </tr>
+              <tr
+                class="font-bold text-[#1a365d] border-t-2 border-slate-300 bg-slate-100"
+              >
+                <td class="p-3 font-medium">Net CF Impact</td>
+                <td class="p-3" id="cf-net-as">-</td>
+                <td class="p-3" id="cf-net-in">-</td>
+                <td class="p-3" id="cf-net-us">-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION 3.4: Ratio Impact -->
+      <section
+        class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION H: Ratio Impact - Year 1
+        </div>
+        <div class="overflow-x-auto flex-1">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200">Ratio</th>
+                <th class="p-3 border-r border-slate-200">AS</th>
+                <th class="p-3 border-r border-slate-200">Ind AS</th>
+                <th class="p-3 border-r border-slate-200">IFRS</th>
+                <th class="p-3">US GAAP</th>
+                <th class="p-3 border-b text-center">Direction (vs AS)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 bg-white">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-medium">EBITDA Margin</td>
+                <td class="p-3" id="rt-ebitdam-as">-</td>
+                <td class="p-3" id="rt-ebitdam-in">-</td>
+                <td class="p-3" id="rt-ebitdam-if">-</td>
+                <td class="p-3" id="rt-ebitdam-us">-</td>
+                <td class="p-3" id="rt-dir-ebitdam">-</td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-medium">Debt/Equity</td>
+                <td class="p-3" id="rt-de-as">-</td>
+                <td class="p-3" id="rt-de-in">-</td>
+                <td class="p-3" id="rt-de-if">-</td>
+                <td class="p-3" id="rt-de-us">-</td>
+                <td class="p-3" id="rt-dir-de">-</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-medium">ROA</td>
+                <td class="p-3" id="rt-roa-as">-</td>
+                <td class="p-3" id="rt-roa-in">-</td>
+                <td class="p-3" id="rt-roa-if">-</td>
+                <td class="p-3" id="rt-roa-us">-</td>
+                <td class="p-3" id="rt-dir-roa">-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          class="p-4 bg-teal-50 border-t border-slate-200 border-l-4 border-l-teal-600 shrink-0 text-sm text-teal-900"
+        >
+          <p>
+            <b>Section Note - Outcome Alignment:</b> For this PPE example, Ind
+            AS and IFRS are broadly the same, while US GAAP is close but usually
+            stays more cost-model oriented. AS is the least comparable because
+            it is less detailed on component depreciation, revaluation, and
+            disclosure.
+          </p>
+        </div>
+      </section>
+
+      <!-- 4.1 Earnings Quality Table -->
+      <section
+        class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION I: Earnings Quality - Signals Table
+        </div>
+        <div class="overflow-x-auto flex-1">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b">Signal observed</th>
+                <th class="p-3 border-b">What it means technically</th>
+                <th class="p-3 border-b">Analyst interpretation</th>
+                <th class="p-3 border-b">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-medium">
+                  Asset base expands after adoption
+                </td>
+                <td class="p-3 text-slate-600">
+                  More complete capitalization of PPE and obligations.
+                </td>
+                <td class="p-3 text-slate-600">
+                  ROA and turnover may look weaker due to larger denominator.
+                </td>
+                <td class="p-3 font-bold text-indigo-700">
+                  Compare returns on a PPE-adjusted basis.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-medium">Depreciation rises</td>
+                <td class="p-3 text-slate-600">
+                  Cost is spread more systematically over useful life.
+                </td>
+                <td class="p-3 text-slate-600">
+                  Depreciation is now more aligned with actual consumption.
+                </td>
+                <td class="p-3 font-bold text-indigo-700">
+                  Check whether useful lives and residuals are realistic.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-medium">Impairment loss appears</td>
+                <td class="p-3 text-slate-600">
+                  Carrying value exceeds recoverable amount or fair value.
+                </td>
+                <td class="p-3 text-slate-600">
+                  Management may have overestimated asset life or future usage.
+                </td>
+                <td class="p-3 font-bold text-indigo-700">
+                  Review utilization, margins, and assumptions.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-medium">
+                  Revaluation surplus increases equity
+                </td>
+                <td class="p-3 text-slate-600">
+                  Fair value uplift is recognized in OCI rather than P&amp;L.
+                </td>
+                <td class="p-3 text-slate-600">
+                  Balance sheet may look stronger without immediate cash impact.
+                </td>
+                <td class="p-3 font-bold text-indigo-700">
+                  Separate accounting uplift from operating performance.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-medium">
+                  Dismantling/restoration provision appears
+                </td>
+                <td class="p-3 text-slate-600">
+                  Future outflow is now recognized today.
+                </td>
+                <td class="p-3 text-slate-600">
+                  Hidden end-of-life costs are becoming visible.
+                </td>
+                <td class="p-3 font-bold text-indigo-700">
+                  Check whether the liability is fully measured.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 4.2 Trend Distortion Matrix -->
+      <section
+        class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION J: Trend Distortion Matrix
+        </div>
+        <div class="overflow-x-auto flex-1">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b">Metric</th>
+                <th class="p-3 border-b">Distortion type</th>
+                <th class="p-3 border-b">Duration</th>
+                <th class="p-3 border-b">Correction method</th>
+                <th class="p-3 border-b">Example</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">EBITDA</td>
+                <td class="p-3">None</td>
+                <td class="p-3">Ongoing</td>
+                <td class="p-3 text-slate-600">
+                  No direct impact from depreciation.
+                </td>
+                <td class="p-3 italic">EBITDA stays stable.</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">EBIT</td>
+                <td class="p-3 text-orange-600 font-medium">Structural</td>
+                <td class="p-3">Useful life</td>
+                <td class="p-3 text-slate-600">
+                  Normalize for depreciation policy changes.
+                </td>
+                <td class="p-3 italic">EBIT declines.</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">ROA</td>
+                <td class="p-3 text-red-600 font-medium">Permanent</td>
+                <td class="p-3">Asset life</td>
+                <td class="p-3 text-slate-600">
+                  Include revised PPE denominator.
+                </td>
+                <td class="p-3 italic">ROA declines.</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Asset turnover</td>
+                <td class="p-3 text-red-600 font-medium">Permanent</td>
+                <td class="p-3">Asset life</td>
+                <td class="p-3 text-slate-600">
+                  Use comparable asset base across peers.
+                </td>
+                <td class="p-3 italic">Turnover weakens.</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Equity</td>
+                <td class="p-3 text-blue-600 font-medium">Revaluation</td>
+                <td class="p-3">Until disposal</td>
+                <td class="p-3 text-slate-600">
+                  Separate revaluation reserve from earned equity.
+                </td>
+                <td class="p-3 italic">Equity rises via OCI.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section
+        class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION K: Ratio Interpretation Guide
+        </div>
+        <div class="overflow-x-auto flex-1">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700 border-b border-slate-200">
+              <tr>
+                <th class="p-2">Ratio</th>
+                <th class="p-2 text-center">Rep. Value</th>
+                <th class="p-2">What analyst should do</th>
+                <th class="p-2">Correct interpretation</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-2 font-bold">ROA</td>
+                <td class="p-2 text-center text-red-600">Lower</td>
+                <td class="p-2 text-xs text-slate-600">
+                  Add PPE consistently into denominator.
+                </td>
+                <td class="p-2 text-xs">
+                  Returns comparable only after adjustment.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-2 font-bold">Asset turnover</td>
+                <td class="p-2 text-center text-red-600">Lower</td>
+                <td class="p-2 text-xs text-slate-600">
+                  Recast on same asset base.
+                </td>
+                <td class="p-2 text-xs">
+                  Lower turnover may reflect accounting, not weaker demand.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-2 font-bold">EBIT margin</td>
+                <td class="p-2 text-center text-red-600">Lower</td>
+                <td class="p-2 text-xs text-slate-600">
+                  Separate depreciation from cash profitability.
+                </td>
+                <td class="p-2 text-xs">
+                  Operating economics may be unchanged.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-2 font-bold">Debt/Equity</td>
+                <td class="p-2 text-center text-red-600">Higher</td>
+                <td class="p-2 text-xs text-slate-600">
+                  Include restoration and other obs in leverage ratios.
+                </td>
+                <td class="p-2 text-xs">
+                  Leverage is more truthful, not worse quality.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-2 font-bold">Reval reserve</td>
+                <td class="p-2 text-center text-green-600">Higher eq</td>
+                <td class="p-2 text-xs text-slate-600">
+                  Treat as non-cash uplift.
+                </td>
+                <td class="p-2 text-xs">
+                  Equity improved on paper, not in cash.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="px-4 pb-4 text-xs text-slate-500 italic">
+          Intelligence Note: Across Ind AS, IFRS and US GAAP, the same
+          analytical normalization logic applies; you do not need separate
+          valuation frameworks for each standard.
+        </div>
+      </section>
+
+      <!-- SECTION L: Analyst Concerns & Answers -->
+      <section
+        id="section-l"
+        data-diagnostic="tracked"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION L: Analyst Concerns &amp; Answers
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  Analyst question
+                </th>
+                <th class="p-3 border-r border-slate-200 w-1/4">Concern</th>
+                <th class="p-3 border-r border-slate-200 w-1/4">Answer</th>
+                <th class="p-3 w-1/4">Evidence</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr>
+                <td class="p-3 italic font-medium">
+                  "Is PPE growth real or accounting?"
+                </td>
+                <td class="p-3">Fear that growth is standard-driven.</td>
+                <td class="p-3 text-slate-700" id="k-ans-1">
+                  Largely timing: same PPE components, recognized over time now.
+                  Growth moved from X% to Y%.
+                </td>
+                <td class="p-3 text-emerald-700 font-semibold">
+                  Same total project profit; cash flows unchanged.
+                </td>
+              </tr>
+              <tr class="bg-slate-50">
+                <td class="p-3 italic font-medium">
+                  "Has margin quality improved?"
+                </td>
+                <td class="p-3">Window-dressing.</td>
+                <td class="p-3 text-slate-700" id="k-ans-2">
+                  Lifetime margins unchanged; only period allocation changed.
+                  Margin moved from X% to Y%.
+                </td>
+                <td class="p-3 text-emerald-700 font-semibold">
+                  Component margin tables in notes.
+                </td>
+              </tr>
+              <tr>
+                <td class="p-3 italic font-medium">
+                  "Are PPE component assets riskier than inventory?"
+                </td>
+                <td class="p-3">Uncollectible risk.</td>
+                <td class="p-3 text-slate-700">
+                  No - represent enforceable rights to payment.
+                </td>
+                <td class="p-3 text-emerald-700 font-semibold">
+                  Right to payment disclosed.
+                </td>
+              </tr>
+              <tr class="bg-slate-50">
+                <td class="p-3 italic font-medium">
+                  "Are IFRS and US GAAP outcomes different?"
+                </td>
+                <td class="p-3">Lack of global comparability.</td>
+                <td class="p-3 text-slate-700">
+                  For these PPE components, Ind AS, IFRS and ASC 360 are
+                  identical.
+                </td>
+                <td class="p-3 text-emerald-700 font-semibold">
+                  PPE profiles of peers.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION M & N: Investor Perception & Signals -->
+      <div class="shrink-0 mt-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- SECTION M: Investor Perception Analysis -->
+        <section
+          id="section-m"
+          data-diagnostic="tracked"
+          class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+        >
+          <div
+            class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+          >
+            SECTION M: Investor Perception Analysis
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-xs xl:text-sm text-left">
+              <thead class="bg-slate-100 text-slate-700">
+                <tr>
+                  <th class="p-3 border-r border-slate-200 w-1/4">
+                    Investor Type
+                  </th>
+                  <th class="p-3 border-r border-slate-200 w-1/4">
+                    What they see
+                  </th>
+                  <th class="p-3 border-r border-slate-200 w-1/4">
+                    Likely reaction
+                  </th>
+                  <th class="p-3 w-1/4">Sophisticated response</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200">
+                <tr>
+                  <td class="p-3 font-bold text-[#1a365d]">Retail</td>
+                  <td class="p-3">Big jump in PPE/EPS.</td>
+                  <td class="p-3">
+                    <span class="text-green-600 font-bold">Buy</span>
+                    aggressively, assuming breakout.
+                  </td>
+                  <td class="p-3">
+                    Recognize accounting effect, avoid over-paying.
+                  </td>
+                </tr>
+                <tr class="bg-slate-50">
+                  <td class="p-3 font-bold text-[#1a365d]">Value</td>
+                  <td class="p-3">Higher book, higher ROE.</td>
+                  <td class="p-3">
+                    <span class="text-amber-600 font-bold">Confused</span>;
+                    looks expensive.
+                  </td>
+                  <td class="p-3">
+                    Rebuild normalized earnings and re-test value.
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-[#1a365d]">Inst. Long-Only</td>
+                  <td class="p-3">
+                    Read transition note, focus on reported EPS.
+                  </td>
+                  <td class="p-3">
+                    <span class="text-green-600 font-bold">Increase</span>
+                    weight if they trust management.
+                  </td>
+                  <td class="p-3">
+                    Ask for pre/post-transition bridges, model normalized.
+                  </td>
+                </tr>
+                <tr class="bg-slate-50">
+                  <td class="p-3 font-bold text-[#1a365d]">Credit/Lenders</td>
+                  <td class="p-3">Better coverage ratios.</td>
+                  <td class="p-3 text-slate-700">
+                    More comfortable short term.
+                  </td>
+                  <td class="p-3">
+                    Adjust for timing; ensure covenant headroom valid.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- SECTION N: Reporting Signals Decoder -->
+        <section
+          id="section-n"
+          data-diagnostic="tracked"
+          class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+        >
+          <div
+            class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+          >
+            SECTION N: Reporting Signals Decoder
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-xs xl:text-sm text-left">
+              <thead class="bg-slate-100 text-slate-700">
+                <tr>
+                  <th class="p-3 border-r border-slate-200">
+                    Management Action
+                  </th>
+                  <th class="p-3 border-r border-slate-200">Signal</th>
+                  <th class="p-3 border-r border-slate-200">
+                    What It Really Means
+                  </th>
+                  <th class="p-3">Your Move</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200">
+                <tr>
+                  <td class="p-3 font-medium">
+                    Emphasising "strong rev growth" without explaining standard
+                  </td>
+                  <td class="p-3 text-red-500 font-semibold">Optics</td>
+                  <td class="p-3">Growth may be mostly accounting.</td>
+                  <td class="p-3">
+                    <span class="text-amber-500 mr-1">🟡</span
+                    ><b>Yellow flag</b> - demand bridge to old basis.
+                  </td>
+                </tr>
+                <tr class="bg-slate-50">
+                  <td class="p-3 font-medium">
+                    Providing detailed PPE disaggregation
+                  </td>
+                  <td class="p-3 text-emerald-500 font-semibold">
+                    Transparency
+                  </td>
+                  <td class="p-3">
+                    Likely higher earnings quality; fewer hidden issues.
+                  </td>
+                  <td class="p-3">
+                    <span class="text-green-500 mr-1">🟢</span
+                    ><b>Green flag</b> - reward in multiple.
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-medium">
+                    Avoiding disclosure of PPE component assets breakdown
+                  </td>
+                  <td class="p-3 text-red-600 font-semibold">Opacity</td>
+                  <td class="p-3">
+                    May be hiding loss-making or delayed projects.
+                  </td>
+                  <td class="p-3">
+                    <span class="text-red-500 mr-1">🔴</span><b>Red flag</b> -
+                    stress test assumptions.
+                  </td>
+                </tr>
+                <tr class="bg-slate-50">
+                  <td class="p-3 font-medium">
+                    Explicitly stating "IFRS, Ind AS and US GAAP are the same"
+                  </td>
+                  <td class="p-3 text-blue-500 font-semibold">Global Lens</td>
+                  <td class="p-3">
+                    Management understands global investor needs.
+                  </td>
+                  <td class="p-3 font-semibold pb-3">
+                    Lean in - cross-border comparisons safer.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- SECTION O: Premium Intelligence Narrative -->
+      <section
+        id="section-o"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION O: Premium Intelligence Narrative
+        </div>
+        <div class="p-5 text-sm space-y-4 text-slate-700 leading-relaxed">
+          <p>
+            <span class="font-bold text-[#1a365d]">Question:</span> "ABC Ltd's
+            reported PPE growth changed to 22.5% after moving from AS to Ind
+            AS/IFRS-style PPE recognition. Is this a genuine structural
+            re-rating story or an accounting mirage?"
+          </p>
+          <p>
+            <span class="font-bold text-slate-500"
+              >Average Analyst Answer:</span
+            >
+            "It's mainly due to the new standard; I will look at 2-3 years of
+            numbers and decide later."
+          </p>
+          <div
+            class="p-4 bg-teal-50 border border-teal-200 rounded-lg text-teal-900"
+          >
+            <p>
+              <span class="font-bold text-teal-800 text-base"
+                >PREMIUM Analyst Answer:</span
+              ><br /><br />
+              "The shift isn't just an accounting mirage; it alters the timing
+              of earnings recognition. Componentization forces higher upfront
+              depreciation, suppressing early-year Net Income but preventing
+              earnings shocks later when major parts need replacement. The
+              capitalization of major inspections smooths out maintenance
+              expenses. The sophisticated move is to look past the depressed
+              Year 1 earnings and recognize that cash flow remains unchanged.
+              Instead of waiting 3 years, rebuild the normalized earnings model
+              today, accounting for the component-level write-offs. Focus on the
+              actual capital expenditure cash flows rather than the P&L
+              depreciation charge."
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION P: Red Flags vs Green Flags (Visual Indicator Matrix) -->
+      <section
+        id="section-p"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION P: Red Flags vs Green Flags (Visual Indicator Matrix)
+        </div>
+        <div class="overflow-x-auto flex-1">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-1/2">Scenario</th>
+                <th class="p-3 border-r border-slate-200 text-center w-24">
+                  Flag
+                </th>
+                <th class="p-3">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr class="bg-[#fee]">
+                <td class="p-3 font-medium">
+                  Frequent changes to estimated useful lives to boost immediate
+                  profit
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-red-700 uppercase tracking-widest"
+                >
+                  <span class="text-red-500 mr-1">🔴</span>RED
+                </td>
+                <td class="p-3 text-red-900">
+                  Quality of earnings is very low. Normalize depreciation to
+                  historical averages.
+                </td>
+              </tr>
+              <tr class="bg-[#fee]">
+                <td class="p-3 font-medium">
+                  Capitalizing major repairs that were previously expensed
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-red-700 uppercase tracking-widest"
+                >
+                  <span class="text-red-500 mr-1">🔴</span>RED
+                </td>
+                <td class="p-3 text-red-900">
+                  Artificial margin padding. Strip capitalized repairs from
+                  EBITDA.
+                </td>
+              </tr>
+              <tr class="bg-[#fee]">
+                <td class="p-3 font-medium">
+                  Gross block balloons while revenue stagnates (falling asset
+                  turnover)
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-red-700 uppercase tracking-widest"
+                >
+                  <span class="text-red-500 mr-1">🔴</span>RED
+                </td>
+                <td class="p-3 text-red-900">
+                  Capital deployed is generating no returns. Flag for severe
+                  future impairment risk.
+                </td>
+              </tr>
+              <tr class="bg-[#efe]">
+                <td class="p-3 font-medium">
+                  Clean separation and componentization of major assets
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-green-700 uppercase tracking-widest"
+                >
+                  <span class="text-green-500 mr-1">🟢</span>GREEN
+                </td>
+                <td class="p-3 text-green-900">
+                  Trust the reported maintenance capex figures as realistic.
+                </td>
+              </tr>
+              <tr class="bg-[#efe]">
+                <td class="p-3 font-medium">
+                  Depreciation policy precisely matches the economic life of
+                  assets
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-green-700 uppercase tracking-widest"
+                >
+                  <span class="text-green-500 mr-1">🟢</span>GREEN
+                </td>
+                <td class="p-3 text-green-900">
+                  P&L reflects true economic burn rate of capital.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION Q: Final Intelligence Summary -->
+      <section
+        id="section-q"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION Q: Final Intelligence Summary
+        </div>
+        <div class="p-6 bg-white">
+          <p
+            class="font-bold text-lg text-slate-800 pb-3 border-b border-slate-100 mb-4"
+          >
+            The Sophistication Hierarchy
+          </p>
+          <ul class="space-y-4 text-sm text-slate-700">
+            <li class="flex flex-col sm:flex-row sm:items-start gap-2">
+              <span class="font-bold whitespace-nowrap">Level 1 (Retail):</span>
+              <span>
+                &quot;PPE exploded and depreciation shot up. Returns on assets
+                are plunging.&quot; &rarr;
+                <span class="text-red-600 font-bold"
+                  >Wrong action. Misses componentization details.</span
+                >
+              </span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:items-start gap-2">
+              <span class="font-bold whitespace-nowrap">Level 2 (Basic):</span>
+              <span>
+                &quot;Management changed depreciation policies, earnings are
+                artificially depressed.&quot; &rarr;
+                <span class="text-amber-600 font-bold"
+                  >Misses that underlying economics haven't changed.</span
+                >
+              </span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:items-start gap-2">
+              <span class="font-bold whitespace-nowrap">Level 3:</span>
+              <span>
+                &quot;Focus entirely on actual cash capital expenditure
+                lifecycle. Componentization forces realistic depreciation that
+                lowers early-year P&L, but cash generation is identical. Anchor
+                valuation on sustainable cash flow.&quot; &rarr;
+                <span class="text-green-600 font-bold"
+                  >Finds true sustainable cash flow</span
+                >
+              </span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="mt-4 text-center pb-4 shrink-0">
+        <a
+          href="#main-content"
+          class="inline-block bg-white hover:bg-slate-100 border border-slate-300 text-slate-700 px-6 py-2 rounded-full text-sm font-semibold transition-colors shadow-sm"
+          >↑ Back to Top</a
+        >
+      </div>
+    </main>
+
+    <footer
+      class="bg-slate-100 text-slate-500 text-[10px] sm:text-xs p-3 text-center border-t border-slate-200 shrink-0"
+    >
+      For educational purposes. Consult professional advice before making
+      financial decisions. | © 2024 Accounting Standards Comparison Hub
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const diagBtn = document.getElementById("diagnostic-btn");
+        const diagPanel = document.getElementById("diagnostic-panel");
+        const diagConsole = document.getElementById("diag-console");
+        const diagErrors = document.getElementById("diag-errors");
+
+        function dLog(msg, type = "info") {
+          if (!diagConsole) return;
+          const time = new Date().toLocaleTimeString();
+          const prefix = type === "error" ? "[ERROR]" : "[INFO]";
+          const color = type === "error" ? "text-red-400" : "text-indigo-300";
+          diagConsole.innerHTML =
+            '<div><span class="' +
+            color +
+            '">' +
+            time +
+            " " +
+            prefix +
+            "</span> " +
+            msg +
+            "</div>" +
+            diagConsole.innerHTML;
+          if (type === "error" && diagErrors) {
+            diagErrors.classList.remove("hidden");
+          }
+        }
+
+        if (diagBtn && diagPanel) {
+          diagBtn.addEventListener("click", () => {
+            diagPanel.classList.toggle("hidden");
+          });
+        }
+
+        const I = {
+          rBaseRev: document.getElementById("input-base-rev"),
+          rBaseEbitda: document.getElementById("input-base-ebitda"),
+          rBaseAssets: document.getElementById("input-base-assets"),
+          rBaseEq: document.getElementById("input-base-eq"),
+          rBaseDebt: document.getElementById("input-base-debt"),
+          price: document.getElementById("input-price"),
+          freight: document.getElementById("input-freight"),
+          aro: document.getElementById("input-aro"),
+          life: document.getElementById("input-life"),
+          aroRate: document.getElementById("input-aro-rate"),
+        };
+
+        function get(id) {
+          return document.getElementById(id);
+        }
+
+        function set(el, val) {
+          const e = get(el);
+          if (e) e.innerHTML = val;
+        }
+
+        function f(n) {
+          if (n === 0) return "Rs. 0 Cr";
+          return "Rs. " + n.toFixed(2).replace(/\.00$/, "") + " Cr";
+        }
+        function p(n) {
+          return (n * 100).toFixed(1) + "%";
+        }
+        function dir(n, o) {
+          if (n > o + 0.001)
+            return '<span class="text-teal-600 font-bold">↑</span>';
+          if (n < o - 0.001)
+            return '<span class="text-red-600 font-bold">↓</span>';
+          return '<span class="text-slate-400 font-bold">↔</span>';
+        }
+
+        function recalc() {
+          try {
+            dLog("Recalculation triggered...");
+
+            const price = parseFloat(I.price?.value) || 0;
+            const fr = parseFloat(I.freight?.value) || 0;
+            const aro = parseFloat(I.aro?.value) || 0;
+            const life = parseFloat(I.life?.value) || 1;
+            const rate = (parseFloat(I.aroRate?.value) || 0) / 100;
+
+            const rev = parseFloat(I.rBaseRev?.value) || 0;
+            const ebitda = parseFloat(I.rBaseEbitda?.value) || 0;
+            const assets = parseFloat(I.rBaseAssets?.value) || 0;
+            const eq = parseFloat(I.rBaseEq?.value) || 1;
+            const debt = parseFloat(I.rBaseDebt?.value) || 0;
+
+            // --- AS Calculations ---
+            const as_ppe = price + fr;
+            const as_aro = 0;
+            const as_dep = life > 0 ? as_ppe / life : 0;
+            const as_ebit = ebitda - as_dep;
+            const as_acc = 0;
+            const as_pbt = as_ebit - as_acc;
+            const as_tax = as_pbt * 0.25;
+            const as_pat = as_pbt - as_tax;
+            const as_ppe_net = as_ppe - as_dep;
+            const as_ta = assets + as_ppe_net;
+            const as_tl = debt + as_aro;
+            const as_te = eq + as_pat; // Assuming base eq doesn't include this year's PAT yet
+            const as_cfi = -(price + fr);
+            const as_cfo = 0; // Depreciation is non-cash
+            const as_cff = 0;
+            const as_netcf = as_cfi + as_cfo + as_cff;
+
+            // --- Ind AS / IFRS / US GAAP Calculations ---
+            const in_ppe = price + fr + aro;
+            const in_dep = life > 0 ? in_ppe / life : 0;
+            const in_acc = aro * rate;
+            const in_aro_end = aro + in_acc;
+            const in_ebit = ebitda - in_dep;
+            const in_pbt = in_ebit - in_acc;
+            const in_tax = in_pbt * 0.25;
+            const in_pat = in_pbt - in_tax;
+            const in_ppe_net = in_ppe - in_dep;
+            const in_ta = assets + in_ppe_net;
+            const in_tl = debt + in_aro_end;
+            const in_te = eq + in_pat;
+            const in_cfi = -(price + fr);
+            const in_cfo = 0; // ARO Accretion interest (sometimes CFO or CFF). Let's say CFO = 0 for ARO setup
+            const in_cff = 0;
+            const in_netcf = in_cfi + in_cfo + in_cff;
+
+            // Update Section D
+            set("tb-ppe-as", f(as_ppe));
+            set("tb-aro-as", "Nil"); // ARO not recognized
+            set("tb-dep-as", f(as_dep));
+
+            ["in", "if", "us"].forEach((s) => {
+              set("tb-ppe-" + s, f(in_ppe));
+              set("tb-aro-" + s, f(aro));
+              set("tb-dep-" + s, f(in_dep));
+            });
+
+            // Update Section E
+            ["as", "in", "if", "us"].forEach((s) =>
+              set("pl-base-" + s, f(ebitda)),
+            );
+
+            set("pl-dep-as", "- " + f(as_dep));
+            ["in", "if", "us"].forEach((s) =>
+              set("pl-dep-" + s, "- " + f(in_dep)),
+            );
+
+            ["as", "in", "if", "us"].forEach((s) =>
+              set("pl-rep-ebitda-" + s, f(ebitda)),
+            ); // EBITDA is before dep and interest
+
+            set("pl-ebit-as", f(as_ebit));
+            ["in", "if", "us"].forEach((s) => set("pl-ebit-" + s, f(in_ebit)));
+
+            set("pl-acc-as", "Rs. 0 Cr");
+            ["in", "if", "us"].forEach((s) =>
+              set("pl-acc-" + s, "- " + f(in_acc)),
+            );
+
+            set("pl-pbt-as", f(as_pbt));
+            ["in", "if", "us"].forEach((s) => set("pl-pbt-" + s, f(in_pbt)));
+
+            set("pl-tax-as", "- " + f(as_tax));
+            ["in", "if", "us"].forEach((s) =>
+              set("pl-tax-" + s, "- " + f(in_tax)),
+            );
+
+            set("pl-pat-as", f(as_pat));
+            ["in", "if", "us"].forEach((s) => set("pl-pat-" + s, f(in_pat)));
+
+            // Update Section F
+            set("bs-ppe-as", f(as_ppe_net));
+            ["in", "if", "us"].forEach((s) =>
+              set("bs-ppe-" + s, f(in_ppe_net)),
+            );
+
+            set("bs-aro-as", "Rs. 0 Cr");
+            ["in", "if", "us"].forEach((s) =>
+              set("bs-aro-" + s, f(in_aro_end)),
+            );
+
+            set("bs-ta-as", f(as_ta));
+            ["in", "if", "us"].forEach((s) => set("bs-ta-" + s, f(in_ta)));
+
+            set("bs-tl-as", f(as_tl));
+            ["in", "if", "us"].forEach((s) => set("bs-tl-" + s, f(in_tl)));
+
+            set("bs-eq-as", f(as_te));
+            ["in", "if", "us"].forEach((s) => set("bs-eq-" + s, f(in_te)));
+
+            // Update Section G
+            ["as", "in", "if", "us"].forEach((s) =>
+              set("cf-cfi-" + s, "- " + f(-as_cfi)),
+            );
+            ["as", "in", "if", "us"].forEach((s) =>
+              set("cf-cfo-" + s, "Rs. 0 Cr"),
+            );
+            ["as", "in", "if", "us"].forEach((s) =>
+              set("cf-cff-" + s, "Rs. 0 Cr"),
+            );
+            ["as", "in", "if", "us"].forEach((s) =>
+              set("cf-net-" + s, "- " + f(-as_netcf)),
+            );
+
+            // Update Section H
+            const ebm_as = rev > 0 ? ebitda / rev : 0;
+            const ebm_in = rev > 0 ? ebitda / rev : 0;
+            ["as", "in", "if", "us"].forEach((s) =>
+              set("rt-ebitdam-" + s, p(ebm_as)),
+            );
+
+            const de_as = as_te > 0 ? as_tl / as_te : 0;
+            const de_in = in_te > 0 ? in_tl / in_te : 0;
+            set("rt-de-as", de_as.toFixed(2) + "x");
+            ["in", "if", "us"].forEach((s) =>
+              set("rt-de-" + s, de_in.toFixed(2) + "x"),
+            );
+
+            const roa_as = as_ta > 0 ? as_pat / as_ta : 0;
+            const roa_in = in_ta > 0 ? in_pat / in_ta : 0;
+            set("rt-roa-as", p(roa_as));
+            ["in", "if", "us"].forEach((s) => set("rt-roa-" + s, p(roa_in)));
+
+            set("rt-dir-ebitdam", dir(ebm_in, ebm_as));
+            set("rt-dir-de", dir(de_in, de_as));
+            set("rt-dir-roa", dir(roa_in, roa_as));
+
+            const ts = document.getElementById("timestamp-text");
+            if (ts) {
+              const now = new Date();
+              ts.innerText =
+                now.toLocaleDateString() + " " + now.toLocaleTimeString();
+            }
+
+            dLog("Calculation successfully completed.");
+          } catch (err) {
+            dLog(err.message, "error");
+          }
+        }
+
+        const basePairs = [
+          ["input-rev", "input-base-rev"],
+          ["input-ebitda", "input-base-ebitda"],
+          ["input-assets", "input-base-assets"],
+          ["input-eq", "input-base-eq"],
+          ["input-debt", "input-base-debt"],
+        ];
+        basePairs.forEach(([bId, sId]) => {
+          const bEl = document.getElementById(bId);
+          const sEl = document.getElementById(sId);
+          if (bEl && sEl) {
+            bEl.addEventListener("input", () => {
+              sEl.value = bEl.value;
+              recalc();
+            });
+            sEl.addEventListener("input", () => {
+              bEl.value = sEl.value;
+              recalc();
+            });
+          }
+        });
+
+        const resetBtn = document.getElementById("reset-btn");
+        if (resetBtn) {
+          resetBtn.addEventListener("click", () => {
+            document.getElementById("input-price").value = 100;
+            document.getElementById("input-freight").value = 10;
+            document.getElementById("input-aro").value = 5;
+            document.getElementById("input-life").value = 10;
+            document.getElementById("input-aro-rate").value = 10;
+
+            document.getElementById("input-rev").value = 400;
+            document.getElementById("input-base-rev").value = 400;
+
+            document.getElementById("input-ebitda").value = 80;
+            document.getElementById("input-base-ebitda").value = 80;
+
+            document.getElementById("input-assets").value = 390;
+            document.getElementById("input-base-assets").value = 390;
+
+            document.getElementById("input-eq").value = 300;
+            document.getElementById("input-base-eq").value = 300;
+
+            document.getElementById("input-debt").value = 100;
+            document.getElementById("input-base-debt").value = 100;
+
+            recalc();
+          });
+        }
+
+        const copyBtn = document.getElementById("copy-btn");
+        if (copyBtn) {
+          copyBtn.addEventListener("click", () => {
+            const summary = `PPE CAPITALIZATION TRANSACTION FACTS (ABC LTD)
+-----------------------------------------------------
+Purchase Price: ${document.getElementById("input-price").value} Cr
+Freight & Install: ${document.getElementById("input-freight").value} Cr
+ARO PV: ${document.getElementById("input-aro").value} Cr
+Useful Life: ${document.getElementById("input-life").value} Years
+ARO Discount Rate: ${document.getElementById("input-aro-rate").value}%
+Base EBITDA: ${document.getElementById("input-ebitda").value} Cr`;
+            navigator.clipboard.writeText(summary).then(() => {
+              const oldText = copyBtn.innerText;
+              copyBtn.innerText = "Copied!";
+              copyBtn.classList.remove("bg-amber-800");
+              copyBtn.classList.add("bg-green-600");
+              setTimeout(() => {
+                copyBtn.innerText = oldText;
+                copyBtn.classList.add("bg-amber-800");
+                copyBtn.classList.remove("bg-green-600");
+              }, 1500);
+            });
+          });
+        }
+
+        Object.values(I).forEach((el) => {
+          if (el) el.addEventListener("input", recalc);
+        });
+
+        basePairs.forEach(([bId]) => {
+          const el = document.getElementById(bId);
+          if (el) el.addEventListener("input", recalc);
+        });
+
+        recalc();
+      });
+    </script>
+
+    <style>
+      .share-menu {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 10000;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      }
+
+      .share-trigger {
+        background: #2c3e50;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 40px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.2s;
+      }
+
+      .share-trigger:hover {
+        background: #1a252f;
+        transform: translateY(-1px);
+      }
+
+      .share-dropdown {
+        position: absolute;
+        bottom: 100%;
+        right: 0;
+        margin-bottom: 10px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        min-width: 200px;
+        overflow: hidden;
+        display: none;
+      }
+
+      .share-dropdown.show {
+        display: block;
+      }
+
+      .share-dropdown button {
+        width: 100%;
+        padding: 12px 16px;
+        border: none;
+        background: white;
+        text-align: left;
+        cursor: pointer;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: background 0.2s;
+      }
+
+      .share-dropdown button:hover {
+        background: #f0f0f0;
+      }
+
+      .share-dropdown hr {
+        margin: 0;
+        border: none;
+        border-top: 1px solid #eee;
+      }
+
+      .toast {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        background: #333;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 14px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        pointer-events: none;
+        z-index: 10001;
+      }
+
+      .toast.show {
+        opacity: 1;
+      }
+    </style>
+
+    <div class="share-menu">
+      <button class="share-trigger" id="shareTrigger">
+        📤 Share
+        <span style="font-size: 12px">▼</span>
+      </button>
+      <div class="share-dropdown" id="shareDropdown">
+        <button id="copyLinkBtn">🔗 Copy Page Link</button>
+        <button id="copyContentBtn">📄 Copy Page Content (Rich Text)</button>
+        <hr />
+        <button id="shareNativeBtn" style="color: #25d366">
+          📱 Share via... (Mobile)
+        </button>
+      </div>
+    </div>
+
+    <div class="toast" id="toast">Copied to clipboard!</div>
+
+    <script>
+      // Helper: Show toast notification
+      function showToast(message) {
+        const toast = document.getElementById("toast");
+        toast.textContent = message || "Copied to clipboard!";
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 2000);
+      }
+
+      // Helper: Get formatted HTML content of the main content area
+      function getPageContentHTML() {
+        // Method 1: Copy specific container (recommended)
+        const contentArea = document.querySelector(
+          "main, article, .content, .page-content, body",
+        );
+        if (contentArea) {
+          const clone = contentArea.cloneNode(true);
+          // Remove scripts, iframes, and interactive elements
+          clone
+            .querySelectorAll("script, iframe, button.share-menu, .share-menu")
+            .forEach((el) => el.remove());
+          return clone.innerHTML;
+        }
+        return document.body.innerHTML;
+      }
+
+      // Share via Native Web Share API
+      const nativeBtn = document.getElementById("shareNativeBtn");
+      if (nativeBtn) {
+        nativeBtn.addEventListener("click", async () => {
+          if (navigator.share) {
+            try {
+              await navigator.share({
+                title: document.title,
+                text: "Check out this accounting standards comparison",
+                url: window.location.href,
+              });
+            } catch (err) {
+              if (err.name !== "AbortError")
+                showToast("Share cancelled or failed");
+            }
+          } else {
+            // Fallback: copy link
+            await navigator.clipboard.writeText(window.location.href);
+            showToast("Link copied! (Native share not supported)");
+          }
+          document.getElementById("shareDropdown").classList.remove("show");
+        });
+      }
+
+      // Copy Link Only
+      document
+        .getElementById("copyLinkBtn")
+        .addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText(window.location.href);
+            showToast("Page link copied!");
+          } catch (err) {
+            showToast("Failed to copy link");
+          }
+          document.getElementById("shareDropdown").classList.remove("show");
+        });
+
+      // Copy Full Page Content with Formatting
+      document
+        .getElementById("copyContentBtn")
+        .addEventListener("click", async () => {
+          try {
+            const pageHTML = getPageContentHTML();
+            const pageText =
+              document.title + "\n\n" + document.body.innerText.slice(0, 5000);
+
+            const htmlBlob = new Blob([pageHTML], { type: "text/html" });
+            const textBlob = new Blob([pageText], { type: "text/plain" });
+
+            await navigator.clipboard.write([
+              new ClipboardItem({
+                "text/html": htmlBlob,
+                "text/plain": textBlob,
+              }),
+            ]);
+            showToast("Page content copied with formatting!");
+          } catch (err) {
+            console.error("Copy failed:", err);
+            // Fallback for older browsers
+            try {
+              const text = document.body.innerText;
+              await navigator.clipboard.writeText(text);
+              showToast("Content copied as text (fallback mode)");
+            } catch (e) {
+              showToast("Failed to copy content");
+            }
+          }
+          document.getElementById("shareDropdown").classList.remove("show");
+        });
+
+      // Toggle dropdown
+      const trigger = document.getElementById("shareTrigger");
+      const dropdown = document.getElementById("shareDropdown");
+
+      trigger.addEventListener("click", (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle("show");
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!trigger.contains(e.target) && !dropdown.contains(e.target)) {
+          dropdown.classList.remove("show");
+        }
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const mobileToggle = document.getElementById("mobile-toggle");
+        const navMenu = document.getElementById("nav-menu");
+        const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
+
+        if (mobileToggle) {
+          mobileToggle.addEventListener("click", () => {
+            navMenu.classList.toggle("active");
+          });
+        }
+
+        dropdownToggles.forEach((toggle) => {
+          toggle.addEventListener("click", (e) => {
+            if (window.innerWidth <= 768) {
+              e.preventDefault();
+              const dropdownMenu = toggle.nextElementSibling;
+              dropdownToggles.forEach((otherToggle) => {
+                if (otherToggle !== toggle) {
+                  otherToggle.nextElementSibling.classList.remove("active");
+                  otherToggle.setAttribute("aria-expanded", "false");
+                }
+              });
+              dropdownMenu.classList.toggle("active");
+              toggle.setAttribute(
+                "aria-expanded",
+                dropdownMenu.classList.contains("active"),
+              );
+            }
+          });
+        });
+
+        document.addEventListener("click", (e) => {
+          if (!e.target.closest(".navbar") && window.innerWidth <= 768) {
+            if (navMenu) navMenu.classList.remove("active");
+            document
+              .querySelectorAll(".dropdown-menu")
+              .forEach((menu) => menu.classList.remove("active"));
+          }
+        });
+
+        window.addEventListener("resize", () => {
+          if (window.innerWidth > 768) {
+            if (navMenu) navMenu.classList.remove("active");
+            document
+              .querySelectorAll(".dropdown-menu")
+              .forEach((menu) => menu.classList.remove("active"));
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

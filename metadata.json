@@ -1,0 +1,6 @@
+{
+  "name": "Accounting Standards Comparison Hub",
+  "description": "A comprehensive guide comparing AS, Ind AS, IFRS, and US GAAP across key accounting topics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

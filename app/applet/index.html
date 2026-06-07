@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navigation Bar</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+  }
+  
+  /* Navbar Container */
+  .navbar {
+    background-color: #1a202c; /* Theme dark color */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    position: relative;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .nav-brand {
+    font-size: 1.25rem;
+    font-weight: bold;
+    padding: 1rem;
+    color: white;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+
+  /* Nav menu list */
+  .nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  .nav-item {
+    position: relative;
+  }
+  
+  /* Nav buttons */
+  .nav-link {
+    display: block;
+    padding: 1.25rem 1.5rem;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    border: none;
+    background: none;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  .nav-link:hover, .nav-item:hover > .nav-link {
+    background-color: #2d3748;
+  }
+
+  /* Dropdown Menus */
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    min-width: 220px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-radius: 0 0 0.375rem 0.375rem;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    border-top: none;
+  }
+  
+  /* Mega Dropdown for Real Company Data */
+  .mega-menu {
+    min-width: 400px;
+    left: auto;
+    right: 0;
+  }
+
+  .dropdown-item {
+    display: block;
+    padding: 0.85rem 1.25rem;
+    color: #4a5568;
+    text-decoration: none;
+    border-bottom: 1px solid #edf2f7;
+    transition: background-color 0.15s, color 0.15s;
+    font-size: 0.95rem;
+  }
+
+  .dropdown-item:last-child {
+    border-bottom: none;
+  }
+
+  .dropdown-item:hover {
+    background-color: #f7fafc;
+    color: #2b6cb0;
+  }
+
+  /* Custom styling for identical dropdown sections */
+  .view-all-link {
+    color: #2b6cb0;
+    font-weight: 600;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    background-color: #f8fafc;
+  }
+
+  .view-all-link:hover {
+    text-decoration: underline;
+    background-color: #f1f5f9;
+  }
+
+  /* Mega Menu Grid */
+  .mega-grid {
+    display: flex;
+    padding: 1.25rem;
+    gap: 2rem;
+  }
+
+  .mega-column {
+    flex: 1;
+  }
+
+  .mega-title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #a0aec0;
+    letter-spacing: 0.05em;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .mega-link {
+    display: block;
+    padding: 0.4rem 0;
+    color: #4a5568;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.15s;
+  }
+  
+  .mega-link:hover {
+    color: #2b6cb0;
+    text-decoration: underline;
+  }
+
+  .view-all-block {
+    background-color: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  /* Mobile Nav Toggle */
+  .mobile-toggle {
+    display: none;
+    background: none;
+    border: 1px solid #4a5568;
+    border-radius: 0.25rem;
+    color: white;
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 0.5rem 0.75rem;
+    margin-right: 0.5rem;
+    transition: background-color 0.2s;
+  }
+
+  .mobile-toggle:hover {
+    background-color: #2d3748;
+  }
+
+  /* Desktop Hover Interactions */
+  @media (min-width: 769px) {
+    .nav-item:hover > .dropdown-menu {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Sub-indicators */
+  .nav-link.dropdown-toggle::after {
+    content: '';
+    display: inline-block;
+    margin-left: 0.5em;
+    vertical-align: middle;
+    border-top: 4px solid;
+    border-right: 4px solid transparent;
+    border-bottom: 0;
+    border-left: 4px solid transparent;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .mobile-toggle {
+      display: block;
+    }
+
+    .nav-menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: #2d3748;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    }
+
+    .nav-menu.active {
+      display: flex;
+    }
+
+    .nav-link {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #4a5568;
+      width: 100%;
+      text-align: left;
+    }
+    
+    .nav-link.no-arrow::after {
+      content: none;
+    }
+    
+    .nav-link.dropdown-toggle::after {
+      float: right;
+      margin-top: 0.4rem;
+    }
+
+    .dropdown-menu {
+      position: static;
+      display: none;
+      box-shadow: none;
+      border-radius: 0;
+      background-color: #1a202c;
+      width: 100%;
+      border: none;
+    }
+
+    .dropdown-item {
+      color: #e2e8f0;
+      border-bottom-color: #4a5568;
+      padding-left: 2.5rem;
+    }
+    
+    .dropdown-item:hover {
+      background-color: #2d3748;
+      color: white;
+    }
+
+    .mega-menu {
+      min-width: auto;
+    }
+
+    .mega-grid {
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem 2.5rem;
+    }
+
+    .mega-title {
+      border-bottom-color: #4a5568;
+      color: #a0aec0;
+    }
+    
+    .mega-link {
+      color: #e2e8f0;
+    }
+    
+    .view-all-block {
+      background-color: #1a202c;
+      border-color: #4a5568;
+      padding: 0;
+    }
+
+    .view-all-block .view-all-link {
+      background-color: #1a202c;
+      color: #90cdf4;
+      padding: 1rem;
+      border-top: 1px solid #4a5568;
+    }
+
+    .dropdown-item.view-all-link {
+      background-color: #1a202c;
+      border-top: 1px solid #4a5568;
+      color: #90cdf4;
+    }
+
+    /* Active class for mobile drops */
+    .dropdown-menu.active {
+      display: block;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="#" class="nav-brand">FinStandards</a>
+  
+  <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">☰</button>
+  
+  <ul class="nav-menu" id="nav-menu">
+    <li class="nav-item">
+      <a href="#" class="nav-link no-arrow">Home</a>
+    </li>
+    
+    <li class="nav-item">
+      <button class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">Standards Comparison</button>
+      <div class="dropdown-menu">
+        <a href="#" class="dropdown-item">Revenue</a>
+        <a href="#" class="dropdown-item">Leases</a>
+        <a href="#" class="dropdown-item">Impairment</a>
+        <a href="#" class="dropdown-item view-all-link">View all topics &rarr;</a>
+      </div>
+    </li>
+    
+    <li class="nav-item">
+      <button class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">Real Company Data</button>
+      <div class="dropdown-menu mega-menu">
+        <div class="mega-grid">
+          <div class="mega-column">
+            <div class="mega-title">By Industry</div>
+            <a href="#" class="mega-link">Airlines</a>
+            <a href="#" class="mega-link">Telecom</a>
+            <a href="#" class="mega-link">Metals</a>
+          </div>
+          <div class="mega-column">
+            <div class="mega-title">By Alphabet</div>
+            <a href="#" class="mega-link">A-C</a>
+            <a href="#" class="mega-link">D-F</a>
+            <a href="#" class="mega-link">G-I</a>
+          </div>
+        </div>
+        <div class="view-all-block">
+          <a href="#" class="view-all-link" style="padding: 1rem;">View all companies &rarr;</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<div style="padding: 2rem; color: #4a5568;">
+  <p>The navigation bar above features fully responsive dropdowns utilizing only vanilla HTML, CSS, and JS. It opens on hover for desktop and handles click-to-expand behavior for mobile viewers.</p>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+    // Toggle mobile menu
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // Handle dropdown clicks (for mobile devices)
+    dropdownToggles.forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        // Only trigger click-to-drop behavior on mobile view (width <= 768px)
+        // Desktop relies strictly on CSS :hover
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          const dropdownMenu = toggle.nextElementSibling;
+          
+          // Close other open dropdowns
+          dropdownToggles.forEach(otherToggle => {
+            if (otherToggle !== toggle) {
+              otherToggle.nextElementSibling.classList.remove('active');
+              otherToggle.setAttribute('aria-expanded', 'false');
+            }
+          });
+
+          // Toggle current dropdown
+          dropdownMenu.classList.toggle('active');
+          const isExpanded = dropdownMenu.classList.contains('active');
+          toggle.setAttribute('aria-expanded', isExpanded);
+        }
+      });
+    });
+
+    // Close menu when clicking outside (mobile behavior helper)
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.navbar') && window.innerWidth <= 768) {
+        navMenu.classList.remove('active');
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+          menu.classList.remove('active');
+        });
+      }
+    });
+    
+    // Clean up active classes when viewport scales back to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        navMenu.classList.remove('active');
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+          menu.classList.remove('active');
+        });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

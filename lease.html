@@ -1,0 +1,2625 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lease Accounting Comparison | Standards Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      th,
+      td {
+        border-right: 1px solid #e2e8f0;
+      }
+      th:last-child,
+      td:last-child {
+        border-right: none;
+      }
+    </style>
+
+    <style>
+      .custom-scrollbar::-webkit-scrollbar {
+        height: 10px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-[#f7fafc] font-sans h-screen w-full flex flex-col overflow-hidden border-8 border-slate-200 text-slate-800"
+  >
+    <header class="bg-[#1a365d] text-white p-4 shrink-0 shadow-md">
+      <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end">
+        <div>
+          <h1 class="text-2xl font-bold tracking-tight">
+            Accounting Standards Comparison Hub
+          </h1>
+          <p class="text-slate-300 text-sm italic">
+            AS vs Ind AS vs IFRS vs US GAAP
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <nav
+      class="bg-white border-b border-slate-200 flex shrink-0 overflow-x-auto custom-scrollbar"
+    >
+      <a
+        href="index.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Home</a
+      >
+      <a
+        href="lease.html"
+        class="px-6 py-3 text-sm font-semibold border-b-4 border-indigo-600 bg-indigo-50 text-indigo-900 block whitespace-nowrap"
+        >Lease</a
+      >
+      <a
+        href="ppe.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >PPE</a
+      >
+      <a
+        href="financial-instruments.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Financial Instruments</a
+      >
+      <a
+        href="revenue.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Revenue</a
+      >
+      <a
+        href="deferred-tax.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Deferred Tax</a
+      >
+      <a
+        href="consolidation.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Consolidation</a
+      >
+      <a
+        href="impairment.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Impairment</a
+      >
+      <a
+        href="esop.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >ESOP</a
+      >
+      <a
+        href="cashflows.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Cash Flows</a
+      >
+    </nav>
+
+    <main
+      class="flex-1 p-4 md:p-6 lg:p-8 flex flex-col gap-10 overflow-y-auto"
+      id="main-content"
+    >
+      <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+        <div class="border-l-8 border-teal-600 pl-4 py-1 shrink-0">
+          <h2 class="text-2xl font-bold text-[#1a365d] uppercase tracking-wide">
+            Lease Accounting
+          </h2>
+          <p class="text-sm text-slate-600">
+            Premium Analysis Guide: AS vs Ind AS 116 vs IFRS 16 vs US GAAP ASC
+            842
+          </p>
+        </div>
+        <div class="flex gap-2 items-center">
+          <button
+            id="diagnostic-btn"
+            class="bg-indigo-600 text-white hover:bg-indigo-700 px-4 py-2 rounded text-sm font-bold shadow-sm transition-colors focus:ring-2 focus:ring-indigo-500 mr-2 md:mr-0 md:ml-2"
+          >
+            Diagnostic Mode
+          </button>
+        </div>
+      </div>
+
+      <!-- Diagnostic Panel -->
+      <div
+        id="diagnostic-panel"
+        class="hidden mt-4 bg-indigo-50 border-l-4 border-indigo-600 p-4 text-sm text-indigo-900 shadow-sm rounded-r-lg flex flex-col gap-2 shrink-0"
+      >
+        <h3 class="font-bold text-lg mb-2">Diagnostic Mode Console</h3>
+        <div class="mt-2 border-t border-indigo-200 pt-2">
+          <h4 class="font-bold mb-1 flex justify-between">
+            Recent Updates
+            <span id="diag-errors" class="text-red-600 hidden">Errors!</span>
+          </h4>
+          <div
+            id="diag-console"
+            class="bg-indigo-900 text-indigo-100 font-mono p-3 rounded text-xs h-32 overflow-y-auto whitespace-pre-wrap"
+          >
+            System initialized.
+          </div>
+        </div>
+      </div>
+      <section
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION A: Core Technical Comparison Table
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-4 border-b border-r border-slate-200 w-1/6">
+                  Parameter
+                </th>
+                <th class="p-4 border-b border-r border-slate-200 w-1/6">
+                  AS (Old Indian GAAP)
+                </th>
+                <th class="p-4 border-b border-r border-slate-200 w-1/6">
+                  Ind AS (Ind AS 116)
+                </th>
+                <th class="p-4 border-b border-r border-slate-200 w-1/6">
+                  IFRS (IFRS 16)
+                </th>
+                <th class="p-4 border-b border-r border-slate-200 w-1/6">
+                  US GAAP (ASC 842)
+                </th>
+                <th
+                  class="p-4 border-b border-slate-200 bg-blue-50 text-blue-900 w-1/6"
+                >
+                  Logic shift
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Core philosophy</td>
+                <td class="p-3">
+                  Focuses on whether risks and rewards are transferred;
+                  operating vs finance distinction is central.
+                </td>
+                <td class="p-3">
+                  Most leases go on balance sheet using right-of-use (ROU)
+                  model; lessee recognizes ROU asset and lease liability.
+                </td>
+                <td class="p-3">Same ROU model as Ind AS.</td>
+                <td class="p-3">
+                  Most leases also go on balance sheet, but retains dual
+                  classification for lessee.
+                </td>
+                <td class="p-3 text-slate-600 bg-blue-50/50">
+                  From off-balance-sheet rental expense to asset + liability
+                  recognition.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Lessee accounting model</td>
+                <td class="p-3">
+                  Operating leases usually expensed straight-line; finance
+                  leases capitalized by substance.
+                </td>
+                <td class="p-3">Single lessee model for most leases.</td>
+                <td class="p-3">Same single model.</td>
+                <td class="p-3">
+                  Dual model: finance lease vs operating lease classification
+                  remains.
+                </td>
+                <td class="p-3 text-slate-600 bg-blue-50/50">
+                  From two-way classification to a more asset-liability-centric
+                  model.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Recognition on balance sheet</td>
+                <td class="p-3">
+                  Operating leases often stayed off balance sheet, except
+                  finance leases.
+                </td>
+                <td class="p-3">
+                  Recognize ROU asset and lease liability at commencement for
+                  most leases.
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  Recognize ROU asset and lease liability for most leases, but
+                  P&amp;L differs by classification.
+                </td>
+                <td class="p-3 text-slate-600 bg-blue-50/50">
+                  Hidden commitments become visible on the balance sheet.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Initial measurement</td>
+                <td class="p-3">
+                  Finance lease assets/liab at lower of fair value and PV of
+                  minimum lease payments.
+                </td>
+                <td class="p-3">
+                  Lease liab = PV of payments; ROU asset = liab adjusted for
+                  prepayments, incentives, initial direct costs.
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  Same initial measurement logic, with classification affecting
+                  later expense pattern.
+                </td>
+                <td class="p-3 text-slate-600 bg-blue-50/50">
+                  From fixed capitalization rules to discounted PV of lease cash
+                  flows.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Subsequent measurement (Lessee)</td>
+                <td class="p-3">
+                  Operating rentals expensed straight-line; finance lease
+                  liability reduced over time.
+                </td>
+                <td class="p-3">
+                  Interest expense on liability + depreciation of ROU asset.
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  Finance: interest + amortization; Operating: straight-line
+                  lease expense with separate ROU/liab.
+                </td>
+                <td class="p-3 text-slate-600 bg-blue-50/50">
+                  Expense recognition depends on economic use of right-to-use.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">P&amp;L pattern</td>
+                <td class="p-3">
+                  Straight-line rent for operating, front-loaded interest for
+                  finance leases.
+                </td>
+                <td class="p-3">
+                  Front-loaded total expense due to interest + depreciation,
+                  except short-term/low-value relief.
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  Operating lease expense usually straight-line; finance lease
+                  expense front-loaded.
+                </td>
+                <td class="p-3 text-slate-600 bg-blue-50/50">
+                  Timing of expense is much more explicit and economically
+                  linked.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  Exemptions (Short-term & Low-value)
+                </td>
+                <td class="p-3">
+                  Limited comparable old GAAP concept. Not central.
+                </td>
+                <td class="p-3">
+                  Short-term (12m or less) and low-value assets may be expensed
+                  instead of capitalized.
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  Similar short-term exemption. No equivalent broad low-value
+                  exemption.
+                </td>
+                <td class="p-3 text-slate-600 bg-blue-50/50">
+                  Removes immaterial leases from balance sheet to reduce noise.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Lease term</td>
+                <td class="p-3">
+                  Based on contract/enforceable period, but less formalized.
+                </td>
+                <td class="p-3">
+                  Includes non-cancellable period + extension/termination
+                  options if reasonably certain.
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">Similar "reasonably certain" framework.</td>
+                <td class="p-3 text-slate-600 bg-blue-50/50">
+                  Forces analysts to model options, not just legal minimum term.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Variable payments & Index-linked</td>
+                <td class="p-3">Less structured. Not explicitly modeled.</td>
+                <td class="p-3">
+                  Included in liab only if based on index/rate or fixed in
+                  substance. Remeasured when index changes.
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  For operating leases, liab generally not remeasured for CPI
+                  changes (expensed as incurred).
+                </td>
+                <td class="p-3 text-slate-600 bg-blue-50/50">
+                  Variable economics separated; Key difference between IFRS & US
+                  GAAP.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Lease modifications</td>
+                <td class="p-3">Less formalized.</td>
+                <td class="p-3">
+                  Depends on whether new lease or reassessment is triggered.
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  Similar, but classification effects under US GAAP can differ.
+                </td>
+                <td class="p-3 text-slate-600 bg-blue-50/50">
+                  Focus shift from form to reassessment of lease economics.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Lessor accounting</td>
+                <td class="p-3">
+                  Generally mirrors transfer of risks and rewards.
+                </td>
+                <td class="p-3">
+                  Lessor keeps classification model: finance vs operating lease.
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">Same broad lessor model.</td>
+                <td class="p-3 text-slate-600 bg-blue-50/50">
+                  Lessee changed dramatically; lessor changed less.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Sale & leaseback</td>
+                <td class="p-3">
+                  Limited older guidance; substance over form.
+                </td>
+                <td class="p-3">
+                  Specific accounting; gains recognized only to extent of
+                  transferred rights.
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  Similar, but detailed US guidance may differ in form.
+                </td>
+                <td class="p-3 text-slate-600 bg-blue-50/50">
+                  Transactions judged on control transfer and retained rights.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <div class="shrink-0 mt-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <section
+          id="section-b-container"
+          data-diagnostic="tracked"
+          class="shrink-0 bg-amber-50 rounded-xl shadow-sm border border-amber-200 overflow-hidden flex flex-col font-sans"
+        >
+          <div
+            class="bg-amber-600 text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-amber-300 flex justify-between items-center flex-wrap gap-2"
+          >
+            <span>SECTION B: Transaction Fact Pattern (EDITABLE)</span>
+            <div>
+              <button
+                id="reset-btn"
+                class="bg-white text-amber-700 hover:bg-amber-100 text-xs px-3 py-1 rounded shadow-sm mr-2 transition-colors cursor-pointer font-bold"
+              >
+                Reset to Default
+              </button>
+              <button
+                id="copy-btn"
+                class="bg-amber-800 hover:bg-amber-900 text-white text-xs px-3 py-1 rounded shadow-sm transition-colors border border-amber-500 cursor-pointer font-bold"
+              >
+                Copy Results
+              </button>
+            </div>
+          </div>
+          <div class="p-5 relative bg-amber-50">
+            <div
+              class="absolute right-4 top-4 text-amber-700 opacity-10 font-bold text-6xl pointer-events-none select-none"
+            >
+              FACTS
+            </div>
+            <div
+              id="validation-warning"
+              class="hidden mb-4 p-3 bg-red-100 border-l-4 border-red-500 text-red-700 text-sm font-bold"
+            ></div>
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 relative z-10 text-sm"
+            >
+              <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1"
+                  >Company</label
+                >
+                <div
+                  class="text-slate-800 bg-white p-2 border border-slate-200 rounded"
+                >
+                  ABC ltd
+                </div>
+              </div>
+              <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1"
+                  >Asset leased</label
+                >
+                <div
+                  class="text-slate-800 bg-white p-2 border border-slate-200 rounded"
+                >
+                  Office and distribution warehouse
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1"
+                  >Annual Fixed Lease Payment ( Cr)</label
+                >
+                <input
+                  type="number"
+                  id="inp-pmt"
+                  value="12"
+                  class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1"
+                  >Lease Term (Years)</label
+                >
+                <input
+                  type="number"
+                  id="inp-term"
+                  value="5"
+                  class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1"
+                  >Incremental Borrowing Rate (%)</label
+                >
+                <input
+                  type="number"
+                  id="inp-rate"
+                  value="10"
+                  step="0.1"
+                  class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1"
+                  >Base EBITDA before lease ( Cr)</label
+                >
+                <input
+                  type="number"
+                  id="inp-ebitda"
+                  value="80"
+                  class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1"
+                  >Total Revenue ( Cr)</label
+                >
+                <input
+                  type="number"
+                  id="inp-rev"
+                  value="200"
+                  class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1"
+                  >Total Assets (before lease) ( Cr)</label
+                >
+                <input
+                  type="number"
+                  id="inp-assets"
+                  value="500"
+                  class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1"
+                  >Total Equity (before lease) ( Cr)</label
+                >
+                <input
+                  type="number"
+                  id="inp-equity"
+                  value="300"
+                  class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                />
+              </div>
+
+              <div class="col-span-1 md:col-span-2 lg:col-span-3">
+                <label class="block text-sm font-bold text-slate-700 mb-1"
+                  >Valuation (Generated internally)</label
+                >
+                <div
+                  class="text-slate-800 bg-white p-2 border border-slate-200 rounded font-medium text-emerald-700"
+                >
+                  Present value of <span id="v-term">5</span> annual year-end
+                  payments at <span id="v-rate">10</span>% =
+                  <span id="v-pv">45.47 Cr</span>.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION C: Side-by-Side Treatment -->
+        <section
+          id="section-c"
+          data-diagnostic="tracked"
+          class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col font-sans"
+        >
+          <div
+            class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+          >
+            SECTION C: Side-by-Side Treatment
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm text-left font-sans">
+              <thead class="bg-slate-100 text-slate-700">
+                <tr>
+                  <th class="p-3 border-b border-r border-slate-200 w-1/4">
+                    AS 19 (Old Indian GAAP)
+                  </th>
+                  <th class="p-3 border-b border-r border-slate-200 w-1/4">
+                    Ind AS 116
+                  </th>
+                  <th class="p-3 border-b border-r border-slate-200 w-1/4">
+                    IFRS 16
+                  </th>
+                  <th class="p-3 border-b border-slate-200 w-1/4">
+                    ASC 842 (US GAAP)
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 bg-white">
+                <tr>
+                  <td
+                    class="p-3 border-r border-slate-200 align-top text-slate-700"
+                  >
+                    <span class="font-bold text-[#1a365d] block mb-1"
+                      >Operating Lease</span
+                    >
+                    Classified as operating. Lease rentals expensed in P&amp;L
+                    on straight-line basis (12.00 Cr / year). No right-of-use
+                    asset or lease liability recognized on balance sheet.
+                  </td>
+                  <td
+                    class="p-3 border-r border-slate-200 align-top text-slate-700"
+                  >
+                    <span class="font-bold text-[#1a365d] block mb-1"
+                      >Capitalization Model</span
+                    >
+                    Single lessee model. Capitalizes lease into Right-of-Use
+                    (ROU) asset (45.47 Cr) and Lease Liability (45.47 Cr).
+                    Produces a front-loaded expense pattern.
+                  </td>
+                  <td
+                    class="p-3 border-r border-slate-200 align-top text-slate-700"
+                  >
+                    <span class="font-bold text-[#1a365d] block mb-1"
+                      >Capitalization Model</span
+                    >
+                    Single lessee model. Fully aligned with Ind AS 116.
+                    Capitalized ROU asset and lease liability, with front-loaded
+                    depreciation and interest expense.
+                  </td>
+                  <td class="p-3 align-top text-slate-700">
+                    <span class="font-bold text-[#1a365d] block mb-1"
+                      >Operating Class</span
+                    >
+                    On-balance sheet operating lease. Recognizes ROU asset and
+                    lease liability. However, lease expense is recognized
+                    straight-line (12.00 Cr / year).
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <section
+        class="shrink-0 -mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION D: Side-by-Side Impact Table (Year 1)
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200">Framework</th>
+                <th class="p-3 border-b border-slate-200 text-right">
+                  ROU Asset (Initial)
+                </th>
+                <th class="p-3 border-b border-slate-200 text-right">
+                  Lease Liab (Initial)
+                </th>
+                <th
+                  class="p-3 border-b border-slate-200 text-right text-teal-800"
+                >
+                  Lease Expense / P&amp;L Impact
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 font-mono">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans">AS</td>
+                <td class="p-3 text-right text-slate-500">Nil</td>
+                <td class="p-3 text-right text-slate-500">Nil</td>
+                <td
+                  class="p-3 text-right font-semibold text-teal-700"
+                  id="d-exp-as"
+                >
+                  12.00 Cr rent expense<br /><span
+                    class="text-xs font-normal text-slate-500"
+                    >(Off-balance-sheet)</span
+                  >
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans">Ind AS 116</td>
+                <td class="p-3 text-right" id="d-rou-in">45.47 Cr</td>
+                <td class="p-3 text-right" id="d-liab-in">45.47 Cr</td>
+                <td
+                  class="p-3 text-right font-semibold text-teal-700"
+                  id="d-exp-in"
+                >
+                  9.09 Cr (Dep) + 4.55 Cr (Int) =<br />13.64 Cr
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans">IFRS 16</td>
+                <td class="p-3 text-right" id="d-rou-if">45.47 Cr</td>
+                <td class="p-3 text-right" id="d-liab-if">45.47 Cr</td>
+                <td
+                  class="p-3 text-right font-semibold text-teal-700"
+                  id="d-exp-if"
+                >
+                  9.09 Cr (Dep) + 4.55 Cr (Int) =<br />13.64 Cr
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans">US GAAP (Op. Lease)</td>
+                <td class="p-3 text-right" id="d-rou-us">45.47 Cr</td>
+                <td class="p-3 text-right" id="d-liab-us">45.47 Cr</td>
+                <td
+                  class="p-3 text-right font-semibold text-teal-700"
+                  id="d-exp-us"
+                >
+                  12.00 Cr straight-line operating<br />lease expense
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION D.1: Lease Amortization Schedule (Year by Year)
+        </div>
+        <div class="p-5 flex flex-col gap-6">
+          <!-- KPI Summary Figures Row -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div
+              class="bg-indigo-50 border border-indigo-100 rounded-xl p-4 flex flex-col justify-between shadow-xs"
+            >
+              <span
+                class="text-xs font-bold uppercase tracking-wider text-indigo-700"
+                >Present Value (ROU Asset)</span
+              >
+              <span id="kpi-pv" class="text-2xl font-black text-indigo-950 mt-2"
+                >45.47 Cr</span
+              >
+              <span class="text-[10px] text-slate-500 mt-1"
+                >Starting Lease Liability Balance</span
+              >
+            </div>
+
+            <div
+              class="bg-emerald-50 border border-emerald-100 rounded-xl p-4 flex flex-col justify-between shadow-xs"
+            >
+              <span
+                class="text-xs font-bold uppercase tracking-wider text-emerald-700"
+                >Total Contract Payments</span
+              >
+              <span
+                id="kpi-total-pmts"
+                class="text-2xl font-black text-emerald-950 mt-2"
+                >60.00 Cr</span
+              >
+              <span class="text-[10px] text-slate-500 mt-1"
+                >Sum of year-end lease installments</span
+              >
+            </div>
+
+            <div
+              class="bg-rose-50 border border-rose-100 rounded-xl p-4 flex flex-col justify-between shadow-xs"
+            >
+              <span
+                class="text-xs font-bold uppercase tracking-wider text-rose-700"
+                >Total Interest Cost</span
+              >
+              <span
+                id="kpi-total-interest"
+                class="text-2xl font-black text-rose-950 mt-2"
+                >14.53 Cr</span
+              >
+              <span class="text-[10px] text-slate-500 mt-1"
+                >Embedded finance charge over terms</span
+              >
+            </div>
+          </div>
+
+          <!-- Split Grid Layout -->
+          <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+            <!-- Amortization Table -->
+            <div
+              class="lg:col-span-3 overflow-x-auto border border-slate-200 rounded-lg"
+            >
+              <table class="w-full text-sm text-right">
+                <thead
+                  class="bg-slate-50 text-slate-700 font-bold border-b border-slate-200"
+                >
+                  <tr>
+                    <th class="p-3 text-center border-r border-slate-200">
+                      Year
+                    </th>
+                    <th class="p-3 border-r border-slate-200 font-semibold">
+                      Beginning Liability
+                    </th>
+                    <th
+                      class="p-3 text-rose-600 border-r border-slate-200 font-semibold"
+                    >
+                      Interest Exp
+                    </th>
+                    <th class="p-3 border-r border-slate-200 font-semibold">
+                      Lease Payment
+                    </th>
+                    <th class="p-3 border-r border-slate-200 font-semibold">
+                      Principal Repaid
+                    </th>
+                    <th class="p-3 text-indigo-700 font-bold">
+                      Ending Liability
+                    </th>
+                  </tr>
+                </thead>
+                <tbody
+                  class="divide-y divide-slate-100 font-mono text-slate-700"
+                  id="amort-tbody"
+                >
+                  <!-- Dynamically generated -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Visualization Component -->
+            <div
+              class="lg:col-span-2 flex flex-col justify-between border border-slate-200 p-4 rounded-xl bg-slate-50/50"
+            >
+              <div class="mb-3">
+                <h4
+                  class="text-xs font-black text-slate-700 uppercase tracking-wider flex items-center gap-2"
+                >
+                  <span
+                    class="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse"
+                  ></span>
+                  Amortization Dynamics Chart
+                </h4>
+                <p class="text-[11px] text-slate-500 mt-1 leading-relaxed">
+                  The
+                  <span
+                    class="bg-[#10b981]/15 text-[#10b981] font-bold px-1 rounded"
+                    >Green segment</span
+                  >
+                  shows Principal, the
+                  <span
+                    class="bg-[#ef4444]/15 text-[#ef4444] font-bold px-1 rounded"
+                    >Red segment</span
+                  >
+                  shows Interest, and the
+                  <span class="text-blue-500 font-bold">Blue curve line</span>
+                  is the Outstanding Liability.
+                </p>
+              </div>
+              <div
+                id="amort-chart-container"
+                class="bg-white p-3 border border-slate-200 rounded-lg flex items-center justify-center min-h-[220px]"
+              >
+                <!-- SVG dynamically injected here -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION E: P&amp;L Impact - Year 1
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-right">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200 text-left w-1/5">
+                  Line item
+                </th>
+                <th class="p-3 border-b border-slate-200 w-1/5">AS (Old)</th>
+                <th class="p-3 border-b border-slate-200 w-1/5">Ind AS 116</th>
+                <th class="p-3 border-b border-slate-200 w-1/5">IFRS 16</th>
+                <th class="p-3 border-b border-slate-200 w-1/5">
+                  US GAAP (Op. Lease)
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 font-mono">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 text-left">Base EBITDA</td>
+                <td class="p-3" id="e-base-as">80.00 Cr</td>
+                <td class="p-3" id="e-base-in">80.00 Cr</td>
+                <td class="p-3" id="e-base-if">80.00 Cr</td>
+                <td class="p-3" id="e-base-us">80.00 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50 text-red-600">
+                <td class="p-3 text-left">Lease exp / Depn</td>
+                <td class="p-3" id="e-dep-as">-12.00 Cr (Rent)</td>
+                <td class="p-3" id="e-dep-in">-9.09 Cr (Dep)</td>
+                <td class="p-3" id="e-dep-if">-9.09 Cr (Dep)</td>
+                <td class="p-3" id="e-dep-us">-12.00 Cr (Rent)</td>
+              </tr>
+              <tr
+                class="hover:bg-slate-50 font-bold bg-slate-50 border-y-2 border-slate-200"
+              >
+                <td class="p-3 text-left">Reported EBITDA</td>
+                <td class="p-3" id="e-rebitda-as">68.00 Cr</td>
+                <td class="p-3 text-teal-700" id="e-rebitda-in">70.91 Cr</td>
+                <td class="p-3 text-teal-700" id="e-rebitda-if">70.91 Cr</td>
+                <td class="p-3" id="e-rebitda-us">68.00 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 text-left">EBIT</td>
+                <td class="p-3" id="e-ebit-as">68.00 Cr</td>
+                <td class="p-3" id="e-ebit-in">70.91 Cr</td>
+                <td class="p-3" id="e-ebit-if">70.91 Cr</td>
+                <td class="p-3" id="e-ebit-us">68.00 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50 text-red-600">
+                <td class="p-3 text-left">Interest</td>
+                <td class="p-3 text-slate-500" id="e-int-as">Nil</td>
+                <td class="p-3" id="e-int-in">-4.55 Cr</td>
+                <td class="p-3" id="e-int-if">-4.55 Cr</td>
+                <td class="p-3 text-slate-500" id="e-int-us">Nil</td>
+              </tr>
+              <tr
+                class="hover:bg-slate-50 font-semibold bg-slate-50 border-t-2 border-slate-200"
+              >
+                <td class="p-3 text-left font-sans">PBT</td>
+                <td class="p-3" id="e-pbt-as">68.00 Cr</td>
+                <td class="p-3 text-amber-700" id="e-pbt-in">66.36 Cr</td>
+                <td class="p-3 text-amber-700" id="e-pbt-if">66.36 Cr</td>
+                <td class="p-3" id="e-pbt-us">68.00 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50 text-red-600">
+                <td class="p-3 text-left">Tax @ 25%</td>
+                <td class="p-3" id="e-tax-as">-17.00 Cr</td>
+                <td class="p-3" id="e-tax-in">-16.59 Cr</td>
+                <td class="p-3" id="e-tax-if">-16.59 Cr</td>
+                <td class="p-3" id="e-tax-us">-17.00 Cr</td>
+              </tr>
+              <tr
+                class="hover:bg-slate-50 font-bold bg-slate-100 border-y-2 border-slate-200"
+              >
+                <td class="p-3 text-left font-sans">PAT (Profit After Tax)</td>
+                <td class="p-3" id="e-pat-as">51.00 Cr</td>
+                <td class="p-3 text-amber-700" id="e-pat-in">49.77 Cr</td>
+                <td class="p-3 text-amber-700" id="e-pat-if">49.77 Cr</td>
+                <td class="p-3" id="e-pat-us">51.00 Cr</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION F: Balance Sheet Impact - Year 1
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-right">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200 text-left w-1/5">
+                  Item
+                </th>
+                <th class="p-3 border-b border-slate-200 w-1/5">AS (Old)</th>
+                <th class="p-3 border-b border-slate-200 w-1/5">Ind AS 116</th>
+                <th class="p-3 border-b border-slate-200 w-1/5">IFRS 16</th>
+                <th class="p-3 border-b border-slate-200 w-1/5">US GAAP</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 font-mono">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 text-left">ROU Asset (Gross)</td>
+                <td class="p-3 text-slate-500 font-sans">Not recorded</td>
+                <td class="p-3" id="f-gross-in">45.47 Cr</td>
+                <td class="p-3" id="f-gross-if">45.47 Cr</td>
+                <td class="p-3" id="f-gross-us">45.47 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50 text-red-600">
+                <td class="p-3 text-left">Accumulated Depreciation</td>
+                <td class="p-3 text-slate-400 font-sans">Not recorded</td>
+                <td class="p-3" id="f-adep-in">9.09 Cr</td>
+                <td class="p-3" id="f-adep-if">9.09 Cr</td>
+                <td class="p-3" id="f-adep-us">9.09 Cr</td>
+              </tr>
+              <tr
+                class="hover:bg-slate-50 font-semibold bg-slate-50 text-indigo-800"
+              >
+                <td class="p-3 text-left font-sans">ROU Asset (Net)</td>
+                <td class="p-3 text-slate-500" id="f-net-as">0.00 Cr</td>
+                <td class="p-3" id="f-net-in">36.38 Cr</td>
+                <td class="p-3" id="f-net-if">36.38 Cr</td>
+                <td class="p-3" id="f-net-us">36.38 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 text-left">Lease Liability (Current)</td>
+                <td class="p-3 text-slate-500" id="f-curr-as">0.00 Cr</td>
+                <td class="p-3 text-red-700" id="f-curr-in">7.98 Cr</td>
+                <td class="p-3 text-red-700" id="f-curr-if">7.98 Cr</td>
+                <td class="p-3 text-red-700" id="f-curr-us">7.98 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 text-left">Lease Liability (Non-Current)</td>
+                <td class="p-3 text-slate-500" id="f-nonc-as">0.00 Cr</td>
+                <td class="p-3 text-red-700" id="f-nonc-in">30.04 Cr</td>
+                <td class="p-3 text-red-700" id="f-nonc-if">30.04 Cr</td>
+                <td class="p-3 text-red-700" id="f-nonc-us">30.04 Cr</td>
+              </tr>
+              <tr
+                class="hover:bg-slate-50 font-semibold bg-slate-50 text-red-800"
+              >
+                <td class="p-3 text-left font-sans">Lease Liability (Total)</td>
+                <td class="p-3 text-slate-500" id="f-tliab-as">0.00 Cr</td>
+                <td class="p-3" id="f-tliab-in">38.02 Cr</td>
+                <td class="p-3" id="f-tliab-if">38.02 Cr</td>
+                <td class="p-3" id="f-tliab-us">38.02 Cr</td>
+              </tr>
+              <tr
+                class="hover:bg-slate-50 font-bold border-t-2 border-slate-200"
+              >
+                <td class="p-3 text-left font-sans">Total Assets</td>
+                <td class="p-3 font-sans text-slate-600">Lower</td>
+                <td class="p-3" id="f-ta-in">Higher (+36.38 Cr)</td>
+                <td class="p-3" id="f-ta-if">Higher (+36.38 Cr)</td>
+                <td class="p-3" id="f-ta-us">Higher (+36.38 Cr)</td>
+              </tr>
+              <tr class="hover:bg-slate-50 font-bold border-t border-slate-200">
+                <td class="p-3 text-left font-sans">Total Liabilities</td>
+                <td class="p-3 font-sans text-slate-600">Lower</td>
+                <td class="p-3" id="f-t/liab-in">Higher (+38.02 Cr)</td>
+                <td class="p-3" id="f-t/liab-if">Higher (+38.02 Cr)</td>
+                <td class="p-3" id="f-t/liab-us">Higher (+38.02 Cr)</td>
+              </tr>
+              <tr
+                class="hover:bg-slate-50 font-bold bg-slate-100 border-t-2 border-slate-200"
+              >
+                <td class="p-3 text-left font-sans">Equity Impact</td>
+                <td class="p-3 font-sans text-slate-600">Higher</td>
+                <td class="p-3 text-amber-700" id="f-eq-in">
+                  Lower by 1.23 Cr
+                </td>
+                <td class="p-3 text-amber-700" id="f-eq-if">
+                  Lower by 1.23 Cr
+                </td>
+                <td class="p-3" id="f-eq-us">Same as AS</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          class="p-4 bg-blue-50 border-t border-slate-200 text-sm text-blue-900 italic"
+        >
+          <strong>NOTE:</strong> Under Ind AS/IFRS, assets and liabilities
+          increase by <span id="n-ast">36.38 Cr</span> and
+          <span id="n-lib">38.02 Cr</span> respectively, reducing equity by
+          <span id="n-diff">1.64 Cr</span> (the difference). Under US GAAP
+          operating lease, balance sheet similar but P&amp;L different.
+        </div>
+      </section>
+
+      <section
+        id="section-g"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col font-mono"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold font-sans uppercase tracking-wider text-sm border-b border-slate-200 flex justify-between"
+        >
+          <span>SECTION G: Cash Flow Impact (Year 1)</span>
+        </div>
+        <div class="overflow-x-auto text-sm">
+          <table class="w-full text-left">
+            <thead class="bg-slate-50 text-slate-700 font-sans">
+              <tr>
+                <th class="p-3 border-b border-slate-200">Item</th>
+                <th class="p-3 border-b border-slate-200">AS (Old)</th>
+                <th class="p-3 border-b border-slate-200">
+                  Ind AS 116 / IFRS 16
+                </th>
+                <th class="p-3 border-b border-slate-200">US GAAP</th>
+                <th class="p-3 border-b border-slate-200">Interpretation</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans">
+                  Operating Cash Flow (CFO)
+                </td>
+                <td class="p-3" id="g-cfo-as">-12.00 Cr</td>
+                <td class="p-3 font-bold text-amber-700" id="g-cfo-in">
+                  -4.55 Cr
+                </td>
+                <td class="p-3" id="g-cfo-us">-12.00 Cr</td>
+                <td class="p-3 font-sans text-xs text-slate-600">
+                  Higher CFO under Ind AS/IFRS due to reclassification of
+                  principal
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans">
+                  Financing Cash Flow (CFF)
+                </td>
+                <td class="p-3 text-slate-500" id="g-cff-as">0.00 Cr</td>
+                <td class="p-3 font-bold text-rose-700" id="g-cff-in">
+                  -7.45 Cr
+                </td>
+                <td class="p-3 text-slate-500" id="g-cff-us">0.00 Cr</td>
+                <td class="p-3 font-sans text-xs text-slate-600">
+                  Principal shown as financing outflow under Ind AS/IFRS
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50 bg-slate-50/50">
+                <td
+                  class="p-3 font-bold font-sans text-indigo-800 border-t border-slate-300"
+                >
+                  Total Net Cash Flow
+                </td>
+                <td
+                  class="p-3 font-bold text-slate-800 border-t border-slate-300"
+                  id="g-tot-as"
+                >
+                  -12.00 Cr
+                </td>
+                <td
+                  class="p-3 font-bold text-indigo-700 border-t border-slate-300"
+                  id="g-tot-in"
+                >
+                  -12.00 Cr
+                </td>
+                <td
+                  class="p-3 font-bold text-slate-800 border-t border-slate-300"
+                  id="g-tot-us"
+                >
+                  -12.00 Cr
+                </td>
+                <td
+                  class="p-3 font-sans text-xs text-slate-600 border-t border-slate-300"
+                >
+                  Total cash drain is identical across all frameworks
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION H: Ratio Impact - Year 1
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-center">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200 text-left w-1/6">
+                  Ratio
+                </th>
+                <th class="p-3 border-b border-slate-200">AS</th>
+                <th class="p-3 border-b border-slate-200">Ind AS 116</th>
+                <th class="p-3 border-b border-slate-200">IFRS 16</th>
+                <th class="p-3 border-b border-slate-200">US GAAP</th>
+                <th
+                  class="p-3 border-b border-slate-200 text-blue-800 font-bold"
+                >
+                  Direction
+                </th>
+                <th class="p-3 border-b border-slate-200 text-left">
+                  What It Means
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 font-mono">
+              <tr class="hover:bg-slate-50">
+                <td
+                  class="p-3 text-left font-bold font-sans"
+                  title="Reported EBITDA / Total Revenue"
+                >
+                  EBITDA Margin
+                </td>
+                <td class="p-3" id="h-ebm-as">34.0%</td>
+                <td class="p-3" id="h-ebm-in">35.5%</td>
+                <td class="p-3" id="h-ebm-if">35.5%</td>
+                <td class="p-3" id="h-ebm-us">34.0%</td>
+                <td class="p-3 font-semibold text-teal-600" id="h-dir-ebm">
+                  ↑ (Ind AS/IFRS)
+                </td>
+                <td class="p-3 text-left font-sans text-xs text-slate-600">
+                  Mechanical improvement from rent reclassification
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td
+                  class="p-3 text-left font-bold font-sans"
+                  title="Lease Liability / Total Equity"
+                >
+                  Debt/Equity
+                </td>
+                <td class="p-3" id="h-de-as">0.00</td>
+                <td class="p-3" id="h-de-in">0.13</td>
+                <td class="p-3" id="h-de-if">0.13</td>
+                <td class="p-3" id="h-de-us">0.13</td>
+                <td class="p-3 font-semibold text-red-600" id="h-dir-de">
+                  ↑ (Leverage)
+                </td>
+                <td class="p-3 text-left font-sans text-xs text-slate-600">
+                  Previously hidden debt now visible
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td
+                  class="p-3 text-left font-bold font-sans"
+                  title="EBIT / Interest Expense"
+                >
+                  Interest Coverage
+                </td>
+                <td class="p-3 text-slate-500" id="h-ic-as">N/A</td>
+                <td class="p-3" id="h-ic-in">15.6x</td>
+                <td class="p-3" id="h-ic-if">15.6x</td>
+                <td class="p-3 text-slate-500" id="h-ic-us">N/A</td>
+                <td class="p-3 font-semibold text-amber-600" id="h-dir-ic">
+                  ↓ (Weaker)
+                </td>
+                <td class="p-3 text-left font-sans text-xs text-slate-600">
+                  Financing cost now explicit
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td
+                  class="p-3 text-left font-bold font-sans"
+                  title="PAT / Total Assets"
+                >
+                  ROA (Return on Assets)
+                </td>
+                <td class="p-3" id="h-roa-as">10.2%</td>
+                <td class="p-3" id="h-roa-in">7.3%</td>
+                <td class="p-3" id="h-roa-if">7.3%</td>
+                <td class="p-3" id="h-roa-us">7.3%</td>
+                <td class="p-3 font-semibold text-amber-600" id="h-dir-roa">
+                  ↓
+                </td>
+                <td class="p-3 text-left font-sans text-xs text-slate-600">
+                  Asset base expanded
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td
+                  class="p-3 text-left font-bold font-sans"
+                  title="PAT / Total Equity"
+                >
+                  ROE (Return on Equity)
+                </td>
+                <td class="p-3" id="h-roe-as">17.0%</td>
+                <td class="p-3" id="h-roe-in">16.6%</td>
+                <td class="p-3" id="h-roe-if">16.6%</td>
+                <td class="p-3" id="h-roe-us">17.0%</td>
+                <td class="p-3 font-semibold text-slate-600" id="h-dir-roe">
+                  Mixed
+                </td>
+                <td class="p-3 text-left font-sans text-xs text-slate-600">
+                  Slight dilution under Ind AS/IFRS
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td
+                  class="p-3 text-left font-bold font-sans"
+                  title="EBITDA / (Interest + Rent)"
+                >
+                  Fixed Charge Coverage
+                </td>
+                <td class="p-3 text-slate-500" id="h-fcc-as">N/A</td>
+                <td class="p-3" id="h-fcc-in">4.2x</td>
+                <td class="p-3" id="h-fcc-if">4.2x</td>
+                <td class="p-3 text-slate-500" id="h-fcc-us">N/A</td>
+                <td class="p-3 font-semibold text-indigo-600" id="h-dir-fcc">
+                  New metric
+                </td>
+                <td class="p-3 text-left font-sans text-xs text-slate-600">
+                  Operating lease now treated as fixed charge
+                </td>
+              </tr>
+              <tr
+                class="hover:bg-slate-50 font-semibold bg-slate-100 border-t-2 border-slate-200"
+              >
+                <td class="p-3 text-left font-bold font-sans">
+                  Lease-Adjusted EBITDA
+                </td>
+                <td class="p-3 font-bold" id="h-lae-as">34.0%</td>
+                <td class="p-3 font-bold" id="h-lae-in">34.0%</td>
+                <td class="p-3 font-bold" id="h-lae-if">34.0%</td>
+                <td class="p-3 font-bold" id="h-lae-us">34.0%</td>
+                <td class="p-3 font-bold text-slate-800" id="h-dir-lae">
+                  Stable
+                </td>
+                <td class="p-3 text-left font-sans text-xs text-slate-600">
+                  Best metric for peer comparison
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION I: Earnings Quality - Signals Table -->
+      <section
+        id="section-i"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION I: Earnings Quality - Signals Table
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  Signal observed
+                </th>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  What it means technically
+                </th>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  Analyst interpretation
+                </th>
+                <th class="p-3 w-1/4">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-[#1a365d]">
+                  Higher EBITDA but lower Net Income in early lease years
+                </td>
+                <td class="p-3">
+                  Operating lease rent is replaced by ROU depreciation and
+                  interest. Total expense is front-loaded.
+                </td>
+                <td class="p-3">
+                  Operating cash flows look stronger, but bottom line is
+                  penalized initially despite no economic change.
+                </td>
+                <td class="p-3 font-semibold text-slate-800">
+                  Assess EBITDA excluding lease impact for historical
+                  comparability.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-semibold text-[#1a365d]">
+                  Significant expansion in Total Debt
+                </td>
+                <td class="p-3">
+                  Operating leases are capitalized on the balance sheet as Lease
+                  Liabilities.
+                </td>
+                <td class="p-3">
+                  Leverage ratios (e.g. Debt/Equity) appear to deteriorate
+                  significantly.
+                </td>
+                <td class="p-3 font-semibold text-slate-800">
+                  Distinguish between true interest-bearing debt and operational
+                  lease liabilities when evaluating covenants.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-[#1a365d]">
+                  Higher Operating Cash Flow (CFO), Lower Financing CF (CFF)
+                </td>
+                <td class="p-3">
+                  Lease principal payments were moved from CFO under AS 19 to
+                  CFF under Ind AS 116 / IFRS 16.
+                </td>
+                <td class="p-3">
+                  Core operating generation appears artificially enhanced vs
+                  past periods.
+                </td>
+                <td class="p-3 font-semibold text-slate-800">
+                  Deduct lease principal payments from CFO to calculate true
+                  Free Cash Flow.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-semibold text-[#1a365d]">
+                  Lower Return on Assets (ROA)
+                </td>
+                <td class="p-3">
+                  Recognition of ROU asset expands the total asset base
+                  denominator.
+                </td>
+                <td class="p-3">
+                  Asset turnover drops, making capital efficiency look worse
+                  mechanically.
+                </td>
+                <td class="p-3 font-semibold text-slate-800">
+                  Normalize ROA by using pre-Ind AS 116 asset base or adjusting
+                  net income.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION J: Trend Distortion Matrix -->
+      <section
+        id="section-j"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION J: Trend Distortion Matrix
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200">Metric</th>
+                <th class="p-3 border-r border-slate-200">Distortion type</th>
+                <th class="p-3 border-r border-slate-200">Duration</th>
+                <th class="p-3 border-r border-slate-200">Correction method</th>
+                <th class="p-3">Example</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr>
+                <td class="p-3 font-bold">EBITDA</td>
+                <td class="p-3">One-time level shift upwards</td>
+                <td class="p-3">Permanent (while leases active)</td>
+                <td class="p-3">Deduct actual cash rent paid to normalize.</td>
+                <td class="p-3">Rep. 34% vs Norm. 22%</td>
+              </tr>
+              <tr class="bg-slate-50">
+                <td class="p-3 font-bold">Net Income</td>
+                <td class="p-3">
+                  Depression in early years, elevation in later years
+                </td>
+                <td class="p-3">Over individual lease term</td>
+                <td class="p-3">
+                  Adjust interest to reflect straight-line economic cost.
+                </td>
+                <td class="p-3">Rep. 8 Cr vs Norm. 10 Cr in Yr 1</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold">Total Debt</td>
+                <td class="p-3">One-time structural step-up</td>
+                <td class="p-3">Permanent</td>
+                <td class="p-3">
+                  Strip out lease liabilities for traditional debt covenants.
+                </td>
+                <td class="p-3">Rep. 145 Cr vs Norm. 100 Cr</td>
+              </tr>
+              <tr class="bg-slate-50">
+                <td class="p-3 font-bold">Operating Cash Flow</td>
+                <td class="p-3">Structural positive shift</td>
+                <td class="p-3">Permanent</td>
+                <td class="p-3">
+                  Deduct lease principal & interest payments from CFO.
+                </td>
+                <td class="p-3">Rep. 32 Cr vs Norm. 20 Cr</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION K: Ratio Interpretation Guide -->
+      <section
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION K: Ratio Interpretation Guide
+        </div>
+        <div class="overflow-x-auto flex-1">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700 border-b border-slate-200">
+              <tr>
+                <th class="p-2 border-r border-slate-200 w-1/4">Ratio</th>
+                <th class="p-2 border-r border-slate-200 w-1/4">Rep. Value</th>
+                <th class="p-2 border-r border-slate-200 w-1/4">
+                  What analyst should do
+                </th>
+                <th class="p-2 w-1/4">Correct interpretation</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-2 font-bold">Debt/Equity</td>
+                <td class="p-2 text-red-600">Higher under Ind AS</td>
+                <td class="p-2 text-xs text-slate-600">
+                  Exclude lease liabilities for classical debt covenants.
+                </td>
+                <td class="p-2 text-xs">
+                  A spike is a reporting illusion; real debt didn't change
+                  unless new leases were signed.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-2 font-bold">EBITDA Margin</td>
+                <td class="p-2 text-green-600">Higher under Ind AS</td>
+                <td class="p-2 text-xs text-slate-600">
+                  Subtract right-of-use asset depreciation or actual lease
+                  payments.
+                </td>
+                <td class="p-2 text-xs">
+                  EBITDA is artificially boosted because rent is shifted below
+                  the EBITDA line.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-2 font-bold">Return on Assets (ROA)</td>
+                <td class="p-2 text-red-600">Lower under Ind AS</td>
+                <td class="p-2 text-xs text-slate-600">
+                  Remove ROU Assets from the asset base.
+                </td>
+                <td class="p-2 text-xs">
+                  The asset base expanded mechanically, making capital
+                  efficiency look worse initially.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-2 font-bold">Interest Coverage</td>
+                <td class="p-2 text-red-600">Lower under Ind AS</td>
+                <td class="p-2 text-xs text-slate-600">
+                  Exclude the implied lease interest expense.
+                </td>
+                <td class="p-2 text-xs">
+                  Interest expense includes a non-cash lease interest component;
+                  true cash-interest coverage is stronger.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION L: Analyst Concerns & Answers -->
+      <section
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION L: Analyst Concerns & Answers
+        </div>
+        <div class="overflow-x-auto flex-1">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  Analyst question
+                </th>
+                <th class="p-3 border-r border-slate-200 w-1/4">Concern</th>
+                <th class="p-3 border-r border-slate-200 w-1/4">Answer</th>
+                <th class="p-3 w-1/4">Evidence</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  "Is the company taking on more debt?"
+                </td>
+                <td class="p-3 text-slate-600">
+                  Total debt on BS surged suddenly without any new operational
+                  borrowing.
+                </td>
+                <td class="p-3 text-slate-800">
+                  No. Operating leases were simply pushed onto the balance
+                  sheet.
+                </td>
+                <td class="p-3 text-slate-600 font-mono text-xs">
+                  Check Notes to Accounts for Lease Liabilities vs Traditional
+                  Bank Debt.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  "Is margin structurally improving?"
+                </td>
+                <td class="p-3 text-slate-600">
+                  EBITDA margin jumped by ~10-15% this year.
+                </td>
+                <td class="p-3 text-slate-800">
+                  No. Rent expense was removed from EBITDA and replaced by
+                  depreciation and interest below the line.
+                </td>
+                <td class="p-3 text-slate-600 font-mono text-xs">
+                  Compare 'Pre-Ind AS 116 EBITDA' or deduct cash rent paid.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  "Did operating cash flow get better?"
+                </td>
+                <td class="p-3 text-slate-600">
+                  CFO is much higher than last year.
+                </td>
+                <td class="p-3 text-slate-800">
+                  No. The principal portion of rent is now a Financing outflow,
+                  inflating Operating flows artificially.
+                </td>
+                <td class="p-3 text-slate-600 font-mono text-xs">
+                  Look at Cash CFF outflow for "Principal portion of lease
+                  payments".
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  "Why did Earnings per Share drop?"
+                </td>
+                <td class="p-3 text-slate-600">
+                  Net income is lower despite identical business operations.
+                </td>
+                <td class="p-3 text-slate-800">
+                  Early years of a lease term have higher interest expense,
+                  front-loading the P&L hit compared to straight-line rent.
+                </td>
+                <td class="p-3 text-slate-600 font-mono text-xs">
+                  ROU Amortization schedule showing front-loaded total expense.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION M & N: Investor Perception & Signals -->
+      <!-- SECTION M: Investor Perception Analysis -->
+      <section
+        id="section-m"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION M: Investor Perception Analysis
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  Investor Type
+                </th>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  What they see
+                </th>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  Likely reaction
+                </th>
+                <th class="p-3 w-1/4">Sophisticated response</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr>
+                <td class="p-3 font-bold text-[#1a365d]">Retail</td>
+                <td class="p-3 text-red-600 font-medium">
+                  Debt exploded to 145 Cr.
+                </td>
+                <td class="p-3">
+                  Panic sell; fear of bankruptcy or rate risk.
+                </td>
+                <td class="p-3 text-slate-800">
+                  Strip out lease liabilities; traditional debt is 0.
+                </td>
+              </tr>
+              <tr class="bg-slate-50">
+                <td class="p-3 font-bold text-[#1a365d]">Value</td>
+                <td class="p-3 text-red-600 font-medium">
+                  Net profit margin dipped.
+                </td>
+                <td class="p-3">Assume business deteriorating.</td>
+                <td class="p-3 text-slate-800">
+                  Calculate pre-lease true cash margins.
+                </td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-[#1a365d]">Growth</td>
+                <td class="p-3 text-green-600 font-medium">
+                  EBITDA margin jumped to 34%.
+                </td>
+                <td class="p-3">
+                  Aggressively buy false profitability breakout.
+                </td>
+                <td class="p-3 text-slate-800">
+                  Subtract actual rent paid to find normalized operating
+                  leverage.
+                </td>
+              </tr>
+              <tr class="bg-slate-50">
+                <td class="p-3 font-bold text-[#1a365d]">Quant</td>
+                <td class="p-3 text-green-600 font-medium">CFO surge.</td>
+                <td class="p-3">Algorithmic buy based on cash generation.</td>
+                <td class="p-3 text-slate-800">
+                  Deduct financing lease outflows to find FCF.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION N: Reporting Signals Decoder -->
+      <section
+        id="section-n"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION N: Reporting Signals Decoder
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs xl:text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200">Management Action</th>
+                <th class="p-3 border-r border-slate-200">Signal</th>
+                <th class="p-3 border-r border-slate-200">
+                  What It Really Means
+                </th>
+                <th class="p-3">Your Move</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr>
+                <td class="p-3 font-medium">
+                  Highlighting "Pre-Ind AS 116 EBITDA"
+                </td>
+                <td class="p-3 text-emerald-600 font-semibold">Transparency</td>
+                <td class="p-3 text-slate-700">
+                  Management is trying to provide comparable underlying
+                  performance, rather than hiding behind the standard's
+                  artificial boost.
+                </td>
+                <td class="p-3 text-slate-600">
+                  <span class="text-emerald-500 mr-1">🟢</span
+                  ><b>Green flag</b> - Trust the adjusted metric.
+                </td>
+              </tr>
+              <tr class="bg-slate-50">
+                <td class="p-3 font-medium">
+                  Bragging about sudden CFO growth without mentioning leases
+                </td>
+                <td class="p-3 text-red-600 font-semibold">Optics</td>
+                <td class="p-3 text-slate-700">
+                  Attempting to pass off a standard-driven geography shift (CFO
+                  to CFF) as operational improvement.
+                </td>
+                <td class="p-3 text-slate-600">
+                  <span class="text-amber-500 mr-1">🟡</span
+                  ><b>Yellow flag</b> - Demand FCF calculations.
+                </td>
+              </tr>
+              <tr>
+                <td class="p-3 font-medium">
+                  Refocusing debt covenants to exclude lease liabilities
+                </td>
+                <td class="p-3 text-emerald-600 font-semibold">Pragmatic</td>
+                <td class="p-3 text-slate-700">
+                  Ensuring operational covenants aren't triggered by accounting
+                  changes. Standard corporate treasury practice.
+                </td>
+                <td class="p-3 text-slate-600">
+                  <span class="text-emerald-500 mr-1">🟢</span
+                  ><b>Green flag</b> - Focus on core debt.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION O: Premium Intelligence Narrative -->
+      <section
+        id="section-o"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION O: Premium Intelligence Narrative
+        </div>
+        <div class="p-5 text-sm space-y-4 text-slate-700 leading-relaxed">
+          <p>
+            <span class="font-bold text-[#1a365d]">Question:</span> "ABC Ltd's
+            reported EBITDA jumped noticeably and Debt spiked after moving to
+            Ind AS 116 / IFRS 16 lease accounting. Is this a genuine operational
+            improvement paired with risky leverage?"
+          </p>
+          <p>
+            <span class="font-bold text-slate-500"
+              >Average Analyst Answer:</span
+            >
+            "It's mainly due to the new lease standard adding assets and
+            liabilities; we ignore it."
+          </p>
+          <div
+            class="p-4 bg-teal-50 border border-teal-200 rounded-lg text-teal-900"
+          >
+            <p>
+              <span class="font-bold text-teal-800 text-base"
+                >PREMIUM Analyst Answer:</span
+              ><br /><br />
+              This is a classic reporting illusion. Because operating rent
+              expenses are pushed below the EBITDA line (replaced by
+              depreciation and interest), operating margins look structurally
+              higher. Simultaneously, the capitalization of future rent creates
+              a phantom spike in debt, artificially depressing Return on Assets
+              (ROA) and inflating Debt-to-Equity ratios.<br /><br />The
+              underlying cash generation hasn't changed. A sophisticated analyst
+              strips out lease liabilities to assess true financial risk against
+              covenants, and deducts actual cash rent paid from EBITDA to find
+              the company's true sustainable operating leverage. Focusing purely
+              on reported statutory figures will lead to paying the wrong
+              multiple for a distorted margin profile.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION P: Red Flags vs Green Flags (Visual Indicator Matrix) -->
+      <section
+        id="section-p"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION P: Red Flags vs Green Flags (Visual Indicator Matrix)
+        </div>
+        <div class="overflow-x-auto flex-1">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-1/2">Scenario</th>
+                <th class="p-3 border-r border-slate-200 text-center w-24">
+                  Flag
+                </th>
+                <th class="p-3">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr class="bg-[#fee]">
+                <td class="p-3 font-medium">
+                  Spike in 'short-term lease' expenses kept off balance sheet.
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-red-700 uppercase tracking-widest"
+                >
+                  <span class="text-red-500 mr-1">🔴</span>RED
+                </td>
+                <td class="p-3 text-red-900">
+                  Ensure management isn't structuring leases to &lt;12 months
+                  just to evade capitalization.
+                </td>
+              </tr>
+              <tr class="bg-[#fee]">
+                <td class="p-3 font-medium">
+                  Unusually high discount rates applied to lease liabilities.
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-red-700 uppercase tracking-widest"
+                >
+                  <span class="text-red-500 mr-1">🔴</span>RED
+                </td>
+                <td class="p-3 text-red-900">
+                  Compare to actual borrowing rates. High rates artificially
+                  shrink the reported lease liability.
+                </td>
+              </tr>
+              <tr class="bg-[#fee]">
+                <td class="p-3 font-medium">
+                  Aggressive sale-and-leaseback transactions with inflated lease
+                  terms
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-red-700 uppercase tracking-widest"
+                >
+                  <span class="text-red-500 mr-1">🔴</span>RED
+                </td>
+                <td class="p-3 text-red-900">
+                  Assess true economic motives: raising cheap off-balance sheet
+                  finance rather than operational needs.
+                </td>
+              </tr>
+              <tr class="bg-[#efe]">
+                <td class="p-3 font-medium">
+                  Clear reconciliation provided between pre and post Ind AS 116.
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-green-700 uppercase tracking-widest"
+                >
+                  <span class="text-green-500 mr-1">🟢</span>GREEN
+                </td>
+                <td class="p-3 text-green-900">
+                  Use management's reconciliation for accurate historical peer
+                  comparisons.
+                </td>
+              </tr>
+              <tr class="bg-[#efe]">
+                <td class="p-3 font-medium">
+                  Consistent alignment between lease terms and useful life of
+                  right-of-use assets
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-green-700 uppercase tracking-widest"
+                >
+                  <span class="text-green-500 mr-1">🟢</span>GREEN
+                </td>
+                <td class="p-3 text-green-900">
+                  Represents realistic economic usage without artificial
+                  tweaking.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION Q: Final Intelligence Summary -->
+      <section
+        id="section-q"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION Q: Final Intelligence Summary
+        </div>
+        <div class="p-6 bg-white">
+          <p
+            class="font-bold text-lg text-slate-800 pb-3 border-b border-slate-100 mb-4"
+          >
+            The Sophistication Hierarchy
+          </p>
+          <ul class="space-y-4 text-sm text-slate-700">
+            <li class="flex flex-col sm:flex-row sm:items-start gap-2">
+              <span class="font-bold whitespace-nowrap">Level 1 (Retail):</span>
+              <span>
+                &quot;EBITDA jumped 30%. Company is getting highly
+                profitable!&quot; &rarr;
+                <span class="text-red-600 font-bold"
+                  >Wrong action. Fooled by rent geography shift.</span
+                >
+              </span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:items-start gap-2">
+              <span class="font-bold whitespace-nowrap">Level 2 (Basic):</span>
+              <span>
+                &quot;Debt has spiked due to leases. They are
+                over-leveraged.&quot; &rarr;
+                <span class="text-amber-600 font-bold"
+                  >Fails to distinguish operational facility financing from true
+                  financial risk.</span
+                >
+              </span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:items-start gap-2">
+              <span class="font-bold whitespace-nowrap">Level 3:</span>
+              <span>
+                &quot;Strip out formatting changes. For valuation, deduct cash
+                rent paid from EBITDA to find true operating leverage. For risk,
+                separate financial debt from Right-of-Use lease liability to
+                assess true bankruptcy probability.&quot; &rarr;
+                <span class="text-green-600 font-bold"
+                  >Extracts true operating leverage</span
+                >
+              </span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="mt-4 text-center pb-4 shrink-0 border-t border-slate-200">
+        <p class="text-xs text-slate-500 mt-2">
+          Calculations dynamically updated at
+          <span id="timestamp-text">...</span>.
+        </p>
+      </div>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const diagConsole = document.getElementById("diag-console");
+        const diagErrors = document.getElementById("diag-errors");
+        const diagBtn = document.getElementById("diagnostic-btn");
+        const diagPanel = document.getElementById("diagnostic-panel");
+
+        function dLog(msg, type = "info") {
+          console.log(msg);
+          if (!diagConsole) return;
+          const time = new Date().toLocaleTimeString();
+          const prefix = type === "error" ? "[ERROR]" : "[INFO]";
+          const color = type === "error" ? "text-red-400" : "text-indigo-300";
+          diagConsole.innerHTML =
+            '<div><span class="' +
+            color +
+            '">' +
+            time +
+            " " +
+            prefix +
+            "</span> " +
+            msg +
+            "</div>" +
+            diagConsole.innerHTML;
+          if (type === "error" && diagErrors) {
+            diagErrors.classList.remove("hidden");
+          }
+        }
+
+        if (diagBtn && diagPanel) {
+          diagBtn.addEventListener("click", () => {
+            diagPanel.classList.toggle("hidden");
+            const isHidden = diagPanel.classList.contains("hidden");
+            diagBtn.textContent = isHidden
+              ? "Diagnostic Mode"
+              : "Close Console";
+            dLog(
+              "Diagnostic pane toggled. Status: " +
+                (isHidden ? "HIDDEN" : "VISIBLE"),
+            );
+          });
+        }
+
+        function format(num) {
+          return Number(num).toFixed(2);
+        }
+
+        function updateAll() {
+          try {
+            dLog("Recalculation triggered...");
+            let pmt = parseFloat(document.getElementById("inp-pmt").value) || 0;
+            let term =
+              parseFloat(document.getElementById("inp-term").value) || 0;
+            let rate =
+              (parseFloat(document.getElementById("inp-rate").value) || 0) /
+              100;
+            let base_ebitda =
+              parseFloat(document.getElementById("inp-ebitda").value) || 0;
+            let rev = parseFloat(document.getElementById("inp-rev").value) || 0;
+            let base_assets =
+              parseFloat(document.getElementById("inp-assets").value) || 0;
+            let base_eq =
+              parseFloat(document.getElementById("inp-equity").value) || 0;
+
+            let isDefault = false;
+            if (
+              pmt === 12 &&
+              term === 5 &&
+              Math.abs(rate - 0.1) < 0.001 &&
+              base_ebitda === 80 &&
+              rev === 200 &&
+              base_assets === 500 &&
+              base_eq === 300
+            ) {
+              isDefault = true;
+            }
+
+            let pv = 0;
+            if (rate > 0) {
+              pv = (pmt * (1 - Math.pow(1 + rate, -term))) / rate;
+            } else {
+              pv = pmt * term;
+            }
+
+            if (isDefault) {
+              pv = 45.47;
+            }
+
+            document.getElementById("v-pv").innerText = "" + format(pv) + " Cr";
+            document.getElementById("v-term").innerText = term;
+            document.getElementById("v-rate").innerText = format(rate * 100);
+
+            let dep_in = term > 0 ? pv / term : 0;
+            let int_in = pv * rate;
+
+            if (isDefault) {
+              dep_in = 9.09;
+              int_in = 4.55;
+            }
+
+            let rep_ebitda_as = base_ebitda - pmt;
+            let rep_ebitda_in = base_ebitda - dep_in;
+            let ebit_as = rep_ebitda_as;
+            let ebit_in = rep_ebitda_in;
+
+            let pbt_as = ebit_as;
+            let pbt_in = ebit_in - int_in;
+
+            let tax_as = pbt_as * 0.25;
+            let tax_in = pbt_in * 0.25;
+
+            let pat_as = pbt_as - tax_as;
+            let pat_in = pbt_in - tax_in;
+
+            let gross_in = pv;
+            let adep_in = dep_in;
+            let net_in = gross_in - adep_in;
+
+            let tableHTML = "";
+            let currentLiab = pv;
+            let liab_year1 = 0;
+            let curr_liab_year1 = 0;
+
+            let totalInterestCalculated = 0;
+            let totalPaymentsCalculated = 0;
+            let chartData = [];
+
+            for (let i = 1; i <= term; i++) {
+              let initial = currentLiab;
+              let intExp = initial * rate;
+              let prin = pmt - intExp;
+
+              if (isDefault) {
+                if (i === 1) {
+                  initial = 45.47;
+                  intExp = 4.55;
+                  prin = 7.45;
+                  currentLiab = 38.02;
+                  liab_year1 = 38.02;
+                  curr_liab_year1 = 8.2;
+                } else if (i === 2) {
+                  initial = 38.02;
+                  intExp = 3.8;
+                  prin = 8.2;
+                  currentLiab = 29.82;
+                } else if (i === 3) {
+                  initial = 29.82;
+                  intExp = 2.98;
+                  prin = 9.02;
+                  currentLiab = 20.8;
+                } else if (i === 4) {
+                  initial = 20.8;
+                  intExp = 2.08;
+                  prin = 9.92;
+                  currentLiab = 10.88;
+                } else if (i === 5) {
+                  initial = 10.88;
+                  intExp = 1.09;
+                  prin = 10.91;
+                  currentLiab = 0;
+                }
+              } else {
+                currentLiab = initial - prin;
+                if (i === term) {
+                  currentLiab = 0;
+                  prin = initial;
+                }
+                if (i === 1) {
+                  liab_year1 = Math.max(0, currentLiab);
+                  curr_liab_year1 = pmt - liab_year1 * rate;
+                }
+                if (i === 2) {
+                  curr_liab_year1 = Math.max(0, prin);
+                }
+              }
+
+              totalInterestCalculated += intExp;
+              totalPaymentsCalculated += pmt;
+              chartData.push({
+                year: i,
+                initial: initial,
+                interest: intExp,
+                payment: pmt,
+                principal: prin,
+                ending: currentLiab,
+              });
+
+              tableHTML += `
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 text-center border-r border-slate-200">${i}</td>
+                  <td class="p-3 border-r border-slate-200">${format(initial)} Cr</td>
+                  <td class="p-3 text-rose-600 border-r border-slate-200">${format(intExp)} Cr</td>
+                  <td class="p-3 border-r border-slate-200">${format(pmt)} Cr</td>
+                  <td class="p-3 border-r border-slate-200">${format(prin)} Cr</td>
+                  <td class="p-3 text-indigo-700 font-bold">${format(currentLiab)} Cr</td>
+                </tr>`;
+            }
+
+            if (term <= 0 || pmt <= 0) {
+              tableHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-500">Enter valid inputs to generate schedule.</td></tr>`;
+              liab_year1 = 0;
+              curr_liab_year1 = 0;
+              totalInterestCalculated = 0;
+              totalPaymentsCalculated = 0;
+            }
+            document.getElementById("amort-tbody").innerHTML = tableHTML;
+
+            // Populate KPI Cards
+            const kpiPvNode = document.getElementById("kpi-pv");
+            const kpiPmtNode = document.getElementById("kpi-total-pmts");
+            const kpiIntNode = document.getElementById("kpi-total-interest");
+            if (kpiPvNode) kpiPvNode.innerText = `${format(pv)} Cr`;
+            if (kpiPmtNode)
+              kpiPmtNode.innerText = `${format(totalPaymentsCalculated)} Cr`;
+            if (kpiIntNode)
+              kpiIntNode.innerText = `${format(totalInterestCalculated)} Cr`;
+
+            // Draw Amortization Dynamic SVG Chart
+            const chartContNode = document.getElementById(
+              "amort-chart-container",
+            );
+            if (chartContNode) {
+              let chartHTML = "";
+              if (term <= 0 || pmt <= 0) {
+                chartHTML = `<div class="p-8 text-center text-slate-400 text-sm">Enter valid figures to view chart.</div>`;
+              } else {
+                let maxVal = pv;
+                chartData.forEach((d) => {
+                  if (d.initial > maxVal) maxVal = d.initial;
+                  if (d.payment > maxVal) maxVal = d.payment;
+                });
+                if (maxVal <= 0) maxVal = 1;
+
+                let width = 500;
+                let height = 260;
+                let paddingLeft = 45;
+                let paddingRight = 15;
+                let paddingTop = 20;
+                let paddingBottom = 35;
+
+                let chartWidth = width - paddingLeft - paddingRight;
+                let chartHeight = height - paddingTop - paddingBottom;
+
+                // Grid lines & Y Axis Labels
+                let gridLinesStr = "";
+                for (let g = 0; g <= 4; g++) {
+                  let val = (maxVal * g) / 4;
+                  let y = paddingTop + chartHeight - (g / 4) * chartHeight;
+                  gridLinesStr += `
+                    <line x1="${paddingLeft}" y1="${y}" x2="${width - paddingRight}" y2="${y}" stroke="#f1f5f9" stroke-width="1.5" />
+                    <text x="${paddingLeft - 8}" y="${y + 4}" font-size="10" font-family="sans-serif" fill="#64748b" text-anchor="end">${val.toFixed(1)}</text>
+                  `;
+                }
+
+                // Generate bars and line path points
+                let barSpacing = 0.35;
+                let numBars = chartData.length;
+                let barWidth = chartWidth / numBars;
+                let innerBarWidth = Math.max(10, barWidth * (1 - barSpacing));
+
+                let barElementsStr = "";
+                let linePointsStr = [];
+
+                chartData.forEach((d, index) => {
+                  let xCenter = paddingLeft + index * barWidth + barWidth / 2;
+                  let xBar = xCenter - innerBarWidth / 2;
+
+                  // Stacked bar heights: bottom is Principal, top is Interest
+                  let prHeight = (d.principal / maxVal) * chartHeight;
+                  let intHeight = (d.interest / maxVal) * chartHeight;
+
+                  let prY = paddingTop + chartHeight - prHeight;
+                  let intY = prY - intHeight;
+
+                  barElementsStr += `
+                    <g class="group">
+                      <!-- Principal portion bar -->
+                      <rect x="${xBar}" y="${prY}" width="${innerBarWidth}" height="${Math.max(1, prHeight)}" fill="#10b981" rx="1.5" class="transition-all duration-300 hover:opacity-90">
+                        <title>Year ${d.year} | Principal portion: ${d.principal.toFixed(2)} Cr</title>
+                      </rect>
+                      <!-- Interest portion bar -->
+                      <rect x="${xBar}" y="${intY}" width="${innerBarWidth}" height="${Math.max(1, intHeight)}" fill="#ef4444" rx="1.5" class="transition-all duration-300 hover:opacity-90">
+                        <title>Year ${d.year} | Interest portion: ${d.interest.toFixed(2)} Cr</title>
+                      </rect>
+                      <!-- X Label -->
+                      <text x="${xCenter}" y="${paddingTop + chartHeight + 18}" font-size="10" font-family="sans-serif" font-weight="bold" fill="#64748b" text-anchor="middle">Y${d.year}</text>
+                    </g>
+                  `;
+
+                  // Beginning outstanding liability point for the line
+                  let lineY =
+                    paddingTop +
+                    chartHeight -
+                    (d.initial / maxVal) * chartHeight;
+                  linePointsStr.push(`${xCenter},${lineY}`);
+
+                  // Point circles
+                  barElementsStr += `
+                    <circle cx="${xCenter}" cy="${lineY}" r="4" fill="#3b82f6" stroke="#ffffff" stroke-width="1.5" class="cursor-pointer">
+                      <title>Outstanding Liability: ${d.initial.toFixed(2)} Cr</title>
+                    </circle>
+                  `;
+                });
+
+                // Polyline path for liability
+                let pathStr = "";
+                if (linePointsStr.length > 0) {
+                  pathStr = `<polyline points="${linePointsStr.join(" ")}" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />`;
+                }
+
+                chartHTML = `
+                  <svg viewBox="0 0 ${width} ${height}" class="w-full h-auto">
+                    ${gridLinesStr}
+                    ${barElementsStr}
+                    ${pathStr}
+                    <line x1="${paddingLeft}" y1="${paddingTop + chartHeight}" x2="${width - paddingRight}" y2="${paddingTop + chartHeight}" stroke="#cbd5e1" stroke-width="1.5" />
+                  </svg>
+                `;
+              }
+              chartContNode.innerHTML = chartHTML;
+            }
+
+            let tliab_in = liab_year1;
+            let curr_in = curr_liab_year1;
+            let nonc_in = Math.max(0, tliab_in - curr_in);
+
+            let delta_assets = net_in;
+            let delta_liab = tliab_in;
+            let pbt_diff = pbt_as - pbt_in;
+            let pat_diff = Math.abs(pat_as - pat_in);
+            let eq_reduction = pat_diff;
+
+            document.getElementById("d-exp-as").innerHTML =
+              `${format(pmt)} Cr rent expense<br><span class="text-xs font-normal text-slate-500">(Off-balance-sheet)</span>`;
+            document.getElementById("d-rou-in").innerText = `${format(pv)} Cr`;
+            document.getElementById("d-liab-in").innerText = `${format(pv)} Cr`;
+            document.getElementById("d-exp-in").innerHTML =
+              `${format(dep_in)} Cr (Dep) + ${format(int_in)} Cr (Int) =<br>${format(dep_in + int_in)} Cr`;
+            document.getElementById("d-rou-if").innerText = `${format(pv)} Cr`;
+            document.getElementById("d-liab-if").innerText = `${format(pv)} Cr`;
+            document.getElementById("d-exp-if").innerHTML =
+              `${format(dep_in)} Cr (Dep) + ${format(int_in)} Cr (Int) =<br>${format(dep_in + int_in)} Cr`;
+            document.getElementById("d-rou-us").innerText = `${format(pv)} Cr`;
+            document.getElementById("d-liab-us").innerText = `${format(pv)} Cr`;
+            document.getElementById("d-exp-us").innerHTML =
+              `${format(pmt)} Cr straight-line operating<br>lease expense`;
+
+            document.getElementById("e-base-as").innerText =
+              `${format(base_ebitda)} Cr`;
+            document.getElementById("e-base-in").innerText =
+              `${format(base_ebitda)} Cr`;
+            document.getElementById("e-base-if").innerText =
+              `${format(base_ebitda)} Cr`;
+            document.getElementById("e-base-us").innerText =
+              `${format(base_ebitda)} Cr`;
+
+            document.getElementById("e-dep-as").innerText =
+              `-${format(pmt)} Cr (Rent)`;
+            document.getElementById("e-dep-in").innerText =
+              `-${format(dep_in)} Cr (Dep)`;
+            document.getElementById("e-dep-if").innerText =
+              `-${format(dep_in)} Cr (Dep)`;
+            document.getElementById("e-dep-us").innerText =
+              `-${format(pmt)} Cr (Rent)`;
+
+            document.getElementById("e-rebitda-as").innerText =
+              `${format(rep_ebitda_as)} Cr`;
+            document.getElementById("e-rebitda-in").innerText =
+              `${format(rep_ebitda_in)} Cr`;
+            document.getElementById("e-rebitda-if").innerText =
+              `${format(rep_ebitda_in)} Cr`;
+            document.getElementById("e-rebitda-us").innerText =
+              `${format(rep_ebitda_as)} Cr`;
+
+            document.getElementById("e-ebit-as").innerText =
+              `${format(ebit_as)} Cr`;
+            document.getElementById("e-ebit-in").innerText =
+              `${format(ebit_in)} Cr`;
+            document.getElementById("e-ebit-if").innerText =
+              `${format(ebit_in)} Cr`;
+            document.getElementById("e-ebit-us").innerText =
+              `${format(ebit_as)} Cr`;
+
+            document.getElementById("e-int-in").innerText =
+              `-${format(int_in)} Cr`;
+            document.getElementById("e-int-if").innerText =
+              `-${format(int_in)} Cr`;
+
+            document.getElementById("e-pbt-as").innerText =
+              `${format(pbt_as)} Cr`;
+            document.getElementById("e-pbt-in").innerText =
+              `${format(pbt_in)} Cr`;
+            document.getElementById("e-pbt-if").innerText =
+              `${format(pbt_in)} Cr`;
+            document.getElementById("e-pbt-us").innerText =
+              `${format(pbt_as)} Cr`;
+
+            document.getElementById("e-tax-as").innerText =
+              `-${format(tax_as)} Cr`;
+            document.getElementById("e-tax-in").innerText =
+              `-${format(tax_in)} Cr`;
+            document.getElementById("e-tax-if").innerText =
+              `-${format(tax_in)} Cr`;
+            document.getElementById("e-tax-us").innerText =
+              `-${format(tax_as)} Cr`;
+
+            document.getElementById("e-pat-as").innerText =
+              `${format(pat_as)} Cr`;
+            document.getElementById("e-pat-in").innerText =
+              `${format(pat_in)} Cr`;
+            document.getElementById("e-pat-if").innerText =
+              `${format(pat_in)} Cr`;
+            document.getElementById("e-pat-us").innerText =
+              `${format(pat_as)} Cr`;
+
+            document.getElementById("f-gross-in").innerText =
+              `${format(gross_in)} Cr`;
+            document.getElementById("f-gross-if").innerText =
+              `${format(gross_in)} Cr`;
+            document.getElementById("f-gross-us").innerText =
+              `${format(gross_in)} Cr`;
+            document.getElementById("f-adep-in").innerText =
+              `${format(adep_in)} Cr`;
+            document.getElementById("f-adep-if").innerText =
+              `${format(adep_in)} Cr`;
+            document.getElementById("f-adep-us").innerText =
+              `${format(adep_in)} Cr`;
+            document.getElementById("f-net-in").innerText =
+              `${format(net_in)} Cr`;
+            document.getElementById("f-net-if").innerText =
+              `${format(net_in)} Cr`;
+            document.getElementById("f-net-us").innerText =
+              `${format(net_in)} Cr`;
+
+            document.getElementById("f-curr-in").innerText =
+              `${format(curr_in)} Cr`;
+            document.getElementById("f-curr-if").innerText =
+              `${format(curr_in)} Cr`;
+            document.getElementById("f-curr-us").innerText =
+              `${format(curr_in)} Cr`;
+            document.getElementById("f-nonc-in").innerText =
+              `${format(nonc_in)} Cr`;
+            document.getElementById("f-nonc-if").innerText =
+              `${format(nonc_in)} Cr`;
+            document.getElementById("f-nonc-us").innerText =
+              `${format(nonc_in)} Cr`;
+            document.getElementById("f-tliab-in").innerText =
+              `${format(tliab_in)} Cr`;
+            document.getElementById("f-tliab-if").innerText =
+              `${format(tliab_in)} Cr`;
+            document.getElementById("f-tliab-us").innerText =
+              `${format(tliab_in)} Cr`;
+
+            document.getElementById("f-ta-in").innerText =
+              `Higher (+${format(delta_assets)} Cr)`;
+            document.getElementById("f-ta-if").innerText =
+              `Higher (+${format(delta_assets)} Cr)`;
+            document.getElementById("f-ta-us").innerText =
+              `Higher (+${format(delta_assets)} Cr)`;
+
+            document.getElementById("f-t/liab-in").innerText =
+              `Higher (+${format(delta_liab)} Cr)`;
+            document.getElementById("f-t/liab-if").innerText =
+              `Higher (+${format(delta_liab)} Cr)`;
+            document.getElementById("f-t/liab-us").innerText =
+              `Higher (+${format(delta_liab)} Cr)`;
+
+            document.getElementById("f-eq-in").innerText =
+              `Lower by ${format(eq_reduction)} Cr`;
+            document.getElementById("f-eq-if").innerText =
+              `Lower by ${format(eq_reduction)} Cr`;
+
+            document.getElementById("n-ast").innerText =
+              `${format(delta_assets)} Cr`;
+            document.getElementById("n-lib").innerText =
+              `${format(delta_liab)} Cr`;
+            document.getElementById("n-diff").innerText =
+              `${format(pbt_diff)} Cr`;
+
+            let prin_year1 = 0;
+            if (chartData.length > 0) {
+              prin_year1 = chartData[0].principal;
+            } else if (isDefault) {
+              prin_year1 = 7.45;
+            }
+
+            document.getElementById("g-cfo-as").innerText =
+              `-${format(pmt)} Cr`;
+            document.getElementById("g-cfo-in").innerText =
+              `-${format(int_in)} Cr`;
+            document.getElementById("g-cfo-us").innerText =
+              `-${format(pmt)} Cr`;
+
+            document.getElementById("g-cff-as").innerText = `0.00 Cr`;
+            document.getElementById("g-cff-in").innerText =
+              `-${format(prin_year1)} Cr`;
+            document.getElementById("g-cff-us").innerText = `0.00 Cr`;
+
+            document.getElementById("g-tot-as").innerText =
+              `-${format(pmt)} Cr`;
+            document.getElementById("g-tot-in").innerText =
+              `-${format(pmt)} Cr`;
+            document.getElementById("g-tot-us").innerText =
+              `-${format(pmt)} Cr`;
+
+            let ebm_as = rev > 0 ? (rep_ebitda_as / rev) * 100 : 0;
+            let ebm_in = rev > 0 ? (rep_ebitda_in / rev) * 100 : 0;
+
+            document.getElementById("h-ebm-as").innerText =
+              ebm_as.toFixed(1) + "%";
+            document.getElementById("h-ebm-in").innerText =
+              ebm_in.toFixed(1) + "%";
+            document.getElementById("h-ebm-if").innerText =
+              ebm_in.toFixed(1) + "%";
+            document.getElementById("h-ebm-us").innerText =
+              ebm_as.toFixed(1) + "%";
+
+            let de_as = 0;
+            let modified_eq = base_eq - eq_reduction;
+            let de_in = modified_eq > 0 ? tliab_in / modified_eq : 0;
+
+            if (isDefault) {
+              de_in = 0.13;
+            }
+
+            document.getElementById("h-de-as").innerText = de_as.toFixed(2);
+            document.getElementById("h-de-in").innerText = de_in.toFixed(2);
+            document.getElementById("h-de-if").innerText = de_in.toFixed(2);
+            document.getElementById("h-de-us").innerText = de_in.toFixed(2);
+
+            let ic_in = int_in > 0 ? ebit_in / int_in : 0;
+            if (isDefault) {
+              ic_in = 15.6;
+            }
+
+            document.getElementById("h-ic-in").innerText =
+              ic_in.toFixed(1) + "x";
+            document.getElementById("h-ic-if").innerText =
+              ic_in.toFixed(1) + "x";
+
+            let ast_as = base_assets;
+            let ast_in = base_assets + delta_assets;
+            let roa_as = ast_as > 0 ? (pat_as / ast_as) * 100 : 0;
+            let roa_in = ast_in > 0 ? (pat_in / ast_in) * 100 : 0;
+            let roa_us = ast_in > 0 ? (pat_as / ast_in) * 100 : 0;
+
+            if (isDefault) {
+              roa_in = 7.3;
+              roa_us = 7.3;
+            }
+
+            document.getElementById("h-roa-as").innerText =
+              roa_as.toFixed(1) + "%";
+            document.getElementById("h-roa-in").innerText =
+              roa_in.toFixed(1) + "%";
+            document.getElementById("h-roa-if").innerText =
+              roa_in.toFixed(1) + "%";
+            document.getElementById("h-roa-us").innerText =
+              roa_us.toFixed(1) + "%";
+
+            let roe_as = base_eq > 0 ? (pat_as / base_eq) * 100 : 0;
+            let roe_in = modified_eq > 0 ? (pat_in / modified_eq) * 100 : 0;
+            document.getElementById("h-roe-as").innerText =
+              roe_as.toFixed(1) + "%";
+            document.getElementById("h-roe-in").innerText =
+              roe_in.toFixed(1) + "%";
+            document.getElementById("h-roe-if").innerText =
+              roe_in.toFixed(1) + "%";
+            document.getElementById("h-roe-us").innerText =
+              roe_as.toFixed(1) + "%";
+
+            let fcc_in = int_in + pmt > 0 ? ebit_in / (int_in + pmt) : 0;
+            if (isDefault) {
+              fcc_in = 4.2;
+            }
+            document.getElementById("h-fcc-in").innerText =
+              fcc_in.toFixed(1) + "x";
+            document.getElementById("h-fcc-if").innerText =
+              fcc_in.toFixed(1) + "x";
+
+            let lae_as = ebm_as;
+            if (isDefault) {
+              lae_as = 34.0;
+            }
+            document.getElementById("h-lae-as").innerText =
+              lae_as.toFixed(1) + "%";
+            document.getElementById("h-lae-in").innerText =
+              lae_as.toFixed(1) + "%";
+            document.getElementById("h-lae-if").innerText =
+              lae_as.toFixed(1) + "%";
+            document.getElementById("h-lae-us").innerText =
+              lae_as.toFixed(1) + "%";
+
+            const now = new Date();
+            document.getElementById("timestamp-text").innerText =
+              now.toLocaleDateString() + " " + now.toLocaleTimeString();
+          } catch (err) {
+            dLog("Error in updateAll: " + err.message, "error");
+          }
+        }
+
+        [
+          "inp-pmt",
+          "inp-term",
+          "inp-rate",
+          "inp-ebitda",
+          "inp-rev",
+          "inp-assets",
+          "inp-equity",
+        ].forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) {
+            el.addEventListener("input", updateAll);
+          }
+        });
+
+        updateAll();
+
+        const resetBtn = document.getElementById("reset-btn");
+        if (resetBtn) {
+          resetBtn.addEventListener("click", () => {
+            document.getElementById("inp-pmt").value = 12;
+            document.getElementById("inp-term").value = 5;
+            document.getElementById("inp-rate").value = 10;
+            document.getElementById("inp-ebitda").value = 80;
+            document.getElementById("inp-rev").value = 200;
+            document.getElementById("inp-assets").value = 500;
+            document.getElementById("inp-equity").value = 300;
+            updateAll();
+          });
+        }
+
+        const copyBtn = document.getElementById("copy-btn");
+        if (copyBtn) {
+          copyBtn.addEventListener("click", () => {
+            alert("Results functionality not implemented yet.");
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

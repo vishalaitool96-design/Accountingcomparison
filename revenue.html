@@ -1,0 +1,2109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Revenue Recognition | Standards Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+
+    <style>
+      .custom-scrollbar::-webkit-scrollbar {
+        height: 10px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-[#f7fafc] font-sans h-screen w-full flex flex-col overflow-hidden border-8 border-slate-200 text-slate-800"
+  >
+    <header class="bg-[#1a365d] text-white p-4 shrink-0 shadow-md">
+      <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end">
+        <div>
+          <h1 class="text-2xl font-bold tracking-tight">
+            Accounting Standards Comparison Hub
+          </h1>
+          <p class="text-slate-300 text-sm italic">
+            AS (Old Indian GAAP) vs Ind AS vs IFRS vs US GAAP
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <nav
+      class="bg-white border-b border-slate-200 flex shrink-0 overflow-x-auto custom-scrollbar"
+    >
+      <a
+        href="index.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Home</a
+      >
+      <a
+        href="lease.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Lease</a
+      >
+      <a
+        href="ppe.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >PPE</a
+      >
+      <a
+        href="financial-instruments.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Financial Instruments</a
+      >
+      <a
+        href="revenue.html"
+        class="px-6 py-3 text-sm font-semibold border-b-4 border-indigo-600 bg-indigo-50 text-indigo-900 block whitespace-nowrap"
+        >Revenue</a
+      >
+      <a
+        href="deferred-tax.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Deferred Tax</a
+      >
+      <a
+        href="consolidation.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Consolidation</a
+      >
+      <a
+        href="impairment.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Impairment</a
+      >
+      <a
+        href="esop.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >ESOP</a
+      >
+      <a
+        href="cashflows.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Cash Flows</a
+      >
+    </nav>
+
+    <main
+      class="flex-1 p-4 md:p-6 lg:p-8 flex flex-col gap-10 overflow-y-auto"
+      id="main-content"
+    >
+      <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+        <div class="border-l-8 border-teal-600 pl-4 py-1 shrink-0">
+          <h2 class="text-2xl font-bold text-[#1a365d] uppercase tracking-wide">
+            Revenue Recognition
+          </h2>
+          <p class="text-sm text-slate-600">
+            Premium Analysis Guide: AS vs Ind AS 115 vs IFRS 15 vs US GAAP ASC
+            606
+          </p>
+        </div>
+        <button
+          id="diagnostic-btn"
+          class="bg-indigo-600 text-white hover:bg-indigo-700 text-sm px-4 py-2 rounded shadow-sm font-bold transition-colors"
+        >
+          Diagnostic Mode
+        </button>
+      </div>
+      <div
+        id="diagnostic-panel"
+        class="hidden mt-4 bg-indigo-50 border-l-4 border-indigo-600 p-4 text-sm text-indigo-900 shadow-sm rounded-r-lg flex flex-col gap-2 shrink-0"
+      >
+        <h3 class="font-bold text-lg mb-2">Diagnostic Mode Console</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <h4 class="font-bold border-b border-indigo-200 pb-1 mb-1">
+              Live Updating Sections
+            </h4>
+            <ul
+              id="diag-updating"
+              class="list-disc pl-5 space-y-1 text-indigo-800 font-medium"
+            >
+              <li>Section C, D, E, F, G, H, I, J, K</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold border-b border-indigo-200 pb-1 mb-1">
+              Static Sections
+            </h4>
+            <ul
+              id="diag-static"
+              class="list-disc pl-5 space-y-1 text-indigo-800 font-medium"
+            >
+              <li>Section A, B, L, M, N, O, P</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-4 border-t border-indigo-200 pt-2">
+          <h4 class="font-bold mb-1 flex justify-between">
+            Recent Updates
+            <span id="diag-errors" class="text-red-600 hidden">Errors!</span>
+          </h4>
+          <div
+            id="diag-console"
+            class="bg-indigo-900 text-indigo-100 font-mono p-3 rounded text-xs h-32 overflow-y-auto whitespace-pre-wrap"
+          >
+            System initialized.
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION A: Core Technical Comparison Table -->
+      <section
+        id="section-b"
+        data-diagnostic="tracked"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION A: Core Technical Comparison Table
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-[16%]">Parameter</th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">
+                  AS 9 (Old Indian GAAP)
+                </th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">
+                  Ind AS 115
+                </th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">IFRS 15</th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">
+                  US GAAP ASC 606
+                </th>
+                <th class="p-3 w-[16%]">Logic shift</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Core philosophy</td>
+                <td class="p-3">
+                  Revenue recognized when risks and rewards are transferred and
+                  income is earned and realizable.
+                </td>
+                <td class="p-3">
+                  Revenue recognized when control of goods or services transfers
+                  to the customer, based on a five-step model.
+                </td>
+                <td class="p-3">
+                  Same five-step control-based model as Ind AS; principle-based.
+                </td>
+                <td class="p-3">
+                  Same five-step model as IFRS but with more detailed US
+                  guidance.
+                </td>
+                <td class="p-3 text-slate-600">
+                  From "earned/realized" and risks & rewards to control and
+                  performance obligations.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Contract focus</td>
+                <td class="p-3">
+                  Limited explicit focus on "contract with customer"; emphasis
+                  on individual transactions and invoicing.
+                </td>
+                <td class="p-3">
+                  Explicit definition of contract with customer with enforceable
+                  rights and obligations.
+                </td>
+                <td class="p-3">
+                  Same as Ind AS; strong contract-based framework.
+                </td>
+                <td class="p-3">
+                  Same as IFRS; legal contract and enforceable rights drive
+                  analysis.
+                </td>
+                <td class="p-3 text-slate-600">
+                  Shift from invoice driven to contract driven analysis.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  Recognition criteria / Measurement-initial
+                </td>
+                <td class="p-3">
+                  Revenue when significant risks and rewards are transferred,
+                  collection certain. Usually at invoice/contract price,
+                  adjusted for known rebates.
+                </td>
+                <td class="p-3">
+                  Identify contract and performance obligations, recognize
+                  revenue when/as obligations are satisfied. Measure transaction
+                  price, estimate variables.
+                </td>
+                <td class="p-3">
+                  Same model; revenue over time or at a point in time based on
+                  control transfer. Same transaction price model.
+                </td>
+                <td class="p-3">
+                  Same model and criteria; more detailed application guidance.
+                  Explicit treatment of variables & financing.
+                </td>
+                <td class="p-3 text-slate-600">
+                  From a single event (delivery) to a pattern of performance.
+                  From "billed value" to transaction price estimation.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Measurement-subsequent</td>
+                <td class="p-3">
+                  Limited concept of subsequent re-measurement except for
+                  provisions/discounts; revenue rarely revisited.
+                </td>
+                <td class="p-3">
+                  Adjust revenue prospectively if estimates (variable
+                  consideration, progress, etc.) change.
+                </td>
+                <td class="p-3">
+                  Same; high reliance on updates of estimates.
+                </td>
+                <td class="p-3">
+                  Same; strong use of updated estimates and cumulative catch-up
+                  adjustments.
+                </td>
+                <td class="p-3 text-slate-600">
+                  From static to dynamic measurement linked to updated
+                  estimates.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Over time vs point in time</td>
+                <td class="p-3">
+                  No formal over-time model; long-term contracts mainly via AS
+                  7/AS 9 with completion method or POC in limited cases.
+                </td>
+                <td class="p-3">
+                  Distinct criteria to determine over time vs point in time;
+                  cost-to-cost or output methods to measure progress.
+                </td>
+                <td class="p-3">Same criteria and progress methods.</td>
+                <td class="p-3">
+                  Same; extensive guidance for construction/long-term
+                  arrangements.
+                </td>
+                <td class="p-3 text-slate-600">
+                  Introduces systematic over-time recognition linked to
+                  performance progress.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Multiple-element arrangements</td>
+                <td class="p-3">
+                  Sparse guidance; often split by legal contract/milestone; risk
+                  of arbitrary allocation.
+                </td>
+                <td class="p-3">
+                  Identify distinct performance obligations and allocate
+                  transaction price based on standalone selling prices.
+                </td>
+                <td class="p-3">Same performance-obligation framework.</td>
+                <td class="p-3">
+                  Same; lots of industry examples (software, telecom, etc.).
+                </td>
+                <td class="p-3 text-slate-600">
+                  From ad-hoc allocation to principled allocation based on
+                  standalone prices.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Variable consideration</td>
+                <td class="p-3">
+                  Limited and conservative; often recognized only when no
+                  significant uncertainty.
+                </td>
+                <td class="p-3">
+                  Estimate variable consideration (discounts, penalties) and
+                  apply constraint to avoid significant revenue reversal.
+                </td>
+                <td class="p-3">Same estimation + constraint model.</td>
+                <td class="p-3">
+                  Same; specific guidance for royalties, sales-or usage-based
+                  fees.
+                </td>
+                <td class="p-3 text-slate-600">
+                  Introduces probability-weighted / expected value thinking with
+                  explicit constraint.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Contract assets & liabilities</td>
+                <td class="p-3">
+                  Advances and unbilled revenue shown, but not under a unified
+                  conceptual framework.
+                </td>
+                <td class="p-3">
+                  Explicit contract assets (unbilled rights) and contract
+                  liabilities (deferred revenue).
+                </td>
+                <td class="p-3">Same definitions and presentation.</td>
+                <td class="p-3">
+                  Same; terminology similar ("contract asset" and "contract
+                  liability").
+                </td>
+                <td class="p-3 text-slate-600">
+                  From generic advances/unbilled to structured contract
+                  positions.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Principal vs agent</td>
+                <td class="p-3">
+                  Limited, less developed guidance; focus on legal form and
+                  risk.
+                </td>
+                <td class="p-3">
+                  Control-based principal vs agent assessment (gross vs net
+                  revenue).
+                </td>
+                <td class="p-3">Same control-based assessment.</td>
+                <td class="p-3">Same; detailed examples in ASC 606.</td>
+                <td class="p-3 text-slate-600">
+                  From legal/title focus to control and exposure analysis.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Significant financing component</td>
+                <td class="p-3">
+                  Not systematically addressed; interest element often not
+                  separated unless explicit.
+                </td>
+                <td class="p-3">
+                  Identify and adjust for significant financing component in
+                  transaction price when cash timing diverges.
+                </td>
+                <td class="p-3">Same model.</td>
+                <td class="p-3">
+                  Same; interest income/expense split is explicit.
+                </td>
+                <td class="p-3 text-slate-600">
+                  From ignoring time value to explicit financing vs revenue
+                  split.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Non-cash consideration</td>
+                <td class="p-3">Limited explicit guidance.</td>
+                <td class="p-3">
+                  Measure at fair value and include in transaction price.
+                </td>
+                <td class="p-3">Same fair value basis.</td>
+                <td class="p-3">
+                  Same; measure at fair value, or indirectly by reference to
+                  standalone selling price.
+                </td>
+                <td class="p-3 text-slate-600">
+                  From "billed cash only" mindset to full economic
+                  consideration.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Contract modifications</td>
+                <td class="p-3">
+                  Treated as revision of contract terms with limited
+                  principle-level guidance.
+                </td>
+                <td class="p-3">
+                  Distinct rules for separate contracts vs modifications,
+                  depending on scope/price.
+                </td>
+                <td class="p-3">Same modification framework.</td>
+                <td class="p-3">Same; extensive examples.</td>
+                <td class="p-3 text-slate-600">
+                  From ad-hoc to structured modification accounting.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Transition rules</td>
+                <td class="p-3">Not applicable currently (legacy).</td>
+                <td class="p-3">
+                  Options for full retrospective or modified retrospective
+                  adoption.
+                </td>
+                <td class="p-3">Similar options for transition.</td>
+                <td class="p-3">
+                  Similar full or modified retrospective transition.
+                </td>
+                <td class="p-3 text-slate-600">
+                  One-time step-change with optional reliefs.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">
+                  Disclosures - qualitative & quant.
+                </td>
+                <td class="p-3">
+                  Limited requirements, high-level splits by broad categories
+                  only.
+                </td>
+                <td class="p-3">
+                  Extensive narrative. Disaggregation by type, geography,
+                  market, timing, and contract balances.
+                </td>
+                <td class="p-3">
+                  Similar depth and themes as Ind AS. Same disaggregation
+                  requirements.
+                </td>
+                <td class="p-3">
+                  Equally comprehensive; SEC overlays add more granularity.
+                </td>
+                <td class="p-3 text-slate-600">
+                  From minimal to multi-dimensional revenue analytics in notes.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Convergence with IFRS</td>
+                <td class="p-3">Low (AS 9 is pre-IFRS model).</td>
+                <td class="p-3">
+                  Substantially converged with IFRS 15, with limited Indian
+                  carve-outs.
+                </td>
+                <td class="p-3">Baseline global standard.</td>
+                <td class="p-3">
+                  Not word-for-word converged, but outcome converged in most
+                  contracts.
+                </td>
+                <td class="p-3 text-slate-600">
+                  Global move to a unified revenue logic.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          class="p-4 bg-blue-50 border-t border-slate-200 border-l-4 border-l-blue-500 shrink-0 text-sm text-blue-900"
+        >
+          <p class="font-bold mb-2">
+            KEY INSIGHT: AS 9 is a legacy 'earned and realized' standard; Ind AS
+            115, IFRS 15 and ASC 606 are essentially one global control-based
+            revenue model with different wrappers.
+          </p>
+          <p>
+            <b>Section note - outcome alignment:</b> For typical commercial
+            contracts (goods, services, long-term projects), Ind AS, IFRS and US
+            GAAP generally produce the same revenue timing, measurement and
+            balance sheet outcomes, with differences mainly in terminology and
+            disclosure detail.
+          </p>
+        </div>
+      </section>
+
+      <div class="shrink-0 mt-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- SECTION B: Transaction Fact Pattern -->
+        <section
+          id="section-c"
+          data-diagnostic="tracked"
+          class="shrink-0 mt-6 bg-amber-50 rounded-xl shadow-sm border border-amber-200 overflow-hidden flex flex-col"
+        >
+          <div
+            class="bg-amber-600 text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-amber-300 flex justify-between items-center flex-wrap gap-2"
+          >
+            <span>SECTION B: Transaction Fact Pattern (EDITABLE)</span>
+            <div>
+              <button
+                id="reset-btn"
+                class="bg-white text-amber-700 hover:bg-amber-100 text-xs px-3 py-1 rounded shadow-sm mr-2 transition-colors cursor-pointer font-bold"
+              >
+                Reset to Default
+              </button>
+              <button
+                id="copy-btn"
+                class="bg-amber-800 hover:bg-amber-900 text-white text-xs px-3 py-1 rounded shadow-sm transition-colors border border-amber-500 cursor-pointer font-bold"
+              >
+                Copy Results
+              </button>
+            </div>
+          </div>
+          <div class="p-5 relative">
+            <div
+              class="absolute right-4 top-4 text-amber-700 opacity-10 font-bold text-6xl pointer-events-none"
+            >
+              FACTS
+            </div>
+            <div
+              id="validation-warning"
+              class="hidden mb-4 p-3 bg-red-100 border-l-4 border-red-500 text-red-700 text-sm font-bold"
+            ></div>
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 relative z-10 text-sm"
+            >
+              <div class="space-y-3">
+                <div class="flex items-center justify-between">
+                  <label class="font-bold text-slate-700"
+                    >Contract Price (Rs. Cr):</label
+                  >
+                  <input
+                    type="number"
+                    id="input-price"
+                    value="150"
+                    min="0"
+                    step="1"
+                    class="w-24 p-1 border border-slate-300 bg-white rounded text-right"
+                  />
+                </div>
+                <div class="flex items-center justify-between">
+                  <label class="font-bold text-slate-700">Advance %:</label>
+                  <input
+                    type="number"
+                    id="input-adv-pct"
+                    value="30"
+                    min="0"
+                    max="100"
+                    step="0.1"
+                    class="w-24 p-1 border border-slate-300 bg-white rounded text-right"
+                  />
+                </div>
+                <div class="flex items-center justify-between">
+                  <label class="font-bold text-slate-700">Shipment %:</label>
+                  <input
+                    type="number"
+                    id="input-ship-pct"
+                    value="40"
+                    min="0"
+                    max="100"
+                    step="0.1"
+                    class="w-24 p-1 border border-slate-300 bg-white rounded text-right"
+                  />
+                </div>
+                <div class="flex items-center justify-between">
+                  <label class="font-bold text-slate-700">Acceptance %:</label>
+                  <input
+                    type="number"
+                    id="input-acc-pct"
+                    value="30"
+                    min="0"
+                    max="100"
+                    step="0.1"
+                    class="w-24 p-1 border border-slate-300 bg-white rounded text-right"
+                  />
+                </div>
+              </div>
+              <div class="space-y-3">
+                <div class="flex items-center justify-between">
+                  <label class="font-bold text-slate-700"
+                    >Duration (months):</label
+                  >
+                  <input
+                    type="number"
+                    id="input-duration"
+                    value="18"
+                    min="1"
+                    step="1"
+                    class="w-24 p-1 border border-slate-300 bg-white rounded text-right"
+                  />
+                </div>
+                <div class="flex items-center justify-between">
+                  <label class="font-bold text-slate-700"
+                    >Est. Total Cost (Rs. Cr):</label
+                  >
+                  <input
+                    type="number"
+                    id="input-total-cost"
+                    value="120"
+                    min="0"
+                    step="1"
+                    class="w-24 p-1 border border-slate-300 bg-white rounded text-right"
+                  />
+                </div>
+                <div class="flex items-center justify-between">
+                  <label class="font-bold text-slate-700"
+                    >Cost Incurred Y1 (Rs. Cr):</label
+                  >
+                  <input
+                    type="number"
+                    id="input-cost-incurred"
+                    value="72"
+                    min="0"
+                    step="1"
+                    class="w-24 p-1 border border-slate-300 bg-white rounded text-right"
+                  />
+                </div>
+                <div class="flex items-center justify-between">
+                  <label class="font-bold text-slate-700"
+                    >Progress Y1 (%):</label
+                  >
+                  <input
+                    type="number"
+                    id="input-progress-pct"
+                    value="60"
+                    min="0"
+                    max="100"
+                    step="0.1"
+                    class="w-24 p-1 border border-slate-300 bg-white rounded text-right"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="flex justify-between items-end mt-4 pt-4 border-t border-amber-200"
+            >
+              <div class="text-xs text-amber-700 opacity-80">
+                Other inputs (Base Revenue, Equity, etc.) are editable in
+                sections below.
+              </div>
+              <div
+                class="text-xs font-mono text-slate-500"
+                id="update-timestamp"
+              >
+                Last updated: -
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION C: Side-by-Side Treatment -->
+        <section
+          id="section-d"
+          data-diagnostic="tracked"
+          class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+        >
+          <div
+            class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+          >
+            SECTION C: Side-by-Side Treatment
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm text-left">
+              <thead class="bg-slate-100 text-slate-700">
+                <tr>
+                  <th class="p-3 border-b border-r border-slate-200 w-1/4">
+                    AS 9
+                  </th>
+                  <th class="p-3 border-b border-r border-slate-200 w-1/4">
+                    Ind AS 115
+                  </th>
+                  <th class="p-3 border-b border-r border-slate-200 w-1/4">
+                    IFRS 15
+                  </th>
+                  <th class="p-3 border-b border-slate-200 w-1/4">ASC 606</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 bg-white">
+                <tr>
+                  <td class="p-3 border-r border-slate-200 align-top">
+                    <span class="font-bold text-[#1a365d] block mb-1"
+                      >Year 1</span
+                    ><span id="c-as-y1-text">No revenue in Year 1</span>
+                  </td>
+                  <td class="p-3 border-r border-slate-200 align-top">
+                    <span class="font-bold text-[#1a365d] block mb-1"
+                      >Year 1</span
+                    ><span id="c-ind-y1-text"
+                      >Rs. 90 Cr revenue (60% of Rs. 150 Cr)</span
+                    >
+                  </td>
+                  <td class="p-3 border-r border-slate-200 align-top">
+                    <span class="font-bold text-[#1a365d] block mb-1"
+                      >Year 1</span
+                    >Same as Ind AS 115
+                  </td>
+                  <td class="p-3 align-top">
+                    <span class="font-bold text-[#1a365d] block mb-1"
+                      >Year 1</span
+                    >Same as Ind AS 115
+                  </td>
+                </tr>
+                <tr class="bg-slate-50">
+                  <td class="p-3 border-r border-slate-200 align-top">
+                    <span class="font-bold text-[#1a365d] block mb-1"
+                      >Year 2</span
+                    ><span id="c-as-y2-text">Full Rs. 150 Cr in Year 2</span>
+                  </td>
+                  <td class="p-3 border-r border-slate-200 align-top">
+                    <span class="font-bold text-[#1a365d] block mb-1"
+                      >Year 2</span
+                    ><span id="c-ind-y2-text">Rs. 60 Cr revenue</span>
+                  </td>
+                  <td class="p-3 border-r border-slate-200 align-top">
+                    <span class="font-bold text-[#1a365d] block mb-1"
+                      >Year 2</span
+                    >Same as Ind AS 115
+                  </td>
+                  <td class="p-3 align-top">
+                    <span class="font-bold text-[#1a365d] block mb-1"
+                      >Year 2</span
+                    >Same as Ind AS 115
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="border-t border-slate-200 shrink-0 mt-auto">
+            <details class="group">
+              <summary
+                class="cursor-pointer font-bold text-sm bg-slate-50 p-3 hover:bg-slate-100 flex justify-between items-center text-[#1a365d]"
+              >
+                View Journal Entry Details (Year 1 & 2)
+                <span class="transition duration-300 group-open:-rotate-180"
+                  >▼</span
+                >
+              </summary>
+              <div
+                class="p-4 bg-white grid grid-cols-1 md:grid-cols-2 gap-4 text-[11px] xl:text-xs"
+              >
+                <div>
+                  <h4
+                    class="font-bold text-slate-800 mb-2 border-b border-slate-200 pb-1"
+                  >
+                    AS 9 Treatment
+                  </h4>
+                  <div
+                    class="bg-slate-100 p-3 rounded font-mono text-slate-700 space-y-2"
+                  >
+                    <p>
+                      <span class="text-slate-500 italic"
+                        ># Year 1 (FY 2025-26)</span
+                      >
+                    </p>
+                    <div id="je-as-y1">
+                      <p>
+                        Dr Bank ₹45 Cr<br />&nbsp;&nbsp;Cr Advance from customer
+                        ₹45 Cr
+                      </p>
+                      <p>
+                        Dr WIP (inventory) ₹72 Cr<br />&nbsp;&nbsp;Cr
+                        Cash/Payables ₹72 Cr
+                      </p>
+                    </div>
+                    <p class="pt-2">
+                      <span class="text-slate-500 italic"
+                        ># Year 2 (FY 2026-27)</span
+                      >
+                    </p>
+                    <div id="je-as-y2">
+                      <p>
+                        Equipment shipped and accepted.<br />Remaining costs:
+                        ₹48 Cr (Total cost = ₹72 + ₹48 = ₹120 Cr).<br />Full
+                        revenue of ₹150 Cr recognized in Year 2.<br />Profit =
+                        ₹30 Cr.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="h-full">
+                  <h4
+                    class="font-bold text-slate-800 mb-2 border-b border-slate-200 pb-1"
+                  >
+                    Ind AS 115 / IFRS 15 / ASC 606 Treatment
+                  </h4>
+                  <div
+                    class="bg-slate-100 p-3 rounded font-mono text-slate-700 space-y-2 h-full"
+                  >
+                    <p>
+                      <span class="text-slate-500 italic"
+                        ># Year 1 (FY 2025-26)</span
+                      >
+                    </p>
+                    <div id="je-ind-y1">
+                      <p>
+                        Dr Contract Asset ₹45 Cr <br />Dr Contract Liability
+                        (Advance utilized) ₹45 Cr <br />&nbsp;&nbsp;Cr Revenue
+                        ₹90 Cr
+                      </p>
+                    </div>
+                    <p class="pt-2">
+                      <span class="text-slate-500 italic"
+                        ># Year 2 (FY 2026-27)</span
+                      >
+                    </p>
+                    <div id="je-ind-y2">
+                      <p>
+                        Remaining progress 40%.<br />Revenue = ₹60 Cr.<br />Costs
+                        = ₹48 Cr.<br />Profit = ₹12 Cr.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </section>
+      </div>
+
+      <!-- SECTION D: Side-by-Side Impact Table -->
+      <section
+        id="section-e"
+        data-diagnostic="tracked"
+        class="shrink-0 -mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION D: Side-by-Side Impact Table (Project Only)
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-1/5">
+                  P&amp;L Impact
+                </th>
+                <th class="p-3 border-r border-slate-200 w-1/5">AS 9</th>
+                <th class="p-3 border-r border-slate-200 w-1/5">Ind AS 115</th>
+                <th class="p-3 border-r border-slate-200 w-1/5">IFRS 15</th>
+                <th class="p-3 w-1/5">ASC 606</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">FY 25-26 Revenue</td>
+                <td class="p-3" id="d-as-r1">Rs. 0</td>
+                <td class="p-3" id="d-ind-r1">Rs. 90 Cr</td>
+                <td class="p-3" id="d-ifrs-r1">Rs. 90 Cr</td>
+                <td class="p-3" id="d-asc-r1">Rs. 90 Cr</td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">FY 25-26 Cost</td>
+                <td class="p-3" id="d-as-c1">Rs. 0</td>
+                <td class="p-3" id="d-ind-c1">Rs. 72 Cr</td>
+                <td class="p-3" id="d-ifrs-c1">Rs. 72 Cr</td>
+                <td class="p-3" id="d-asc-c1">Rs. 72 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold text-[#1a365d]">FY 25-26 Profit</td>
+                <td class="p-3 font-bold" id="d-as-p1">Rs. 0</td>
+                <td class="p-3 font-bold text-teal-600" id="d-ind-p1">
+                  Rs. 18 Cr
+                </td>
+                <td class="p-3 font-bold text-teal-600" id="d-ifrs-p1">
+                  Rs. 18 Cr
+                </td>
+                <td class="p-3 font-bold text-teal-600" id="d-asc-p1">
+                  Rs. 18 Cr
+                </td>
+              </tr>
+              <tr
+                class="border-t-4 border-slate-200 bg-slate-50 hover:bg-slate-100"
+              >
+                <td class="p-3 font-bold">FY 26-27 Revenue</td>
+                <td class="p-3" id="d-as-r2">Rs. 150 Cr</td>
+                <td class="p-3" id="d-ind-r2">Rs. 60 Cr</td>
+                <td class="p-3" id="d-ifrs-r2">Rs. 60 Cr</td>
+                <td class="p-3" id="d-asc-r2">Rs. 60 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">FY 26-27 Cost</td>
+                <td class="p-3" id="d-as-c2">Rs. 120 Cr</td>
+                <td class="p-3" id="d-ind-c2">Rs. 48 Cr</td>
+                <td class="p-3" id="d-ifrs-c2">Rs. 48 Cr</td>
+                <td class="p-3" id="d-asc-c2">Rs. 48 Cr</td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold text-[#1a365d]">FY 26-27 Profit</td>
+                <td class="p-3 font-bold text-teal-600" id="d-as-p2">
+                  Rs. 30 Cr
+                </td>
+                <td class="p-3 font-bold" id="d-ind-p2">Rs. 12 Cr</td>
+                <td class="p-3 font-bold" id="d-ifrs-p2">Rs. 12 Cr</td>
+                <td class="p-3 font-bold" id="d-asc-p2">Rs. 12 Cr</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- METRICS GRID: E, F, G, H -->
+      <div class="shrink-0 mt-6 grid grid-cols-1 xl:grid-cols-2 gap-8">
+        <!-- SECTION E: P&amp;L Impact -->
+        <section
+          id="section-f"
+          data-diagnostic="tracked"
+          class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+        >
+          <div
+            class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200 flex justify-between items-center"
+          >
+            <span>SECTION E: P&amp;L Impact - Year 1</span>
+          </div>
+          <div
+            class="p-3 bg-amber-50 border-b border-slate-200 text-xs flex flex-wrap gap-4 items-center"
+          >
+            <span class="font-bold text-[#1a365d]">Base Business (Y1):</span>
+            <div class="flex items-center gap-2">
+              <label class="font-medium text-slate-700">Revenue (Rs. Cr):</label
+              ><input
+                type="number"
+                id="input-base-rev"
+                value="400"
+                step="1"
+                class="w-16 p-1 border border-slate-300 rounded text-right bg-white"
+              />
+            </div>
+            <div class="flex items-center gap-2">
+              <label class="font-medium text-slate-700">EBIT (Rs. Cr):</label
+              ><input
+                type="number"
+                id="input-base-ebit"
+                value="40"
+                step="1"
+                class="w-16 p-1 border border-slate-300 rounded text-right bg-white"
+              />
+            </div>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm text-left">
+              <thead class="bg-slate-100 text-slate-700">
+                <tr>
+                  <th class="p-3 border-r border-slate-200">
+                    Line item - FY 25-26
+                  </th>
+                  <th class="p-3 border-r border-slate-200">AS 9</th>
+                  <th class="p-3 border-r border-slate-200">Ind AS 115</th>
+                  <th class="p-3 border-r border-slate-200">IFRS 15</th>
+                  <th class="p-3">ASC 606</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200">
+                <tr>
+                  <td class="p-3 font-medium">Revenue - base</td>
+                  <td class="p-3" id="e-base-r-as">Rs. 400 Cr</td>
+                  <td class="p-3" id="e-base-r-in">Rs. 400 Cr</td>
+                  <td class="p-3" id="e-base-r-if">Rs. 400 Cr</td>
+                  <td class="p-3" id="e-base-r-us">Rs. 400 Cr</td>
+                </tr>
+                <tr class="bg-slate-50">
+                  <td class="p-3 font-medium">Revenue - project</td>
+                  <td class="p-3" id="e-proj-r-as">Rs. 0 Cr</td>
+                  <td class="p-3 text-teal-600 font-semibold" id="e-proj-r-in">
+                    Rs. 90 Cr
+                  </td>
+                  <td class="p-3 text-teal-600 font-semibold" id="e-proj-r-if">
+                    Rs. 90 Cr
+                  </td>
+                  <td class="p-3 text-teal-600 font-semibold" id="e-proj-r-us">
+                    Rs. 90 Cr
+                  </td>
+                </tr>
+                <tr class="font-bold bg-teal-50">
+                  <td class="p-3">Total revenue</td>
+                  <td class="p-3" id="e-tot-r-as">Rs. 400 Cr</td>
+                  <td class="p-3 text-teal-700" id="e-tot-r-in">Rs. 490 Cr</td>
+                  <td class="p-3 text-teal-700" id="e-tot-r-if">Rs. 490 Cr</td>
+                  <td class="p-3 text-teal-700" id="e-tot-r-us">Rs. 490 Cr</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-medium">EBIT - base</td>
+                  <td class="p-3" id="e-base-eb-as">Rs. 40 Cr</td>
+                  <td class="p-3" id="e-base-eb-in">Rs. 40 Cr</td>
+                  <td class="p-3" id="e-base-eb-if">Rs. 40 Cr</td>
+                  <td class="p-3" id="e-base-eb-us">Rs. 40 Cr</td>
+                </tr>
+                <tr class="bg-slate-50">
+                  <td class="p-3 font-medium">EBIT - project</td>
+                  <td class="p-3" id="e-proj-eb-as">Rs. 0 Cr</td>
+                  <td class="p-3 text-teal-600 font-semibold" id="e-proj-eb-in">
+                    Rs. 18 Cr
+                  </td>
+                  <td class="p-3 text-teal-600 font-semibold" id="e-proj-eb-if">
+                    Rs. 18 Cr
+                  </td>
+                  <td class="p-3 text-teal-600 font-semibold" id="e-proj-eb-us">
+                    Rs. 18 Cr
+                  </td>
+                </tr>
+                <tr class="font-bold">
+                  <td class="p-3">Total EBIT</td>
+                  <td class="p-3" id="e-tot-eb-as">Rs. 40 Cr</td>
+                  <td class="p-3" id="e-tot-eb-in">Rs. 58 Cr</td>
+                  <td class="p-3" id="e-tot-eb-if">Rs. 58 Cr</td>
+                  <td class="p-3" id="e-tot-eb-us">Rs. 58 Cr</td>
+                </tr>
+                <tr class="bg-slate-50">
+                  <td class="p-3 font-medium">Tax (25%)</td>
+                  <td class="p-3" id="e-tax-as">Rs. 10 Cr</td>
+                  <td class="p-3" id="e-tax-in">Rs. 14.5 Cr</td>
+                  <td class="p-3" id="e-tax-if">Rs. 14.5 Cr</td>
+                  <td class="p-3" id="e-tax-us">Rs. 14.5 Cr</td>
+                </tr>
+                <tr
+                  class="font-bold text-[#1a365d] border-t-2 border-slate-300"
+                >
+                  <td class="p-3">PAT (Profit After Tax)</td>
+                  <td class="p-3" id="e-pat-as">Rs. 30 Cr</td>
+                  <td class="p-3" id="e-pat-in">Rs. 43.5 Cr</td>
+                  <td class="p-3" id="e-pat-if">Rs. 43.5 Cr</td>
+                  <td class="p-3" id="e-pat-us">Rs. 43.5 Cr</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- SECTION F: Balance Sheet Impact -->
+        <section
+          id="section-g"
+          data-diagnostic="tracked"
+          class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+        >
+          <div
+            class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+          >
+            SECTION F: Balance Sheet Impact - End of Year 1
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm text-left">
+              <thead class="bg-slate-50 text-slate-700">
+                <tr>
+                  <th class="p-3 border-b border-slate-200">Item</th>
+                  <th class="p-3 border-b border-slate-200">AS 9</th>
+                  <th class="p-3 border-b border-slate-200">Ind AS 115</th>
+                  <th class="p-3 border-b border-slate-200">IFRS 15</th>
+                  <th class="p-3 border-b border-slate-200">ASC 606</th>
+                  <th class="p-3 border-b border-slate-200">Interpretation</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">
+                    Project reported profit (Year 1)
+                  </td>
+                  <td class="p-3 font-mono">£0</td>
+                  <td class="p-3 font-mono font-bold text-amber-700">£18 Cr</td>
+                  <td class="p-3 font-mono font-bold text-amber-700">£18 Cr</td>
+                  <td class="p-3 font-mono font-bold text-amber-700">£18 Cr</td>
+                  <td class="p-3 text-slate-600">
+                    Earlier profit recognition under new standards
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">Inventory / WIP</td>
+                  <td class="p-3 font-mono text-slate-600">
+                    £72 Cr (inventory)
+                  </td>
+                  <td class="p-3 font-mono">£0 (no WIP)</td>
+                  <td class="p-3 font-mono">£0 (no WIP)</td>
+                  <td class="p-3 font-mono">£0 (no WIP)</td>
+                  <td class="p-3 text-slate-600">
+                    Reclassified to contract asset
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">Contract Asset</td>
+                  <td class="p-3 font-mono">£0</td>
+                  <td class="p-3 font-mono font-bold text-blue-700">£45 Cr</td>
+                  <td class="p-3 font-mono font-bold text-blue-700">£45 Cr</td>
+                  <td class="p-3 font-mono font-bold text-blue-700">£45 Cr</td>
+                  <td class="p-3 text-slate-600">
+                    New balance sheet line item
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">Advance from Customer</td>
+                  <td class="p-3 font-mono text-slate-600">
+                    £45 Cr (liability)
+                  </td>
+                  <td class="p-3 font-mono">£0</td>
+                  <td class="p-3 font-mono">£0</td>
+                  <td class="p-3 font-mono">£0</td>
+                  <td class="p-3 text-slate-600">
+                    Liability utilised against revenue
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">
+                    Retained Earnings (project portion)
+                  </td>
+                  <td class="p-3 font-mono">£0</td>
+                  <td class="p-3 font-mono font-bold text-teal-700">+£18 Cr</td>
+                  <td class="p-3 font-mono font-bold text-teal-700">+£18 Cr</td>
+                  <td class="p-3 font-mono font-bold text-teal-700">+£18 Cr</td>
+                  <td class="p-3 text-slate-600">
+                    Higher equity under new standards
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50 bg-slate-50/50">
+                  <td class="p-3 font-bold border-t-2 border-slate-300">
+                    Total Assets (project impact)
+                  </td>
+                  <td
+                    class="p-3 font-mono border-t-2 border-slate-300 font-bold text-indigo-700"
+                  >
+                    +£45 Cr (WIP + cash)
+                  </td>
+                  <td
+                    class="p-3 font-mono border-t-2 border-slate-300 text-slate-700"
+                  >
+                    +£18 Cr
+                    <span class="text-xs font-sans text-slate-500 block"
+                      >(contract asset – cash outflow)</span
+                    >
+                  </td>
+                  <td
+                    class="p-3 font-mono border-t-2 border-slate-300 text-slate-700"
+                  >
+                    +£18 Cr
+                    <span class="text-xs font-sans text-slate-500 block"
+                      >(contract asset – cash outflow)</span
+                    >
+                  </td>
+                  <td
+                    class="p-3 font-mono border-t-2 border-slate-300 text-slate-700"
+                  >
+                    +£18 Cr
+                    <span class="text-xs font-sans text-slate-500 block"
+                      >(contract asset – cash outflow)</span
+                    >
+                  </td>
+                  <td
+                    class="p-3 text-slate-600 border-t-2 border-slate-300 text-xs text-balance"
+                  >
+                    AS 9 shows higher asset base due to WIP capitalisation
+                    without profit
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- SECTION G: Cash Flow Impact -->
+        <section
+          id="section-g"
+          data-diagnostic="tracked"
+          class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col font-mono"
+        >
+          <div
+            class="bg-[#1a365d] text-white px-4 py-3 font-bold font-sans uppercase tracking-wider text-sm border-b border-slate-200"
+          >
+            SECTION G: Cash Flow Impact (Year 1)
+          </div>
+          <div class="overflow-x-auto text-sm">
+            <table class="w-full text-left">
+              <thead class="bg-slate-50 text-slate-700 font-sans">
+                <tr>
+                  <th class="p-3 border-b border-slate-200">Item</th>
+                  <th class="p-3 border-b border-slate-200">AS 9</th>
+                  <th class="p-3 border-b border-slate-200">Ind AS 115</th>
+                  <th class="p-3 border-b border-slate-200">IFRS 15</th>
+                  <th class="p-3 border-b border-slate-200">ASC 606</th>
+                  <th class="p-3 border-b border-slate-200 text-xs text-left">
+                    Interpretation
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold font-sans">
+                    Operating Cash Flow (CFO)
+                  </td>
+                  <td class="p-3" id="g-cfo-as">-Rs. 27 Cr</td>
+                  <td class="p-3 font-bold text-amber-700" id="g-cfo-in">
+                    -Rs. 27 Cr
+                  </td>
+                  <td class="p-3 font-bold text-amber-700" id="g-cfo-ifrs">
+                    -Rs. 27 Cr
+                  </td>
+                  <td class="p-3" id="g-cfo-us">-Rs. 27 Cr</td>
+                  <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                    Net operating cash flow from project
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold font-sans">
+                    Financing Cash Flow (CFF)
+                  </td>
+                  <td class="p-3">0.00 Cr</td>
+                  <td class="p-3 font-bold text-rose-700">0.00 Cr</td>
+                  <td class="p-3 font-bold text-rose-700">0.00 Cr</td>
+                  <td class="p-3">0.00 Cr</td>
+                  <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                    None
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50 bg-slate-50/50">
+                  <td
+                    class="p-3 font-bold font-sans text-indigo-800 border-t border-slate-300"
+                  >
+                    Total Net Cash Flow
+                  </td>
+                  <td
+                    class="p-3 font-bold text-slate-800 border-t border-slate-300"
+                    id="g-tot-as"
+                  >
+                    -Rs. 27 Cr
+                  </td>
+                  <td
+                    class="p-3 font-bold text-indigo-700 border-t border-slate-300"
+                    id="g-tot-in"
+                  >
+                    -Rs. 27 Cr
+                  </td>
+                  <td
+                    class="p-3 font-bold text-indigo-700 border-t border-slate-300"
+                    id="g-tot-ifrs"
+                  >
+                    -Rs. 27 Cr
+                  </td>
+                  <td
+                    class="p-3 font-bold text-slate-800 border-t border-slate-300"
+                    id="g-tot-us"
+                  >
+                    -Rs. 27 Cr
+                  </td>
+                  <td
+                    class="p-3 font-sans text-xs text-slate-600 border-t border-slate-300 text-left"
+                  >
+                    Total cash drain is identical across all frameworks
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- SECTION H: Ratio Impact -->
+        <section
+          id="section-h"
+          data-diagnostic="tracked"
+          class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col font-mono"
+        >
+          <div
+            class="bg-[#1a365d] text-white px-4 py-3 font-bold font-sans uppercase tracking-wider text-sm border-b border-slate-200"
+          >
+            SECTION H: Ratio Impact (Year 1)
+          </div>
+          <div
+            class="p-3 bg-amber-50 border-b border-slate-200 font-sans text-xs flex flex-wrap gap-4 items-center"
+          >
+            <span class="font-bold text-[#1a365d]">Ratio Baseline:</span>
+            <div class="flex items-center gap-1">
+              <label>Prev Rev (Cr):</label
+              ><input
+                type="number"
+                id="input-prev-rev"
+                value="400"
+                step="1"
+                class="w-16 p-1 border border-slate-300 rounded text-right bg-white"
+              />
+            </div>
+            <div class="flex items-center gap-1">
+              <label>Equity (Cr):</label
+              ><input
+                type="number"
+                id="input-equity"
+                value="200"
+                step="1"
+                class="w-16 p-1 border border-slate-300 rounded text-right bg-white"
+              />
+            </div>
+            <div class="flex items-center gap-1">
+              <label>Assets (Cr):</label
+              ><input
+                type="number"
+                id="input-assets"
+                value="500"
+                step="1"
+                class="w-16 p-1 border border-slate-300 rounded text-right bg-white"
+              />
+            </div>
+            <div class="flex items-center gap-1">
+              <label>Shares (Cr):</label
+              ><input
+                type="number"
+                id="input-shares"
+                value="10"
+                step="0.1"
+                class="w-16 p-1 border border-slate-300 rounded text-right bg-white"
+              />
+            </div>
+          </div>
+          <div class="overflow-x-auto text-sm">
+            <table class="w-full text-center">
+              <thead class="bg-slate-50 text-slate-700 font-sans">
+                <tr>
+                  <th class="p-3 border-b border-slate-200 text-left w-1/6">
+                    Ratio
+                  </th>
+                  <th class="p-3 border-b border-slate-200">AS 9</th>
+                  <th class="p-3 border-b border-slate-200">
+                    Ind AS/IFRS/US GAAP
+                  </th>
+                  <th
+                    class="p-3 border-b border-slate-200 text-blue-800 font-bold"
+                  >
+                    Direction
+                  </th>
+                  <th class="p-3 border-b border-slate-200 text-left">
+                    Interpretation
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold font-sans text-left">
+                    Rev growth YOY
+                  </td>
+                  <td class="p-3" id="h-gro-as">+0.0%</td>
+                  <td class="p-3" id="h-gro-in">+22.5%</td>
+                  <td class="p-3 text-blue-600 font-bold">↑</td>
+                  <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                    Higher growth reported mechanically due to new rules
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold font-sans text-left">EBIT margin</td>
+                  <td class="p-3" id="h-mar-as">10.0%</td>
+                  <td class="p-3" id="h-mar-in">11.8%</td>
+                  <td class="p-3 text-blue-600 font-bold">↑</td>
+                  <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                    Margin improves visibly
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold font-sans text-left">ROE</td>
+                  <td class="p-3" id="h-roe-as">15.0%</td>
+                  <td class="p-3" id="h-roe-in">21.8%</td>
+                  <td class="p-3 text-blue-600 font-bold">↑</td>
+                  <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                    Return on equity jumps upward
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold font-sans text-left">
+                    Asset turnover
+                  </td>
+                  <td class="p-3" id="h-ato-as">0.80x</td>
+                  <td class="p-3" id="h-ato-in">0.98x</td>
+                  <td class="p-3 text-blue-600 font-bold">↑</td>
+                  <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                    Velocity of assets appears faster
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold font-sans text-left">EPS</td>
+                  <td class="p-3" id="h-eps-as">Rs. 3.00</td>
+                  <td class="p-3" id="h-eps-in">Rs. 4.35</td>
+                  <td class="p-3 text-blue-600 font-bold">↑</td>
+                  <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                    Absolute earnings per share sees one-time surge
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div
+            class="p-4 bg-blue-50 border-t border-slate-200 border-l-4 border-l-blue-500 shrink-0 font-sans text-sm text-blue-900 mt-auto"
+          >
+            <p>
+              <b>Section Note - Outcome Alignment:</b> For this revenue mix, Ind
+              AS, IFRS and US GAAP drive the same P&amp;L, BS, CF and ratio
+              impacts — differences versus AS relate only to timing and
+              presentation.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- SECTION I: Earnings Quality - Signals Table -->
+      <section
+        id="section-j"
+        data-diagnostic="tracked"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION I: Earnings Quality - Signals Table
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  Signal observed
+                </th>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  What it means technically
+                </th>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  Analyst interpretation
+                </th>
+                <th class="p-3 w-1/4">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-[#1a365d]" id="i-sig-1">
+                  Sharp jump in revenue in transition year vs AS
+                </td>
+                <td class="p-3" id="i-tech-1">
+                  Over-time contracts now recognized using cost-to-cost model;
+                  earlier AS deferred revenue.
+                </td>
+                <td class="p-3">
+                  Earnings are front-loaded, not necessarily "better"; economics
+                  unchanged.
+                </td>
+                <td class="p-3 font-semibold text-slate-800">
+                  Normalize by spreading project revenue over life.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-semibold text-[#1a365d]">
+                  Higher contract assets replacing inventory and advances
+                </td>
+                <td class="p-3">
+                  Same project WIP now presented as contract asset instead of
+                  inventory/advance.
+                </td>
+                <td class="p-3">
+                  No real change in risk; just reflects enforceable right to
+                  payment.
+                </td>
+                <td class="p-3 font-semibold text-slate-800">
+                  Treat as working capital, adjust WC metrics.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-[#1a365d]">
+                  Increase in disclosure volume on revenue
+                </td>
+                <td class="p-3">
+                  New standards require detailed contract and performance
+                  obligation disclosures.
+                </td>
+                <td class="p-3">
+                  More transparency → higher earnings quality if consistent.
+                </td>
+                <td class="p-3 font-semibold text-slate-800">
+                  Read revenue note like a mini-MD&A.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-semibold text-[#1a365d]" id="i-sig-4">
+                  Margin stability despite revenue timing change
+                </td>
+                <td class="p-3" id="i-tech-4">
+                  Revenue moved forward but margin % remains similar across
+                  project life.
+                </td>
+                <td class="p-3">
+                  Underlying project economics are stable; only timing shifted.
+                </td>
+                <td class="p-3 font-semibold text-slate-800">
+                  Focus on lifetime contract, not single-year spikes.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-[#1a365d]">
+                  Greater judgment disclosures on variable consideration
+                </td>
+                <td class="p-3">
+                  Management now explicitly estimates and constrains variable
+                  consideration.
+                </td>
+                <td class="p-3">
+                  Earnings more judgment-sensitive; scope for
+                  optimism/conservatism.
+                </td>
+                <td class="p-3 font-semibold text-slate-800">
+                  Track estimate changes; challenge assumptions.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION J: Trend Distortion Matrix -->
+      <section
+        id="section-k"
+        data-diagnostic="tracked"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION J: Trend Distortion Matrix
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200">Metric</th>
+                <th class="p-3 border-r border-slate-200">Distortion type</th>
+                <th class="p-3 border-r border-slate-200">Duration</th>
+                <th class="p-3 border-r border-slate-200">Correction method</th>
+                <th class="p-3">Example</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr>
+                <td class="p-3 font-bold">Rev. growth</td>
+                <td class="p-3">One-time level shift</td>
+                <td class="p-3">2-3 years</td>
+                <td class="p-3">Recompute under old milestone basis.</td>
+                <td class="p-3" id="j-ex-gro">Rep. 28% vs Norm. 8%</td>
+              </tr>
+              <tr class="bg-slate-50">
+                <td class="p-3 font-bold">EBIT margin</td>
+                <td class="p-3">Temp elevation / Depression</td>
+                <td class="p-3">Until old rolls off</td>
+                <td class="p-3">Adjust EBIT to align with milestones.</td>
+                <td class="p-3" id="j-ex-mar">Rep. 11.8% vs Norm. 10.5%</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold">ROE</td>
+                <td class="p-3">Trans. spike / drop</td>
+                <td class="p-3">1-2 years</td>
+                <td class="p-3">Recalculate using average norm. earnings.</td>
+                <td class="p-3" id="j-ex-roe">Rep. 21.8% vs Norm. 16%</td>
+              </tr>
+              <tr class="bg-slate-50">
+                <td class="p-3 font-bold">WC days</td>
+                <td class="p-3">Structural shift</td>
+                <td class="p-3">Permanent</td>
+                <td class="p-3">
+                  Combine contract assets and trade receivables.
+                </td>
+                <td class="p-3">Asset days look high vs Inv.</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold">EPS growth</td>
+                <td class="p-3">One-time boost / drag</td>
+                <td class="p-3">1-2 cycles</td>
+                <td class="p-3">Create pro forma EPS using old logic.</td>
+                <td class="p-3" id="j-ex-eps">EPS +45% vs +15%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION K: Ratio Interpretation Guide -->
+      <section
+        id="section-i"
+        data-diagnostic="tracked"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION K: Ratio Interpretation Guide
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-1/4">Ratio</th>
+                <th class="p-3 border-r border-slate-200 w-1/4">Rep. Value</th>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  What analyst should do
+                </th>
+                <th class="p-3 w-1/4">Correct interpretation</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold text-[#1a365d]">Rev Growth</td>
+                <td class="p-3" id="h1-gro">+28%</td>
+                <td class="p-3">
+                  Rebuild revenue or remove first-year impact of new over-time
+                  contracts.
+                </td>
+                <td class="p-3">
+                  Underlying growth closer to high single-digits.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold text-[#1a365d]">EBITDA Margin</td>
+                <td class="p-3" id="h1-mar">11.8%</td>
+                <td class="p-3">
+                  Examine revenue note to see if margin expansion is pure
+                  timing.
+                </td>
+                <td class="p-3">
+                  Margin quality unchanged; expansion is standard-driven.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold text-[#1a365d]">Asset T/O</td>
+                <td class="p-3" id="h1-ato">0.90x</td>
+                <td class="p-3">
+                  Adjust denominator to exclude contract assets for WIP.
+                </td>
+                <td class="p-3">
+                  Operational efficiency may not have improved.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold text-[#1a365d]">EPS</td>
+                <td class="p-3" id="h1-eps">Rs. 4.35</td>
+                <td class="p-3">
+                  Build normalized EPS excluding standard-driven timing.
+                </td>
+                <td class="p-3">
+                  True earnings power between old and new metrics.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          class="bg-teal-50 border-t border-slate-200 p-3 text-sm text-teal-900 font-semibold italic border-l-4 border-teal-500"
+        >
+          Intelligence Note: Ind AS/IFRS/US GAAP ratios are directly comparable;
+          no cross-framework bridge is needed once you normalize timing.
+        </div>
+      </section>
+
+      <!-- SECTION L: Analyst Concerns & Answers -->
+      <section
+        id="section-l"
+        data-diagnostic="tracked"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION L: Analyst Concerns & Answers
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  Analyst question
+                </th>
+                <th class="p-3 border-r border-slate-200 w-1/4">Concern</th>
+                <th class="p-3 border-r border-slate-200 w-1/4">Answer</th>
+                <th class="p-3 w-1/4">Evidence</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr>
+                <td class="p-3 italic font-medium">
+                  "Is revenue growth real or accounting?"
+                </td>
+                <td class="p-3">Fear that growth is standard-driven.</td>
+                <td class="p-3 text-slate-700" id="k-ans-1">
+                  Largely timing: same contracts, recognized over time now.
+                  Growth moved from X% to Y%.
+                </td>
+                <td class="p-3 text-emerald-700 font-semibold">
+                  Same total project profit; cash flows unchanged.
+                </td>
+              </tr>
+              <tr class="bg-slate-50">
+                <td class="p-3 italic font-medium">
+                  "Has margin quality improved?"
+                </td>
+                <td class="p-3">Window-dressing.</td>
+                <td class="p-3 text-slate-700" id="k-ans-2">
+                  Lifetime margins unchanged; only period allocation changed.
+                  Margin moved from X% to Y%.
+                </td>
+                <td class="p-3 text-emerald-700 font-semibold">
+                  Contract margin tables in notes.
+                </td>
+              </tr>
+              <tr>
+                <td class="p-3 italic font-medium">
+                  "Are contract assets riskier than inventory?"
+                </td>
+                <td class="p-3">Uncollectible risk.</td>
+                <td class="p-3 text-slate-700">
+                  No - represent enforceable rights to payment.
+                </td>
+                <td class="p-3 text-emerald-700 font-semibold">
+                  Right to payment disclosed.
+                </td>
+              </tr>
+              <tr class="bg-slate-50">
+                <td class="p-3 italic font-medium">
+                  "Are IFRS and US GAAP outcomes different?"
+                </td>
+                <td class="p-3">Lack of global comparability.</td>
+                <td class="p-3 text-slate-700">
+                  For these contracts, Ind AS, IFRS and ASC 606 are identical.
+                </td>
+                <td class="p-3 text-emerald-700 font-semibold">
+                  Revenue profiles of peers.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION M & N: Investor Perception & Signals -->
+      <div class="shrink-0 mt-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- SECTION M: Investor Perception Analysis -->
+        <section
+          id="section-m"
+          data-diagnostic="tracked"
+          class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+        >
+          <div
+            class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+          >
+            SECTION M: Investor Perception Analysis
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-xs xl:text-sm text-left">
+              <thead class="bg-slate-100 text-slate-700">
+                <tr>
+                  <th class="p-3 border-r border-slate-200 w-1/4">
+                    Investor Type
+                  </th>
+                  <th class="p-3 border-r border-slate-200 w-1/4">
+                    What they see
+                  </th>
+                  <th class="p-3 border-r border-slate-200 w-1/4">
+                    Likely reaction
+                  </th>
+                  <th class="p-3 w-1/4">Sophisticated response</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200">
+                <tr>
+                  <td class="p-3 font-bold text-[#1a365d]">Retail</td>
+                  <td class="p-3">Big jump in revenue/EPS.</td>
+                  <td class="p-3">
+                    <span class="text-green-600 font-bold">Buy</span>
+                    aggressively, assuming breakout.
+                  </td>
+                  <td class="p-3">
+                    Recognize accounting effect, avoid over-paying.
+                  </td>
+                </tr>
+                <tr class="bg-slate-50">
+                  <td class="p-3 font-bold text-[#1a365d]">Value</td>
+                  <td class="p-3">Higher book, higher ROE.</td>
+                  <td class="p-3">
+                    <span class="text-amber-600 font-bold">Confused</span>;
+                    looks expensive.
+                  </td>
+                  <td class="p-3">
+                    Rebuild normalized earnings and re-test value.
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-[#1a365d]">Inst. Long-Only</td>
+                  <td class="p-3">
+                    Read transition note, focus on reported EPS.
+                  </td>
+                  <td class="p-3">
+                    <span class="text-green-600 font-bold">Increase</span>
+                    weight if they trust management.
+                  </td>
+                  <td class="p-3">
+                    Ask for pre/post-transition bridges, model normalized.
+                  </td>
+                </tr>
+                <tr class="bg-slate-50">
+                  <td class="p-3 font-bold text-[#1a365d]">Credit/Lenders</td>
+                  <td class="p-3">Better coverage ratios.</td>
+                  <td class="p-3 text-slate-700">
+                    More comfortable short term.
+                  </td>
+                  <td class="p-3">
+                    Adjust for timing; ensure covenant headroom valid.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- SECTION N: Reporting Signals Decoder -->
+        <section
+          id="section-n"
+          data-diagnostic="tracked"
+          class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+        >
+          <div
+            class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+          >
+            SECTION N: Reporting Signals Decoder
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-xs xl:text-sm text-left">
+              <thead class="bg-slate-100 text-slate-700">
+                <tr>
+                  <th class="p-3 border-r border-slate-200">
+                    Management Action
+                  </th>
+                  <th class="p-3 border-r border-slate-200">Signal</th>
+                  <th class="p-3 border-r border-slate-200">
+                    What It Really Means
+                  </th>
+                  <th class="p-3">Your Move</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200">
+                <tr>
+                  <td class="p-3 font-medium">
+                    Emphasising "strong rev growth" without explaining standard
+                  </td>
+                  <td class="p-3 text-red-500 font-semibold">Optics</td>
+                  <td class="p-3">Growth may be mostly accounting.</td>
+                  <td class="p-3">
+                    <span class="text-amber-500 mr-1">🟡</span
+                    ><b>Yellow flag</b> - demand bridge to old basis.
+                  </td>
+                </tr>
+                <tr class="bg-slate-50">
+                  <td class="p-3 font-medium">
+                    Providing detailed revenue disaggregation
+                  </td>
+                  <td class="p-3 text-emerald-500 font-semibold">
+                    Transparency
+                  </td>
+                  <td class="p-3">
+                    Likely higher earnings quality; fewer hidden issues.
+                  </td>
+                  <td class="p-3">
+                    <span class="text-green-500 mr-1">🟢</span
+                    ><b>Green flag</b> - reward in multiple.
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-medium">
+                    Avoiding disclosure of contract assets breakdown
+                  </td>
+                  <td class="p-3 text-red-600 font-semibold">Opacity</td>
+                  <td class="p-3">
+                    May be hiding loss-making or delayed projects.
+                  </td>
+                  <td class="p-3">
+                    <span class="text-red-500 mr-1">🔴</span><b>Red flag</b> -
+                    stress test assumptions.
+                  </td>
+                </tr>
+                <tr class="bg-slate-50">
+                  <td class="p-3 font-medium">
+                    Explicitly stating "IFRS, Ind AS and US GAAP are the same"
+                  </td>
+                  <td class="p-3 text-blue-500 font-semibold">Global Lens</td>
+                  <td class="p-3">
+                    Management understands global investor needs.
+                  </td>
+                  <td class="p-3 font-semibold pb-3">
+                    Lean in - cross-border comparisons safer.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- SECTION O: Premium Intelligence Narrative -->
+      <section
+        id="section-o"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION O: Premium Intelligence Narrative
+        </div>
+        <div class="p-5 text-sm space-y-4 text-slate-700 leading-relaxed">
+          <p>
+            <span class="font-bold text-[#1a365d]">Question:</span> "ABC
+            Company's reported revenue growth changed to 22.5% after moving from
+            AS to Ind AS/IFRS-style revenue recognition. Is this a genuine
+            structural re-rating story or an accounting mirage?"
+          </p>
+          <p>
+            <span class="font-bold text-slate-500"
+              >Average Analyst Answer:</span
+            >
+            "It's mainly due to the new standard; I will look at 2-3 years of
+            numbers and decide later."
+          </p>
+          <div
+            class="p-4 bg-teal-50 border border-teal-200 rounded-lg text-teal-900"
+          >
+            <p>
+              <span class="font-bold text-teal-800 text-base"
+                >PREMIUM Analyst Answer:</span
+              ><br /><br />
+              "You go step-by-step: rebuild contract-level cash flows, re-create
+              AS 9 timing, reconcile to Ind AS/IFRS/US GAAP numbers, quantify
+              the one-off uplift, and then anchor valuation on normalized
+              multi-year earnings rather than Year-1 optics. Explicitly note
+              that Ind AS, IFRS and US GAAP give the same profile for ABC
+              Company's contracts - so there is no cross-standard risk premium -
+              and focus purely on execution, backlog quality, and margin
+              discipline."
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION P: Red Flags vs Green Flags (Visual Indicator Matrix) -->
+      <section
+        id="section-p"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION P: Red Flags vs Green Flags (Visual Indicator Matrix)
+        </div>
+        <div class="overflow-x-auto flex-1">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-1/2">Scenario</th>
+                <th class="p-3 border-r border-slate-200 text-center w-24">
+                  Flag
+                </th>
+                <th class="p-3">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr class="bg-[#fee]">
+                <td class="p-3 font-medium">
+                  Surge in unbilled revenue or contract assets decoupled from
+                  cash collection
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-red-700 uppercase tracking-widest"
+                >
+                  <span class="text-red-500 mr-1">🔴</span>RED
+                </td>
+                <td class="p-3 text-red-900">
+                  High risk of future write-offs. Focus valuation strictly on
+                  cash generation.
+                </td>
+              </tr>
+              <tr class="bg-[#fee]">
+                <td class="p-3 font-medium">
+                  Aggressive upfront recognition of multi-year software/service
+                  contracts
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-red-700 uppercase tracking-widest"
+                >
+                  <span class="text-red-500 mr-1">🔴</span>RED
+                </td>
+                <td class="p-3 text-red-900">
+                  Earnings are front-loaded. Rebuild historical margins to a
+                  straight-line basis for comparability.
+                </td>
+              </tr>
+              <tr class="bg-[#fee]">
+                <td class="p-3 font-medium">
+                  Frequent modifications to contract terms causing revenue
+                  spikes
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-red-700 uppercase tracking-widest"
+                >
+                  <span class="text-red-500 mr-1">🔴</span>RED
+                </td>
+                <td class="p-3 text-red-900">
+                  Sign of managing earnings through contract clauses rather than
+                  operations.
+                </td>
+              </tr>
+              <tr class="bg-[#efe]">
+                <td class="p-3 font-medium">
+                  Transparent disaggregation of revenue by 'point in time' vs
+                  'over time'
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-green-700 uppercase tracking-widest"
+                >
+                  <span class="text-green-500 mr-1">🟢</span>GREEN
+                </td>
+                <td class="p-3 text-green-900">
+                  Use to segment high-quality recurring revenue from
+                  transactional revenue.
+                </td>
+              </tr>
+              <tr class="bg-[#efe]">
+                <td class="p-3 font-medium">
+                  Deferred revenue (contract liability) growing consistently
+                  with orderbook
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-green-700 uppercase tracking-widest"
+                >
+                  <span class="text-green-500 mr-1">🟢</span>GREEN
+                </td>
+                <td class="p-3 text-green-900">
+                  Strong indicator of future cash flow visibility. Assign higher
+                  valuation multiple.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <!-- SECTION Q: Final Intelligence Summary -->
+      <section
+        id="section-q"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION Q: Final Intelligence Summary
+        </div>
+        <div class="p-6 bg-white">
+          <p
+            class="font-bold text-lg text-slate-800 pb-3 border-b border-slate-100 mb-4"
+          >
+            The Sophistication Hierarchy
+          </p>
+          <ul class="space-y-4 text-sm text-slate-700">
+            <li class="flex flex-col sm:flex-row sm:items-start gap-2">
+              <span class="font-bold whitespace-nowrap">Level 1 (Retail):</span>
+              <span>
+                &quot;Topline growth is massive! Buy the breakout.&quot; &rarr;
+                <span class="text-red-600 font-bold"
+                  >Wrong action (misses unbilled or front-loaded
+                  recognition).</span
+                >
+              </span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:items-start gap-2">
+              <span class="font-bold whitespace-nowrap">Level 2 (Basic):</span>
+              <span>
+                &quot;Revenue is volatile, I will wait 3 years to see the
+                trend.&quot; &rarr;
+                <span class="text-amber-600 font-bold"
+                  >Misses the opportunity to forecast cash accurately
+                  today.</span
+                >
+              </span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:items-start gap-2">
+              <span class="font-bold whitespace-nowrap">Level 3:</span>
+              <span>
+                &quot;Ignore the timing optics. Rebuild the contract-level cash
+                inflows. Target high contract liabilities (deferred revenue) as
+                the ultimate predictor of cash flow safety, and discount massive
+                unbilled revenue accumulations.&quot; &rarr;
+                <span class="text-green-600 font-bold"
+                  >Anchors on pure cash generation safely</span
+                >
+              </span>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

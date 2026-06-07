@@ -1,0 +1,2691 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Impairment | Standards Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+      }
+    </style>
+
+    <style>
+      /* Navbar Container */
+      .navbar {
+        background-color: #1a202c;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1rem;
+        position: relative;
+        z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        font-family: inherit;
+      }
+
+      .nav-brand {
+        font-size: 1.25rem;
+        font-weight: bold;
+        padding: 1rem;
+        color: white;
+        text-decoration: none;
+        letter-spacing: 0.05em;
+      }
+
+      .nav-menu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
+
+      .nav-item {
+        position: relative;
+      }
+
+      .nav-link {
+        display: block;
+        padding: 1.25rem 1.5rem;
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        border: none;
+        background: none;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition:
+          background-color 0.2s,
+          color 0.2s;
+        font-family: inherit;
+      }
+
+      .nav-link:hover,
+      .nav-item:hover > .nav-link {
+        background-color: #2d3748;
+      }
+
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: white;
+        min-width: 220px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        border-radius: 0 0 0.375rem 0.375rem;
+        overflow: hidden;
+        border: 1px solid #e2e8f0;
+        border-top: none;
+        z-index: 1000;
+      }
+
+      .mega-menu {
+        min-width: 400px;
+        left: auto;
+        right: 0;
+      }
+
+      .dropdown-item {
+        display: block;
+        padding: 0.85rem 1.25rem;
+        color: #4a5568;
+        text-decoration: none;
+        border-bottom: 1px solid #edf2f7;
+        transition:
+          background-color 0.15s,
+          color 0.15s;
+        font-size: 0.95rem;
+      }
+
+      .dropdown-item:last-child {
+        border-bottom: none;
+      }
+
+      .dropdown-item:hover {
+        background-color: #f7fafc;
+        color: #2b6cb0;
+      }
+
+      .view-all-link {
+        color: #2b6cb0;
+        font-weight: 600;
+        text-decoration: none;
+        display: block;
+        text-align: center;
+        background-color: #f8fafc;
+      }
+
+      .view-all-link:hover {
+        text-decoration: underline;
+        background-color: #f1f5f9;
+      }
+
+      .mega-grid {
+        display: flex;
+        padding: 1.25rem;
+        gap: 2rem;
+      }
+
+      .mega-column {
+        flex: 1;
+      }
+
+      .mega-title {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        color: #a0aec0;
+        letter-spacing: 0.05em;
+        font-weight: bold;
+        margin-bottom: 0.75rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .mega-link {
+        display: block;
+        padding: 0.4rem 0;
+        color: #4a5568;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: color 0.15s;
+      }
+
+      .mega-link:hover {
+        color: #2b6cb0;
+        text-decoration: underline;
+      }
+
+      .view-all-block {
+        background-color: #f8fafc;
+        border-top: 1px solid #e2e8f0;
+      }
+
+      .mobile-toggle {
+        display: none;
+        background: none;
+        border: 1px solid #4a5568;
+        border-radius: 0.25rem;
+        color: white;
+        font-size: 1.25rem;
+        cursor: pointer;
+        padding: 0.5rem 0.75rem;
+        margin-right: 0.5rem;
+      }
+
+      @media (min-width: 769px) {
+        .nav-item:hover > .dropdown-menu {
+          display: block;
+          animation: fadeIn 0.2s ease-in-out;
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-5px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .nav-link.dropdown-toggle::after {
+        content: "";
+        display: inline-block;
+        margin-left: 0.5em;
+        vertical-align: middle;
+        border-top: 4px solid;
+        border-right: 4px solid transparent;
+        border-bottom: 0;
+        border-left: 4px solid transparent;
+      }
+
+      @media (max-width: 768px) {
+        .mobile-toggle {
+          display: block;
+        }
+        .nav-menu {
+          display: none;
+          flex-direction: column;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          background-color: #2d3748;
+        }
+        .nav-menu.active {
+          display: flex;
+        }
+        .nav-link {
+          padding: 1rem 1.5rem;
+          border-bottom: 1px solid #4a5568;
+          width: 100%;
+          text-align: left;
+        }
+        .nav-link.no-arrow::after {
+          content: none;
+        }
+        .nav-link.dropdown-toggle::after {
+          float: right;
+          margin-top: 0.4rem;
+        }
+        .dropdown-menu {
+          position: static;
+          display: none;
+          box-shadow: none;
+          border-radius: 0;
+          background-color: #1a202c;
+          width: 100%;
+          border: none;
+        }
+        .dropdown-menu.active {
+          display: block;
+        }
+        .dropdown-item {
+          color: #e2e8f0;
+          border-bottom-color: #4a5568;
+          padding-left: 2.5rem;
+        }
+        .mega-menu {
+          min-width: auto;
+        }
+        .mega-grid {
+          flex-direction: column;
+          gap: 1rem;
+          padding: 1rem 2.5rem;
+        }
+        .mega-title {
+          border-bottom-color: #4a5568;
+          color: #a0aec0;
+        }
+        .mega-link {
+          color: #e2e8f0;
+        }
+        .view-all-block {
+          background-color: #1a202c;
+          border-color: #4a5568;
+          padding: 0;
+        }
+        .view-all-block .view-all-link {
+          background-color: #1a202c;
+          color: #90cdf4;
+          padding: 1rem;
+          border-top: 1px solid #4a5568;
+        }
+      }
+    </style>
+
+    <style>
+      .custom-scrollbar::-webkit-scrollbar {
+        height: 10px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-[#f7fafc] font-sans h-screen w-full flex flex-col overflow-hidden border-8 border-slate-200 text-slate-800"
+  >
+    \n
+
+    <header class="bg-[#1a365d] text-white p-4 shrink-0 shadow-md">
+      <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end">
+        <div>
+          <h1 class="text-2xl font-bold tracking-tight">
+            Accounting Standards Comparison Hub
+          </h1>
+          <p class="text-slate-300 text-sm italic">
+            AS (Old Indian GAAP) vs Ind AS vs IFRS vs US GAAP
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <nav
+      class="bg-white border-b border-slate-200 flex shrink-0 overflow-x-auto custom-scrollbar"
+    >
+      <a
+        href="index.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Home</a
+      >
+      <a
+        href="lease.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Lease</a
+      >
+      <a
+        href="ppe.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >PPE</a
+      >
+      <a
+        href="financial-instruments.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Financial Instruments</a
+      >
+      <a
+        href="revenue.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Revenue</a
+      >
+      <a
+        href="deferred-tax.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Deferred Tax</a
+      >
+      <a
+        href="consolidation.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Consolidation</a
+      >
+      <a
+        href="impairment.html"
+        class="px-6 py-3 text-sm font-semibold border-b-4 border-indigo-600 bg-indigo-50 text-indigo-900 block whitespace-nowrap"
+        >Impairment</a
+      >
+      <a
+        href="esop.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >ESOP</a
+      >
+      <a
+        href="cashflows.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Cash Flows</a
+      >
+    </nav>
+
+    <main
+      class="flex-1 p-4 md:p-6 lg:p-8 flex flex-col gap-10 overflow-y-auto"
+      id="main-content"
+    >
+      <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+        <div class="border-l-8 border-teal-600 pl-4 py-1 shrink-0">
+          <h2 class="text-2xl font-bold text-[#1a365d] uppercase tracking-wide">
+            Impairment
+          </h2>
+          <p class="text-sm text-slate-600">
+            Premium Analysis Guide: AS vs Ind AS vs IFRS vs US GAAP
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button
+            id="diagnostic-btn"
+            class="bg-indigo-600 text-white hover:bg-indigo-700 px-4 py-2 rounded text-sm font-bold shadow-sm transition-colors"
+          >
+            Diagnostic Mode
+          </button>
+        </div>
+      </div>
+
+      <!-- Diagnostic Panel -->
+      <div
+        id="diagnostic-panel"
+        class="hidden mt-4 bg-indigo-50 border-l-4 border-indigo-600 p-4 text-sm text-indigo-900 shadow-sm rounded-r-lg flex flex-col gap-2 shrink-0"
+      >
+        <h3 class="font-bold text-lg mb-2">Diagnostic Mode Console</h3>
+        <div class="mt-2 border-t border-indigo-200 pt-2">
+          <h4 class="font-bold mb-1 flex justify-between">
+            Recent Updates
+            <span id="diag-errors" class="text-red-600 hidden">Errors!</span>
+          </h4>
+          <div
+            id="diag-console"
+            class="bg-indigo-900 text-indigo-100 font-mono p-3 rounded text-xs h-32 overflow-y-auto whitespace-pre-wrap"
+          >
+            System initialized.
+          </div>
+        </div>
+      </div>
+      <!-- SECTION A: Core Technical Comparison Table -->
+      <section
+        id="section-a"
+        data-diagnostic="tracked"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION A: Core Technical Comparison Table
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-[16%]">Parameter</th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">
+                  AS (Old Indian GAAP)
+                </th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">
+                  Ind AS (Ind AS 36)
+                </th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">
+                  IFRS (IAS 36)
+                </th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">
+                  US GAAP (ASC 350 &amp; 360)
+                </th>
+                <th class="p-3 w-[16%]">Logic shift</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Core philosophy</td>
+                <td class="p-3">
+                  Impairment recognized if carrying amount > undiscounted future
+                  cash flows; loss = difference to fair value.
+                </td>
+                <td class="p-3">
+                  Single-step model: impair if carrying amount > recoverable
+                  amount (higher of fair value less costs to sell and value in
+                  use).
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  Two-step for long-lived assets: (1) Recoverability test
+                  (undiscounted CFs), (2) Loss = fair value - carrying amount.
+                  Goodwill: qualitative or quantitative test at reporting unit
+                  level.
+                </td>
+                <td class="p-3 text-slate-600">
+                  From undiscounted CF triggers to discounted recoverable amount
+                  / fair value.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Trigger for impairment</td>
+                <td class="p-3">
+                  Significant change in operations/market, decline in asset
+                  value, or physical damage.
+                </td>
+                <td class="p-3">
+                  Indications at each reporting date (external + internal).
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  Goodwill tested annually or more often if trigger; long-lived
+                  assets tested only when triggers exist.
+                </td>
+                <td class="p-3 text-slate-600">
+                  IFRS/Ind AS more proactive; US GAAP annual goodwill test
+                  required.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Unit of account</td>
+                <td class="p-3">
+                  Individual asset or cash generating unit (CGU) loosely
+                  defined.
+                </td>
+                <td class="p-3">
+                  CGU = smallest group generating independent cash inflows.
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  Long-lived assets: asset group level; Goodwill: reporting unit
+                  (one level below segment).
+                </td>
+                <td class="p-3 text-slate-600">
+                  IFRS CGU is more operational; US GAAP reporting unit is more
+                  financial-segment-aligned.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Recoverable amount definition</td>
+                <td class="p-3">
+                  Not explicitly defined; loss = carrying amount - fair value
+                  (if estimable).
+                </td>
+                <td class="p-3">
+                  Higher of fair value less costs of disposal (FVLCD) and value
+                  in use (VIU = PV of future CFs).
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  Fair value (market price or DCF) used in step 2; no value in
+                  use concept.
+                </td>
+                <td class="p-3 text-slate-600">
+                  Ind AS/IFRS use VIU; US GAAP fair value only.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Discounting</td>
+                <td class="p-3">Not required for recoverability test.</td>
+                <td class="p-3">Required for VIU (pre-tax discount rate).</td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">Used only in step 2 fair value measurement.</td>
+                <td class="p-3 text-slate-600">
+                  Discounting embedded in core impairment math under new
+                  standards.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Reversal of impairment</td>
+                <td class="p-3">Allowed if conditions improve.</td>
+                <td class="p-3">
+                  Prohibited for goodwill; allowed for other assets if
+                  recoverable amount increases.
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  Prohibited for all assets (once impaired, carrying amount
+                  cannot be increased).
+                </td>
+                <td class="p-3 text-slate-600">
+                  Key divergence: US GAAP most conservative; AS most flexible.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Goodwill impairment</td>
+                <td class="p-3">
+                  Amortized + tested for impairment if trigger.
+                </td>
+                <td class="p-3">
+                  Not amortized; tested annually; one-step: compare CGU carrying
+                  amount (incl. goodwill) vs recoverable amount.
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  Not amortized; tested annually; two-step (or qualitative
+                  option): compare reporting unit fair value vs carrying amount.
+                </td>
+                <td class="p-3 text-slate-600">
+                  Goodwill treated as a permanent asset under new standards, but
+                  tested rigorously.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Allocation of goodwill</td>
+                <td class="p-3">Not systematically required.</td>
+                <td class="p-3">
+                  Allocate to CGUs expected to benefit from synergy.
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">Allocate to reporting units at acquisition.</td>
+                <td class="p-3 text-slate-600">
+                  Systematic allocation required under all new standards.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Intangible impairment</td>
+                <td class="p-3">Same as tangible; no special rules.</td>
+                <td class="p-3">
+                  Same rules as tangibles; indefinite life intangibles tested
+                  annually.
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  Indefinite life intangibles tested annually like goodwill;
+                  finite life tested on triggers.
+                </td>
+                <td class="p-3 text-slate-600">
+                  Indefinite-lived intangibles get separate attention under new
+                  rules.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Disclosure volume</td>
+                <td class="p-3">Minimal: only amount and basis.</td>
+                <td class="p-3">
+                  Extensive: CGU details, discount rates, sensitivity analysis,
+                  assumptions.
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  Extensive but less required sensitivity than IFRS; fair value
+                  hierarchy disclosure.
+                </td>
+                <td class="p-3 text-slate-600">
+                  IFRS/Ind AS more narrative-heavy; US GAAP more quantitative
+                  fair value focus.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION B -->
+      <section
+        id="section-b-container"
+        data-diagnostic="tracked"
+        class="shrink-0 mt-6 bg-amber-50 rounded-xl shadow-sm border border-amber-200 overflow-hidden flex flex-col font-sans"
+      >
+        <div
+          class="bg-amber-600 text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-amber-300 flex justify-between items-center flex-wrap gap-2"
+        >
+          <span>SECTION B: Transaction Fact Pattern (EDITABLE)</span>
+          <div>
+            <button
+              id="reset-btn"
+              class="bg-white text-amber-700 hover:bg-amber-100 text-xs px-3 py-1 rounded shadow-sm mr-2 transition-colors cursor-pointer font-bold"
+            >
+              Reset to Default
+            </button>
+            <button
+              id="copy-btn"
+              class="bg-amber-800 hover:bg-amber-900 text-white text-xs px-3 py-1 rounded shadow-sm transition-colors border border-amber-500 cursor-pointer font-bold"
+            >
+              Copy Results
+            </button>
+          </div>
+        </div>
+        <div class="p-5 relative bg-amber-50">
+          <div
+            class="absolute right-4 top-4 text-amber-700 opacity-10 font-bold text-6xl pointer-events-none select-none"
+          >
+            FACTS
+          </div>
+          <div
+            id="validation-warning"
+            class="hidden mb-4 p-3 bg-red-100 border-l-4 border-red-500 text-red-700 text-sm font-bold"
+          ></div>
+
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4 relative z-10 text-sm"
+          >
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-1"
+                >Company</label
+              >
+              <div
+                class="text-slate-800 bg-white p-2 border border-slate-200 rounded"
+              >
+                ABC Ltd
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-1"
+                >Asset</label
+              >
+              <div
+                class="text-slate-800 bg-white p-2 border border-slate-200 rounded"
+              >
+                Production Machinery
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-1"
+                >Status</label
+              >
+              <div
+                class="text-slate-800 bg-white p-2 border border-slate-200 rounded text-xs truncate"
+                title="Technological obsolescence identified"
+              >
+                Technological obsolescence
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-1"
+                >Carrying amount (Cr)</label
+              >
+              <input
+                type="number"
+                id="inp-carrying"
+                value="50"
+                class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-1"
+                >Useful life (years)</label
+              >
+              <input
+                type="number"
+                id="inp-life"
+                value="5"
+                class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-1"
+                >Undiscounted CFs (Cr)</label
+              >
+              <input
+                type="number"
+                id="inp-undiscounted"
+                value="48"
+                class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-1"
+                >FVLCD (Cr)</label
+              >
+              <input
+                type="number"
+                id="inp-fvlcd"
+                value="30"
+                class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-1"
+                >VIU discount rate (%)</label
+              >
+              <input
+                type="number"
+                id="inp-rate"
+                value="12"
+                class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-1"
+                >Calculated VIU (Cr)</label
+              >
+              <input
+                type="number"
+                id="inp-viu"
+                value="34"
+                class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-1"
+                >US GAAP FV (Cr)</label
+              >
+              <input
+                type="number"
+                id="inp-us-fv"
+                value="32"
+                class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-1"
+                >Base EBITDA (Cr)</label
+              >
+              <input
+                type="number"
+                id="inp-ebitda"
+                value="80"
+                class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-1"
+                >Normal depreciation (Cr)</label
+              >
+              <input
+                type="number"
+                id="inp-depr"
+                value="10"
+                class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-1"
+                >Tax rate (%)</label
+              >
+              <input
+                type="number"
+                id="inp-tax"
+                value="25"
+                class="w-full p-2 border border-slate-300 rounded bg-white text-slate-800 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+              />
+            </div>
+          </div>
+          <div class="text-xs text-amber-700 italic text-wrap mt-2">
+            * OBSOLESCENCE TRIGGER: Carrying amount exceeds undiscounted future
+            cash flows.
+          </div>
+
+          <!-- Subsection for Calculated Impairment Losses -->
+          <div
+            class="mt-6 pt-4 border-t border-amber-200 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-6 pb-2"
+          >
+            <div>
+              <h4
+                class="font-bold text-amber-900 text-xs uppercase tracking-wider mb-2"
+              >
+                Calculated Impairment Losses
+              </h4>
+              <div
+                class="bg-white/80 p-3 rounded border border-amber-200/60 shadow-xs grid grid-cols-3 gap-2 text-xs text-center col-span-1"
+              >
+                <div
+                  class="p-2 bg-slate-50 border border-slate-200 rounded flex flex-col justify-center"
+                >
+                  <span
+                    class="block font-bold text-slate-500 uppercase tracking-tight text-[10px] mb-1"
+                    >AS 28 Loss</span
+                  >
+                  <span id="calc-imp-as" class="font-bold text-red-600">-</span>
+                </div>
+                <div
+                  class="p-2 bg-slate-50 border border-slate-200 rounded flex flex-col justify-center"
+                >
+                  <span
+                    class="block font-bold text-slate-500 uppercase tracking-tight text-[10px] mb-1"
+                    >IndAS/IFRS Loss</span
+                  >
+                  <span id="calc-imp-ifrs" class="font-bold text-red-600"
+                    >-</span
+                  >
+                </div>
+                <div
+                  class="p-2 bg-slate-50 border border-slate-200 rounded flex flex-col justify-center"
+                >
+                  <span
+                    class="block font-bold text-slate-500 uppercase tracking-tight text-[10px] mb-1"
+                    >US GAAP Loss</span
+                  >
+                  <span id="calc-imp-us" class="font-bold text-red-600">-</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="flex justify-between items-end mt-4 pt-4 border-t border-amber-200 relative z-10"
+          >
+            <div class="text-xs text-amber-700 opacity-80">
+              Change inputs above to calculate changes dynamically.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION C -->
+      <section
+        id="section-c"
+        data-diagnostic="tracked"
+        class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col font-sans"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION C: Side-by-Side Treatment
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left font-sans">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-r border-slate-200 w-1/4">
+                  AS 28 (Old Indian GAAP)
+                </th>
+                <th class="p-3 border-b border-r border-slate-200 w-1/4">
+                  Ind AS 36
+                </th>
+                <th class="p-3 border-b border-r border-slate-200 w-1/4">
+                  IAS 36 (IFRS)
+                </th>
+                <th class="p-3 border-b border-slate-200 w-1/4">
+                  US GAAP (ASC 360)
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 bg-white">
+              <tr>
+                <td
+                  class="p-3 border-r border-slate-200 align-top text-slate-700 leading-relaxed space-y-3"
+                >
+                  <div>
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Triggering Test (Step 1)</span
+                    >
+                    <span class="text-xs border-b border-slate-100 pb-1 block"
+                      >Carrying amount (<span id="c-as-carry1">50</span> Cr)
+                      &gt; Undiscounted CFs (<span id="c-as-undisc">48</span>
+                      Cr) -
+                      <span id="c-as-trigger" class="font-semibold text-red-600"
+                        >Impairment required</span
+                      ></span
+                    >
+                  </div>
+                  <div>
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Measurement (Step 2)</span
+                    >
+                    <span class="text-sm"
+                      >Impairment loss = Carrying amount - Fair value =
+                      <span id="c-as-loss" class="font-bold">20</span> Cr</span
+                    >
+                  </div>
+                  <div
+                    class="bg-slate-100 p-2 rounded font-mono text-[11px] text-slate-700 border border-slate-100"
+                  >
+                    Dr Impairment loss <span id="c-as-jrn1">20</span> Cr<br />Cr
+                    Accumulated impairment <span id="c-as-jrn2">20</span> Cr
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Post-Impairment Carrying Amount</span
+                    >
+                    <span class="text-sm font-semibold"
+                      ><span id="c-as-new-carry">30</span> Cr</span
+                    >
+                  </div>
+                  <div>
+                    <span
+                      class="block font-bold text-slate-500 text-[11px] uppercase tracking-wider mb-1"
+                      >Future Depreciation</span
+                    >
+                    <span class="text-xs text-slate-600"
+                      ><span id="c-as-new-depr">6.00</span> Cr/year</span
+                    >
+                  </div>
+                </td>
+                <td
+                  class="p-3 border-r border-slate-200 align-top text-slate-700 leading-relaxed space-y-3"
+                >
+                  <div>
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Trigger &amp; Recoverable Amount</span
+                    >
+                    <span class="text-xs border-b border-slate-100 pb-1 block"
+                      >Recoverable amount = Higher of FVLCD (<span
+                        id="c-ifrs-fvlcd"
+                        >30</span
+                      >
+                      Cr) and VIU (<span id="c-ifrs-viu">34</span> Cr) =
+                      <span id="c-ifrs-recov" class="font-bold text-green-700"
+                        >34</span
+                      >
+                      Cr</span
+                    >
+                  </div>
+                  <div>
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Measurement</span
+                    >
+                    <span class="text-sm"
+                      >Impairment loss = Carrying amount (<span
+                        id="c-ifrs-carry"
+                        >50</span
+                      >
+                      Cr) - Recoverable amount (<span id="c-ifrs-recov2"
+                        >34</span
+                      >
+                      Cr) =
+                      <span id="c-ifrs-loss" class="font-bold">16</span>
+                      Cr</span
+                    >
+                  </div>
+                  <div
+                    class="bg-slate-100 p-2 rounded font-mono text-[11px] text-slate-700 border border-slate-100"
+                  >
+                    Dr Impairment loss
+                    <span id="c-ifrs-jrn1">16</span> Cr<br />Cr Accumulated
+                    impairment <span id="c-ifrs-jrn2">16</span> Cr
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Post-Impairment Carrying Amount</span
+                    >
+                    <span class="text-sm font-semibold"
+                      ><span id="c-ifrs-new-carry">34</span> Cr</span
+                    >
+                  </div>
+                  <div>
+                    <span
+                      class="block font-bold text-slate-500 text-[11px] uppercase tracking-wider mb-1"
+                      >Future Depreciation</span
+                    >
+                    <span class="text-xs text-slate-600"
+                      ><span id="c-ifrs-new-depr">6.80</span> Cr/year</span
+                    >
+                  </div>
+                </td>
+                <td
+                  class="p-3 border-r border-slate-200 align-top text-slate-700 leading-relaxed space-y-3"
+                >
+                  <div>
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >In Accordance with IAS 36</span
+                    >
+                    <span class="text-xs text-slate-600 leading-relaxed"
+                      >Fully aligned with Ind AS 36. Single-step impairment
+                      comparison with recoverable amount (higher of value-in-use
+                      and fair value less costs to sell):</span
+                    >
+                  </div>
+                  <ul
+                    class="text-[11px] text-slate-600 space-y-1 list-disc pl-4"
+                  >
+                    <li>
+                      No preliminary recoverability test step matches US GAAP
+                      style
+                    </li>
+                    <li>Reversals allowed if recovery estimates change</li>
+                  </ul>
+                  <div
+                    class="bg-indigo-50 border border-indigo-100 text-indigo-800 p-2 rounded text-[11px]"
+                  >
+                    Same outcomes as Ind AS 36: Impairment loss of 16 Cr, with
+                    future depreciation adjusted to 6.80 Cr/year.
+                  </div>
+                </td>
+                <td
+                  class="p-3 align-top text-slate-700 leading-relaxed space-y-3"
+                >
+                  <div>
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Triggering Test (Step 1)</span
+                    >
+                    <span class="text-xs border-b border-slate-100 pb-1 block"
+                      >Carrying amount (<span id="c-us-carry">50</span> Cr) &gt;
+                      Undiscounted CFs (<span id="c-us-undisc">48</span> Cr) -
+                      <span id="c-us-fail" class="font-semibold text-red-600"
+                        >Fail - Step 2 required</span
+                      ></span
+                    >
+                  </div>
+                  <div>
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Measurement (Step 2)</span
+                    >
+                    <span class="text-sm"
+                      >Impairment loss = Carrying amount - Fair value =
+                      <span id="c-us-carry2">50</span> Cr -
+                      <span id="c-us-fv">32</span> Cr =
+                      <span id="c-us-loss" class="font-bold">18</span> Cr</span
+                    >
+                  </div>
+                  <div
+                    class="bg-slate-100 p-2 rounded font-mono text-[11px] text-slate-700 border border-slate-100"
+                  >
+                    Dr Impairment loss <span id="c-us-jrn1">18</span> Cr<br />Cr
+                    Accumulated impairment <span id="c-us-jrn2">18</span> Cr
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Post-Impairment Carrying Amount</span
+                    >
+                    <span class="text-sm font-semibold"
+                      ><span id="c-us-new-carry">32</span> Cr</span
+                    >
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION D -->
+      <section
+        class="shrink-0 -mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION D: Side-by-Side Impact Table (Year 1)
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200">Framework</th>
+                <th class="p-3 border-b border-slate-200">Trigger used</th>
+                <th class="p-3 border-b border-slate-200">
+                  Recoverable amount / Fair value
+                </th>
+                <th class="p-3 border-b border-slate-200">
+                  Impairment loss (P&amp;L)
+                </th>
+                <th class="p-3 border-b border-slate-200">
+                  New carrying amount
+                </th>
+                <th class="p-3 border-b border-slate-200">Reversal allowed?</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">AS (Old)</td>
+                <td class="p-3">
+                  Undiscounted CF test (<span id="d-as-test">fail</span>)
+                </td>
+                <td class="p-3">Fair value <span id="d-as-rv">30</span> Cr</td>
+                <td class="p-3 font-mono"><span id="d-as-loss">20</span> Cr</td>
+                <td class="p-3 font-mono"><span id="d-as-ca">30</span> Cr</td>
+                <td class="p-3">Yes</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">Ind AS 36</td>
+                <td class="p-3">
+                  VIU &gt; FVLCD? <span id="d-ind-test">No</span>, VIU
+                  <span id="d-ind-viu">34</span> Cr
+                </td>
+                <td class="p-3"><span id="d-ind-rv">34</span> Cr</td>
+                <td class="p-3 font-mono">
+                  <span id="d-ind-loss">16</span> Cr
+                </td>
+                <td class="p-3 font-mono"><span id="d-ind-ca">34</span> Cr</td>
+                <td class="p-3">No for goodwill; yes for others</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">IFRS 36</td>
+                <td class="p-3">Same as Ind AS</td>
+                <td class="p-3"><span id="d-ifrs-rv">34</span> Cr</td>
+                <td class="p-3 font-mono">
+                  <span id="d-ifrs-loss">16</span> Cr
+                </td>
+                <td class="p-3 font-mono"><span id="d-ifrs-ca">34</span> Cr</td>
+                <td class="p-3">Same as Ind AS</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">US GAAP</td>
+                <td class="p-3">
+                  Step 1 <span id="d-us-test">fail</span> (undiscounted CFs
+                  <span id="d-us-ucf">48</span> Cr)
+                </td>
+                <td class="p-3">Fair value <span id="d-us-rv">32</span> Cr</td>
+                <td class="p-3 font-mono"><span id="d-us-loss">18</span> Cr</td>
+                <td class="p-3 font-mono"><span id="d-us-ca">32</span> Cr</td>
+                <td class="p-3">No for all assets</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION E -->
+      <section
+        class="shrink-0 -mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION E: P&amp;L Impact - Year 1
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700 font-sans">
+              <tr>
+                <th class="p-3 border-b border-slate-200">Line item</th>
+                <th class="p-3 border-b border-slate-200 text-right">
+                  AS (Old)
+                </th>
+                <th class="p-3 border-b border-slate-200 text-right">
+                  Ind AS 36
+                </th>
+                <th class="p-3 border-b border-slate-200 text-right">
+                  IFRS 36
+                </th>
+                <th class="p-3 border-b border-slate-200 text-right">
+                  US GAAP (ASC 360)
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800 font-sans">
+                  Base EBITDA
+                </td>
+                <td class="p-3 text-right" id="e-as-base">80.00 Cr</td>
+                <td class="p-3 text-right" id="e-ind-base">80.00 Cr</td>
+                <td class="p-3 text-right" id="e-ifrs-base">80.00 Cr</td>
+                <td class="p-3 text-right" id="e-us-base">80.00 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50 text-red-600">
+                <td class="p-3 font-semibold font-sans">Impairment loss</td>
+                <td class="p-3 text-right" id="e-as-imp">-20.00 Cr</td>
+                <td class="p-3 text-right" id="e-ind-imp">-16.00 Cr</td>
+                <td class="p-3 text-right" id="e-ifrs-imp">-16.00 Cr</td>
+                <td class="p-3 text-right" id="e-us-imp">-18.00 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50 text-red-600">
+                <td class="p-3 font-semibold font-sans">
+                  Depreciation (normal)
+                </td>
+                <td class="p-3 text-right" id="e-as-depr">-10.00 Cr</td>
+                <td class="p-3 text-right" id="e-ind-depr">-10.00 Cr</td>
+                <td class="p-3 text-right" id="e-ifrs-depr">-10.00 Cr</td>
+                <td class="p-3 text-right" id="e-us-depr">-10.00 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50 font-bold bg-slate-100">
+                <td class="p-3 font-sans">Reported EBITDA</td>
+                <td class="p-3 text-right" id="e-as-rebitda">80.00 Cr</td>
+                <td class="p-3 text-right" id="e-ind-rebitda">80.00 Cr</td>
+                <td class="p-3 text-right" id="e-ifrs-rebitda">80.00 Cr</td>
+                <td class="p-3 text-right" id="e-us-rebitda">80.00 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50 font-bold">
+                <td class="p-3 font-sans">EBIT</td>
+                <td class="p-3 text-right" id="e-as-ebit">50.00 Cr</td>
+                <td class="p-3 text-right" id="e-ind-ebit">54.00 Cr</td>
+                <td class="p-3 text-right" id="e-ifrs-ebit">54.00 Cr</td>
+                <td class="p-3 text-right" id="e-us-ebit">52.00 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800 font-sans">
+                  Interest
+                </td>
+                <td class="p-3 text-right">Nil</td>
+                <td class="p-3 text-right">Nil</td>
+                <td class="p-3 text-right">Nil</td>
+                <td class="p-3 text-right">Nil</td>
+              </tr>
+              <tr class="hover:bg-slate-50 font-bold">
+                <td class="p-3 font-sans">PBT</td>
+                <td class="p-3 text-right" id="e-as-pbt">50.00 Cr</td>
+                <td class="p-3 text-right" id="e-ind-pbt">54.00 Cr</td>
+                <td class="p-3 text-right" id="e-ifrs-pbt">54.00 Cr</td>
+                <td class="p-3 text-right" id="e-us-pbt">52.00 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50 text-red-600">
+                <td class="p-3 font-semibold font-sans">
+                  Tax @ <span id="e-tax-rate">25</span>%
+                </td>
+                <td class="p-3 text-right" id="e-as-tax">-12.50 Cr</td>
+                <td class="p-3 text-right" id="e-ind-tax">-13.50 Cr</td>
+                <td class="p-3 text-right" id="e-ifrs-tax">-13.50 Cr</td>
+                <td class="p-3 text-right" id="e-us-tax">-13.00 Cr</td>
+              </tr>
+              <tr
+                class="hover:bg-slate-50 font-bold text-green-700 bg-green-50"
+              >
+                <td class="p-3 font-sans">PAT</td>
+                <td class="p-3 text-right" id="e-as-pat">37.50 Cr</td>
+                <td class="p-3 text-right" id="e-ind-pat">40.50 Cr</td>
+                <td class="p-3 text-right" id="e-ifrs-pat">40.50 Cr</td>
+                <td class="p-3 text-right" id="e-us-pat">39.00 Cr</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION F -->
+      <section
+        class="shrink-0 -mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION F: Balance Sheet Impact - Year 1
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200">Item</th>
+                <th class="p-3 border-b border-slate-200">AS (Old)</th>
+                <th class="p-3 border-b border-slate-200">Ind AS 36</th>
+                <th class="p-3 border-b border-slate-200">IFRS 36</th>
+                <th class="p-3 border-b border-slate-200">US GAAP</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50 font-mono">
+                <td class="p-3 font-semibold text-slate-800 font-sans">
+                  Gross asset
+                </td>
+                <td class="p-3" id="f-as-ga">50 Cr</td>
+                <td class="p-3" id="f-ind-ga">50 Cr</td>
+                <td class="p-3" id="f-ifrs-ga">50 Cr</td>
+                <td class="p-3" id="f-us-ga">50 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50 font-mono text-red-600">
+                <td class="p-3 font-semibold font-sans">
+                  Accumulated impairment
+                </td>
+                <td class="p-3" id="f-as-acc">-20 Cr</td>
+                <td class="p-3" id="f-ind-acc">-16 Cr</td>
+                <td class="p-3" id="f-ifrs-acc">-16 Cr</td>
+                <td class="p-3" id="f-us-acc">-18 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50 font-bold font-mono bg-slate-100">
+                <td class="p-3 font-sans">Net asset carrying amount</td>
+                <td class="p-3" id="f-as-na">30 Cr</td>
+                <td class="p-3" id="f-ind-na">34 Cr</td>
+                <td class="p-3" id="f-ifrs-na">34 Cr</td>
+                <td class="p-3" id="f-us-na">32 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">Total assets</td>
+                <td class="p-3">Lower</td>
+                <td class="p-3">Higher</td>
+                <td class="p-3">Higher</td>
+                <td class="p-3">Medium</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Total liabilities
+                </td>
+                <td class="p-3">Unchanged</td>
+                <td class="p-3">Unchanged</td>
+                <td class="p-3">Unchanged</td>
+                <td class="p-3">Unchanged</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">Equity</td>
+                <td class="p-3">Lower</td>
+                <td class="p-3">Lower</td>
+                <td class="p-3">Lower</td>
+                <td class="p-3">Lower</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">Hidden risk</td>
+                <td class="p-3">Understated impairment</td>
+                <td class="p-3">Fairly stated</td>
+                <td class="p-3">Fairly stated</td>
+                <td class="p-3 font-semibold text-slate-700">Conservative</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION G -->
+      <section
+        id="section-g"
+        class="shrink-0 -mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col font-mono"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold font-sans uppercase tracking-wider text-sm border-b border-slate-200 flex justify-between"
+        >
+          <span>SECTION G: Cash Flow Impact (Year 1)</span>
+        </div>
+        <div class="overflow-x-auto text-sm">
+          <table class="w-full text-left">
+            <thead class="bg-slate-50 text-slate-700 font-sans">
+              <tr>
+                <th class="p-3 border-b border-slate-200">Item</th>
+                <th class="p-3 border-b border-slate-200">AS (Old)</th>
+                <th class="p-3 border-b border-slate-200">Ind AS / IFRS</th>
+                <th class="p-3 border-b border-slate-200">US GAAP</th>
+                <th class="p-3 border-b border-slate-200">Interpretation</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans">
+                  Operating Cash Flow (CFO)
+                </td>
+                <td class="p-3" id="g-cfo-as"></td>
+                <td class="p-3 font-bold text-amber-700" id="g-cfo-in"></td>
+                <td class="p-3" id="g-cfo-us"></td>
+                <td class="p-3 font-sans text-xs text-slate-600">
+                  Net operating cash unimpacted by non-cash impairment
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans">
+                  Financing Cash Flow (CFF)
+                </td>
+                <td class="p-3" id="g-cff-as">0.00 Cr</td>
+                <td class="p-3 font-bold text-rose-700" id="g-cff-in">
+                  0.00 Cr
+                </td>
+                <td class="p-3" id="g-cff-us">0.00 Cr</td>
+                <td class="p-3 font-sans text-xs text-slate-600">
+                  No financing cash flow impact
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50 bg-slate-50/50">
+                <td
+                  class="p-3 font-bold font-sans text-indigo-800 border-t border-slate-300"
+                >
+                  Total Net Cash Flow
+                </td>
+                <td
+                  class="p-3 font-bold text-slate-800 border-t border-slate-300"
+                  id="g-tot-as"
+                ></td>
+                <td
+                  class="p-3 font-bold text-indigo-700 border-t border-slate-300"
+                  id="g-tot-in"
+                ></td>
+                <td
+                  class="p-3 font-bold text-slate-800 border-t border-slate-300"
+                  id="g-tot-us"
+                ></td>
+                <td
+                  class="p-3 font-sans text-xs text-slate-600 border-t border-slate-300"
+                >
+                  Total cash drain is identical across all frameworks
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION H -->
+      <section
+        id="section-h"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col font-mono"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold font-sans uppercase tracking-wider text-sm border-b border-slate-200 flex justify-between"
+        >
+          <span>SECTION H: Ratio Impact (Year 1)</span>
+        </div>
+        <div
+          class="p-3 bg-amber-50 border-b border-slate-200 font-sans text-xs flex flex-wrap gap-4 items-center"
+        >
+          <span class="font-bold text-[#1a365d]">Ratio Baseline:</span>
+          <div class="flex items-center gap-1">
+            <label>Revenue (Cr):</label
+            ><input
+              type="number"
+              id="inp-rev"
+              value="400"
+              step="1"
+              class="w-20 p-1 border border-slate-300 rounded text-right bg-white"
+            />
+          </div>
+          <div class="flex items-center gap-1">
+            <label>Total Assets pre-impairment (Cr):</label
+            ><input
+              type="number"
+              id="inp-assets"
+              value="500"
+              step="1"
+              class="w-20 p-1 border border-slate-300 rounded text-right bg-white"
+            />
+          </div>
+          <div class="flex items-center gap-1">
+            <label>Equity (Cr):</label
+            ><input
+              type="number"
+              id="inp-eq"
+              value="200"
+              step="1"
+              class="w-20 p-1 border border-slate-300 rounded text-right bg-white"
+            />
+          </div>
+          <div class="flex items-center gap-1">
+            <label>Debt (Cr):</label
+            ><input
+              type="number"
+              id="inp-debt"
+              value="100"
+              step="1"
+              class="w-20 p-1 border border-slate-300 rounded text-right bg-white"
+            />
+          </div>
+          <span class="text-slate-600"
+            >Calculations shown strictly for the impaired asset (Denominator =
+            New Carrying Amount) to highlight specific framework differences.
+            EBITDA margin assumes an illustrative Revenue base.</span
+          >
+        </div>
+        <div class="overflow-x-auto text-sm">
+          <table class="w-full text-center">
+            <thead class="bg-slate-50 text-slate-700 font-sans">
+              <tr>
+                <th class="p-3 border-b border-slate-200 text-left w-1/6">
+                  Ratio
+                </th>
+                <th class="p-3 border-b border-slate-200">AS (Old)</th>
+                <th class="p-3 border-b border-slate-200">Ind AS / IFRS</th>
+                <th class="p-3 border-b border-slate-200">US GAAP</th>
+                <th
+                  class="p-3 border-b border-slate-200 text-blue-800 font-bold"
+                >
+                  Direction
+                </th>
+                <th class="p-3 border-b border-slate-200 text-left w-1/4">
+                  Interpretation
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans text-left">
+                  ROA (Net Income / Assets)
+                </td>
+                <td class="p-3"><span id="h-roa-as"></span></td>
+                <td class="p-3 font-bold text-amber-700">
+                  <span id="h-roa-in"></span>
+                </td>
+                <td class="p-3"><span id="h-roa-us"></span></td>
+                <td class="p-3 text-red-600 font-bold">Mixed</td>
+                <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                  Return on assets mechanically shifts as carrying amounts
+                  change
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans text-left">ROE</td>
+                <td class="p-3"><span id="h-roe-as"></span></td>
+                <td class="p-3 font-bold text-amber-700">
+                  <span id="h-roe-in"></span>
+                </td>
+                <td class="p-3"><span id="h-roe-us"></span></td>
+                <td class="p-3 text-red-600 font-bold">↓</td>
+                <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                  Reported equity base drops, depressing returns
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans text-left">
+                  Asset turnover
+                </td>
+                <td class="p-3"><span id="h-ato-as"></span></td>
+                <td class="p-3 font-bold text-amber-700">
+                  <span id="h-ato-in"></span>
+                </td>
+                <td class="p-3"><span id="h-ato-us"></span></td>
+                <td class="p-3 text-blue-600 font-bold">Mixed</td>
+                <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                  Velocity of assets appears faster due to written-down
+                  denominator
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans text-left">EBITDA margin</td>
+                <td class="p-3"><span id="h-mar-as"></span></td>
+                <td class="p-3 font-bold text-amber-700">
+                  <span id="h-mar-in"></span>
+                </td>
+                <td class="p-3"><span id="h-mar-us"></span></td>
+                <td class="p-3 text-slate-500 font-bold">-</td>
+                <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                  EBITDA ignores non-cash impairment hits
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans text-left">Debt/Equity</td>
+                <td class="p-3"><span id="h-de-as"></span></td>
+                <td class="p-3 font-bold text-amber-700">
+                  <span id="h-de-in"></span>
+                </td>
+                <td class="p-3"><span id="h-de-us"></span></td>
+                <td class="p-3 text-slate-500 font-bold">-</td>
+                <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                  Leverage artificially worsens as retained earnings take the
+                  hit
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION I -->
+      <section
+        class="shrink-0 -mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION I: Earnings Quality - Signals Table
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200">Signal observed</th>
+                <th class="p-3 border-b border-slate-200">
+                  What it means technically
+                </th>
+                <th class="p-3 border-b border-slate-200">
+                  Analyst interpretation
+                </th>
+                <th class="p-3 border-b border-slate-200">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Impairment loss lower under Ind AS/IFRS than AS
+                </td>
+                <td class="p-3">
+                  Discounting in VIU reduces loss compared to undiscounted CF
+                  test
+                </td>
+                <td class="p-3">
+                  New standard may show smaller hits but still real economics
+                </td>
+                <td class="p-3 font-medium text-[#1a365d]">
+                  Recompute impairment using standardized discount rate across
+                  peers
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  US GAAP impairment higher than IFRS
+                </td>
+                <td class="p-3">Fair value only, no VIU benefit</td>
+                <td class="p-3">
+                  US GAAP more conservative for tangible assets
+                </td>
+                <td class="p-3 font-medium text-[#1a365d]">
+                  Flag cross-border comparability issues
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Goodwill never reversed
+                </td>
+                <td class="p-3">
+                  IFRS/Ind AS prohibit reversal for goodwill; US GAAP prohibits
+                  all reversals
+                </td>
+                <td class="p-3">Once impaired, permanent reduction</td>
+                <td class="p-3 font-medium text-[#1a365d]">
+                  Do not expect future write-ups; track acquisition discipline
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Frequent impairment triggers
+                </td>
+                <td class="p-3">Management may be delaying recognition</td>
+                <td class="p-3">Possible earnings management</td>
+                <td class="p-3 font-medium text-[#1a365d]">
+                  Compare timing of triggers to peer and industry cycle
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  No sensitivity disclosure (IFRS/Ind AS)
+                </td>
+                <td class="p-3">Poor quality reporting</td>
+                <td class="p-3">Risk that assumptions are aggressive</td>
+                <td class="p-3 font-medium text-[#1a365d]">
+                  Request discount rate and growth assumption details
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION J -->
+      <section
+        class="shrink-0 -mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION J: Trend Distortion Matrix
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200">Metric</th>
+                <th class="p-3 border-b border-slate-200">Distortion type</th>
+                <th class="p-3 border-b border-slate-200">Duration</th>
+                <th class="p-3 border-b border-slate-200">Correction method</th>
+                <th class="p-3 border-b border-slate-200">Example</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">Net Income</td>
+                <td class="p-3">One-time hit</td>
+                <td class="p-3 text-slate-500 italic">Impairment year only</td>
+                <td class="p-3 font-medium">
+                  Exclude non-recurring impairment for core earnings
+                </td>
+                <td class="p-3">Normalize by adding back impairment</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">ROA</td>
+                <td class="p-3">Permanent downward level shift</td>
+                <td class="p-3 text-slate-500 italic">
+                  Remaining life of asset
+                </td>
+                <td class="p-3 font-medium">
+                  Use pre-impairment asset base for trend
+                </td>
+                <td class="p-3">Compare YoY using same asset base</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">Asset turnover</td>
+                <td class="p-3">Permanent upward if large impairment</td>
+                <td class="p-3 text-slate-500 italic">Remaining life</td>
+                <td class="p-3 font-medium">
+                  Reverse impairment for turnover comparability
+                </td>
+                <td class="p-3">Peer comps need adjusted assets</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">Equity</td>
+                <td class="p-3">Permanent reduction</td>
+                <td class="p-3 text-slate-500 italic">Forever</td>
+                <td class="p-3 font-medium">
+                  Track adjusted book value excluding impairment
+                </td>
+                <td class="p-3">Useful for distress analysis</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">Operating CF</td>
+                <td class="p-3">Inflation (add-back)</td>
+                <td class="p-3 text-slate-500 italic">Impairment year</td>
+                <td class="p-3 font-medium">
+                  Compare CFO before and after impairment
+                </td>
+                <td class="p-3">Cash flow not economically changed</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION K -->
+      <section
+        class="shrink-0 -mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION K: Ratio Interpretation Guide
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200">Ratio</th>
+                <th class="p-3 border-b border-slate-200">Reported value</th>
+                <th class="p-3 border-b border-slate-200">
+                  What analyst should do
+                </th>
+                <th class="p-3 border-b border-slate-200">
+                  Correct interpretation
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">ROA</td>
+                <td class="p-3 text-red-600">Lower after impairment</td>
+                <td class="p-3 font-medium">
+                  Recalculate using impaired asset base for future
+                </td>
+                <td class="p-3">
+                  Impairment signals past overpayment or obsolescence
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">Net margin</td>
+                <td class="p-3 text-red-600">Lower in impairment year</td>
+                <td class="p-3 font-medium">
+                  Exclude impairment for core margin
+                </td>
+                <td class="p-3">Underlying operations unchanged</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">Asset turnover</td>
+                <td class="p-3 text-green-600">
+                  Higher (if revenue same, assets lower)
+                </td>
+                <td class="p-3 font-medium">
+                  Normalize assets to pre-impairment level
+                </td>
+                <td class="p-3">No real efficiency gain</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">Debt/Equity</td>
+                <td class="p-3 text-red-600">Higher (equity reduced)</td>
+                <td class="p-3 font-medium">
+                  Rebuild equity excluding impairment
+                </td>
+                <td class="p-3">
+                  Leverage looks worse but cash flow unaffected
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Impairment / EBITDA
+                </td>
+                <td class="p-3 text-red-600">10% material</td>
+                <td class="p-3 font-medium">Flag as exceptional item</td>
+                <td class="p-3">One-off, not recurring</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          class="px-4 py-3 bg-teal-50 border-t border-slate-200 text-sm text-teal-900 border-l-4 border-l-teal-600"
+        >
+          <strong class="font-bold">Intelligence Note:</strong> Across Ind AS,
+          IFRS, and US GAAP, the same analytical normalization applies - always
+          recast impairment using a consistent fair value or DCF model, compare
+          discount rates across peers, and never rely on reversal optimism
+          unless cash flows prove recovery.
+        </div>
+      </section>
+
+      <!-- SECTION L -->
+      <section
+        class="shrink-0 -mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION L: Analyst Concerns &amp; Answers
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  Analyst question
+                </th>
+                <th class="p-3 border-r border-slate-200 w-1/4">Concern</th>
+                <th class="p-3 border-r border-slate-200 w-1/4">Answer</th>
+                <th class="p-3 w-1/4">Evidence</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800 italic">
+                  Why is impairment lower under Ind AS/IFRS than AS?
+                </td>
+                <td class="p-3">Understating loss</td>
+                <td class="p-3">
+                  Discounting in VIU reduces present value of future CFs, so
+                  recoverable amount higher
+                </td>
+                <td class="p-3 bg-slate-50 font-medium">
+                  VIU uses 12% discount rate vs undiscounted AS test
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800 italic">
+                  Can management manipulate impairment timing?
+                </td>
+                <td class="p-3">Earnings smoothing</td>
+                <td class="p-3">
+                  Yes, triggers are judgmental; but auditors challenge large
+                  misses
+                </td>
+                <td class="p-3 bg-slate-50 font-medium">
+                  Compare impairment timing to industry downturns
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800 italic">
+                  Why no reversal under US GAAP?
+                </td>
+                <td class="p-3">Permanent conservatism</td>
+                <td class="p-3">
+                  US GAAP prohibits reversal for all assets; IFRS allows
+                  reversal for tangibles
+                </td>
+                <td class="p-3 bg-slate-50 font-medium">
+                  Check if asset value truly recovers
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800 italic">
+                  How to compare goodwill impairment across IFRS and US GAAP?
+                </td>
+                <td class="p-3">Cross-standard mismatch</td>
+                <td class="p-3">
+                  IFRS one-step (CGU vs recoverable); US GAAP two-step (fair
+                  value vs carrying amount of reporting unit)
+                </td>
+                <td class="p-3 bg-slate-50 font-medium">
+                  Recompute goodwill using unified fair value approach
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800 italic">
+                  What discount rate is appropriate?
+                </td>
+                <td class="p-3">Management bias</td>
+                <td class="p-3">
+                  Pre-tax, market-based, reflecting asset-specific risk
+                </td>
+                <td class="p-3 bg-slate-50 font-medium">
+                  Use WACC or peer discount rates for sanity check
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION M -->
+      <section
+        class="shrink-0 -mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION M: Investor Perception Analysis
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  Investor Type
+                </th>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  What they see
+                </th>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  Likely reaction
+                </th>
+                <th class="p-3 w-1/4">Sophisticated response</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">Retail</td>
+                <td class="p-3">Large impairment loss</td>
+                <td class="p-3 text-red-600 font-medium">
+                  Negative, sell stock
+                </td>
+                <td class="p-3 font-medium">
+                  Recognize impairment is often non-cash and past-looking
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">Value</td>
+                <td class="p-3">Lower book value, lower ROE</td>
+                <td class="p-3 text-slate-600">
+                  Think company overpaid for assets
+                </td>
+                <td class="p-3 font-medium">
+                  Rebuild ROIC on post-impairment asset base
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Institutional long-only
+                </td>
+                <td class="p-3">Better disclosure under IFRS/Ind AS</td>
+                <td class="p-3 text-green-600 font-medium">
+                  Positive for governance
+                </td>
+                <td class="p-3 font-medium">
+                  Use impairment as signal of management honesty
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Credit / Lenders
+                </td>
+                <td class="p-3">Lower equity cushion</td>
+                <td class="p-3 text-amber-600 font-medium">More cautious</td>
+                <td class="p-3 font-medium">
+                  Monitor covenants that include book value
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">PE / VC</td>
+                <td class="p-3">Impairment = past mistake</td>
+                <td class="p-3 text-slate-600">
+                  Due diligence on acquisition history
+                </td>
+                <td class="p-3 font-medium">
+                  Underwrite future cash flows ignoring sunk cost
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION N -->
+      <section
+        class="shrink-0 -mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION N: Reporting Signals Decoder
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200">Management Action</th>
+                <th class="p-3 border-r border-slate-200">Signal</th>
+                <th class="p-3 border-r border-slate-200">
+                  What It Really Means
+                </th>
+                <th class="p-3">Your Move</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Takes large goodwill impairment right after acquisition
+                </td>
+                <td class="p-3">
+                  <span
+                    class="px-2 py-1 bg-red-100 text-red-800 text-xs font-bold rounded"
+                    >Red flag</span
+                  >
+                </td>
+                <td class="p-3">Overpaid; synergy assumptions failed</td>
+                <td class="p-3 font-medium">Review deal diligence</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Reverses impairment (IFRS only)
+                </td>
+                <td class="p-3">
+                  <span
+                    class="px-2 py-1 bg-green-100 text-green-800 text-xs font-bold rounded"
+                    >Green or Yellow</span
+                  >
+                </td>
+                <td class="p-3">
+                  Asset value recovered; but management may be optimistic
+                </td>
+                <td class="p-3 font-medium">
+                  Verify recovery with external data
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Uses high discount rate for VIU
+                </td>
+                <td class="p-3 text-slate-600 font-medium">
+                  Conservative bias
+                </td>
+                <td class="p-3">Lowers VIU - higher impairment</td>
+                <td class="p-3 font-medium">Compare to WACC and peers</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Avoids sensitivity tables (IFRS)
+                </td>
+                <td class="p-3 text-slate-600 font-medium">Opacity</td>
+                <td class="p-3">May hide fragile assumptions</td>
+                <td class="p-3 font-medium">Request 1% change impact</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Impairs exactly at threshold
+                </td>
+                <td class="p-3">
+                  <span
+                    class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs font-bold rounded"
+                    >Yellow</span
+                  >
+                </td>
+                <td class="p-3">Cookie-cutter compliance</td>
+                <td class="p-3 font-medium">Test with your own CF model</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION O: Premium Intelligence Narrative -->
+      <section
+        id="section-o"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION O: Premium Intelligence Narrative
+        </div>
+        <div class="p-5 text-sm space-y-4 text-slate-700 leading-relaxed">
+          <p>
+            <span class="font-bold text-[#1a365d]">Question:</span> "The company
+            took a massive one-time impairment charge. Is this a buying
+            opportunity since 'all the bad news is out'?"
+          </p>
+          <p>
+            <span class="font-bold text-slate-500"
+              >Average Analyst Answer:</span
+            >
+            "Yes, it's a non-cash charge. The balance sheet is cleaned up, so
+            future earnings will be higher. Buy the dip."
+          </p>
+          <div
+            class="p-4 bg-teal-50 border border-teal-200 rounded-lg text-teal-900"
+          >
+            <p>
+              <span class="font-bold text-teal-800 text-base"
+                >PREMIUM Analyst Answer:</span
+              ><br /><br />
+              "Impairment is essentially management formally admitting that
+              their past capital allocation was a failure. While the charge
+              itself is non-cash and future EPS will mechanically rise (due to
+              lower depreciation), a large impairment often points to deeper
+              issues: poor M&A decisions, flawed forecasting, or structural
+              industry decline. Don't just write it off as 'one-time.' The key
+              is to assess if the factors causing the impairment are truly
+              contained or if they are symptomatic of ongoing weakness. A
+              sophisticated analyst strips out the impairment to see the true
+              core earnings run-rate, but heavily penalizes management's capital
+              allocation track record."
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION P: Red Flags vs Green Flags (Visual Indicator Matrix) -->
+      <section
+        id="section-p"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION P: Red Flags vs Green Flags (Visual Indicator Matrix)
+        </div>
+        <div class="overflow-x-auto flex-1">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-1/2">Scenario</th>
+                <th class="p-3 border-r border-slate-200 text-center w-24">
+                  Flag
+                </th>
+                <th class="p-3">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr class="bg-[#fee]">
+                <td class="p-3 font-medium">
+                  Repeated 'one-time' impairment charges over multiple years
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-red-700 uppercase tracking-widest"
+                >
+                  <span class="text-red-500 mr-1">🔴</span>RED
+                </td>
+                <td class="p-3 text-red-900">
+                  Sign of structural capital misallocation. Apply a permanent
+                  'management discount' to valuation.
+                </td>
+              </tr>
+              <tr class="bg-[#fee]">
+                <td class="p-3 font-medium">
+                  Impairment occurs immediately after a change in CEO/CFO or
+                  acquisition
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-red-700 uppercase tracking-widest"
+                >
+                  <span class="text-red-500 mr-1">🔴</span>RED
+                </td>
+                <td class="p-3 text-red-900">
+                  Classic 'kitchen sinking' to reset the baseline for future
+                  bonuses.
+                </td>
+              </tr>
+              <tr class="bg-[#fee]">
+                <td class="p-3 font-medium">
+                  Discount rate used in impairment testing is suspiciously low
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-red-700 uppercase tracking-widest"
+                >
+                  <span class="text-red-500 mr-1">🔴</span>RED
+                </td>
+                <td class="p-3 text-red-900">
+                  Management is artificially shielding assets from impairment.
+                  Recalculate with market rates.
+                </td>
+              </tr>
+              <tr class="bg-[#efe]">
+                <td class="p-3 font-medium">
+                  Detailed sensitivity analysis provided for carrying amounts
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-green-700 uppercase tracking-widest"
+                >
+                  <span class="text-green-500 mr-1">🟢</span>GREEN
+                </td>
+                <td class="p-3 text-green-900">
+                  Allows you to independently stress-test the balance sheet
+                  carrying values.
+                </td>
+              </tr>
+              <tr class="bg-[#efe]">
+                <td class="p-3 font-medium">
+                  Impairment taken proactively ahead of industry cycle
+                  deterioration
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-green-700 uppercase tracking-widest"
+                >
+                  <span class="text-green-500 mr-1">🟢</span>GREEN
+                </td>
+                <td class="p-3 text-green-900">
+                  Sign of honest, conservative management facing reality early.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION Q: Final Intelligence Summary -->
+      <section
+        id="section-q"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION Q: Final Intelligence Summary
+        </div>
+        <div class="p-6 bg-white">
+          <p
+            class="font-bold text-lg text-slate-800 pb-3 border-b border-slate-100 mb-4"
+          >
+            The Sophistication Hierarchy
+          </p>
+          <ul class="space-y-4 text-sm text-slate-700">
+            <li class="flex flex-col sm:flex-row sm:items-start gap-2">
+              <span class="font-bold whitespace-nowrap">Level 1 (Retail):</span>
+              <span>
+                &quot;Impairment is bad; company lost money.&quot; &rarr;
+                <span class="text-red-600 font-bold"
+                  >Wrong action: sell at the bottom.</span
+                >
+              </span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:items-start gap-2">
+              <span class="font-bold whitespace-nowrap">Level 2 (Basic):</span>
+              <span>
+                &quot;Impairment is non-cash and one-time; ignore it.&quot;
+                &rarr;
+                <span class="text-amber-600 font-bold"
+                  >Misses the signal of poor past capital allocation.</span
+                >
+              </span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:items-start gap-2">
+              <span class="font-bold whitespace-nowrap">Level 3:</span>
+              <span>
+                &quot;Impairment reveals management's capital allocation
+                quality. Normalize by extracting the non-cash charge to find the
+                true core earnings run-rate. Then, apply a permanent 'management
+                discount' multiple for repeatedly destroying shareholder
+                capital.&quot; &rarr;
+                <span class="text-green-600 font-bold"
+                  >Prices management's capital allocation accurately</span
+                >
+              </span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="mt-4 text-center pb-4 shrink-0 border-t border-slate-200">
+        <p class="text-sm text-slate-500 pt-4" id="timestamp-text">
+          Generated for Accounting Standards Comparison Hub | Premium Guide
+        </p>
+      </div>
+    </main>
+
+    <script>
+      function formatNum(num) {
+        return Number(num).toFixed(2).replace(/\.00$/, "");
+      }
+
+      function calculate() {
+        const carry =
+          parseFloat(document.getElementById("inp-carrying").value) || 0;
+        const life = parseFloat(document.getElementById("inp-life").value) || 1;
+        const undiscounted =
+          parseFloat(document.getElementById("inp-undiscounted").value) || 0;
+        const fvlcd =
+          parseFloat(document.getElementById("inp-fvlcd").value) || 0;
+        const viu = parseFloat(document.getElementById("inp-viu").value) || 0;
+        const usFv =
+          parseFloat(document.getElementById("inp-us-fv").value) || 0;
+        const ebitda =
+          parseFloat(document.getElementById("inp-ebitda").value) || 0;
+        const depr = parseFloat(document.getElementById("inp-depr").value) || 0;
+        const taxRate =
+          parseFloat(document.getElementById("inp-tax").value) || 0;
+
+        // Calculations
+
+        // AS Old Indian GAAP
+        let asImpRequired = carry > undiscounted;
+        let asLoss = asImpRequired ? Math.max(0, carry - fvlcd) : 0;
+        let asNewCarry = carry - asLoss;
+        let asNewDepr = asNewCarry / life;
+
+        // Ind AS 36 / IFRS
+        let ifrsRecov = Math.max(fvlcd, viu);
+        let ifrsLoss = Math.max(0, carry - ifrsRecov);
+        let ifrsNewCarry = carry - ifrsLoss;
+        let ifrsNewDepr = ifrsNewCarry / life;
+
+        // US GAAP
+        let usImpRequired = carry > undiscounted;
+        let usLoss = usImpRequired ? Math.max(0, carry - usFv) : 0;
+        let usNewCarry = carry - usLoss;
+        let usNewDepr = usNewCarry / life;
+
+        const hasImpairment = asLoss > 0 || ifrsLoss > 0 || usLoss > 0;
+        const msgContainer = document.getElementById("msg-container");
+        if (hasImpairment) {
+          msgContainer.classList.add("hidden");
+        } else {
+          msgContainer.classList.remove("hidden");
+        }
+
+        // Section B Updates
+        document.getElementById("calc-imp-as").textContent =
+          formatNum(asLoss) + " Cr";
+        document.getElementById("calc-imp-ifrs").textContent =
+          formatNum(ifrsLoss) + " Cr";
+        document.getElementById("calc-imp-us").textContent =
+          formatNum(usLoss) + " Cr";
+
+        // Section C Updates
+        document.getElementById("c-as-carry1").textContent = formatNum(carry);
+        document.getElementById("c-as-undisc").textContent =
+          formatNum(undiscounted);
+        document.getElementById("c-as-trigger").textContent = asImpRequired
+          ? "Impairment required"
+          : "No impairment";
+        document.getElementById("c-as-loss").textContent = formatNum(asLoss);
+        document.getElementById("c-as-new-carry").textContent =
+          formatNum(asNewCarry);
+        document.getElementById("c-as-new-depr").textContent =
+          asNewDepr.toFixed(2);
+        document.getElementById("c-as-jrn1").textContent = formatNum(asLoss);
+        document.getElementById("c-as-jrn2").textContent = formatNum(asLoss);
+
+        document.getElementById("c-ifrs-fvlcd").textContent = formatNum(fvlcd);
+        document.getElementById("c-ifrs-viu").textContent = formatNum(viu);
+        document.getElementById("c-ifrs-recov").textContent =
+          formatNum(ifrsRecov);
+        document.getElementById("c-ifrs-carry").textContent = formatNum(carry);
+        document.getElementById("c-ifrs-recov2").textContent =
+          formatNum(ifrsRecov);
+        document.getElementById("c-ifrs-loss").textContent =
+          formatNum(ifrsLoss);
+        document.getElementById("c-ifrs-new-carry").textContent =
+          formatNum(ifrsNewCarry);
+        document.getElementById("c-ifrs-new-depr").textContent =
+          ifrsNewDepr.toFixed(2);
+        document.getElementById("c-ifrs-jrn1").textContent =
+          formatNum(ifrsLoss);
+        document.getElementById("c-ifrs-jrn2").textContent =
+          formatNum(ifrsLoss);
+
+        document.getElementById("c-us-carry").textContent = formatNum(carry);
+        document.getElementById("c-us-undisc").textContent =
+          formatNum(undiscounted);
+        document.getElementById("c-us-fail").textContent = usImpRequired
+          ? "Fail - Step 2 required"
+          : "Pass - No impairment";
+        document.getElementById("c-us-carry2").textContent = formatNum(carry);
+        document.getElementById("c-us-fv").textContent = formatNum(usFv);
+        document.getElementById("c-us-loss").textContent = formatNum(usLoss);
+        document.getElementById("c-us-new-carry").textContent =
+          formatNum(usNewCarry);
+        document.getElementById("c-us-jrn1").textContent = formatNum(usLoss);
+        document.getElementById("c-us-jrn2").textContent = formatNum(usLoss);
+
+        // Section D
+        document.getElementById("d-as-test").textContent = asImpRequired
+          ? "fail"
+          : "pass";
+        document.getElementById("d-as-rv").textContent = formatNum(fvlcd);
+        document.getElementById("d-as-loss").textContent = formatNum(asLoss);
+        document.getElementById("d-as-ca").textContent = formatNum(asNewCarry);
+
+        document.getElementById("d-ind-test").textContent =
+          viu > fvlcd ? "Yes" : "No";
+        document.getElementById("d-ind-viu").textContent = formatNum(viu);
+        document.getElementById("d-ind-rv").textContent = formatNum(ifrsRecov);
+        document.getElementById("d-ind-loss").textContent = formatNum(ifrsLoss);
+        document.getElementById("d-ind-ca").textContent =
+          formatNum(ifrsNewCarry);
+
+        document.getElementById("d-ifrs-rv").textContent = formatNum(ifrsRecov);
+        document.getElementById("d-ifrs-loss").textContent =
+          formatNum(ifrsLoss);
+        document.getElementById("d-ifrs-ca").textContent =
+          formatNum(ifrsNewCarry);
+
+        document.getElementById("d-us-test").textContent = usImpRequired
+          ? "fail"
+          : "pass";
+        document.getElementById("d-us-ucf").textContent =
+          formatNum(undiscounted);
+        document.getElementById("d-us-rv").textContent = formatNum(usFv);
+        document.getElementById("d-us-loss").textContent = formatNum(usLoss);
+        document.getElementById("d-us-ca").textContent = formatNum(usNewCarry);
+
+        // Section E
+        const fields = ["as", "ind", "ifrs", "us"];
+        const ebitBase = ebitda;
+        const ebitdas = [ebitBase, ebitBase, ebitBase, ebitBase];
+        const losses = [asLoss, ifrsLoss, ifrsLoss, usLoss];
+
+        for (let i = 0; i < 4; i++) {
+          let f = fields[i];
+          document.getElementById("e-" + f + "-base").textContent =
+            formatNum(ebitBase) + " Cr";
+          document.getElementById("e-" + f + "-imp").textContent =
+            "-" + formatNum(losses[i]) + " Cr";
+          document.getElementById("e-" + f + "-depr").textContent =
+            "-" + formatNum(depr) + " Cr";
+          document.getElementById("e-" + f + "-rebitda").textContent =
+            formatNum(ebitBase) + " Cr";
+          let ebit = ebitBase - losses[i] - depr;
+          document.getElementById("e-" + f + "-ebit").textContent =
+            formatNum(ebit) + " Cr";
+          document.getElementById("e-" + f + "-pbt").textContent =
+            formatNum(ebit) + " Cr";
+          let tax = (ebit * taxRate) / 100;
+          document.getElementById("e-" + f + "-tax").textContent =
+            "-" + formatNum(tax) + " Cr";
+          let pat = ebit - tax;
+          document.getElementById("e-" + f + "-pat").textContent =
+            formatNum(pat) + " Cr";
+        }
+        document.getElementById("e-tax-rate").textContent = formatNum(taxRate);
+
+        // Section F
+        const fFields = ["as", "ind", "ifrs", "us"];
+        const fLoss = [asLoss, ifrsLoss, ifrsLoss, usLoss];
+        const fCarry = [asNewCarry, ifrsNewCarry, ifrsNewCarry, usNewCarry];
+        for (let i = 0; i < 4; i++) {
+          let f = fFields[i];
+          document.getElementById("f-" + f + "-ga").textContent =
+            formatNum(carry) + " Cr";
+          document.getElementById("f-" + f + "-acc").textContent =
+            "-" + formatNum(fLoss[i]) + " Cr";
+          document.getElementById("f-" + f + "-na").textContent =
+            formatNum(fCarry[i]) + " Cr";
+        }
+
+        // Section G
+        // Assuming impairment is generally a non-cash charge that does not immediately provide a current tax shield
+        // but for the sake of the tables tracking 'PAT', if PAT reflects tax, CFO = PAT + Impairment + Depr
+        const cfoAs =
+          (ebitBase - asLoss - depr) * (1 - taxRate / 100) + asLoss + depr;
+        const cfoInd =
+          (ebitBase - ifrsLoss - depr) * (1 - taxRate / 100) + ifrsLoss + depr;
+        const cfoUs =
+          (ebitBase - usLoss - depr) * (1 - taxRate / 100) + usLoss + depr;
+
+        document.getElementById("g-cfo-as").textContent =
+          formatNum(cfoAs) + " Cr";
+        document.getElementById("g-cfo-in").textContent =
+          formatNum(cfoInd) + " Cr";
+        document.getElementById("g-cfo-us").textContent =
+          formatNum(cfoUs) + " Cr";
+
+        document.getElementById("g-cff-as").textContent = "0.00 Cr";
+        document.getElementById("g-cff-in").textContent = "0.00 Cr";
+        document.getElementById("g-cff-us").textContent = "0.00 Cr";
+
+        document.getElementById("g-tot-as").textContent =
+          formatNum(cfoAs) + " Cr";
+        document.getElementById("g-tot-in").textContent =
+          formatNum(cfoInd) + " Cr";
+        document.getElementById("g-tot-us").textContent =
+          formatNum(cfoUs) + " Cr";
+
+        // Section H
+        const hEbits = [
+          ebitBase - asLoss - depr,
+          ebitBase - ifrsLoss - depr,
+          ebitBase - usLoss - depr,
+        ];
+        const hPat = hEbits.map((ebit) => ebit - (ebit * taxRate) / 100);
+
+        // Fetch inputs for Section H
+        const rev = parseFloat(document.getElementById("inp-rev"))
+          ? parseFloat(document.getElementById("inp-rev").value)
+          : 400;
+        const initAssets = parseFloat(document.getElementById("inp-assets"))
+          ? parseFloat(document.getElementById("inp-assets").value)
+          : 500;
+        const initEq = parseFloat(document.getElementById("inp-eq"))
+          ? parseFloat(document.getElementById("inp-eq").value)
+          : 200;
+        const debt = parseFloat(document.getElementById("inp-debt"))
+          ? parseFloat(document.getElementById("inp-debt").value)
+          : 100;
+
+        // Effective assets = Initial Assets - Carrying Amount (original) + New Carry (after impairment)
+        const assetsAs = initAssets - carry + asNewCarry;
+        const assetsIn = initAssets - carry + ifrsNewCarry;
+        const assetsUs = initAssets - carry + usNewCarry;
+
+        const eqAs = initEq - (carry - asNewCarry);
+        const eqIn = initEq - (carry - ifrsNewCarry);
+        const eqUs = initEq - (carry - usNewCarry);
+
+        document.getElementById("h-roa-as").textContent =
+          assetsAs !== 0 ? ((hPat[0] / assetsAs) * 100).toFixed(2) + "%" : "-";
+        document.getElementById("h-roa-in").textContent =
+          assetsIn !== 0 ? ((hPat[1] / assetsIn) * 100).toFixed(2) + "%" : "-";
+        document.getElementById("h-roa-us").textContent =
+          assetsUs !== 0 ? ((hPat[2] / assetsUs) * 100).toFixed(2) + "%" : "-";
+
+        document.getElementById("h-roe-as").textContent =
+          eqAs !== 0 ? ((hPat[0] / eqAs) * 100).toFixed(2) + "%" : "-";
+        document.getElementById("h-roe-in").textContent =
+          eqIn !== 0 ? ((hPat[1] / eqIn) * 100).toFixed(2) + "%" : "-";
+        document.getElementById("h-roe-us").textContent =
+          eqUs !== 0 ? ((hPat[2] / eqUs) * 100).toFixed(2) + "%" : "-";
+
+        document.getElementById("h-ato-as").textContent =
+          assetsAs !== 0 ? (rev / assetsAs).toFixed(2) + "x" : "-";
+        document.getElementById("h-ato-in").textContent =
+          assetsIn !== 0 ? (rev / assetsIn).toFixed(2) + "x" : "-";
+        document.getElementById("h-ato-us").textContent =
+          assetsUs !== 0 ? (rev / assetsUs).toFixed(2) + "x" : "-";
+
+        const marAs = (ebitBase / rev) * 100;
+        document.getElementById("h-mar-as").textContent =
+          marAs.toFixed(2) + "%";
+        document.getElementById("h-mar-in").textContent =
+          marAs.toFixed(2) + "%";
+        document.getElementById("h-mar-us").textContent =
+          marAs.toFixed(2) + "%";
+
+        document.getElementById("h-de-as").textContent =
+          eqAs !== 0 ? (debt / eqAs).toFixed(2) + "x" : "-";
+        document.getElementById("h-de-in").textContent =
+          eqIn !== 0 ? (debt / eqIn).toFixed(2) + "x" : "-";
+        document.getElementById("h-de-us").textContent =
+          eqUs !== 0 ? (debt / eqUs).toFixed(2) + "x" : "-";
+
+        const now = new Date();
+        document.getElementById("timestamp-text").textContent =
+          "Generated for Accounting Standards Comparison Hub | Premium Guide | Last recalculated at: " +
+          now.toLocaleTimeString();
+      }
+
+      document.querySelectorAll("input").forEach((input) => {
+        input.addEventListener("input", calculate);
+      });
+
+      document.getElementById("reset-btn").addEventListener("click", () => {
+        document.getElementById("inp-carrying").value = 50;
+        document.getElementById("inp-life").value = 5;
+        document.getElementById("inp-undiscounted").value = 48;
+        document.getElementById("inp-fvlcd").value = 30;
+        document.getElementById("inp-rate").value = 12;
+        document.getElementById("inp-viu").value = 34;
+        document.getElementById("inp-us-fv").value = 32;
+        document.getElementById("inp-ebitda").value = 80;
+        document.getElementById("inp-depr").value = 10;
+        document.getElementById("inp-tax").value = 25;
+        const inpRev = document.getElementById("inp-rev");
+        if (inpRev) inpRev.value = 400;
+        const inpAssets = document.getElementById("inp-assets");
+        if (inpAssets) inpAssets.value = 500;
+        const inpEq = document.getElementById("inp-eq");
+        if (inpEq) inpEq.value = 200;
+        const inpDebt = document.getElementById("inp-debt");
+        if (inpDebt) inpDebt.value = 100;
+        calculate();
+      });
+
+      const copyBtn = document.getElementById("copy-btn");
+      if (copyBtn) {
+        copyBtn.addEventListener("click", () => {
+          const summary = `IMPAIRMENT TRANSACTION FACTS (ABC LTD)
+-----------------------------------------------------
+Carrying Amount: ${document.getElementById("inp-carrying").value} Cr
+Useful Life: ${document.getElementById("inp-life").value} Years
+Undiscounted Cash Flows: ${document.getElementById("inp-undiscounted").value} Cr
+FVLCD: ${document.getElementById("inp-fvlcd").value} Cr
+Calculated VIU: ${document.getElementById("inp-viu").value} Cr
+US GAAP FV: ${document.getElementById("inp-us-fv").value} Cr`;
+          navigator.clipboard.writeText(summary).then(() => {
+            const oldText = copyBtn.innerText;
+            copyBtn.innerText = "Copied!";
+            copyBtn.classList.remove("bg-amber-800");
+            copyBtn.classList.add("bg-green-600");
+            setTimeout(() => {
+              copyBtn.innerText = oldText;
+              copyBtn.classList.add("bg-amber-800");
+              copyBtn.classList.remove("bg-green-600");
+            }, 1500);
+          });
+        });
+      }
+
+      // Initial calc
+      calculate();
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const mobileToggle = document.getElementById("mobile-toggle");
+        const navMenu = document.getElementById("nav-menu");
+        const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
+
+        if (mobileToggle) {
+          mobileToggle.addEventListener("click", () => {
+            navMenu.classList.toggle("active");
+          });
+        }
+
+        dropdownToggles.forEach((toggle) => {
+          toggle.addEventListener("click", (e) => {
+            if (window.innerWidth <= 768) {
+              e.preventDefault();
+              const dropdownMenu = toggle.nextElementSibling;
+              dropdownToggles.forEach((otherToggle) => {
+                if (otherToggle !== toggle) {
+                  otherToggle.nextElementSibling.classList.remove("active");
+                  otherToggle.setAttribute("aria-expanded", "false");
+                }
+              });
+              dropdownMenu.classList.toggle("active");
+              toggle.setAttribute(
+                "aria-expanded",
+                dropdownMenu.classList.contains("active"),
+              );
+            }
+          });
+        });
+
+        document.addEventListener("click", (e) => {
+          if (!e.target.closest(".navbar") && window.innerWidth <= 768) {
+            if (navMenu) navMenu.classList.remove("active");
+            document
+              .querySelectorAll(".dropdown-menu")
+              .forEach((menu) => menu.classList.remove("active"));
+          }
+        });
+
+        window.addEventListener("resize", () => {
+          if (window.innerWidth > 768) {
+            if (navMenu) navMenu.classList.remove("active");
+            document
+              .querySelectorAll(".dropdown-menu")
+              .forEach((menu) => menu.classList.remove("active"));
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

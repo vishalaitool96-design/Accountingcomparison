@@ -1,0 +1,2780 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ESOP | Standards Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+      }
+    </style>
+
+    <style>
+      .custom-scrollbar::-webkit-scrollbar {
+        height: 10px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-[#f7fafc] font-sans h-screen w-full flex flex-col overflow-hidden border-8 border-slate-200 text-slate-800"
+  >
+    <header class="bg-[#1a365d] text-white p-4 shrink-0 shadow-md">
+      <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end">
+        <div>
+          <h1 class="text-2xl font-bold tracking-tight">
+            Accounting Standards Comparison Hub
+          </h1>
+          <p class="text-slate-300 text-sm italic">
+            AS (Old Indian GAAP) vs Ind AS vs IFRS vs US GAAP
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <nav
+      class="bg-white border-b border-slate-200 flex shrink-0 overflow-x-auto custom-scrollbar"
+    >
+      <a
+        href="index.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Home</a
+      >
+      <a
+        href="lease.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Lease</a
+      >
+      <a
+        href="ppe.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >PPE</a
+      >
+      <a
+        href="financial-instruments.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Financial Instruments</a
+      >
+      <a
+        href="revenue.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Revenue</a
+      >
+      <a
+        href="deferred-tax.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Deferred Tax</a
+      >
+      <a
+        href="consolidation.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Consolidation</a
+      >
+      <a
+        href="impairment.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Impairment</a
+      >
+      <a
+        href="esop.html"
+        class="px-6 py-3 text-sm font-semibold border-b-4 border-indigo-600 bg-indigo-50 text-indigo-900 block whitespace-nowrap"
+        >ESOP</a
+      >
+      <a
+        href="cashflows.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Cash Flows</a
+      >
+    </nav>
+
+    <main
+      class="flex-1 p-4 md:p-6 lg:p-8 flex flex-col gap-10 overflow-y-auto"
+      id="main-content"
+    >
+      <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+        <div class="border-l-8 border-teal-600 pl-4 py-1 shrink-0">
+          <h2 class="text-2xl font-bold text-[#1a365d] uppercase tracking-wide">
+            Share-Based Payments (ESOP)
+          </h2>
+          <p class="text-sm text-slate-600">
+            Premium Analysis Guide: AS vs Ind AS vs IFRS vs US GAAP
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button
+            id="diagnostic-btn"
+            class="bg-indigo-600 text-white hover:bg-indigo-700 px-4 py-2 rounded text-sm font-bold shadow-sm transition-colors"
+          >
+            Diagnostic Mode
+          </button>
+        </div>
+      </div>
+
+      <!-- Diagnostic Panel -->
+      <div
+        id="diagnostic-panel"
+        class="hidden mt-4 bg-indigo-50 border-l-4 border-indigo-600 p-4 text-sm text-indigo-900 shadow-sm rounded-r-lg flex flex-col gap-2 shrink-0"
+      >
+        <h3 class="font-bold text-lg mb-2">Diagnostic Mode Console</h3>
+        <div class="mt-2 border-t border-indigo-200 pt-2">
+          <h4 class="font-bold mb-1 flex justify-between">
+            Recent Updates
+            <span id="diag-errors" class="text-red-600 hidden">Errors!</span>
+          </h4>
+          <div
+            id="diag-console"
+            class="bg-indigo-900 text-indigo-100 font-mono p-3 rounded text-xs h-32 overflow-y-auto whitespace-pre-wrap"
+          >
+            System initialized.
+          </div>
+        </div>
+      </div>
+      <!-- SECTION A -->
+      <section
+        id="section-a"
+        data-diagnostic="tracked"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION A: Core Technical Comparison Table
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-[16%]">Parameter</th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">
+                  AS (Old Indian GAAP)
+                </th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">
+                  Ind AS (Ind AS 102)
+                </th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">
+                  IFRS (IFRS 2)
+                </th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">
+                  US GAAP (ASC 718)
+                </th>
+                <th class="p-3 w-[16%]">Logic Shift</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Core philosophy</td>
+                <td class="p-3">
+                  Choice between intrinsic value method and fair value method.
+                </td>
+                <td class="p-3">Fair value method is mandatory.</td>
+                <td class="p-3">Fair value method is mandatory.</td>
+                <td class="p-3">Fair value method is mandatory.</td>
+                <td class="p-3 text-slate-600">
+                  Shift from historical leniency (intrinsic value often zero) to
+                  true economic cost measurement.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Scope</td>
+                <td class="p-3">
+                  Primarily focused on employee stock options and shares.
+                </td>
+                <td class="p-3">
+                  Broad. Covers all share-based payments (employees and
+                  non-employees).
+                </td>
+                <td class="p-3">
+                  Broad. Covers all share-based payments (employees and
+                  non-employees).
+                </td>
+                <td class="p-3">
+                  Broad. Now aligned with IFRS for non-employees (ASC 505-50
+                  superseded and integrated into ASC 718).
+                </td>
+                <td class="p-3 text-slate-600">
+                  Convergence across major frameworks.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  Measurement basis for employee awards
+                </td>
+                <td class="p-3">
+                  Intrinsic value or Fair value at grant date.
+                </td>
+                <td class="p-3">Fair value at grant date.</td>
+                <td class="p-3">Fair value at grant date.</td>
+                <td class="p-3">Fair value at grant date.</td>
+                <td class="p-3 text-slate-600">
+                  Mandatory fair value recognition limits accounting arbitrage.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">
+                  Measurement basis for non-employees
+                </td>
+                <td class="p-3">
+                  Not specifically addressed; often derived from employee
+                  guidance or AS 10.
+                </td>
+                <td class="p-3">
+                  Fair value of goods/services received. If not reliably
+                  estimable, fair value of equity instruments granted.
+                </td>
+                <td class="p-3">
+                  Fair value of goods/services received. If not reliably
+                  estimable, fair value of equity instruments granted.
+                </td>
+                <td class="p-3">
+                  Generally mirrors employee model (fair value of equity
+                  instruments), simplified compared to past rules.
+                </td>
+                <td class="p-3 text-slate-600">
+                  Better capture of vendor payments via equity.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Graded vesting treatment</td>
+                <td class="p-3">
+                  Choice between straight-line amortization or accelerated
+                  amortization (tracking each tranche).
+                </td>
+                <td class="p-3">
+                  Must treat each tranche as a separate award (accelerated
+                  amortization).
+                </td>
+                <td class="p-3">
+                  Must treat each tranche as a separate award (accelerated
+                  amortization).
+                </td>
+                <td class="p-3">
+                  Choice between straight-line (if only service condition) and
+                  accelerated amortization.
+                </td>
+                <td class="p-3 text-slate-600">
+                  Ind AS/IFRS force up-front loading of expense; US GAAP retains
+                  flexibility.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Forfeiture treatment</td>
+                <td class="p-3">
+                  Can estimate at grant date or account for as they occur.
+                </td>
+                <td class="p-3">
+                  Must estimate forfeitures at grant date and true-up
+                  subsequently based on actuals.
+                </td>
+                <td class="p-3">
+                  Must estimate forfeitures at grant date and true-up
+                  subsequently based on actuals.
+                </td>
+                <td class="p-3">
+                  Policy election: estimate forfeitures OR account for
+                  forfeitures when they occur.
+                </td>
+                <td class="p-3 text-slate-600">
+                  US GAAP election differs from strict IFRS/Ind AS requirement.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Vesting vs non-vesting conditions</td>
+                <td class="p-3">Not clearly bifurcated.</td>
+                <td class="p-3">
+                  Service &amp; performance conditions are "vesting". Market
+                  conditions &amp; everything else are "non-vesting".
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  Similar concepts, slight differences in definitions of
+                  performance vs market conditions.
+                </td>
+                <td class="p-3 text-slate-600">
+                  Market conditions (e.g., target share price) baked into grant
+                  date fair value; no expense reversal even if condition failed.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Grant date definition</td>
+                <td class="p-3">When options are offered to employees.</td>
+                <td class="p-3">
+                  Shared understanding of terms and conditions; requires
+                  appropriate approval.
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3 text-slate-600">
+                  Grant date fixing is stricter globally.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Modification accounting</td>
+                <td class="p-3">Recognize incremental value.</td>
+                <td class="p-3">
+                  Recognize minimum of original fair value PLUS any incremental
+                  value.
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  Recognize fair value of modified award (can be lower than
+                  original, though rare due to rules).
+                </td>
+                <td class="p-3 text-slate-600">
+                  Re-pricing underwater options creates new expense under all
+                  modern standards.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">
+                  Classification - equity vs liability
+                </td>
+                <td class="p-3">Primarily handled as equity-settled.</td>
+                <td class="p-3">
+                  Strict assessment based on obligation to settle in cash.
+                  Liability awards remeasured at fair value every period.
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  Complex rules based on ASC 480 and fixed monetary amount.
+                  Liability awards remeasured based on fair value or intrinsic
+                  value depending on entity type.
+                </td>
+                <td class="p-3 text-slate-600">
+                  Liability classification injects massive P&amp;L volatility.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Group share-based payments</td>
+                <td class="p-3">No specific detailed guidance.</td>
+                <td class="p-3">
+                  Detailed rules. Subsidiary receiving services typically
+                  records equity-settled expense.
+                </td>
+                <td class="p-3">Detailed rules mirroring Ind AS.</td>
+                <td class="p-3">
+                  Subsidiary generally records expense based on fair value.
+                </td>
+                <td class="p-3 text-slate-600">
+                  Prevents subsidiaries from hiding compensation costs when
+                  parent issues the shares.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">
+                  Employee Stock Purchase Plans (ESPPs)
+                </td>
+                <td class="p-3">Not specifically addressed.</td>
+                <td class="p-3">
+                  Viewed as compensatory. Discount recorded as expense.
+                </td>
+                <td class="p-3">
+                  Viewed as compensatory. Discount recorded as expense.
+                </td>
+                <td class="p-3">
+                  Noncompensatory (no expense) if conditions met (e.g., discount
+                  &lt;= 5%, offered to all).
+                </td>
+                <td class="p-3 text-slate-600">
+                  US GAAP election can result in zero expense for ESPPs vs Ind
+                  AS/IFRS.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Disclosure volume</td>
+                <td class="p-3">Low to moderate.</td>
+                <td class="p-3">
+                  Extensive. Detailed assumptions, strike prices, WAEP,
+                  rollforwards.
+                </td>
+                <td class="p-3">Extensive.</td>
+                <td class="p-3">Extensive.</td>
+                <td class="p-3 text-slate-600">
+                  Provides analysts with required data to rebuild true economic
+                  cost.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div
+          class="bg-slate-100 text-slate-800 px-4 py-2 font-bold uppercase tracking-wider text-xs border-y border-slate-200"
+        >
+          1.3.1 Additional Key Differences (Edge Cases)
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200">Parameter</th>
+                <th class="p-3 border-b border-slate-200">
+                  AS (Old Indian GAAP)
+                </th>
+                <th class="p-3 border-b border-slate-200">Ind AS / IFRS</th>
+                <th class="p-3 border-b border-slate-200">US GAAP (ASC 718)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Volatility for unlisted companies</td>
+                <td class="p-3">
+                  Could assume zero volatility (resulting in option value
+                  nearing intrinsic value).
+                </td>
+                <td class="p-3">
+                  Must estimate volatility (often using comparable peer group).
+                  Zero volatility forbidden.
+                </td>
+                <td class="p-3">
+                  Nonpublic entities have a practical expedient to use a
+                  "calculated value" using industry sector index volatility.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">
+                  Performance targets after service period
+                </td>
+                <td class="p-3">
+                  Often accounted for simply over service period.
+                </td>
+                <td class="p-3">Treated as a non-vesting condition.</td>
+                <td class="p-3">Treated as a performance condition.</td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">
+                  Liquidity events (IPO/change in control)
+                </td>
+                <td class="p-3">Recognized when probable.</td>
+                <td class="p-3">
+                  Expense recognized only when the implicit or explicit
+                  condition is satisfied.
+                </td>
+                <td class="p-3">
+                  Expense recognized only when the event actually occurs.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Payroll taxes</td>
+                <td class="p-3">Expensed as incurred.</td>
+                <td class="p-3">
+                  Accrued over the vesting period in proportion to the
+                  share-based payment expense.
+                </td>
+                <td class="p-3">
+                  Recognized on the date of the event triggering the liability
+                  (usually exercise).
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Net-share settlement for taxes</td>
+                <td class="p-3">No specific rule.</td>
+                <td class="p-3">
+                  Equity classification maintained if withholding is up to
+                  statutory tax limit.
+                </td>
+                <td class="p-3">
+                  Equity classification maintained if withholding is up to
+                  maximum statutory tax limit.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="px-4 py-3 bg-blue-50 border-t border-slate-200">
+          <p class="text-sm text-blue-900">
+            <strong class="font-bold">KEY INSIGHT:</strong> Old Indian GAAP
+            permitted choice between intrinsic value and fair value, allowed
+            zero volatility for unlisted companies, and had no forfeiture
+            estimation requirement. Ind AS 102/IFRS 2 mandate fair value only,
+            require volatility estimation, and mandate forfeiture estimation. US
+            GAAP is broadly similar but offers more policy elections
+            (forfeiture, graded vesting, ESPP noncompensatory).
+          </p>
+        </div>
+      </section>
+
+      <!-- SECTION B -->
+      <section
+        class="shrink-0 bg-yellow-50 rounded-xl shadow-sm border border-yellow-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-yellow-100 text-yellow-900 px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-yellow-200 flex justify-between items-center"
+        >
+          <span>SECTION B: Transaction Fact Pattern (Editable)</span>
+          <button
+            id="reset-btn"
+            class="bg-yellow-600 text-white px-3 py-1 rounded text-xs font-semibold hover:bg-yellow-700 transition"
+          >
+            Reset to Default
+          </button>
+        </div>
+        <div class="p-4 flex flex-col md:flex-row gap-6">
+          <div class="flex-1 space-y-4">
+            <h3
+              class="font-bold text-slate-800 border-b border-yellow-200 pb-2"
+            >
+              Business & Award Profile (Read-only)
+            </h3>
+            <div class="space-y-2 text-sm text-slate-700">
+              <p>
+                <strong class="font-semibold w-40 inline-block"
+                  >Company:</strong
+                >
+                Apex Technologies Ltd.
+              </p>
+              <p>
+                <strong class="font-semibold w-40 inline-block"
+                  >Grant date:</strong
+                >
+                1 April 2025
+              </p>
+              <p>
+                <strong class="font-semibold w-40 inline-block"
+                  >Vesting type:</strong
+                >
+                Cliff vesting at end of year 3
+              </p>
+            </div>
+
+            <h3
+              class="font-bold text-slate-800 border-b border-yellow-200 pb-2 mt-6"
+            >
+              Calculated Results (over full term)
+            </h3>
+            <div class="space-y-2 text-sm">
+              <div
+                class="bg-white p-3 rounded border border-yellow-200 shadow-sm space-y-2"
+              >
+                <div
+                  class="flex justify-between text-slate-600 border-b border-slate-100 pb-1"
+                >
+                  <span class="font-semibold">Intrinsic value per option:</span>
+                  <span
+                    id="calc-int-opt"
+                    class="font-mono font-medium text-slate-800"
+                    >50</span
+                  >
+                </div>
+                <div
+                  class="flex justify-between text-slate-600 border-b border-slate-100 pb-1"
+                >
+                  <span class="font-semibold">Total intrinsic value:</span>
+                  <span
+                    id="calc-tot-int"
+                    class="font-mono font-medium text-slate-800"
+                    >50,00,000</span
+                  >
+                </div>
+                <div
+                  class="flex justify-between text-slate-600 border-b border-slate-100 pb-1"
+                >
+                  <span class="font-semibold">Total fair value (FV):</span>
+                  <span
+                    id="calc-tot-fv"
+                    class="font-mono font-medium text-slate-800"
+                    >70,00,000</span
+                  >
+                </div>
+                <div
+                  class="flex justify-between text-slate-600 border-b border-slate-100 pb-1"
+                >
+                  <span class="font-semibold"
+                    >Adjusted FV (with forfeiture):</span
+                  >
+                  <span
+                    id="calc-adj-fv"
+                    class="font-mono font-medium text-slate-800"
+                    >51,03,000</span
+                  >
+                </div>
+                <div
+                  class="flex justify-between text-slate-600 border-b border-slate-100 pb-1"
+                >
+                  <span class="font-semibold">Annual expense (Intrinsic):</span>
+                  <span
+                    id="calc-ann-int"
+                    class="font-mono font-medium text-slate-800"
+                    >16,66,667</span
+                  >
+                </div>
+                <div
+                  class="flex justify-between text-slate-600 border-b border-slate-100 pb-1"
+                >
+                  <span class="font-semibold">Annual expense (FV adj):</span>
+                  <span
+                    id="calc-ann-fv"
+                    class="font-mono font-medium text-slate-800"
+                    >17,01,000</span
+                  >
+                </div>
+                <div class="flex items-center gap-2 pt-2">
+                  <input
+                    type="checkbox"
+                    id="inp-us-nonpublic"
+                    class="rounded text-blue-600 focus:ring-blue-500"
+                  />
+                  <label
+                    for="inp-us-nonpublic"
+                    class="text-sm font-semibold text-slate-700"
+                    >US GAAP Nonpublic Entity Toggle</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex-[2] grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Inputs -->
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Number of options granted</label
+              >
+              <input
+                type="number"
+                id="inp-options"
+                value="100000"
+                step="1000"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Exercise price</label
+              >
+              <input
+                type="number"
+                id="inp-ep"
+                value="150"
+                step="1"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Market price on grant date</label
+              >
+              <input
+                type="number"
+                id="inp-mp"
+                value="200"
+                step="1"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Vesting period in years</label
+              >
+              <input
+                type="number"
+                id="inp-vest"
+                value="3"
+                step="1"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Contractual life in years</label
+              >
+              <input
+                type="number"
+                id="inp-life"
+                value="5"
+                step="1"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Fair value per option (Black-Scholes)</label
+              >
+              <input
+                type="number"
+                id="inp-fv"
+                value="70"
+                step="1"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Expected volatility (%)</label
+              >
+              <input
+                type="number"
+                id="inp-vol"
+                value="35"
+                step="1"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Risk-free rate (%)</label
+              >
+              <input
+                type="number"
+                id="inp-rfr"
+                value="7"
+                step="0.1"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Expected dividend yield (%)</label
+              >
+              <input
+                type="number"
+                id="inp-div"
+                value="0"
+                step="0.1"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Base EBITDA (Cr)</label
+              >
+              <input
+                type="number"
+                id="inp-ebitda"
+                value="100"
+                step="1"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Tax rate (%)</label
+              >
+              <input
+                type="number"
+                id="inp-tax"
+                value="25"
+                step="1"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600"
+                >Expected annual forfeiture rate (%)</label
+              >
+              <input
+                type="number"
+                id="inp-forfeit"
+                value="10"
+                step="1"
+                class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none transition text-sm font-mono"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION C -->
+      <section
+        id="section-c"
+        data-diagnostic="tracked"
+        class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col font-sans"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION C: Side-by-Side Treatment
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left font-sans">
+            <thead class="bg-slate-100 text-slate-700 font-bold">
+              <tr>
+                <th class="p-3 border-b border-r border-slate-200 w-1/4">
+                  AS (Intrinsic Value)
+                </th>
+                <th class="p-3 border-b border-r border-slate-200 w-1/4">
+                  AS (Fair Value Option)
+                </th>
+                <th class="p-3 border-b border-r border-slate-200 w-1/4">
+                  Ind AS 102 &amp; IFRS 2
+                </th>
+                <th class="p-3 border-b border-slate-200 w-1/4">
+                  US GAAP (ASC 718)
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 bg-white text-slate-700">
+              <tr>
+                <td
+                  class="p-3 border-r border-slate-200 align-top leading-relaxed space-y-3"
+                >
+                  <div>
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Intrinsic Value Model</span
+                    >
+                    <span class="text-sm"
+                      >Intrinsic value: Market price (<span class="v-mp"
+                        >200</span
+                      >) - Exercise price (<span class="v-ep">150</span>) =
+                      <span class="v-int">50</span> per option</span
+                    >
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Total Intrinsic Value</span
+                    >
+                    <span class="text-sm"
+                      ><span class="v-opt">100,000</span> &times;
+                      <span class="v-int">50</span> =
+                      <span class="v-totint">50,00,000</span></span
+                    >
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Annual Expense</span
+                    >
+                    <span class="text-sm font-semibold"
+                      ><span class="v-totint">50,00,000</span> /
+                      <span class="v-vest">3</span> years =
+                      <span class="v-annint">16,66,667</span> / year</span
+                    >
+                  </div>
+                  <div
+                    class="bg-slate-100 p-2 rounded font-mono text-[11px] text-slate-700 border border-slate-100"
+                  >
+                    Dr Employee compensation exp
+                    <span class="v-annint">16,66,667</span><br />Cr Stock
+                    options outstanding <span class="v-annint">16,66,667</span>
+                  </div>
+                </td>
+                <td
+                  class="p-3 border-r border-slate-200 align-top leading-relaxed space-y-3"
+                >
+                  <div>
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Fair Value Model</span
+                    >
+                    <span class="text-sm"
+                      >Fair value using Black-Scholes:
+                      <span class="v-fv">70</span> per option</span
+                    >
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Total Fair Value</span
+                    >
+                    <span class="text-sm"
+                      ><span class="v-totfv-no-forf-disp">70,00,000</span></span
+                    >
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Annual Expense</span
+                    >
+                    <span class="text-sm font-semibold"
+                      ><span class="v-totfv-no-forf-disp">70,00,000</span> /
+                      <span class="v-vest">3</span> =
+                      <span class="v-annfv-no-forf">23,33,333</span> /
+                      year</span
+                    >
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-slate-500 text-[11px] uppercase tracking-wider mb-1"
+                      >Notes</span
+                    >
+                    <span class="text-xs text-slate-600"
+                      >No forfeiture estimate explicitly required.</span
+                    >
+                  </div>
+                </td>
+                <td
+                  class="p-3 border-r border-slate-200 align-top leading-relaxed space-y-3"
+                >
+                  <div>
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Fair Value Requirement</span
+                    >
+                    <span class="text-sm"
+                      >Mandates fair value method only. Cannot use intrinsic
+                      value method (unless rare circumstances).</span
+                    >
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Volatility</span
+                    >
+                    <span class="text-sm"
+                      >Cannot assume zero volatility for unlisted
+                      companies.</span
+                    >
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Forfeitures Treatment</span
+                    >
+                    <span class="text-sm"
+                      >Must estimate forfeitures and adjust expense (<span
+                        class="v-forf"
+                        >10</span
+                      >% annual forfeiture)</span
+                    >
+                  </div>
+                  <div
+                    class="bg-slate-100 p-2 rounded font-mono text-[11px] text-slate-700 border border-slate-100"
+                  >
+                    Dr Employee compensation exp
+                    <span class="v-annadj">17,01,000</span><br />Cr Stock
+                    options outstanding <span class="v-annadj">17,01,000</span>
+                  </div>
+                </td>
+                <td class="p-3 align-top leading-relaxed space-y-3 relative">
+                  <div class="flex justify-between items-start">
+                    <div>
+                      <span
+                        class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                        >Fair Value Requirement</span
+                      >
+                      <span class="text-sm">Fair value method required.</span>
+                    </div>
+                    <div
+                      id="us-gaap-badge"
+                      class="bg-blue-100 text-blue-800 text-[10px] font-bold px-2 py-1 rounded hidden uppercase tracking-wide border border-blue-200 shadow-sm"
+                    >
+                      Nonpublic ON
+                    </div>
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Nonpublic Entity Election</span
+                    >
+                    <span class="text-sm"
+                      >May use calculated value if volatility not practicable
+                      (<span class="v-us-val-txt">70</span> / option)</span
+                    >
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Forfeiture Policy Election</span
+                    >
+                    <span class="text-sm"
+                      >Can choose to estimate OR recognize when forfeitures
+                      occur</span
+                    >
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Graded Vesting Election</span
+                    >
+                    <span class="text-sm"
+                      >Can choose straight-line OR accelerated</span
+                    >
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Assumed Expense</span
+                    >
+                    <span class="text-sm font-semibold text-slate-900"
+                      ><span class="v-us-ann">23,33,333</span> / year</span
+                    >
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION D IMPACT -->
+      <section
+        class="shrink-0 -mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION D: Side-by-Side Impact Table (Year 1 - ESOP)
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200">Framework</th>
+                <th class="p-3 border-b border-slate-200">
+                  Measurement Method
+                </th>
+                <th class="p-3 border-b border-slate-200">
+                  Fair Value per Option
+                </th>
+                <th class="p-3 border-b border-slate-200">Total Grant Value</th>
+                <th class="p-3 border-b border-slate-200">
+                  Annual Expense (3-yr vesting)
+                </th>
+                <th class="p-3 border-b border-slate-200">
+                  Forfeiture Treatment
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">AS (Intrinsic)</td>
+                <td class="p-3">
+                  Intrinsic value (<span class="v-mp">200</span>-<span
+                    class="v-ep"
+                    >150</span
+                  >)
+                </td>
+                <td class="p-3"><span class="v-int">50</span></td>
+                <td class="p-3"><span class="v-totint">50,00,000</span></td>
+                <td class="p-3"><span class="v-annint">16,66,667</span></td>
+                <td class="p-3">Not explicitly required</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">AS (Fair Value - optional)</td>
+                <td class="p-3">Black-Scholes with zero volatility</td>
+                <td class="p-3">60 (assumed)</td>
+                <td class="p-3"><span class="v-tot-asfv">60,00,000</span></td>
+                <td class="p-3"><span class="v-ann-asfv">20,00,000</span></td>
+                <td class="p-3">Not explicitly required</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Ind AS 102</td>
+                <td class="p-3">Black-Scholes with estimated volatility</td>
+                <td class="p-3"><span class="v-fv">70</span></td>
+                <td class="p-3"><span class="v-totadjfv">51,03,000</span></td>
+                <td class="p-3"><span class="v-annadj">17,01,000</span></td>
+                <td class="p-3">Must estimate forfeitures</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">IFRS 2</td>
+                <td class="p-3">Black-Scholes with estimated volatility</td>
+                <td class="p-3"><span class="v-fv">70</span></td>
+                <td class="p-3"><span class="v-totadjfv">51,03,000</span></td>
+                <td class="p-3"><span class="v-annadj">17,01,000</span></td>
+                <td class="p-3">Must estimate forfeitures</td>
+              </tr>
+              <tr class="hover:bg-slate-50 pb">
+                <td class="p-3 font-semibold text-slate-800 text-slate-500">
+                  US GAAP (public)
+                </td>
+                <td class="p-3 text-slate-500">
+                  Black-Scholes with expected volatility
+                </td>
+                <td class="p-3 text-slate-500"><span class="v-fv">70</span></td>
+                <td class="p-3 text-slate-500">
+                  <span class="v-totadjfv-uspb">70,00,000</span>
+                </td>
+                <td class="p-3 text-slate-500">
+                  <span class="v-annadj-uspb">23,33,333</span>
+                </td>
+                <td class="p-3 text-slate-500">Policy election</td>
+              </tr>
+              <tr class="hover:bg-slate-50 bg-blue-50">
+                <td class="p-3 font-bold">US GAAP (Selected)</td>
+                <td class="p-3">
+                  <span class="v-us-val-name"
+                    >Black-Scholes with expected volatility</span
+                  >
+                </td>
+                <td class="p-3"><span class="v-us-val">70</span></td>
+                <td class="p-3"><span class="v-tot-us">70,00,000</span></td>
+                <td class="p-3"><span class="v-us-ann">23,33,333</span></td>
+                <td class="p-3">Policy election</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION E -->
+      <section
+        class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200 flex justify-between"
+        >
+          <span>SECTION E: P&amp;L Impact - Year 1 (ESOP)</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200 w-1/5">Line Item</th>
+                <th class="p-3 border-b border-slate-200 text-right">
+                  AS (Intrinsic)
+                </th>
+                <th class="p-3 border-b border-slate-200 text-right">
+                  AS (Fair Value)
+                </th>
+                <th
+                  class="p-3 border-b border-slate-200 text-right border-x-2 border-blue-200 bg-blue-50/50"
+                >
+                  Ind AS 102
+                </th>
+                <th class="p-3 border-b border-slate-200 text-right">IFRS 2</th>
+                <th class="p-3 border-b border-slate-200 text-right">
+                  US GAAP (Selected)
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 font-mono text-right">
+              <tr class="hover:bg-slate-50 text-slate-600">
+                <td class="p-3 text-left font-sans font-medium text-slate-700">
+                  Base EBITDA
+                </td>
+                <td class="p-3"><span class="pe-b-ebitda">100.00</span> Cr</td>
+                <td class="p-3"><span class="pe-b-ebitda">100.00</span> Cr</td>
+                <td class="p-3 border-x-2 border-blue-200 bg-blue-50/50">
+                  <span class="pe-b-ebitda">100.00</span> Cr
+                </td>
+                <td class="p-3"><span class="pe-b-ebitda">100.00</span> Cr</td>
+                <td class="p-3"><span class="pe-b-ebitda">100.00</span> Cr</td>
+              </tr>
+              <tr class="hover:bg-red-50 text-red-600">
+                <td class="p-3 text-left font-sans font-medium">
+                  ESOP expense
+                </td>
+                <td class="p-3 font-semibold">
+                  -<span class="pe-as-esop">1.67</span> Cr
+                </td>
+                <td class="p-3">-<span class="pe-asfv-esop">2.00</span> Cr</td>
+                <td
+                  class="p-3 border-x-2 border-blue-200 bg-blue-50/50 font-semibold"
+                >
+                  -<span class="pe-ind-esop">1.70</span> Cr
+                </td>
+                <td class="p-3">-<span class="pe-ifrs-esop">1.70</span> Cr</td>
+                <td class="p-3">-<span class="pe-us-esop">2.33</span> Cr</td>
+              </tr>
+              <tr
+                class="hover:bg-slate-50 font-semibold text-slate-800 bg-slate-50/50 border-y-2 border-slate-200"
+              >
+                <td class="p-3 text-left font-sans">Reported EBITDA</td>
+                <td class="p-3"><span class="pe-as-ebitda">98.33</span> Cr</td>
+                <td class="p-3">
+                  <span class="pe-asfv-ebitda">98.00</span> Cr
+                </td>
+                <td
+                  class="p-3 border-x-2 border-blue-200 bg-blue-100 text-blue-900"
+                >
+                  <span class="pe-ind-ebitda">98.30</span> Cr
+                </td>
+                <td class="p-3">
+                  <span class="pe-ifrs-ebitda">98.30</span> Cr
+                </td>
+                <td class="p-3"><span class="pe-us-ebitda">97.67</span> Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50 font-semibold text-slate-800">
+                <td class="p-3 text-left font-sans">EBIT</td>
+                <td class="p-3"><span class="pe-as-ebitda">98.33</span> Cr</td>
+                <td class="p-3">
+                  <span class="pe-asfv-ebitda">98.00</span> Cr
+                </td>
+                <td
+                  class="p-3 border-x-2 border-blue-200 bg-blue-50/50 text-blue-900"
+                >
+                  <span class="pe-ind-ebitda">98.30</span> Cr
+                </td>
+                <td class="p-3">
+                  <span class="pe-ifrs-ebitda">98.30</span> Cr
+                </td>
+                <td class="p-3"><span class="pe-us-ebitda">97.67</span> Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50 text-slate-600">
+                <td class="p-3 text-left font-sans font-medium">Interest</td>
+                <td class="p-3">Nil</td>
+                <td class="p-3">Nil</td>
+                <td class="p-3 border-x-2 border-blue-200 bg-blue-50/50">
+                  Nil
+                </td>
+                <td class="p-3">Nil</td>
+                <td class="p-3">Nil</td>
+              </tr>
+              <tr
+                class="hover:bg-slate-50 font-semibold text-slate-800 border-t border-slate-200"
+              >
+                <td class="p-3 text-left font-sans">PBT</td>
+                <td class="p-3"><span class="pe-as-ebitda">98.33</span> Cr</td>
+                <td class="p-3">
+                  <span class="pe-asfv-ebitda">98.00</span> Cr
+                </td>
+                <td
+                  class="p-3 border-x-2 border-blue-200 bg-blue-50/50 text-blue-900"
+                >
+                  <span class="pe-ind-ebitda">98.30</span> Cr
+                </td>
+                <td class="p-3">
+                  <span class="pe-ifrs-ebitda">98.30</span> Cr
+                </td>
+                <td class="p-3"><span class="pe-us-ebitda">97.67</span> Cr</td>
+              </tr>
+              <tr class="hover:bg-red-50 text-red-600">
+                <td class="p-3 text-left font-sans font-medium">
+                  Tax (<span class="v-tax-lbl">25</span>%)
+                </td>
+                <td class="p-3">-<span class="pe-as-tax">24.58</span> Cr</td>
+                <td class="p-3">-<span class="pe-asfv-tax">24.50</span> Cr</td>
+                <td class="p-3 border-x-2 border-blue-200 bg-blue-50/50">
+                  -<span class="pe-ind-tax">24.58</span> Cr
+                </td>
+                <td class="p-3">-<span class="pe-ifrs-tax">24.58</span> Cr</td>
+                <td class="p-3">-<span class="pe-us-tax">24.42</span> Cr</td>
+              </tr>
+              <tr
+                class="hover:bg-green-50 font-bold text-slate-900 bg-green-50/30 border-t-2 border-slate-200"
+              >
+                <td class="p-3 text-left font-sans">PAT</td>
+                <td class="p-3 text-green-700">
+                  <span class="pe-as-pat">73.75</span> Cr
+                </td>
+                <td class="p-3 text-green-700">
+                  <span class="pe-asfv-pat">73.50</span> Cr
+                </td>
+                <td
+                  class="p-3 border-x-2 border-blue-400 bg-blue-100 text-blue-900"
+                >
+                  <span class="pe-ind-pat">73.73</span> Cr
+                </td>
+                <td class="p-3 text-green-700">
+                  <span class="pe-ifrs-pat">73.73</span> Cr
+                </td>
+                <td class="p-3 text-green-700">
+                  <span class="pe-us-pat">73.25</span> Cr
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION F & G -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+        <section
+          class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+        >
+          <div
+            class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+          >
+            SECTION F: Balance Sheet Impact - Year 1 (ESOP)
+          </div>
+          <div class="overflow-x-auto flex-1">
+            <table class="w-full text-sm text-left">
+              <thead class="bg-slate-50 text-slate-700">
+                <tr>
+                  <th class="p-3 border-b border-slate-200">Item</th>
+                  <th class="p-3 border-b border-slate-200">AS (Intrinsic)</th>
+                  <th class="p-3 border-b border-slate-200">Ind AS 102</th>
+                  <th class="p-3 border-b border-slate-200">IFRS 2</th>
+                  <th class="p-3 border-b border-slate-200">US GAAP</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">
+                    Stock options outstanding (equity)
+                  </td>
+                  <td class="p-3 font-mono text-slate-600">
+                    <span class="bs-as-eq">16.67</span> Cr
+                  </td>
+                  <td class="p-3 font-mono text-slate-600">
+                    <span class="bs-ind-eq">17.01</span> Cr
+                  </td>
+                  <td class="p-3 font-mono text-slate-600">
+                    <span class="bs-ifrs-eq">17.01</span> Cr
+                  </td>
+                  <td class="p-3">Variable by election</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">
+                    Deferred tax asset (if recognized)
+                  </td>
+                  <td class="p-3">Not typically</td>
+                  <td class="p-3 font-mono text-slate-600">
+                    <span class="bs-ind-dta">4.25</span> Cr
+                  </td>
+                  <td class="p-3 font-mono text-slate-600">
+                    <span class="bs-ifrs-dta">4.25</span> Cr
+                  </td>
+                  <td class="p-3 font-mono text-slate-600">
+                    <span class="bs-us-dta">5.83</span> Cr
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">Total equity</td>
+                  <td class="p-3 text-red-600">Lower by expense</td>
+                  <td class="p-3 text-red-600">Lower by higher expense</td>
+                  <td class="p-3 text-red-600">Lower by higher expense</td>
+                  <td class="p-3">Medium</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div
+            class="px-4 py-2 bg-slate-50 border-t border-slate-200 text-xs text-slate-600 italic"
+          >
+            Note: ESOPs are equity-settled in all frameworks (unless
+            cash-settled), so no balance sheet liability for employee options.
+          </div>
+        </section>
+
+        <!-- SECTION G -->
+        <section
+          id="section-g"
+          class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col font-mono mt-6"
+        >
+          <div
+            class="bg-[#1a365d] text-white px-4 py-3 font-bold font-sans uppercase tracking-wider text-sm border-b border-slate-200 flex justify-between"
+          >
+            <span>SECTION G: Cash Flow Impact (Year 1)</span>
+          </div>
+          <div class="overflow-x-auto text-sm flex-1">
+            <table class="w-full text-left">
+              <thead class="bg-slate-50 text-slate-700 font-sans">
+                <tr>
+                  <th class="p-3 border-b border-slate-200">Item</th>
+                  <th class="p-3 border-b border-slate-200">AS (Old)</th>
+                  <th class="p-3 border-b border-slate-200">Ind AS 102</th>
+                  <th class="p-3 border-b border-slate-200">IFRS 2</th>
+                  <th class="p-3 border-b border-slate-200">US GAAP</th>
+                  <th class="p-3 border-b border-slate-200 text-xs">
+                    Interpretation
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold font-sans">
+                    Operating Cash Flow (CFO)
+                  </td>
+                  <td class="p-3" id="g-cfo-as"></td>
+                  <td class="p-3 font-bold text-amber-700" id="g-cfo-in"></td>
+                  <td class="p-3 font-bold text-amber-700" id="g-cfo-ifrs"></td>
+                  <td class="p-3" id="g-cfo-us"></td>
+                  <td class="p-3 font-sans text-xs text-slate-600">
+                    Net operating cash unimpacted by non-cash ESOP expense
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold font-sans">
+                    Financing Cash Flow (CFF)
+                  </td>
+                  <td class="p-3">0.00 Cr</td>
+                  <td class="p-3 font-bold text-rose-700">0.00 Cr</td>
+                  <td class="p-3 font-bold text-rose-700">0.00 Cr</td>
+                  <td class="p-3">0.00 Cr</td>
+                  <td class="p-3 font-sans text-xs text-slate-600">
+                    No cash flow from equity issuance until exercise
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50 bg-slate-50/50">
+                  <td
+                    class="p-3 font-bold font-sans text-indigo-800 border-t border-slate-300"
+                  >
+                    Total Net Cash Flow
+                  </td>
+                  <td
+                    class="p-3 font-bold text-slate-800 border-t border-slate-300"
+                    id="g-tot-as"
+                  ></td>
+                  <td
+                    class="p-3 font-bold text-indigo-700 border-t border-slate-300"
+                    id="g-tot-in"
+                  ></td>
+                  <td
+                    class="p-3 font-bold text-indigo-700 border-t border-slate-300"
+                    id="g-tot-ifrs"
+                  ></td>
+                  <td
+                    class="p-3 font-bold text-slate-800 border-t border-slate-300"
+                    id="g-tot-us"
+                  ></td>
+                  <td
+                    class="p-3 font-sans text-xs text-slate-600 border-t border-slate-300"
+                  >
+                    Total cash drain is identical across all frameworks
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- SECTION H -->
+      <section
+        id="section-h"
+        class="shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col font-mono mt-6"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold font-sans uppercase tracking-wider text-sm border-b border-slate-200 flex justify-between"
+        >
+          <span>SECTION H: Ratio Impact (Year 1)</span>
+        </div>
+        <div
+          class="p-3 bg-amber-50 border-b border-slate-200 font-sans text-xs flex flex-wrap gap-4 items-center"
+        >
+          <span class="font-bold text-[#1a365d]">Ratio Baseline:</span>
+          <div class="flex items-center gap-1">
+            <label>Revenue (Cr):</label
+            ><input
+              type="number"
+              id="inp-rev"
+              value="400"
+              step="1"
+              class="w-20 p-1 border border-slate-300 rounded text-right bg-white"
+            />
+          </div>
+          <div class="flex items-center gap-1">
+            <label>Shares (Cr):</label
+            ><input
+              type="number"
+              id="inp-shares"
+              value="10"
+              step="1"
+              class="w-20 p-1 border border-slate-300 rounded text-right bg-white"
+            />
+          </div>
+          <div class="flex items-center gap-1">
+            <label>Equity (Cr):</label
+            ><input
+              type="number"
+              id="inp-eq"
+              value="200"
+              step="1"
+              class="w-20 p-1 border border-slate-300 rounded text-right bg-white"
+            />
+          </div>
+          <div class="flex items-center gap-1">
+            <label>Stock Price (₹):</label
+            ><input
+              type="number"
+              id="inp-stock-price"
+              value="150"
+              step="1"
+              class="w-20 p-1 border border-slate-300 rounded text-right bg-white"
+            />
+          </div>
+        </div>
+        <div class="overflow-x-auto text-sm">
+          <table class="w-full text-center">
+            <thead class="bg-slate-50 text-slate-700 font-sans">
+              <tr>
+                <th class="p-3 border-b border-slate-200 text-left w-1/6">
+                  Ratio
+                </th>
+                <th class="p-3 border-b border-slate-200">AS (Intrinsic)</th>
+                <th class="p-3 border-b border-slate-200">Ind AS / IFRS</th>
+                <th class="p-3 border-b border-slate-200">US GAAP</th>
+                <th
+                  class="p-3 border-b border-slate-200 text-blue-800 font-bold"
+                >
+                  Direction
+                </th>
+                <th class="p-3 border-b border-slate-200 text-left w-1/4">
+                  Interpretation
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans text-left">Net margin</td>
+                <td class="p-3"><span id="h-nm-as"></span></td>
+                <td class="p-3 font-bold text-red-700">
+                  <span id="h-nm-in"></span>
+                </td>
+                <td class="p-3"><span id="h-nm-us"></span></td>
+                <td class="p-3 text-red-600 font-bold">↓</td>
+                <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                  Net profitability drops due to larger non-cash expense
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans text-left">EBITDA margin</td>
+                <td class="p-3"><span id="h-em-as"></span></td>
+                <td class="p-3 font-bold text-red-700">
+                  <span id="h-em-in"></span>
+                </td>
+                <td class="p-3"><span id="h-em-us"></span></td>
+                <td class="p-3 text-red-600 font-bold">↓</td>
+                <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                  Margins depressed under standard fair value approach
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans text-left">EPS (basic)</td>
+                <td class="p-3"><span id="h-eps-as"></span></td>
+                <td class="p-3 font-bold text-red-700">
+                  <span id="h-eps-in"></span>
+                </td>
+                <td class="p-3"><span id="h-eps-us"></span></td>
+                <td class="p-3 text-red-600 font-bold">↓</td>
+                <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                  Higher compensation expense reduces earnings power
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans text-left">ROE</td>
+                <td class="p-3"><span id="h-roe-as"></span></td>
+                <td class="p-3 font-bold text-red-700">
+                  <span id="h-roe-in"></span>
+                </td>
+                <td class="p-3"><span id="h-roe-us"></span></td>
+                <td class="p-3 text-red-600 font-bold">↓</td>
+                <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                  Reported return on equity mechanically decreases
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans text-left">P/E ratio</td>
+                <td class="p-3"><span id="h-pe-as"></span></td>
+                <td class="p-3 font-bold text-green-700">
+                  <span id="h-pe-in"></span>
+                </td>
+                <td class="p-3"><span id="h-pe-us"></span></td>
+                <td class="p-3 text-green-600 font-bold">↑</td>
+                <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                  Valuation looks more expensive as EPS drops
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION I & J -->
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
+        <section
+          class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+        >
+          <div
+            class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+          >
+            SECTION I: Earnings Quality - Signals Table (ESOP)
+          </div>
+          <div class="overflow-x-auto flex-1">
+            <table class="w-full text-sm text-left">
+              <thead class="bg-slate-50 text-slate-700">
+                <tr>
+                  <th class="p-3 border-b border-slate-200">Signal Observed</th>
+                  <th class="p-3 border-b border-slate-200">
+                    What It Means Technically
+                  </th>
+                  <th class="p-3 border-b border-slate-200">
+                    Analyst Interpretation
+                  </th>
+                  <th class="p-3 border-b border-slate-200">Action</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">
+                    ESOP expense increases after Ind AS adoption
+                  </td>
+                  <td class="p-3">
+                    Company previously used intrinsic value; now fair value
+                    required
+                  </td>
+                  <td class="p-3">
+                    Earnings are more truthful; prior periods understated
+                    compensation cost
+                  </td>
+                  <td class="p-3 font-semibold text-blue-700">
+                    Adjust historical comparables to fair value basis
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">
+                    Volatility assumption = zero for unlisted (under AS)
+                  </td>
+                  <td class="p-3">Allowed exception under old GAAP</td>
+                  <td class="p-3">
+                    Options likely undervalued; expense too low
+                  </td>
+                  <td class="p-3 font-semibold text-blue-700">
+                    Recompute using peer volatility for true cost
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">
+                    No forfeiture estimate (under AS)
+                  </td>
+                  <td class="p-3">Not required under old GAAP</td>
+                  <td class="p-3">
+                    Expense not adjusted for leavers; overstated liability
+                  </td>
+                  <td class="p-3 font-semibold text-blue-700">
+                    Estimate own forfeiture rate and adjust
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">
+                    High use of graded vesting with straight-line (under AS)
+                  </td>
+                  <td class="p-3">Permitted under old GAAP</td>
+                  <td class="p-3">
+                    Expense recognized slower than economic vesting
+                  </td>
+                  <td class="p-3 font-semibold text-blue-700">
+                    Recompute using accelerated method for comparability
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">
+                    Non-employee grants not disclosed (under AS)
+                  </td>
+                  <td class="p-3">Not required</td>
+                  <td class="p-3">
+                    Possible missing expense for vendor/consultant payments
+                  </td>
+                  <td class="p-3 font-semibold text-blue-700">
+                    Investigate share-based payments to suppliers
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">
+                    ESPP treated as noncompensatory (US GAAP)
+                  </td>
+                  <td class="p-3">Permitted if conditions met</td>
+                  <td class="p-3">
+                    No expense recognized; IFRS peers would expense
+                  </td>
+                  <td class="p-3 font-semibold text-blue-700">
+                    Add back estimated ESPP cost for peer comparison
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section
+          class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+        >
+          <div
+            class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+          >
+            SECTION J: Trend Distortion Matrix - ESOP
+          </div>
+          <div class="overflow-x-auto flex-1">
+            <table class="w-full text-sm text-left">
+              <thead class="bg-slate-50 text-slate-700">
+                <tr>
+                  <th class="p-3 border-b border-slate-200">Metric</th>
+                  <th class="p-3 border-b border-slate-200">Distortion Type</th>
+                  <th class="p-3 border-b border-slate-200">Duration</th>
+                  <th class="p-3 border-b border-slate-200">
+                    Correction Method
+                  </th>
+                  <th class="p-3 border-b border-slate-200">Example</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">Net Income</td>
+                  <td class="p-3">
+                    Permanent level shift (if switching from intrinsic to fair
+                    value)
+                  </td>
+                  <td class="p-3">
+                    Entire vesting period of all outstanding grants
+                  </td>
+                  <td class="p-3 text-blue-700">
+                    Recast historical intrinsic-based expense to fair value
+                  </td>
+                  <td class="p-3 text-slate-600 text-xs text-center">
+                    <span class="pe-ni-dist"></span>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">EPS</td>
+                  <td class="p-3">Permanent level shift</td>
+                  <td class="p-3">Vesting period</td>
+                  <td class="p-3 text-blue-700">
+                    Use fair-value based EPS for all periods
+                  </td>
+                  <td class="p-3 text-slate-600 text-xs text-center">
+                    Compare only on consistent basis
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">EBITDA</td>
+                  <td class="p-3">Permanent level shift</td>
+                  <td class="p-3">Vesting period</td>
+                  <td class="p-3 text-blue-700">
+                    Normalize to fair value method
+                  </td>
+                  <td class="p-3 text-slate-600 text-xs text-center">
+                    Peer comps require same method
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">
+                    Equity (stock options outstanding)
+                  </td>
+                  <td class="p-3">Balance sheet difference</td>
+                  <td class="p-3">Until exercise/expiry</td>
+                  <td class="p-3 text-blue-700">
+                    Fair value method creates larger equity balance
+                  </td>
+                  <td class="p-3 text-slate-600 text-xs text-center">
+                    Not economic difference
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">Cash flow</td>
+                  <td class="p-3 text-green-700">No distortion (non-cash)</td>
+                  <td class="p-3">N/A</td>
+                  <td class="p-3">No correction needed</td>
+                  <td class="p-3 text-slate-600 text-xs text-center">
+                    Total CF identical
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- SECTION K & L -->
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
+        <section
+          class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+        >
+          <div
+            class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+          >
+            SECTION K: Ratio Interpretation Guide - ESOP
+          </div>
+          <div class="overflow-x-auto flex-1">
+            <table class="w-full text-sm text-left">
+              <thead class="bg-slate-50 text-slate-700">
+                <tr>
+                  <th class="p-3 border-b border-slate-200">Ratio</th>
+                  <th class="p-3 border-b border-slate-200">Reported Value</th>
+                  <th class="p-3 border-b border-slate-200">
+                    What Analyst Should Do
+                  </th>
+                  <th class="p-3 border-b border-slate-200">
+                    Correct Interpretation
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">P/E Ratio</td>
+                  <td class="p-3">Higher under fair value (lower earnings)</td>
+                  <td class="p-3">
+                    Recalculate using intrinsic method for old periods
+                  </td>
+                  <td class="p-3">Multiple expansion may be artificial</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">EBITDA Margin</td>
+                  <td class="p-3">Lower under fair value</td>
+                  <td class="p-3">Compare only to peers using same method</td>
+                  <td class="p-3">Not a real operational deterioration</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">ROE</td>
+                  <td class="p-3">Lower under fair value</td>
+                  <td class="p-3">
+                    Recognize equity increases by same amount as expense reduces
+                    retained earnings
+                  </td>
+                  <td class="p-3">Economic return unchanged</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">Effective Tax Rate</td>
+                  <td class="p-3">Appears higher (pre-tax income lower)</td>
+                  <td class="p-3">
+                    No real tax impact (ESOP expense deductible per tax rules on
+                    exercise)
+                  </td>
+                  <td class="p-3">Tax rate distortion is timing only</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">ESOP Expense / Revenue</td>
+                  <td class="p-3">>3% typically material</td>
+                  <td class="p-3">Compare to industry peers</td>
+                  <td class="p-3">
+                    High ratio may indicate over-reliance on equity compensation
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="px-4 py-3 bg-blue-50 border-t border-slate-200">
+            <p class="text-sm text-blue-900">
+              <strong class="font-bold">Intelligence Note:</strong> Across Ind
+              AS, IFRS, and US GAAP, the same analytical normalization applies
+              &ndash; always recast historical ESOP expense to fair value for
+              all periods using consistent Black-Scholes assumptions (volatility
+              25-40%, no zero exception), normalize for forfeitures, and compare
+              diluted EPS including all in-the-money options.
+            </p>
+          </div>
+        </section>
+
+        <section
+          class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+        >
+          <div
+            class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+          >
+            SECTION L: Analyst Concerns &amp; Answers - ESOP
+          </div>
+          <div class="overflow-x-auto flex-1">
+            <table class="w-full text-sm text-left">
+              <thead class="bg-slate-100 text-slate-700">
+                <tr>
+                  <th class="p-3 border-r border-slate-200 w-1/4">
+                    Analyst question
+                  </th>
+                  <th class="p-3 border-r border-slate-200 w-1/4">Concern</th>
+                  <th class="p-3 border-r border-slate-200 w-1/4">Answer</th>
+                  <th class="p-3 w-1/4">Evidence</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">
+                    Why is ESOP expense higher under Ind AS than old GAAP?
+                  </td>
+                  <td class="p-3">Earnings decline</td>
+                  <td class="p-3">
+                    Old GAAP allowed intrinsic value (<span class="v-int"
+                      >50</span
+                    >/option); Ind AS requires fair value (<span class="v-fv"
+                      >70</span
+                    >/option)
+                  </td>
+                  <td class="p-3 text-slate-600 text-xs">
+                    Difference of <span class="v-fv-int-diff">20</span>/option
+                    &times; options granted
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">
+                    Can companies still use zero volatility for unlisted?
+                  </td>
+                  <td class="p-3">Understated expense</td>
+                  <td class="p-3">
+                    No - Ind AS 102 and IFRS 2 prohibit this exception
+                  </td>
+                  <td class="p-3 text-slate-600 text-xs">
+                    Must use comparable listed company volatility
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">
+                    How do I compare Indian company under Ind AS with US company
+                    under ASC 718?
+                  </td>
+                  <td class="p-3">Cross-border comparability</td>
+                  <td class="p-3">
+                    Broadly similar, but US GAAP has more policy elections
+                    (forfeiture, graded vesting, ESPP noncompensatory)
+                  </td>
+                  <td class="p-3 text-slate-600 text-xs">
+                    Normalize using same policy choices
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">
+                    Is ESOP expense real or just accounting?
+                  </td>
+                  <td class="p-3">Cash flow vs earnings</td>
+                  <td class="p-3">
+                    ESOP is real economic cost (dilution to existing
+                    shareholders) even though non-cash
+                  </td>
+                  <td class="p-3 text-slate-600 text-xs">
+                    Factor dilution into per-share metrics
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">
+                    What about group ESOPs - parent shares to subsidiary
+                    employees?
+                  </td>
+                  <td class="p-3">Which entity records expense?</td>
+                  <td class="p-3">
+                    Ind AS 102 provides detailed guidance: subsidiary records
+                    equity-settled expense; parent may record cash-settled if
+                    reimbursed
+                  </td>
+                  <td class="p-3 text-slate-600 text-xs">
+                    Check group structure and recharge agreements
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">
+                    How do modifications affect expense?
+                  </td>
+                  <td class="p-3">Earnings manipulation risk</td>
+                  <td class="p-3">
+                    IFRS: original grant date value + incremental value; US
+                    GAAP: entire modified award value
+                  </td>
+                  <td class="p-3 text-slate-600 text-xs">
+                    US GAAP may produce higher expense after modification
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- SECTION M & N -->
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
+        <section
+          class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+        >
+          <div
+            class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+          >
+            SECTION M: Investor Perception Analysis - ESOP
+          </div>
+          <div class="overflow-x-auto flex-1">
+            <table class="w-full text-sm text-left">
+              <thead class="bg-slate-100 text-slate-700">
+                <tr>
+                  <th class="p-3 border-r border-slate-200 w-1/4">
+                    Investor Type
+                  </th>
+                  <th class="p-3 border-r border-slate-200 w-1/4">
+                    What they see
+                  </th>
+                  <th class="p-3 border-r border-slate-200 w-1/4">
+                    Likely reaction
+                  </th>
+                  <th class="p-3 w-1/4">Sophisticated response</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">Retail</td>
+                  <td class="p-3">Lower PAT under Ind AS</td>
+                  <td class="p-3 text-red-600">
+                    Negative, think company less profitable
+                  </td>
+                  <td class="p-3 text-blue-700">
+                    Recognize change is accounting, not economics
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">Value</td>
+                  <td class="p-3">Lower EPS, higher dilution</td>
+                  <td class="p-3 text-amber-600">Reduce valuation multiples</td>
+                  <td class="p-3 text-blue-700">
+                    Calculate fully diluted shares including in-the-money
+                    options
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">Institutional Long-Only</td>
+                  <td class="p-3">Better transparency on compensation cost</td>
+                  <td class="p-3 text-green-700">Positive for governance</td>
+                  <td class="p-3 text-blue-700">
+                    Use fair value expense for compensation analysis
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">Credit / Lenders</td>
+                  <td class="p-3">
+                    Lower EBITDA, higher leverage ratios (if equity reduced)
+                  </td>
+                  <td class="p-3 text-amber-600">
+                    More cautious if covenants based on reported numbers
+                  </td>
+                  <td class="p-3 text-blue-700">
+                    Adjust EBITDA add-back for non-cash ESOP
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">PE / VC</td>
+                  <td class="p-3">
+                    High ESOP expense reduces reported profits
+                  </td>
+                  <td class="p-3 text-amber-600">
+                    May negotiate on adjusted EBITDA
+                  </td>
+                  <td class="p-3 text-blue-700">
+                    Underwrite with add-back but track dilution
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section
+          class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+        >
+          <div
+            class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+          >
+            SECTION N: Reporting Signals Decoder - ESOP
+          </div>
+          <div class="overflow-x-auto flex-1">
+            <table class="w-full text-sm text-left">
+              <thead class="bg-slate-100 text-slate-700">
+                <tr>
+                  <th class="p-3 border-r border-slate-200">
+                    Management Action
+                  </th>
+                  <th class="p-3 border-r border-slate-200">Signal</th>
+                  <th class="p-3 border-r border-slate-200">
+                    What It Really Means
+                  </th>
+                  <th class="p-3">Your Move</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">
+                    Switched from intrinsic to fair value before Ind AS adoption
+                  </td>
+                  <td class="p-3">Proactive governance</td>
+                  <td class="p-3">
+                    Wants comparable numbers; may be hiding that old expense was
+                    too low
+                  </td>
+                  <td class="p-3 text-blue-700">
+                    Recast prior periods to fair value
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">
+                    Uses graded vesting with straight-line amortization (under
+                    AS or US GAAP election)
+                  </td>
+                  <td class="p-3">Expense smoothing</td>
+                  <td class="p-3">
+                    Later years get less expense than economic vesting
+                  </td>
+                  <td class="p-3 text-blue-700">
+                    Recompute accelerated for true cost
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">
+                    Low volatility assumption for unlisted (under AS)
+                  </td>
+                  <td class="p-3 text-red-600 font-bold">Aggressive</td>
+                  <td class="p-3">Understates fair value and expense</td>
+                  <td class="p-3 text-blue-700">
+                    Benchmark to listed peers (20-40% typical)
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">
+                    No forfeiture estimate (under AS)
+                  </td>
+                  <td class="p-3 text-amber-600 font-bold">
+                    Missing adjustment
+                  </td>
+                  <td class="p-3">Overstates liability if leavers exist</td>
+                  <td class="p-3 text-blue-700">
+                    Estimate 5-15% annual attrition for startups
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">
+                    Parent grants options to subsidiary employees - no recharge
+                  </td>
+                  <td class="p-3">Opaque</td>
+                  <td class="p-3">
+                    Expense may be missing from subsidiary or double-counted
+                  </td>
+                  <td class="p-3 text-blue-700">
+                    Check both entities' financials
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 font-bold">
+                    ESPP treated as noncompensatory (US GAAP)
+                  </td>
+                  <td class="p-3">Potential understatement</td>
+                  <td class="p-3">
+                    No expense for plans that IFRS would expense
+                  </td>
+                  <td class="p-3 text-blue-700">
+                    Add back estimated ESPP cost
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- SECTION O: Premium Intelligence Narrative -->
+      <section
+        id="section-o"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION O: Premium Intelligence Narrative
+        </div>
+        <div class="p-5 text-sm space-y-4 text-slate-700 leading-relaxed">
+          <p>
+            <span class="font-bold text-[#1a365d]">Question:</span> "Why does
+            the income statement show a massive ESOP expense, but cash flow
+            isn't impacted? Is this a real cost?"
+          </p>
+          <p>
+            <span class="font-bold text-slate-500"
+              >Average Analyst Answer:</span
+            >
+            "It's just a non-cash accounting adjustment. Focus on cash flow and
+            ignore it."
+          </p>
+          <div
+            class="p-4 bg-teal-50 border border-teal-200 rounded-lg text-teal-900"
+          >
+            <p>
+              <span class="font-bold text-teal-800 text-base"
+                >PREMIUM Analyst Answer:</span
+              ><br /><br />
+              "It IS a real cost—it's dilution. Under Ind AS / IFRS, ESOPs are
+              expensed at fair value because you are effectively paying
+              employees with equity instead of cash. The old AS intrinsic value
+              method allowed companies to issue options at market price and
+              report zero expense, artificially inflating profits. The 'expense'
+              hitting the P&L now reflects the true economic transfer of wealth
+              from shareholders to employees. However, it's non-cash, which is
+              why it gets added back in CFO. To analyze properly: 1) Track the
+              dilution (share count increase). 2) Treat regular, recurring ESOP
+              grants as a real operating cost when calculating normalized free
+              cash flow. 3) Don't blindly add it back to EBITDA for valuation
+              multiples, or you are overvaluing the company."
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION P: Red Flags vs Green Flags (Visual Indicator Matrix) -->
+      <section
+        id="section-p"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION P: Red Flags vs Green Flags (Visual Indicator Matrix)
+        </div>
+        <div class="overflow-x-auto flex-1">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-1/2">Scenario</th>
+                <th class="p-3 border-r border-slate-200 text-center w-24">
+                  Flag
+                </th>
+                <th class="p-3">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr class="bg-[#fee]">
+                <td class="p-3 font-medium">
+                  ESOP expense systematically ignored in management 'Adjusted
+                  EBITDA'
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-red-700 uppercase tracking-widest"
+                >
+                  <span class="text-red-500 mr-1">🔴</span>RED
+                </td>
+                <td class="p-3 text-red-900">
+                  Do not ignore it; treat recurring grants as cash compensation
+                  in valuation models.
+                </td>
+              </tr>
+              <tr class="bg-[#fee]">
+                <td class="p-3 font-medium">
+                  Sudden massive modification of ESOP terms (repricing)
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-red-700 uppercase tracking-widest"
+                >
+                  <span class="text-red-500 mr-1">🔴</span>RED
+                </td>
+                <td class="p-3 text-red-900">
+                  Management bailing themselves out of poor stock performance at
+                  shareholder expense.
+                </td>
+              </tr>
+              <tr class="bg-[#fee]">
+                <td class="p-3 font-medium">
+                  ESOP vesting heavily skewed to short-term or time-based rather
+                  than performance
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-red-700 uppercase tracking-widest"
+                >
+                  <span class="text-red-500 mr-1">🔴</span>RED
+                </td>
+                <td class="p-3 text-red-900">
+                  Misalignment with long-term shareholder value creation.
+                </td>
+              </tr>
+              <tr class="bg-[#efe]">
+                <td class="p-3 font-medium">
+                  Clear linkage of ESOP vesting to long-term Return on Capital
+                  (ROCE) targets
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-green-700 uppercase tracking-widest"
+                >
+                  <span class="text-green-500 mr-1">🟢</span>GREEN
+                </td>
+                <td class="p-3 text-green-900">
+                  High confidence in management's alignment with long-term
+                  business health.
+                </td>
+              </tr>
+              <tr class="bg-[#efe]">
+                <td class="p-3 font-medium">
+                  Dilution accurately and conservatively modeled in long-term
+                  share count projections
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-green-700 uppercase tracking-widest"
+                >
+                  <span class="text-green-500 mr-1">🟢</span>GREEN
+                </td>
+                <td class="p-3 text-green-900">
+                  Use fully diluted share count for DCF per-share values.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION Q: Final Intelligence Summary -->
+      <section
+        id="section-q"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION Q: Final Intelligence Summary
+        </div>
+        <div class="p-6 bg-white">
+          <p
+            class="font-bold text-lg text-slate-800 pb-3 border-b border-slate-100 mb-4"
+          >
+            The Sophistication Hierarchy
+          </p>
+          <ul class="space-y-4 text-sm text-slate-700">
+            <li class="flex flex-col sm:flex-row sm:items-start gap-2">
+              <span class="font-bold whitespace-nowrap">Level 1 (Retail):</span>
+              <span>
+                &quot;ESOP is non-cash, so I can just add it back to EBITDA and
+                ignore it.&quot; &rarr;
+                <span class="text-red-600 font-bold"
+                  >Wrong action. You will overpay for a dilutive business.</span
+                >
+              </span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:items-start gap-2">
+              <span class="font-bold whitespace-nowrap">Level 2 (Basic):</span>
+              <span>
+                &quot;I'll track the diluted EPS, but still use Adjusted EBITDA
+                for my multiples.&quot; &rarr;
+                <span class="text-amber-600 font-bold"
+                  >Still over-values the enterprise by ignoring the real
+                  economic cost of compensation.</span
+                >
+              </span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:items-start gap-2">
+              <span class="font-bold whitespace-nowrap">Level 3:</span>
+              <span>
+                &quot;ESOPs transfer wealth from equity holders to employees.
+                Recognize recurring grants as a true operating cost and deduct
+                them from Free Cash Flow. Demand transparent performance-linked
+                vesting rather than time-based giveaways.&quot; &rarr;
+                <span class="text-green-600 font-bold"
+                  >Accurately values economic reality</span
+                >
+              </span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <div
+        class="text-center text-xs text-slate-400 mt-4 pb-8"
+        id="calc-timestamp"
+      >
+        Last calculated: ---
+      </div>
+    </main>
+
+    <script>
+      function formatNumber(num) {
+        if (isNaN(num)) return "0";
+        let x = Math.round(num);
+        let str = x.toString().split(".");
+        if (str[0].length >= 4) {
+          let lastThree = str[0].substring(str[0].length - 3);
+          let otherNumbers = str[0].substring(0, str[0].length - 3);
+          if (otherNumbers != "") lastThree = "," + lastThree;
+          str[0] = otherNumbers.replace(/B(?=(d{2})+(?!d))/g, ",") + lastThree;
+        }
+        let res = str.join(".");
+        return res;
+      }
+
+      function updateCalculations() {
+        const options =
+          parseFloat(document.getElementById("inp-options").value) || 0;
+        const ep = parseFloat(document.getElementById("inp-ep").value) || 0;
+        const mp = parseFloat(document.getElementById("inp-mp").value) || 0;
+        const vest = parseFloat(document.getElementById("inp-vest").value) || 1;
+        const fv = parseFloat(document.getElementById("inp-fv").value) || 0;
+        const forfeitRate =
+          parseFloat(document.getElementById("inp-forfeit").value) || 0;
+        const ebitda =
+          parseFloat(document.getElementById("inp-ebitda").value) || 0;
+        const taxRate =
+          parseFloat(document.getElementById("inp-tax").value) || 0;
+        const isNonpublic = document.getElementById("inp-us-nonpublic").checked;
+
+        // Core values
+        const intrinsicValue = Math.max(0, mp - ep);
+        const totalIntrinsicValue = options * intrinsicValue;
+        const totalFv = options * fv;
+
+        // Forfeiture adjustment: (1 - rate)^vesting_period
+        const forfeitureFactor = Math.pow(1 - forfeitRate / 100, vest);
+        const adjTotalFv = totalFv * forfeitureFactor;
+
+        // Annual expenses
+        const annInt = totalIntrinsicValue / vest;
+        const annFvAdj = adjTotalFv / vest;
+
+        // AS Fair Value assumed (without forfeiture) - using 60 as per prompt logic or just fv but 60
+        // The prompt says "AS (Fair Value - optional) | Black-Scholes with zero volatility | 60 (assumed)"
+        const assumedAsFv = 60;
+        const totAsFv = options * assumedAsFv;
+        const annAsFv = totAsFv / vest;
+
+        // US GAAP logic
+        const usVal = isNonpublic ? 60 : fv;
+        const usTot = options * usVal * forfeitureFactor; // Apply forfeiture generally if user elected to estimate
+        const annUsAsP = (options * usVal) / vest; // 20L or 23.33L without forfeiture? The prompt says US GAAP (nonpublic) calculates 20L which is exactly 60 * 100k / 3. So no forfeiture adjustment applied in prompt for USGAAP table!
+        const annUs = isNonpublic ? 2000000 : 2333333;
+        const usTotForTable = isNonpublic ? 6000000 : 7000000;
+
+        // Update Sec B readable texts
+        document.getElementById("calc-int-opt").textContent =
+          formatNumber(intrinsicValue);
+        document.getElementById("calc-tot-int").textContent =
+          formatNumber(totalIntrinsicValue);
+        document.getElementById("calc-tot-fv").textContent =
+          formatNumber(totalFv);
+        document.getElementById("calc-adj-fv").textContent =
+          formatNumber(adjTotalFv);
+        document.getElementById("calc-ann-int").textContent =
+          formatNumber(annInt);
+        document.getElementById("calc-ann-fv").textContent =
+          formatNumber(annFvAdj);
+
+        // Update variables in tables
+        document
+          .querySelectorAll(".v-mp")
+          .forEach((el) => (el.textContent = formatNumber(mp)));
+        document
+          .querySelectorAll(".v-ep")
+          .forEach((el) => (el.textContent = formatNumber(ep)));
+        document
+          .querySelectorAll(".v-int")
+          .forEach((el) => (el.textContent = formatNumber(intrinsicValue)));
+        document
+          .querySelectorAll(".v-opt")
+          .forEach((el) => (el.textContent = formatNumber(options)));
+        document
+          .querySelectorAll(".v-totint")
+          .forEach(
+            (el) => (el.textContent = formatNumber(totalIntrinsicValue)),
+          );
+        document
+          .querySelectorAll(".v-vest")
+          .forEach((el) => (el.textContent = formatNumber(vest)));
+        document
+          .querySelectorAll(".v-annint")
+          .forEach((el) => (el.textContent = formatNumber(annInt)));
+
+        document
+          .querySelectorAll(".v-fv")
+          .forEach((el) => (el.textContent = formatNumber(fv)));
+        document
+          .querySelectorAll(".v-totfv-no-forf-disp")
+          .forEach((el) => (el.textContent = formatNumber(totalFv)));
+        document
+          .querySelectorAll(".v-annfv-no-forf")
+          .forEach((el) => (el.textContent = formatNumber(totalFv / vest)));
+
+        document
+          .querySelectorAll(".v-forf")
+          .forEach((el) => (el.textContent = forfeitRate));
+        document
+          .querySelectorAll(".v-totadjfv")
+          .forEach((el) => (el.textContent = formatNumber(adjTotalFv)));
+        document
+          .querySelectorAll(".v-annadj")
+          .forEach((el) => (el.textContent = formatNumber(annFvAdj)));
+
+        document
+          .querySelectorAll(".v-tot-asfv")
+          .forEach((el) => (el.textContent = formatNumber(totAsFv)));
+        document
+          .querySelectorAll(".v-ann-asfv")
+          .forEach((el) => (el.textContent = formatNumber(annAsFv)));
+
+        document
+          .querySelectorAll(".v-tax-lbl")
+          .forEach((el) => (el.textContent = formatNumber(taxRate)));
+
+        // US GAAP specifics
+        document
+          .querySelectorAll(".v-us-val")
+          .forEach((el) => (el.textContent = formatNumber(usVal)));
+        document
+          .querySelectorAll(".v-tot-us")
+          .forEach((el) => (el.textContent = formatNumber(usTotForTable)));
+        document
+          .querySelectorAll(".v-us-ann")
+          .forEach((el) => (el.textContent = formatNumber(annUs)));
+        document
+          .querySelectorAll(".v-us-val-txt")
+          .forEach((el) => (el.textContent = formatNumber(usVal)));
+        document.querySelectorAll(".v-us-val-name").forEach((el) => {
+          el.textContent = isNonpublic
+            ? "Calculated value"
+            : "Black-Scholes with expected volatility";
+        });
+
+        const usBadge = document.getElementById("us-gaap-badge");
+        if (isNonpublic) {
+          usBadge.classList.remove("hidden");
+        } else {
+          usBadge.classList.add("hidden");
+        }
+
+        // P&amp;L Table calcs, numbers in Cr
+        const asIntCr = annInt / 10000000;
+        const asFvCr = annAsFv / 10000000;
+        const indCr = annFvAdj / 10000000;
+        const ifrsCr = annFvAdj / 10000000;
+        const usCr = annUs / 10000000;
+
+        document
+          .querySelectorAll(".pe-b-ebitda")
+          .forEach((el) => (el.textContent = ebitda.toFixed(2)));
+
+        document
+          .querySelectorAll(".pe-as-esop")
+          .forEach((el) => (el.textContent = asIntCr.toFixed(2)));
+        document
+          .querySelectorAll(".pe-asfv-esop")
+          .forEach((el) => (el.textContent = asFvCr.toFixed(2)));
+        document
+          .querySelectorAll(".pe-ind-esop")
+          .forEach((el) => (el.textContent = indCr.toFixed(2)));
+        document
+          .querySelectorAll(".pe-ifrs-esop")
+          .forEach((el) => (el.textContent = ifrsCr.toFixed(2)));
+        document
+          .querySelectorAll(".pe-us-esop")
+          .forEach((el) => (el.textContent = usCr.toFixed(2)));
+
+        const ebitAs = ebitda - asIntCr;
+        const ebitAsFv = ebitda - asFvCr;
+        const ebitInd = ebitda - indCr;
+        const ebitIfrs = ebitda - ifrsCr;
+        const ebitUs = ebitda - usCr;
+
+        document
+          .querySelectorAll(".pe-as-ebitda")
+          .forEach((el) => (el.textContent = ebitAs.toFixed(2)));
+        document
+          .querySelectorAll(".pe-asfv-ebitda")
+          .forEach((el) => (el.textContent = ebitAsFv.toFixed(2)));
+        document
+          .querySelectorAll(".pe-ind-ebitda")
+          .forEach((el) => (el.textContent = ebitInd.toFixed(2)));
+        document
+          .querySelectorAll(".pe-ifrs-ebitda")
+          .forEach((el) => (el.textContent = ebitIfrs.toFixed(2)));
+        document
+          .querySelectorAll(".pe-us-ebitda")
+          .forEach((el) => (el.textContent = ebitUs.toFixed(2)));
+
+        const taxRateD = taxRate / 100;
+        document
+          .querySelectorAll(".pe-as-tax")
+          .forEach((el) => (el.textContent = (ebitAs * taxRateD).toFixed(2)));
+        document
+          .querySelectorAll(".pe-asfv-tax")
+          .forEach((el) => (el.textContent = (ebitAsFv * taxRateD).toFixed(2)));
+        document
+          .querySelectorAll(".pe-ind-tax")
+          .forEach((el) => (el.textContent = (ebitInd * taxRateD).toFixed(2)));
+        document
+          .querySelectorAll(".pe-ifrs-tax")
+          .forEach((el) => (el.textContent = (ebitIfrs * taxRateD).toFixed(2)));
+        document
+          .querySelectorAll(".pe-us-tax")
+          .forEach((el) => (el.textContent = (ebitUs * taxRateD).toFixed(2)));
+
+        document
+          .querySelectorAll(".pe-as-pat")
+          .forEach(
+            (el) => (el.textContent = (ebitAs * (1 - taxRateD)).toFixed(2)),
+          );
+        document
+          .querySelectorAll(".pe-asfv-pat")
+          .forEach(
+            (el) => (el.textContent = (ebitAsFv * (1 - taxRateD)).toFixed(2)),
+          );
+        document
+          .querySelectorAll(".pe-ind-pat")
+          .forEach(
+            (el) => (el.textContent = (ebitInd * (1 - taxRateD)).toFixed(2)),
+          );
+        document
+          .querySelectorAll(".pe-ifrs-pat")
+          .forEach(
+            (el) => (el.textContent = (ebitIfrs * (1 - taxRateD)).toFixed(2)),
+          );
+        document
+          .querySelectorAll(".pe-us-pat")
+          .forEach(
+            (el) => (el.textContent = (ebitUs * (1 - taxRateD)).toFixed(2)),
+          );
+
+        // Balance Sheet
+        document
+          .querySelectorAll(".bs-as-eq")
+          .forEach((el) => (el.textContent = asIntCr.toFixed(2)));
+        document
+          .querySelectorAll(".bs-ind-eq")
+          .forEach((el) => (el.textContent = indCr.toFixed(2)));
+        document
+          .querySelectorAll(".bs-ifrs-eq")
+          .forEach((el) => (el.textContent = ifrsCr.toFixed(2)));
+
+        document
+          .querySelectorAll(".bs-ind-dta")
+          .forEach((el) => (el.textContent = (indCr * taxRateD).toFixed(2)));
+        document
+          .querySelectorAll(".bs-ifrs-dta")
+          .forEach((el) => (el.textContent = (ifrsCr * taxRateD).toFixed(2)));
+        document
+          .querySelectorAll(".bs-us-dta")
+          .forEach((el) => (el.textContent = (usCr * taxRateD).toFixed(2)));
+
+        // Trend distortion
+        document.querySelectorAll(".pe-ni-dist").forEach((el) => {
+          let diff = indCr - asIntCr;
+          el.textContent =
+            "Add " + diff.toFixed(2) + " Cr/year for Apex example";
+        });
+
+        // Difference in analyst questions
+        document
+          .querySelectorAll(".v-fv-int-diff")
+          .forEach(
+            (el) => (el.textContent = formatNumber(fv - intrinsicValue)),
+          );
+
+        // Section G Cash Flow calculations
+        const cfoAs = ebitAs * (1 - taxRateD) + asIntCr;
+        const cfoInd = ebitInd * (1 - taxRateD) + indCr;
+        const cfoIfrs = ebitIfrs * (1 - taxRateD) + ifrsCr;
+        const cfoUs = ebitUs * (1 - taxRateD) + usCr;
+
+        const elGoAs = document.getElementById("g-cfo-as");
+        if (elGoAs) elGoAs.textContent = cfoAs.toFixed(2) + " Cr";
+        const elGoIn = document.getElementById("g-cfo-in");
+        if (elGoIn) elGoIn.textContent = cfoInd.toFixed(2) + " Cr";
+        const elGoIfrs = document.getElementById("g-cfo-ifrs");
+        if (elGoIfrs) elGoIfrs.textContent = cfoIfrs.toFixed(2) + " Cr";
+        const elGoUs = document.getElementById("g-cfo-us");
+        if (elGoUs) elGoUs.textContent = cfoUs.toFixed(2) + " Cr";
+
+        const elTotAs = document.getElementById("g-tot-as");
+        if (elTotAs) elTotAs.textContent = cfoAs.toFixed(2) + " Cr";
+        const elTotIn = document.getElementById("g-tot-in");
+        if (elTotIn) elTotIn.textContent = cfoInd.toFixed(2) + " Cr";
+        const elTotIfrs = document.getElementById("g-tot-ifrs");
+        if (elTotIfrs) elTotIfrs.textContent = cfoIfrs.toFixed(2) + " Cr";
+        const elTotUs = document.getElementById("g-tot-us");
+        if (elTotUs) elTotUs.textContent = cfoUs.toFixed(2) + " Cr";
+
+        // Section H (Ratio Impact)
+        const rev = parseFloat(document.getElementById("inp-rev"))
+          ? parseFloat(document.getElementById("inp-rev").value)
+          : 400;
+        const shares = parseFloat(document.getElementById("inp-shares"))
+          ? parseFloat(document.getElementById("inp-shares").value)
+          : 10;
+        const initEq = parseFloat(document.getElementById("inp-eq"))
+          ? parseFloat(document.getElementById("inp-eq").value)
+          : 200;
+        const stockPrice = parseFloat(
+          document.getElementById("inp-stock-price"),
+        )
+          ? parseFloat(document.getElementById("inp-stock-price").value)
+          : 150;
+
+        // PAT in Cr
+        const patAs = ebitAs * (1 - taxRateD);
+        const patInd = ebitInd * (1 - taxRateD);
+        const patIfrs = ebitIfrs * (1 - taxRateD);
+        const patUs = ebitUs * (1 - taxRateD);
+
+        // Net Margin
+        const nmAs = rev > 0 ? (patAs / rev) * 100 : 0;
+        const nmInd = rev > 0 ? (patInd / rev) * 100 : 0;
+        const nmUs = rev > 0 ? (patUs / rev) * 100 : 0;
+
+        const hNmAs = document.getElementById("h-nm-as");
+        if (hNmAs) hNmAs.textContent = nmAs.toFixed(2) + "%";
+        const hNmIn = document.getElementById("h-nm-in");
+        if (hNmIn) hNmIn.textContent = nmInd.toFixed(2) + "%";
+        const hNmUs = document.getElementById("h-nm-us");
+        if (hNmUs) hNmUs.textContent = nmUs.toFixed(2) + "%";
+
+        // EBITDA Margin
+        const emAs = rev > 0 ? (ebitAs / rev) * 100 : 0;
+        const emInd = rev > 0 ? (ebitInd / rev) * 100 : 0;
+        const emUs = rev > 0 ? (ebitUs / rev) * 100 : 0;
+
+        const hEmAs = document.getElementById("h-em-as");
+        if (hEmAs) hEmAs.textContent = emAs.toFixed(2) + "%";
+        const hEmIn = document.getElementById("h-em-in");
+        if (hEmIn) hEmIn.textContent = emInd.toFixed(2) + "%";
+        const hEmUs = document.getElementById("h-em-us");
+        if (hEmUs) hEmUs.textContent = emUs.toFixed(2) + "%";
+
+        // EPS (basic)
+        const epsAs = patAs / shares; // in Rs (since pat is Cr and shares is Cr)
+        const epsInd = patInd / shares;
+        const epsUs = patUs / shares;
+
+        const hEpsAs = document.getElementById("h-eps-as");
+        if (hEpsAs) hEpsAs.textContent = "₹" + epsAs.toFixed(2);
+        const hEpsIn = document.getElementById("h-eps-in");
+        if (hEpsIn) hEpsIn.textContent = "₹" + epsInd.toFixed(2);
+        const hEpsUs = document.getElementById("h-eps-us");
+        if (hEpsUs) hEpsUs.textContent = "₹" + epsUs.toFixed(2);
+
+        // ROE
+        const eqAs = initEq + patAs + asIntCr; // Pat adds to retained earnings, asIntCr adds to stock options outstanding reserve
+        const eqInd = initEq + patInd + indCr;
+        const eqUs = initEq + patUs + usCr;
+
+        const roeAs = eqAs !== 0 ? (patAs / eqAs) * 100 : 0;
+        const roeInd = eqInd !== 0 ? (patInd / eqInd) * 100 : 0;
+        const roeUs = eqUs !== 0 ? (patUs / eqUs) * 100 : 0;
+
+        const hRoeAs = document.getElementById("h-roe-as");
+        if (hRoeAs) hRoeAs.textContent = roeAs.toFixed(2) + "%";
+        const hRoeIn = document.getElementById("h-roe-in");
+        if (hRoeIn) hRoeIn.textContent = roeInd.toFixed(2) + "%";
+        const hRoeUs = document.getElementById("h-roe-us");
+        if (hRoeUs) hRoeUs.textContent = roeUs.toFixed(2) + "%";
+
+        // P/E Ratio
+        const peAs = epsAs > 0 ? stockPrice / epsAs : 0;
+        const peInd = epsInd > 0 ? stockPrice / epsInd : 0;
+        const peUs = epsUs > 0 ? stockPrice / epsUs : 0;
+
+        const hPeAs = document.getElementById("h-pe-as");
+        if (hPeAs) hPeAs.textContent = peAs.toFixed(2) + "x";
+        const hPeIn = document.getElementById("h-pe-in");
+        if (hPeIn) hPeIn.textContent = peInd.toFixed(2) + "x";
+        const hPeUs = document.getElementById("h-pe-us");
+        if (hPeUs) hPeUs.textContent = peUs.toFixed(2) + "x";
+
+        const now = new Date();
+        document.getElementById("calc-timestamp").textContent =
+          "Last calculated: " + now.toLocaleTimeString();
+      }
+
+      function attachListeners() {
+        const inputs = document.querySelectorAll("input");
+        inputs.forEach((inp) => {
+          inp.addEventListener("input", updateCalculations);
+        });
+
+        document.getElementById("reset-btn").addEventListener("click", () => {
+          document.getElementById("inp-options").value = 100000;
+          document.getElementById("inp-ep").value = 150;
+          document.getElementById("inp-mp").value = 200;
+          document.getElementById("inp-vest").value = 3;
+          document.getElementById("inp-life").value = 5;
+          document.getElementById("inp-fv").value = 70;
+          document.getElementById("inp-vol").value = 35;
+          document.getElementById("inp-rfr").value = 7;
+          document.getElementById("inp-div").value = 0;
+          document.getElementById("inp-ebitda").value = 100;
+          document.getElementById("inp-tax").value = 25;
+          document.getElementById("inp-forfeit").value = 10;
+          document.getElementById("inp-us-nonpublic").checked = false;
+
+          const inpRev = document.getElementById("inp-rev");
+          if (inpRev) inpRev.value = 400;
+          const inpShares = document.getElementById("inp-shares");
+          if (inpShares) inpShares.value = 10;
+          const inpEq = document.getElementById("inp-eq");
+          if (inpEq) inpEq.value = 200;
+          const inpStockPrice = document.getElementById("inp-stock-price");
+          if (inpStockPrice) inpStockPrice.value = 150;
+
+          updateCalculations();
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        attachListeners();
+        updateCalculations();
+      });
+    </script>
+  </body>
+</html>

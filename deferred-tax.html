@@ -1,0 +1,1940 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deferred Tax Accounting | Standards Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+
+    <style>
+      .custom-scrollbar::-webkit-scrollbar {
+        height: 10px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-[#f7fafc] font-sans h-screen w-full flex flex-col overflow-hidden border-8 border-slate-200 text-slate-800"
+  >
+    <header class="bg-[#1a365d] text-white p-4 shrink-0 shadow-md">
+      <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end">
+        <div>
+          <h1 class="text-2xl font-bold tracking-tight">
+            Accounting Standards Comparison Hub
+          </h1>
+          <p class="text-slate-300 text-sm italic">
+            AS (Old Indian GAAP) vs Ind AS vs IFRS vs US GAAP
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <nav
+      class="bg-white border-b border-slate-200 flex shrink-0 overflow-x-auto custom-scrollbar"
+    >
+      <a
+        href="index.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Home</a
+      >
+      <a
+        href="lease.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Lease</a
+      >
+      <a
+        href="ppe.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >PPE</a
+      >
+      <a
+        href="financial-instruments.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Financial Instruments</a
+      >
+      <a
+        href="revenue.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Revenue</a
+      >
+      <a
+        href="deferred-tax.html"
+        class="px-6 py-3 text-sm font-semibold border-b-4 border-indigo-600 bg-indigo-50 text-indigo-900 block whitespace-nowrap"
+        >Deferred Tax</a
+      >
+      <a
+        href="consolidation.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Consolidation</a
+      >
+      <a
+        href="impairment.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Impairment</a
+      >
+      <a
+        href="esop.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >ESOP</a
+      >
+      <a
+        href="cashflows.html"
+        class="px-6 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 border-b-4 border-transparent block whitespace-nowrap transition-colors"
+        >Cash Flows</a
+      >
+    </nav>
+
+    <main
+      class="flex-1 p-4 md:p-6 lg:p-8 flex flex-col gap-10 overflow-y-auto"
+      id="main-content"
+    >
+      <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+        <div class="border-l-8 border-teal-600 pl-4 py-1 shrink-0">
+          <h2 class="text-2xl font-bold text-[#1a365d] uppercase tracking-wide">
+            Deferred Tax Accounting
+          </h2>
+          <p class="text-sm text-slate-600">
+            Premium Analysis Guide: AS vs Ind AS 12 vs IFRS 12 vs US GAAP ASC
+            740
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button
+            id="diagnostic-btn"
+            class="bg-indigo-600 text-white hover:bg-indigo-700 px-4 py-2 rounded text-sm font-bold shadow-sm transition-colors"
+          >
+            Diagnostic Mode
+          </button>
+        </div>
+      </div>
+
+      <!-- Diagnostic Panel -->
+      <div
+        id="diagnostic-panel"
+        class="hidden mt-4 bg-indigo-50 border-l-4 border-indigo-600 p-4 text-sm text-indigo-900 shadow-sm rounded-r-lg flex flex-col gap-2 shrink-0"
+      >
+        <h3 class="font-bold text-lg mb-2">Diagnostic Mode Console</h3>
+        <div class="mt-2 border-t border-indigo-200 pt-2">
+          <h4 class="font-bold mb-1 flex justify-between">
+            Recent Updates
+            <span id="diag-errors" class="text-red-600 hidden">Errors!</span>
+          </h4>
+          <div
+            id="diag-console"
+            class="bg-indigo-900 text-indigo-100 font-mono p-3 rounded text-xs h-32 overflow-y-auto whitespace-pre-wrap"
+          >
+            System initialized.
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION A -->
+      <section
+        id="section-a"
+        data-diagnostic="tracked"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION A: Core Technical Comparison Table
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-[16%]">Parameter</th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">
+                  AS (Old Indian GAAP)
+                </th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">
+                  Ind AS (Ind AS 12)
+                </th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">
+                  IFRS (IAS 12)
+                </th>
+                <th class="p-3 border-r border-slate-200 w-[16%]">
+                  US GAAP (ASC 740)
+                </th>
+                <th class="p-3 w-[16%]">Logic Shift</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Core philosophy</td>
+                <td class="p-3">
+                  Income statement approach; deferred tax is an adjunct to tax
+                  expense.
+                </td>
+                <td class="p-3">
+                  Balance sheet approach; deferred tax = temporary differences
+                  between carrying amount and tax base.
+                </td>
+                <td class="p-3">Same balance sheet approach as Ind AS.</td>
+                <td class="p-3">
+                  Same balance sheet approach, but with specific exceptions
+                  (e.g., outside basis differences).
+                </td>
+                <td class="p-3 text-slate-600">
+                  From timing of expense recognition to full measurement of
+                  future tax consequences of assets/liabilities.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Recognition of deferred tax</td>
+                <td class="p-3">
+                  Recognised only for timing differences that reverse in future
+                  periods.
+                </td>
+                <td class="p-3">
+                  Recognised for all temporary differences (including those from
+                  initial recognition exceptions).
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  Similar, but includes an exception for leveraged leases and
+                  certain outside basis differences.
+                </td>
+                <td class="p-3 text-slate-600">
+                  Broader scope – includes more items like revaluations,
+                  business combinations, and ROU assets.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Measurement</td>
+                <td class="p-3">
+                  Using enacted tax rates (substantively enacted not always
+                  clearly defined).
+                </td>
+                <td class="p-3">
+                  Using enacted or substantively enacted tax rates expected to
+                  apply when temporary difference reverses.
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  Uses enacted tax rates (substantively enacted not permitted).
+                </td>
+                <td class="p-3 text-slate-600">
+                  Ind AS/IFRS allow slightly forward-looking rates; US GAAP is
+                  stricter.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">
+                  Recognition of deferred tax assets (DTAs)
+                </td>
+                <td class="p-3">
+                  Recognised only if virtual certainty of future profits (for
+                  carry-forward losses).
+                </td>
+                <td class="p-3">
+                  Recognised to extent probable that taxable profit available.
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  Recognised if more likely than not (>50%) that benefit will be
+                  realised.
+                </td>
+                <td class="p-3 text-slate-600">
+                  US GAAP threshold is lower (more likely than not) vs Ind
+                  AS/IFRS (probable = higher threshold).
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Re-assessment of DTAs</td>
+                <td class="p-3">
+                  Limited re-assessment; not systematically required each
+                  period.
+                </td>
+                <td class="p-3">Re-assessed at each reporting date.</td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  Same, with valuation allowance adjustments each period.
+                </td>
+                <td class="p-3 text-slate-600">
+                  Dynamic adjustment reflects changing profit forecasts.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Tax rate changes</td>
+                <td class="p-3">
+                  Effect recognised in P&amp;L in period of change.
+                </td>
+                <td class="p-3">
+                  Effect recognised in P&amp;L or OCI depending on where
+                  original item was recognised.
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">Same principle.</td>
+                <td class="p-3 text-slate-600">
+                  More precise matching of tax effect to underlying transaction.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Business combinations</td>
+                <td class="p-3">
+                  Deferred tax on asset/liability differences recognised but not
+                  fully integrated.
+                </td>
+                <td class="p-3">
+                  Recognise deferred tax on all temporary differences in
+                  acquisition accounting; affects goodwill.
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  Similar, with additional detailed guidance on tax-deductible
+                  goodwill.
+                </td>
+                <td class="p-3 text-slate-600">
+                  Acquisition accounting now reflects true tax position of
+                  acquired entity.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Presentation on balance sheet</td>
+                <td class="p-3">
+                  Current/non-current classification based on nature of timing
+                  difference.
+                </td>
+                <td class="p-3">
+                  Always non-current; no offset between different tax
+                  jurisdictions.
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  Can offset current and non-current if legally enforceable
+                  right and same jurisdiction.
+                </td>
+                <td class="p-3 text-slate-600">
+                  Ind AS/IFRS more conservative (no netting across types).
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Intra-period allocation</td>
+                <td class="p-3">
+                  Allocated to P&amp;L only; no allocation to OCI or equity.
+                </td>
+                <td class="p-3">
+                  Allocated to P&amp;L, OCI, or equity based on where original
+                  transaction was recognised.
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">Same.</td>
+                <td class="p-3 text-slate-600">
+                  Tax effect follows the item – critical for comprehensive
+                  income analysis.
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Disclosures</td>
+                <td class="p-3">
+                  Basic: breakdown of timing differences and rates.
+                </td>
+                <td class="p-3">
+                  Extensive: reconciliation of expected vs actual tax rate,
+                  unrecognised DTAs, expiry dates, etc.
+                </td>
+                <td class="p-3">Same as Ind AS.</td>
+                <td class="p-3">
+                  Even more detailed: valuation allowance movements, uncertain
+                  tax positions tabular rollforward.
+                </td>
+                <td class="p-3 text-slate-600">
+                  Ind AS/IFRS and US GAAP provide far greater transparency into
+                  tax risk.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">Uncertain tax positions</td>
+                <td class="p-3">
+                  No specific guidance; general provision concept.
+                </td>
+                <td class="p-3">
+                  No specific standard; use IFRIC 23 (recognition based on
+                  probable outcome).
+                </td>
+                <td class="p-3">Same IFRIC 23 guidance.</td>
+                <td class="p-3">
+                  Detailed two-step: more likely than not to sustain →
+                  measurement at largest benefit >50% likely.
+                </td>
+                <td class="p-3 text-slate-600">
+                  US GAAP most prescriptive; Ind AS/ IFRS more principles-based.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <!-- SECTION B -->
+      <section
+        class="shrink-0 mt-6 bg-[#fffff0] rounded-xl shadow-sm border border-amber-200 overflow-hidden flex flex-col p-6"
+      >
+        <div class="border-l-4 border-amber-500 pl-4 mb-6">
+          <h3 class="text-lg font-bold text-amber-800 uppercase tracking-wide">
+            SECTION B: Transaction Fact Pattern (Editable)
+          </h3>
+          <p class="text-sm text-amber-700">
+            Modify these inputs to see how deferred tax changes under different
+            scenarios
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-4">
+            <h4 class="font-bold text-slate-700 border-b pb-2">Inputs</h4>
+            <div class="grid grid-cols-2 gap-4 items-center">
+              <label class="text-sm font-semibold text-slate-700"
+                >Company</label
+              >
+              <div class="text-sm">ABC ltd</div>
+
+              <label class="text-sm font-semibold text-slate-700">Asset</label>
+              <div class="text-sm">Production machinery</div>
+
+              <label class="text-sm font-semibold text-slate-700"
+                >Cost of asset (Cr)</label
+              >
+              <input
+                type="number"
+                id="dt-cost"
+                value="100"
+                class="dt-input border rounded px-3 py-1 w-full"
+              />
+
+              <label class="text-sm font-semibold text-slate-700"
+                >Useful life (book) in years</label
+              >
+              <input
+                type="number"
+                id="dt-life"
+                value="5"
+                class="dt-input border rounded px-3 py-1 w-full"
+              />
+
+              <label class="text-sm font-semibold text-slate-700"
+                >Tax depreciation rate (%)</label
+              >
+              <input
+                type="number"
+                id="dt-tax-rate"
+                value="40"
+                class="dt-input border rounded px-3 py-1 w-full"
+              />
+
+              <label class="text-sm font-semibold text-slate-700"
+                >Tax rate (%)</label
+              >
+              <input
+                type="number"
+                id="dt-eff-tax"
+                value="25"
+                class="dt-input border rounded px-3 py-1 w-full"
+              />
+
+              <label class="text-sm font-semibold text-slate-700"
+                >Book profit before tax (PBT) (Cr)</label
+              >
+              <input
+                type="number"
+                id="dt-pbt"
+                value="100"
+                class="dt-input border rounded px-3 py-1 w-full"
+              />
+
+              <label class="text-sm font-semibold text-slate-700"
+                >Current tax expense (Cr) *</label
+              >
+              <input
+                type="number"
+                id="dt-current-tax"
+                value="25"
+                class="dt-input border rounded px-3 py-1 w-full"
+              />
+
+              <label class="text-sm font-semibold text-slate-700"
+                >Total Equity (Cr)</label
+              >
+              <input
+                type="number"
+                id="dt-equity"
+                value="300"
+                class="dt-input border rounded px-3 py-1 w-full"
+              />
+
+              <label class="text-sm font-semibold text-slate-700"
+                >Total Assets (Cr)</label
+              >
+              <input
+                type="number"
+                id="dt-assets"
+                value="500"
+                class="dt-input border rounded px-3 py-1 w-full"
+              />
+            </div>
+            <div class="text-xs text-slate-500 italic">
+              * Assuming current tax is computed correctly outside this simple
+              model based on taxable income
+            </div>
+            <button
+              id="reset-btn"
+              class="mt-4 px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded font-semibold text-sm transition-colors"
+            >
+              Reset to Default
+            </button>
+          </div>
+
+          <div class="space-y-4">
+            <h4 class="font-bold text-slate-700 border-b pb-2">
+              Auto-Calculated Fields (Year 1)
+            </h4>
+            <div class="bg-white p-4 rounded border border-amber-100 space-y-3">
+              <div class="flex justify-between">
+                <span class="text-sm text-slate-600"
+                  >Book depreciation = Cost / Useful life</span
+                >
+                <span
+                  class="text-sm font-bold text-slate-800"
+                  id="calc-book-dep"
+                  >20.00 Cr</span
+                >
+              </div>
+              <div class="flex justify-between">
+                <span class="text-sm text-slate-600"
+                  >Tax depreciation Year 1 = Cost × Tax dep rate</span
+                >
+                <span class="text-sm font-bold text-slate-800" id="calc-tax-dep"
+                  >40.00 Cr</span
+                >
+              </div>
+              <div class="flex justify-between pt-2 border-t">
+                <span class="text-sm text-slate-600">Temporary difference</span>
+                <span
+                  class="text-sm font-bold text-slate-800"
+                  id="calc-temp-diff"
+                  >20.00 Cr</span
+                >
+              </div>
+              <div class="flex justify-between pt-2 border-t border-amber-200">
+                <span class="text-sm font-bold text-slate-700"
+                  >Deferred tax liability (Temp diff × Tax rate)</span
+                >
+                <span class="text-sm font-bold text-red-600" id="calc-dtl"
+                  >5.00 Cr</span
+                >
+              </div>
+            </div>
+            <div class="text-xs text-slate-500 text-right mt-2">
+              Last recalculated: <span id="last-updated"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION C: Side-by-Side Treatment -->
+      <section
+        id="section-c"
+        data-diagnostic="tracked"
+        class="shrink-0 mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col font-sans"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION C: Side-by-Side Treatment
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left font-sans">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-r border-slate-200 w-1/4">
+                  AS 22 (Old Indian GAAP)
+                </th>
+                <th class="p-3 border-b border-r border-slate-200 w-1/4">
+                  Ind AS 12
+                </th>
+                <th class="p-3 border-b border-r border-slate-200 w-1/4">
+                  IAS 12 (IFRS)
+                </th>
+                <th class="p-3 border-b border-slate-200 w-1/4">
+                  ASC 740 (US GAAP)
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 bg-white">
+              <tr>
+                <td
+                  class="p-3 border-r border-slate-200 align-top text-slate-700 leading-relaxed space-y-2"
+                >
+                  <div>
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Temporary Difference</span
+                    >
+                    <span class="text-sm">Only timing differences</span>
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Deferred Tax Liability (End Y1)</span
+                    >
+                    <span class="font-bold text-red-600 val-dtl">5.00 Cr</span>
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >P&amp;L Tax Expense Impact</span
+                    >
+                    <span class="font-bold text-slate-700 val-dtl"
+                      >5.00 Cr</span
+                    >
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-slate-500 text-[11px] uppercase tracking-wider mb-1"
+                      >Note</span
+                    >
+                    <span class="text-xs text-slate-600"
+                      >Misses other temp diffs</span
+                    >
+                  </div>
+                </td>
+                <td
+                  class="p-3 border-r border-slate-200 align-top text-slate-700 leading-relaxed space-y-2"
+                >
+                  <div>
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Temporary Difference</span
+                    >
+                    <span class="text-sm"
+                      >All taxable temporary differences</span
+                    >
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Deferred Tax Liability (End Y1)</span
+                    >
+                    <span class="font-bold text-red-600 val-dtl">5.00 Cr</span>
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >P&amp;L Tax Expense Impact</span
+                    >
+                    <span class="font-bold text-slate-700 val-dtl"
+                      >5.00 Cr</span
+                    >
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-slate-500 text-[11px] uppercase tracking-wider mb-1"
+                      >Note</span
+                    >
+                    <span class="text-xs text-slate-600">Comprehensive</span>
+                  </div>
+                </td>
+                <td
+                  class="p-3 border-r border-slate-200 align-top text-slate-700 leading-relaxed space-y-2"
+                >
+                  <div>
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Temporary Difference</span
+                    >
+                    <span class="text-sm"
+                      >All taxable temporary differences</span
+                    >
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Deferred Tax Liability (End Y1)</span
+                    >
+                    <span class="font-bold text-red-600 val-dtl">5.00 Cr</span>
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >P&amp;L Tax Expense Impact</span
+                    >
+                    <span class="font-bold text-slate-700 val-dtl"
+                      >5.00 Cr</span
+                    >
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-slate-500 text-[11px] uppercase tracking-wider mb-1"
+                      >Note</span
+                    >
+                    <span class="text-xs text-slate-600">Same as Ind AS</span>
+                  </div>
+                </td>
+                <td
+                  class="p-3 align-top text-slate-700 leading-relaxed space-y-2"
+                >
+                  <div>
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Temporary Difference</span
+                    >
+                    <span class="text-sm"
+                      >All taxable temp diffs, plus valuation allowance</span
+                    >
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >Deferred Tax Liability (End Y1)</span
+                    >
+                    <span id="val-usgaap-dtl" class="font-bold text-red-600"
+                      >5.00 Cr (assuming no valuation allowance)</span
+                    >
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-[#1a365d] text-[11px] uppercase tracking-wider mb-1"
+                      >P&amp;L Tax Expense Impact</span
+                    >
+                    <span class="font-bold text-slate-700 val-dtl"
+                      >5.00 Cr</span
+                    >
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span
+                      class="block font-bold text-slate-500 text-[11px] uppercase tracking-wider mb-1"
+                      >Note</span
+                    >
+                    <span class="text-xs text-slate-600"
+                      >Threshold for DTAs stricter</span
+                    >
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION D -->
+      <section
+        class="shrink-0 -mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION D: Side-by-Side Impact Table (Year 1)
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-1/5">Framework</th>
+                <th class="p-3 border-r border-slate-200 w-1/5 text-right">
+                  PBT
+                </th>
+                <th class="p-3 border-r border-slate-200 w-1/5 text-right">
+                  Current Tax
+                </th>
+                <th class="p-3 border-r border-slate-200 w-1/5 text-right">
+                  Deferred Tax Expense
+                </th>
+                <th class="p-3 border-r border-slate-200 w-1/5 text-right">
+                  Deferred Tax Liability (BS)
+                </th>
+                <th class="p-3 w-1/5 text-right">Effective Tax Rate (ETR)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">AS 22 (Old Indian GAAP)</td>
+                <td class="p-3 text-right val-pbt">100.00 Cr</td>
+                <td class="p-3 text-right text-red-600 val-curr-tax">
+                  -25.00 Cr
+                </td>
+                <td class="p-3 text-right text-red-600 val-dtl-exp">
+                  -5.00 Cr
+                </td>
+                <td class="p-3 text-right font-semibold text-red-600 val-dtl">
+                  5.00 Cr
+                </td>
+                <td class="p-3 text-right font-bold text-teal-600 val-etr">
+                  30.00%
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">Ind AS 12</td>
+                <td class="p-3 text-right val-pbt">100.00 Cr</td>
+                <td class="p-3 text-right text-red-600 val-curr-tax">
+                  -25.00 Cr
+                </td>
+                <td class="p-3 text-right text-red-600 val-dtl-exp">
+                  -5.00 Cr
+                </td>
+                <td class="p-3 text-right font-semibold text-red-600 val-dtl">
+                  5.00 Cr
+                </td>
+                <td class="p-3 text-right font-bold text-teal-600 val-etr">
+                  30.00%
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold">IAS 12 (IFRS)</td>
+                <td class="p-3 text-right val-pbt">100.00 Cr</td>
+                <td class="p-3 text-right text-red-600 val-curr-tax">
+                  -25.00 Cr
+                </td>
+                <td class="p-3 text-right text-red-600 val-dtl-exp">
+                  -5.00 Cr
+                </td>
+                <td class="p-3 text-right font-semibold text-red-600 val-dtl">
+                  5.00 Cr
+                </td>
+                <td class="p-3 text-right font-bold text-teal-600 val-etr">
+                  30.00%
+                </td>
+              </tr>
+              <tr class="bg-slate-50 hover:bg-slate-100">
+                <td class="p-3 font-bold">ASC 740 (US GAAP)</td>
+                <td class="p-3 text-right val-pbt">100.00 Cr</td>
+                <td class="p-3 text-right text-red-600 val-curr-tax">
+                  -25.00 Cr
+                </td>
+                <td class="p-3 text-right text-red-600" id="d-usgaap-dtl-exp">
+                  -5.00 Cr
+                </td>
+                <td
+                  class="p-3 text-right font-semibold text-red-600"
+                  id="d-usgaap-dtl"
+                >
+                  5.00 Cr
+                </td>
+                <td class="p-3 text-right font-bold text-teal-600 val-etr">
+                  30.00%
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION E -->
+      <section
+        class="shrink-0 -mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION E: P&amp;L Impact - Year 1
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-right">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200 text-left">
+                  Line Item
+                </th>
+                <th class="p-3 border-b border-slate-200">AS (Old)</th>
+                <th class="p-3 border-b border-slate-200">Ind AS 12</th>
+                <th class="p-3 border-b border-slate-200">IFRS</th>
+                <th class="p-3 border-b border-slate-200">US GAAP (ASC 740)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800 text-left">
+                  PBT (before tax)
+                </td>
+                <td class="p-3 val-pbt">100.00 Cr</td>
+                <td class="p-3 val-pbt">100.00 Cr</td>
+                <td class="p-3 val-pbt">100.00 Cr</td>
+                <td class="p-3 val-pbt">100.00 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800 text-left">
+                  Current tax expense
+                </td>
+                <td class="p-3 text-red-600 val-curr-tax">-25.00 Cr</td>
+                <td class="p-3 text-red-600 val-curr-tax">-25.00 Cr</td>
+                <td class="p-3 text-red-600 val-curr-tax">-25.00 Cr</td>
+                <td class="p-3 text-red-600 val-curr-tax">-25.00 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800 text-left">
+                  Deferred tax expense
+                </td>
+                <td class="p-3 text-red-600 val-dtl-exp">-5.00 Cr</td>
+                <td class="p-3 text-red-600 val-dtl-exp">-5.00 Cr</td>
+                <td class="p-3 text-red-600 val-dtl-exp">-5.00 Cr</td>
+                <td class="p-3 text-red-600" id="val-usgaap-dtl-exp">
+                  -5.00 Cr (assume no valuation allowance)
+                </td>
+              </tr>
+              <tr
+                class="hover:bg-slate-50 bg-slate-50 font-bold border-t-2 border-slate-200"
+              >
+                <td class="p-3 text-slate-800 text-left">Total tax expense</td>
+                <td class="p-3 val-total-tax">-30.00 Cr</td>
+                <td class="p-3 val-total-tax">-30.00 Cr</td>
+                <td class="p-3 val-total-tax">-30.00 Cr</td>
+                <td class="p-3 val-total-tax">-30.00 Cr</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION F -->
+      <section
+        class="shrink-0 mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION F: Balance Sheet Impact - Year 1
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200">Item</th>
+                <th class="p-3 border-b border-slate-200">AS (Old)</th>
+                <th class="p-3 border-b border-slate-200">Ind AS 12</th>
+                <th class="p-3 border-b border-slate-200">IFRS</th>
+                <th class="p-3 border-b border-slate-200">US GAAP</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Deferred tax liability
+                </td>
+                <td class="p-3 font-bold text-red-600 val-dtl">5.00 Cr</td>
+                <td class="p-3 font-bold text-red-600 val-dtl">5.00 Cr</td>
+                <td class="p-3 font-bold text-red-600 val-dtl">5.00 Cr</td>
+                <td class="p-3 font-bold text-red-600 val-dtl">5.00 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Deferred tax asset (if any)
+                </td>
+                <td class="p-3">Not recognised unless virtual certainty</td>
+                <td class="p-3 text-emerald-600">Probable threshold</td>
+                <td class="p-3">Same</td>
+                <td class="p-3 text-emerald-600">
+                  More likely than not (>50%)
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">Presentation</td>
+                <td class="p-3">Current or non-current</td>
+                <td class="p-3">Always non-current</td>
+                <td class="p-3">Same</td>
+                <td class="p-3">Current/non-current can be offset</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Valuation allowance
+                </td>
+                <td class="p-3">None</td>
+                <td class="p-3">None here</td>
+                <td class="p-3">None</td>
+                <td class="p-3 text-amber-600">Could apply if DTA uncertain</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Total assets/liabs
+                </td>
+                <td class="p-3 text-slate-500">Lower (less DTA recognised)</td>
+                <td class="p-3">Potentially higher</td>
+                <td class="p-3">Same</td>
+                <td class="p-3">Similar but valuation allowance reduces DTA</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION G -->
+      <section
+        class="shrink-0 mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION G: Cash Flow Impact
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-center">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200 text-left">
+                  CF Component
+                </th>
+                <th class="p-3 border-b border-slate-200">AS (Old)</th>
+                <th class="p-3 border-b border-slate-200">Ind AS / IFRS</th>
+                <th class="p-3 border-b border-slate-200">US GAAP</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800 text-left">
+                  Current tax paid (cash)
+                </td>
+                <td class="p-3 val-curr-tax-pos">25.00 Cr</td>
+                <td class="p-3 val-curr-tax-pos">25.00 Cr</td>
+                <td class="p-3 val-curr-tax-pos">25.00 Cr</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800 text-left">
+                  Deferred tax (non-cash)
+                </td>
+                <td class="p-3">
+                  <span class="val-dtl font-bold text-slate-700">5.00 Cr</span>
+                  added back in operating CF
+                </td>
+                <td class="p-3">Same</td>
+                <td class="p-3">Same</td>
+              </tr>
+              <tr
+                class="hover:bg-slate-50 font-bold bg-slate-50 border-t-2 border-slate-200"
+              >
+                <td class="p-3 text-slate-800 text-left">
+                  Total operating cash flow
+                </td>
+                <td class="p-3 text-teal-700">Same across all standards</td>
+                <td class="p-3 text-teal-700">Same</td>
+                <td class="p-3 text-teal-700">Same</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          class="p-4 bg-slate-50 border-t border-slate-200 text-sm text-slate-600 italic"
+        >
+          <strong>Key difference:</strong> None in cash – only classification
+          within operating CF. Deferred tax is always a non-cash adjustment;
+          total cash flow from operations is identical under all standards.
+        </div>
+      </section>
+
+      <!-- SECTION H -->
+      <section
+        id="section-h"
+        data-diagnostic="tracked"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col font-mono"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold font-sans uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION H: Ratio Impact (Year 1)
+        </div>
+        <div class="overflow-x-auto text-sm">
+          <table class="w-full text-center">
+            <thead class="bg-slate-50 text-slate-700 font-sans">
+              <tr>
+                <th class="p-3 border-b border-slate-200 text-left w-1/6">
+                  Ratio
+                </th>
+                <th class="p-3 border-b border-slate-200">AS (Old)</th>
+                <th class="p-3 border-b border-slate-200">Ind AS / IFRS</th>
+                <th class="p-3 border-b border-slate-200">US GAAP</th>
+                <th
+                  class="p-3 border-b border-slate-200 text-blue-800 font-bold"
+                >
+                  Direction
+                </th>
+                <th class="p-3 border-b border-slate-200 text-left">
+                  Interpretation
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans text-left">
+                  Effective Tax Rate (ETR)
+                </td>
+                <td class="p-3 font-bold text-teal-600 val-etr" id="h-etr-as">
+                  30.00%
+                </td>
+                <td class="p-3 font-bold text-teal-600 val-etr" id="h-etr-in">
+                  30.00%
+                </td>
+                <td class="p-3 font-bold text-teal-600 val-etr" id="h-etr-us">
+                  30.00%
+                </td>
+                <td class="p-3 text-slate-500 font-bold">-</td>
+                <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                  Same here but diverges with uncertain positions
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans text-left">
+                  ROE (PAT/Equity)
+                </td>
+                <td class="p-3" id="h-roe-as"></td>
+                <td class="p-3" id="h-roe-in"></td>
+                <td class="p-3" id="h-roe-us"></td>
+                <td class="p-3 text-red-600 font-bold">↓</td>
+                <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                  AS may overstate ROE if DTL not recognized properly
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans text-left">Debt/Equity</td>
+                <td class="p-3" id="h-de-as"></td>
+                <td class="p-3" id="h-de-in"></td>
+                <td class="p-3" id="h-de-us"></td>
+                <td class="p-3 text-red-600 font-bold">↑</td>
+                <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                  AS understates leverage due to lack of deferred liabilities
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-bold font-sans text-left">
+                  Return on Assets (ROA)
+                </td>
+                <td class="p-3" id="h-roa-as"></td>
+                <td class="p-3" id="h-roa-in"></td>
+                <td class="p-3" id="h-roa-us"></td>
+                <td class="p-3 text-red-600 font-bold">↓</td>
+                <td class="p-3 font-sans text-xs text-slate-600 text-left">
+                  AS looks more efficient incorrectly
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION I -->
+      <section
+        class="shrink-0 mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION I: Earnings Quality - Signals Table
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200 w-1/4">
+                  Signal Observed
+                </th>
+                <th class="p-3 border-b border-slate-200 w-1/4">
+                  What It Means Technically
+                </th>
+                <th class="p-3 border-b border-slate-200 w-1/4">
+                  Analyst Interpretation
+                </th>
+                <th class="p-3 border-b border-slate-200 w-1/4">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Large DTA with no valuation allowance
+                </td>
+                <td class="p-3">
+                  Management highly confident of future profits
+                </td>
+                <td class="p-3">
+                  Could be optimistic; check historical forecast accuracy.
+                </td>
+                <td class="p-3 text-emerald-700">
+                  Stress-test future profitability; compare to industry.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Valuation allowance increases suddenly
+                </td>
+                <td class="p-3">Prior DTA no longer considered realisable</td>
+                <td class="p-3">
+                  Past earnings may have been overstated; negative signal.
+                </td>
+                <td class="p-3 text-emerald-700">
+                  Reduce reliance on deferred tax assets in valuation.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  ETR significantly below statutory rate
+                </td>
+                <td class="p-3">Permanent differences or unrecognised DTAs</td>
+                <td class="p-3">
+                  May be sustainable (e.g., tax incentives) or low-quality
+                  (one-off).
+                </td>
+                <td class="p-3 text-emerald-700">
+                  Identify drivers; normalise ETR for forecasting.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Deferred tax liability shrinking despite growth
+                </td>
+                <td class="p-3">
+                  Reversing temp differences faster than new ones created
+                </td>
+                <td class="p-3">
+                  Business may be slowing capex; watch for under-investment.
+                </td>
+                <td class="p-3 text-emerald-700">
+                  Compare capex trend with DTL movement.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  No reconciliation of expected vs actual tax rate
+                </td>
+                <td class="p-3">Poor disclosure</td>
+                <td class="p-3">Management hiding volatile tax items.</td>
+                <td class="p-3 text-emerald-700">
+                  Request full tax note; treat as amber flag.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION J -->
+      <section
+        class="shrink-0 mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION J: Trend Distortion Matrix
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200">Metric</th>
+                <th class="p-3 border-b border-slate-200">Distortion Type</th>
+                <th class="p-3 border-b border-slate-200">Duration</th>
+                <th class="p-3 border-b border-slate-200">Correction Method</th>
+                <th class="p-3 border-b border-slate-200">Example</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Effective Tax Rate (ETR)
+                </td>
+                <td class="p-3">Transient spike/dip</td>
+                <td class="p-3">One quarter/year</td>
+                <td class="p-3">
+                  Normalise by removing one-off tax settlements or rate changes.
+                </td>
+                <td class="p-3">Strip out prior year adjustment.</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">Net Income</td>
+                <td class="p-3">Overstated (if DTA recognised aggressively)</td>
+                <td class="p-3">Reverses when DTA written off</td>
+                <td class="p-3">
+                  Exclude unrecognised DTA benefit from adjusted earnings.
+                </td>
+                <td class="p-3">Add back valuation allowance increase.</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">ROE</td>
+                <td class="p-3">Understated (if large DTL)</td>
+                <td class="p-3">Life of asset</td>
+                <td class="p-3">Add back DTL to equity for return calc.</td>
+                <td class="p-3">Equity + DTL for economic ROE.</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Cash tax vs book tax
+                </td>
+                <td class="p-3">Persistent gap</td>
+                <td class="p-3">Indefinite</td>
+                <td class="p-3">Focus on cash tax paid for liquidity.</td>
+                <td class="p-3">Use cash tax / operating CF.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION K -->
+      <section
+        class="shrink-0 mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION K: Ratio Interpretation Guide
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-700">
+              <tr>
+                <th class="p-3 border-b border-slate-200">Ratio</th>
+                <th class="p-3 border-b border-slate-200">Reported Value</th>
+                <th class="p-3 border-b border-slate-200">
+                  What Analyst Should Do
+                </th>
+                <th class="p-3 border-b border-slate-200">
+                  Correct Interpretation
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Effective Tax Rate
+                </td>
+                <td class="p-3 text-emerald-600 font-bold">
+                  18% (vs 25% statutory)
+                </td>
+                <td class="p-3">
+                  Identify drivers: permanent differences, DTA realisation, or
+                  one-offs.
+                </td>
+                <td class="p-3">
+                  May be lower quality if driven by aggressive DTA recognition.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Deferred Tax Liability / Total Assets
+                </td>
+                <td class="p-3 font-bold">5%</td>
+                <td class="p-3">
+                  Compare to capex intensity and tax depreciation rates.
+                </td>
+                <td class="p-3">
+                  High DTL often means accelerated tax benefits – positive for
+                  cash flow.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Valuation Allowance / DTA
+                </td>
+                <td class="p-3 text-red-600 font-bold">40%</td>
+                <td class="p-3">Benchmark against peer write-off history.</td>
+                <td class="p-3">
+                  High ratio suggests management lacks confidence in future
+                  profits.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Cash Tax / Book Tax
+                </td>
+                <td class="p-3 text-teal-600 font-bold">0.6x</td>
+                <td class="p-3">
+                  Low ratio indicates large timing differences (favourable).
+                </td>
+                <td class="p-3">
+                  Sustainable cash advantage if timing differences are
+                  long-dated.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          class="p-4 bg-blue-50 border-t border-slate-200 text-sm text-blue-900 italic"
+        >
+          <strong>Intelligence Note:</strong> Across Ind AS, IFRS, and US GAAP,
+          the same analytical normalisation applies – always recast deferred tax
+          using balance sheet approach, and never confuse deferred tax expense
+          with cash tax paid.
+        </div>
+      </section>
+
+      <!-- SECTION L -->
+      <section
+        class="shrink-0 mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION L: Analyst Concerns & Answers
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  Analyst question
+                </th>
+                <th class="p-3 border-r border-slate-200 w-1/4">Concern</th>
+                <th class="p-3 border-r border-slate-200 w-1/4">Answer</th>
+                <th class="p-3 w-1/4">Evidence</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Is the low ETR real earnings quality?
+                </td>
+                <td class="p-3">Risk of one-off or aggressive DTA.</td>
+                <td class="p-3">
+                  Not always; check reconciliation of statutory to actual rate.
+                </td>
+                <td class="p-3">
+                  Permanent differences (e.g., exempt income) are high quality.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Why is DTA growing but no valuation allowance?
+                </td>
+                <td class="p-3">Management too optimistic.</td>
+                <td class="p-3">
+                  Requires judgement; compare forecast accuracy over 3-5 years.
+                </td>
+                <td class="p-3">Historical misses &rarr; amber flag.</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Do I treat DTL as debt?
+                </td>
+                <td class="p-3">Leverage distortion.</td>
+                <td class="p-3">
+                  No – DTL is future tax, not contractual obligation to lender.
+                </td>
+                <td class="p-3">
+                  But DTL reduces free cash flow when it reverses.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  How do I compare across standards?
+                </td>
+                <td class="p-3">AS vs Ind AS vs US GAAP.</td>
+                <td class="p-3">
+                  Reconstruct DTA/DTL using balance sheet approach for all.
+                </td>
+                <td class="p-3">
+                  Ignore AS presentation; normalise to Ind AS/IFRS.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION M -->
+      <section
+        class="shrink-0 mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION M: Investor Perception Analysis
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  Investor Type
+                </th>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  What they see
+                </th>
+                <th class="p-3 border-r border-slate-200 w-1/4">
+                  Likely reaction
+                </th>
+                <th class="p-3 w-1/4">Sophisticated response</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">Retail</td>
+                <td class="p-3">Large DTA &rarr; "future tax benefit"</td>
+                <td class="p-3 text-amber-600">Over-optimistic.</td>
+                <td class="p-3">
+                  DTA is worthless without profits to utilise it.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">Value</td>
+                <td class="p-3">Low ETR &rarr; "higher earnings"</td>
+                <td class="p-3 text-red-600">May overpay if unsustainable.</td>
+                <td class="p-3">
+                  Normalise ETR to statutory rate for valuation.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Institutional Long-Only
+                </td>
+                <td class="p-3">Valuation allowance volatility</td>
+                <td class="p-3 text-red-600">
+                  Negative – signals earnings uncertainty.
+                </td>
+                <td class="p-3">
+                  Prefer stable cash tax over volatile deferred tax.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Credit / Lenders
+                </td>
+                <td class="p-3">DTL as quasi-liability</td>
+                <td class="p-3 text-amber-600">May tighten covenants.</td>
+                <td class="p-3">
+                  Exclude DTL from debt; focus on cash tax payable.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">PE / VC</td>
+                <td class="p-3">Unrecognised DTAs from losses</td>
+                <td class="p-3 text-teal-600">
+                  See tax asset as latent value.
+                </td>
+                <td class="p-3">
+                  Model probability of utilisation before ascribing value.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION N -->
+      <section
+        class="shrink-0 mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION N: Reporting Signals Decoder
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200">Management Action</th>
+                <th class="p-3 border-r border-slate-200">Signal</th>
+                <th class="p-3 border-r border-slate-200">
+                  What It Really Means
+                </th>
+                <th class="p-3">Your Move</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Emphasises "low ETR from permanent benefits"
+                </td>
+                <td class="p-3 text-teal-600 font-bold">Positive spin</td>
+                <td class="p-3">
+                  May be sustainable if truly permanent (e.g., tax holidays).
+                </td>
+                <td class="p-3">Verify expiry date of tax incentives.</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Avoids disclosing valuation allowance movement
+                </td>
+                <td class="p-3 text-red-600 font-bold">Opacity</td>
+                <td class="p-3">
+                  DTA may be at risk; management hiding impairment.
+                </td>
+                <td class="p-3">
+                  Request full rollforward of valuation allowance.
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Provides detailed tax reconciliation and uncertain position
+                  table
+                </td>
+                <td class="p-3 text-emerald-600 font-bold">Transparency</td>
+                <td class="p-3">
+                  High-quality tax governance; management not hiding risk.
+                </td>
+                <td class="p-3">Green flag; rely more on reported ETR.</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-semibold text-slate-800">
+                  Suddenly reverses large DTA without explanation
+                </td>
+                <td class="p-3 text-amber-600 font-bold">
+                  Earnings management
+                </td>
+                <td class="p-3">Prior periods likely overstated profit.</td>
+                <td class="p-3">
+                  Recast prior year earnings; treat as red flag.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION O: Premium Intelligence Narrative -->
+      <section
+        id="section-o"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION O: Premium Intelligence Narrative
+        </div>
+        <div class="p-5 text-sm space-y-4 text-slate-700 leading-relaxed">
+          <p>
+            <span class="font-bold text-[#1a365d]">Question:</span> "Why can two
+            identical companies have the same pre-tax income but different net
+            income and ETR under the same standard?"
+          </p>
+          <p>
+            <span class="font-bold text-slate-500"
+              >Average Analyst Answer:</span
+            >
+            "Because one has more deferred tax assets."
+          </p>
+          <div
+            class="p-4 bg-teal-50 border border-teal-200 rounded-lg text-teal-900"
+          >
+            <p>
+              <span class="font-bold text-teal-800 text-base"
+                >PREMIUM Analyst Answer:</span
+              ><br /><br />
+              "The difference arises from management judgement on DTA
+              recognition and valuation allowances. Under Ind AS/IFRS, DTA is
+              recognised only if "probable" future profit exists; under US GAAP,
+              a "more likely than not" threshold applies. Two identical
+              loss-making companies can report different net income if one
+              management believes recovery is probable and the other does not.
+              The same applies to uncertain tax positions – IFRS uses expected
+              value, US GAAP uses a binary "more likely than not" then
+              measurement at the largest benefit >50% likely. The correct move
+              is to ignore reported deferred tax adjustments for valuation
+              purposes and instead forecast cash tax paid. For peer comps,
+              compare cash effective tax rates, not book ETRs. The key signal is
+              not the DTA amount, but changes in the valuation allowance – it
+              tells you precisely what management secretly thinks about future
+              core earnings."
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION P: Red Flags vs Green Flags (Visual Indicator Matrix) -->
+      <section
+        id="section-p"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION P: Red Flags vs Green Flags (Visual Indicator Matrix)
+        </div>
+        <div class="overflow-x-auto flex-1">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="p-3 border-r border-slate-200 w-1/2">Scenario</th>
+                <th class="p-3 border-r border-slate-200 text-center w-24">
+                  Flag
+                </th>
+                <th class="p-3">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr class="bg-[#fee]">
+                <td class="p-3 font-medium">
+                  Large DTA with no valuation allowance despite recent losses
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-red-700 uppercase tracking-widest"
+                >
+                  <span class="text-red-500 mr-1">🔴</span>RED
+                </td>
+                <td class="p-3 text-red-900">
+                  Demand to see the precise forecast showing probable recovery.
+                </td>
+              </tr>
+              <tr class="bg-[#fee]">
+                <td class="p-3 font-medium">
+                  Valuation allowance increases every year
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-red-700 uppercase tracking-widest"
+                >
+                  <span class="text-red-500 mr-1">🔴</span>RED
+                </td>
+                <td class="p-3 text-red-900">
+                  Write down core earnings metrics; management is hiding
+                  deterioration.
+                </td>
+              </tr>
+              <tr class="bg-[#fee]">
+                <td class="p-3 font-medium">
+                  No disclosure of uncertain tax positions in cross-border firms
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-red-700 uppercase tracking-widest"
+                >
+                  <span class="text-red-500 mr-1">🔴</span>RED
+                </td>
+                <td class="p-3 text-red-900">
+                  Assume maximum liability scenario for valuation.
+                </td>
+              </tr>
+              <tr class="bg-[#fee]">
+                <td class="p-3 font-medium">
+                  ETR below statutory rate for >3 years with no permanent
+                  benefit explanation
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-red-700 uppercase tracking-widest"
+                >
+                  <span class="text-red-500 mr-1">🔴</span>RED
+                </td>
+                <td class="p-3 text-red-900">
+                  Normalize ETR to statutory rate for all DCF projections.
+                </td>
+              </tr>
+              <tr class="bg-[#efe]">
+                <td class="p-3 font-medium">
+                  DTA with reasonable valuation allowance linked to clear
+                  forecast
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-green-700 uppercase tracking-widest"
+                >
+                  <span class="text-green-500 mr-1">🟢</span>GREEN
+                </td>
+                <td class="p-3 text-green-900">
+                  Trust management's conservatism.
+                </td>
+              </tr>
+              <tr class="bg-[#efe]">
+                <td class="p-3 font-medium">
+                  Clear waterfall of uncertain tax positions (FIN 48 equivalent)
+                </td>
+                <td
+                  class="p-3 text-center font-bold text-green-700 uppercase tracking-widest"
+                >
+                  <span class="text-green-500 mr-1">🟢</span>GREEN
+                </td>
+                <td class="p-3 text-green-900">
+                  Use provided probabilities directly in DCF risk-weighting.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION Q: Final Intelligence Summary -->
+      <section
+        id="section-q"
+        class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+      >
+        <div
+          class="bg-[#1a365d] text-white px-4 py-3 font-bold uppercase tracking-wider text-sm border-b border-slate-200"
+        >
+          SECTION Q: Final Intelligence Summary
+        </div>
+        <div class="p-6 bg-white">
+          <p
+            class="font-bold text-lg text-slate-800 pb-3 border-b border-slate-100 mb-4"
+          >
+            The Sophistication Hierarchy
+          </p>
+          <ul class="space-y-4 text-sm text-slate-700">
+            <li class="flex flex-col sm:flex-row sm:items-start gap-2">
+              <span class="font-bold whitespace-nowrap">Level 1 (Retail):</span>
+              <span>
+                &quot;Deferred tax asset increased, so future tax savings will
+                boost profit.&quot; &rarr;
+                <span class="text-red-600 font-bold"
+                  >Wrong action. (DTA may never realise.)</span
+                >
+              </span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:items-start gap-2">
+              <span class="font-bold whitespace-nowrap">Level 2 (Basic):</span>
+              <span>
+                &quot;Effective tax rate is low, so earnings quality is
+                good.&quot; &rarr;
+                <span class="text-amber-600 font-bold"
+                  >Misses normalization. (Low ETR may be from aggressive DTA
+                  recognition.)</span
+                >
+              </span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:items-start gap-2">
+              <span class="font-bold whitespace-nowrap">Level 3:</span>
+              <span>
+                &quot;Deferred tax is management's educated guess on future
+                profitability. Ignore the non-cash P&L tax credit; look straight
+                to the valuation allowance. Base valuation purely on expected
+                cash taxes paid.&quot; &rarr;
+                <span class="text-green-600 font-bold"
+                  >Forecasts effectively without DTA distortions</span
+                >
+              </span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="mt-4 text-center pb-4 shrink-0 border-t border-slate-200">
+        <p class="text-sm text-slate-500 pt-4">
+          Generated for Accounting Standards Comparison Hub | Premium Guide
+        </p>
+      </div>
+    </main>
+
+    <script>
+      function updateCalculations() {
+        const cost = parseFloat(document.getElementById("dt-cost").value) || 0;
+        const life = parseFloat(document.getElementById("dt-life").value) || 1;
+        const taxDepRate =
+          parseFloat(document.getElementById("dt-tax-rate").value) / 100 || 0;
+        const effectiveTaxRate =
+          parseFloat(document.getElementById("dt-eff-tax").value) / 100 || 0;
+        const pbt = parseFloat(document.getElementById("dt-pbt").value) || 0;
+        const currentTax =
+          parseFloat(document.getElementById("dt-current-tax").value) || 0;
+
+        const bookDep = cost / life;
+        const taxDep = cost * taxDepRate;
+        const tempDiff = Math.abs(bookDep - taxDep);
+        const dtl = tempDiff * effectiveTaxRate;
+
+        document.getElementById("calc-book-dep").innerText =
+          bookDep.toFixed(2) + " Cr";
+        document.getElementById("calc-tax-dep").innerText =
+          taxDep.toFixed(2) + " Cr";
+        document.getElementById("calc-temp-diff").innerText =
+          tempDiff.toFixed(2) + " Cr";
+        document.getElementById("calc-dtl").innerText = dtl.toFixed(2) + " Cr";
+
+        document
+          .querySelectorAll(".val-dtl")
+          .forEach((el) => (el.innerText = dtl.toFixed(2) + " Cr"));
+        document.getElementById("val-usgaap-dtl").innerText =
+          dtl.toFixed(2) + " Cr (assuming no valuation allowance)";
+        const dUsDtl = document.getElementById("d-usgaap-dtl");
+        if (dUsDtl) dUsDtl.innerText = dtl.toFixed(2) + " Cr";
+
+        document
+          .querySelectorAll(".val-pbt")
+          .forEach((el) => (el.innerText = pbt.toFixed(2) + " Cr"));
+        document
+          .querySelectorAll(".val-curr-tax")
+          .forEach(
+            (el) => (el.innerText = "-" + currentTax.toFixed(2) + " Cr"),
+          );
+        document
+          .querySelectorAll(".val-curr-tax-pos")
+          .forEach((el) => (el.innerText = currentTax.toFixed(2) + " Cr"));
+        document
+          .querySelectorAll(".val-dtl-exp")
+          .forEach((el) => (el.innerText = "-" + dtl.toFixed(2) + " Cr"));
+        document.getElementById("val-usgaap-dtl-exp").innerText =
+          "-" + dtl.toFixed(2) + " Cr (assume no valuation allowance)";
+        const dUsDtlExp = document.getElementById("d-usgaap-dtl-exp");
+        if (dUsDtlExp) dUsDtlExp.innerText = "-" + dtl.toFixed(2) + " Cr";
+
+        const totalTax = currentTax + dtl;
+        document
+          .querySelectorAll(".val-total-tax")
+          .forEach((el) => (el.innerText = "-" + totalTax.toFixed(2) + " Cr"));
+
+        const etr = pbt > 0 ? (totalTax / pbt) * 100 : 0;
+        document
+          .querySelectorAll(".val-etr")
+          .forEach((el) => (el.innerText = etr.toFixed(2) + "%"));
+
+        // Section H (Ratio Impact) additions
+        const equity =
+          parseFloat(document.getElementById("dt-equity").value) || 1;
+        const assets =
+          parseFloat(document.getElementById("dt-assets").value) || 1;
+
+        // AS (Old) - no DTL recognized (assuming)
+        const patAs = pbt - currentTax; // 75
+        const roeAs = (patAs / equity) * 100;
+        const roaAs = (patAs / assets) * 100;
+        const deAs = 0; // if no debt input, keep simple
+
+        // Ind AS / IFRS / US GAAP - DTL recognized
+        const patNew = pbt - totalTax; // 70
+        const roeNew = (patNew / equity) * 100;
+        const roaNew = (patNew / assets) * 100;
+
+        const hRoeAs = document.getElementById("h-roe-as");
+        if (hRoeAs) hRoeAs.innerText = roeAs.toFixed(2) + "%";
+        const hRoeIn = document.getElementById("h-roe-in");
+        if (hRoeIn) hRoeIn.innerText = roeNew.toFixed(2) + "%";
+        const hRoeUs = document.getElementById("h-roe-us");
+        if (hRoeUs) hRoeUs.innerText = roeNew.toFixed(2) + "%";
+
+        const hEtrAs = document.getElementById("h-etr-as");
+        if (hEtrAs)
+          hEtrAs.innerText =
+            (pbt > 0 ? (currentTax / pbt) * 100 : 0).toFixed(2) + "%";
+
+        const hRoaAs = document.getElementById("h-roa-as");
+        if (hRoaAs) hRoaAs.innerText = roaAs.toFixed(2) + "%";
+        const hRoaIn = document.getElementById("h-roa-in");
+        if (hRoaIn) hRoaIn.innerText = roaNew.toFixed(2) + "%";
+        const hRoaUs = document.getElementById("h-roa-us");
+        if (hRoaUs) hRoaUs.innerText = roaNew.toFixed(2) + "%";
+
+        const hDeAs = document.getElementById("h-de-as");
+        if (hDeAs) hDeAs.innerText = "0.00x";
+        const hDeIn = document.getElementById("h-de-in");
+        if (hDeIn) hDeIn.innerText = (dtl / equity).toFixed(2) + "x"; // treating DTL as debt
+        const hDeUs = document.getElementById("h-de-us");
+        if (hDeUs) hDeUs.innerText = (dtl / equity).toFixed(2) + "x";
+
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString();
+        document.getElementById("last-updated").innerText = timeStr;
+      }
+
+      document.querySelectorAll("input.dt-input").forEach((input) => {
+        input.addEventListener("input", updateCalculations);
+      });
+
+      document.getElementById("reset-btn").addEventListener("click", () => {
+        document.getElementById("dt-cost").value = "100";
+        document.getElementById("dt-life").value = "5";
+        document.getElementById("dt-tax-rate").value = "40";
+        document.getElementById("dt-eff-tax").value = "25";
+        document.getElementById("dt-pbt").value = "100";
+        document.getElementById("dt-current-tax").value = "25";
+        document.getElementById("dt-equity").value = "300";
+        document.getElementById("dt-assets").value = "500";
+        updateCalculations();
+      });
+
+      updateCalculations();
+    </script>
+  </body>
+</html>
