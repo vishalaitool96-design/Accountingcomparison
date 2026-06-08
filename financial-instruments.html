@@ -1389,7 +1389,7 @@
                 <td class="p-3">Fair value volatility</td>
                 <td class="p-3">Ongoing</td>
                 <td class="p-3">Normalise for market movements</td>
-                <td class="p-3">Swap loss 2 Cr not core operating</td>
+                <td class="p-3">Swap loss <span class="val-deriv-loss">2</span> Cr not core operating</td>
               </tr>
               <tr class="hover:bg-slate-50">
                 <td class="p-3 font-semibold text-slate-800">Equity</td>
@@ -1920,7 +1920,58 @@
     </main>
 
     <script>
-      function updateCalculations() {
+      // Universal helper function to format numeric values based on application rules
+      function formatAppValue(val, type, option = "") {
+        if (val === null || val === undefined || isNaN(val) || val === 0 || val === "" || val === "0") {
+          return "—";
+        }
+        const num = parseFloat(val);
+        if (isNaN(num) || num === 0) return "—";
+
+        if (type === "monetary" || type === "cr") {
+          if (option === "neg") {
+            return "-" + num.toFixed(2) + " Cr";
+          }
+          if (option === "paren") {
+            return "(" + num.toFixed(2) + " Cr)";
+          }
+          return num.toFixed(2) + " Cr";
+        } else if (type === "percent" || type === "%") {
+          return num.toFixed(1) + "%";
+        } else if (type === "ratio" || type === "x") {
+          if (option === "no-suffix") {
+            return num.toFixed(2);
+          }
+          return num.toFixed(2) + "x";
+        }
+        return num.toString();
+      }
+
+      // Legacy helper functions mapped to the universal formatter for backward compatibility and clean delegation
+      function formatCr(val) {
+        return formatAppValue(val, "monetary");
+      }
+
+      function formatCrNeg(val) {
+        return formatAppValue(val, "monetary", "neg");
+      }
+
+      function formatCrParen(val) {
+        return formatAppValue(val, "monetary", "paren");
+      }
+
+      function formatPercent(val) {
+        return formatAppValue(val, "percent");
+      }
+
+      function formatRatio(val, withSuffix = true) {
+        return formatAppValue(val, "ratio", withSuffix ? "" : "no-suffix");
+      }
+
+      function recalculateAll() {
+        // Section P protection guard
+        const protectedSection = document.getElementById('section-p');
+
         const bondFace =
           parseFloat(document.getElementById("fi-bond-face").value) || 0;
         const bondRate =
@@ -1949,76 +2000,52 @@
         const asTotExp = bondInt;
         const newTotExp = bondInt + derivLoss + eclAmt;
 
-        document
-          .querySelectorAll(".val-bond-face")
-          .forEach((el) => (el.innerText = bondFace.toString()));
-        document
-          .querySelectorAll(".val-bond-rate")
-          .forEach((el) => (el.innerText = (bondRate * 100).toString()));
-        document
-          .querySelectorAll(".val-bond-int")
-          .forEach((el) => (el.innerText = bondInt.toString()));
-        document
-          .querySelectorAll(".val-receivable")
-          .forEach((el) => (el.innerText = receivable.toString()));
-        document
-          .querySelectorAll(".val-ecl-rate")
-          .forEach((el) => (el.innerText = (eclRate * 100).toString()));
-        document
-          .querySelectorAll(".val-ecl-amt")
-          .forEach((el) => (el.innerText = eclAmt.toString()));
-        document
-          .querySelectorAll(".val-net-rec")
-          .forEach((el) => (el.innerText = netRec.toString()));
-        document
-          .querySelectorAll(".val-deriv-loss")
-          .forEach((el) => (el.innerText = derivLoss.toString()));
-        document
-          .querySelectorAll(".val-tot-exp")
-          .forEach((el) => (el.innerText = newTotExp.toString()));
+        // Helper function to write safely avoiding section-p
+        const safeWriteAll = (selector, content, isHtml = false) => {
+          document.querySelectorAll(selector).forEach((el) => {
+            if (protectedSection && protectedSection.contains(el)) return;
+            if (isHtml) {
+              el.innerHTML = content;
+            } else {
+              el.innerText = content;
+            }
+          });
+        };
+
+        const safeWriteId = (id, content) => {
+          const el = document.getElementById(id);
+          if (el) {
+            if (protectedSection && protectedSection.contains(el)) return;
+            el.innerText = content;
+          }
+        };
+
+        safeWriteAll(".val-bond-face", bondFace.toString());
+        safeWriteAll(".val-bond-rate", (bondRate * 100).toString());
+        safeWriteAll(".val-bond-int", bondInt.toString());
+        safeWriteAll(".val-receivable", receivable.toString());
+        safeWriteAll(".val-ecl-rate", (eclRate * 100).toString());
+        safeWriteAll(".val-ecl-amt", eclAmt.toString());
+        safeWriteAll(".val-net-rec", netRec.toString());
+        safeWriteAll(".val-deriv-loss", derivLoss.toString());
+        safeWriteAll(".val-tot-exp", newTotExp.toString());
 
         // Format to 2 decimal places in tables
-        document
-          .querySelectorAll(".val-bond-face-fmt")
-          .forEach((el) => (el.innerText = bondFace.toFixed(2) + " Cr"));
-        document
-          .querySelectorAll(".val-bond-int-fmt")
-          .forEach((el) => (el.innerText = bondInt.toFixed(2) + " Cr"));
-        document
-          .querySelectorAll(".val-receivable-fmt")
-          .forEach((el) => (el.innerText = receivable.toFixed(2) + " Cr"));
-        document
-          .querySelectorAll(".val-ecl-amt-fmt")
-          .forEach((el) => (el.innerText = eclAmt.toFixed(2) + " Cr"));
-        document
-          .querySelectorAll(".val-net-rec-fmt")
-          .forEach((el) => (el.innerText = netRec.toFixed(2) + " Cr"));
-        document
-          .querySelectorAll(".val-deriv-loss-fmt")
-          .forEach((el) => (el.innerText = derivLoss.toFixed(2) + " Cr"));
-        document
-          .querySelectorAll(".val-as-tot-exp")
-          .forEach((el) => (el.innerText = asTotExp.toFixed(2) + " Cr"));
-        document
-          .querySelectorAll(".val-new-tot-exp")
-          .forEach((el) => (el.innerText = newTotExp.toFixed(2) + " Cr"));
+        safeWriteAll(".val-bond-face-fmt", formatCr(bondFace));
+        safeWriteAll(".val-bond-int-fmt", formatCr(bondInt));
+        safeWriteAll(".val-receivable-fmt", formatCr(receivable));
+        safeWriteAll(".val-ecl-amt-fmt", formatCr(eclAmt));
+        safeWriteAll(".val-net-rec-fmt", formatCr(netRec));
+        safeWriteAll(".val-deriv-loss-fmt", formatCr(derivLoss));
+        safeWriteAll(".val-as-tot-exp", formatCr(asTotExp));
+        safeWriteAll(".val-new-tot-exp", formatCr(newTotExp));
 
-        // P&amp;L
-        document
-          .querySelectorAll(".val-revenue-fmt")
-          .forEach((el) => (el.innerText = baseRev.toFixed(2) + " Cr"));
-        document
-          .querySelectorAll(".val-opex-fmt")
-          .forEach((el) => (el.innerText = opex.toFixed(2) + " Cr"));
-        document
-          .querySelectorAll(".val-bond-int-neg")
-          .forEach((el) => (el.innerText = "-" + bondInt.toFixed(2) + " Cr"));
-        document
-          .querySelectorAll(".val-deriv-loss-neg")
-          .forEach((el) => (el.innerText = "-" + derivLoss.toFixed(2) + " Cr"));
-        document
-          .querySelectorAll(".val-ecl-amt-neg")
-          .forEach((el) => (el.innerText = "-" + eclAmt.toFixed(2) + " Cr"));
+        // P&L
+        safeWriteAll(".val-revenue-fmt", formatCr(baseRev));
+        safeWriteAll(".val-opex-fmt", formatCr(opex));
+        safeWriteAll(".val-bond-int-neg", formatCrNeg(bondInt));
+        safeWriteAll(".val-deriv-loss-neg", formatCrNeg(derivLoss));
+        safeWriteAll(".val-ecl-amt-neg", formatCrNeg(eclAmt));
 
         const asPbt = baseRev - opex - bondInt;
         const newPbt = baseRev - opex - newTotExp;
@@ -2027,45 +2054,23 @@
         const asPat = asPbt - asTax;
         const newPat = newPbt - newTax;
 
-        document
-          .querySelectorAll(".val-as-pbt")
-          .forEach((el) => (el.innerText = asPbt.toFixed(2) + " Cr"));
-        document
-          .querySelectorAll(".val-new-pbt")
-          .forEach((el) => (el.innerText = newPbt.toFixed(2) + " Cr"));
+        safeWriteAll(".val-as-pbt", formatCr(asPbt));
+        safeWriteAll(".val-new-pbt", formatCr(newPbt));
 
-        document
-          .querySelectorAll(".val-tax-perc")
-          .forEach((el) => (el.innerText = "@ " + taxRate * 100 + "%"));
-        document
-          .querySelectorAll(".val-as-tax")
-          .forEach((el) => (el.innerText = "-" + asTax.toFixed(2) + " Cr"));
-        document
-          .querySelectorAll(".val-new-tax")
-          .forEach((el) => (el.innerText = "-" + newTax.toFixed(2) + " Cr"));
+        safeWriteAll(".val-tax-perc", "@ " + (taxRate * 100) + "%");
+        safeWriteAll(".val-as-tax", formatCrNeg(asTax));
+        safeWriteAll(".val-new-tax", formatCrNeg(newTax));
 
-        document
-          .querySelectorAll(".val-as-pat")
-          .forEach((el) => (el.innerText = asPat.toFixed(2) + " Cr"));
-        document
-          .querySelectorAll(".val-new-pat")
-          .forEach((el) => (el.innerText = newPat.toFixed(2) + " Cr"));
+        safeWriteAll(".val-as-pat", formatCr(asPat));
+        safeWriteAll(".val-new-pat", formatCr(newPat));
 
         const shares = 10;
         const asEps = asPat / shares;
         const newEps = newPat / shares;
-        document
-          .querySelectorAll(".val-as-eps")
-          .forEach((el) => (el.innerText = asEps.toFixed(2)));
-        document
-          .querySelectorAll(".val-new-eps")
-          .forEach((el) => (el.innerText = newEps.toFixed(2)));
+        safeWriteAll(".val-as-eps", formatRatio(asEps, false));
+        safeWriteAll(".val-new-eps", formatRatio(newEps, false));
 
-        document
-          .querySelectorAll(".val-deriv-loss-paren")
-          .forEach(
-            (el) => (el.innerText = "(" + derivLoss.toFixed(2) + " Cr)"),
-          );
+        safeWriteAll(".val-deriv-loss-paren", formatCrParen(derivLoss));
 
         // CASH FLOW (SECTION G)
         const asCfo = baseRev - opex - asTax - bondInt;
@@ -2080,26 +2085,17 @@
         const newTot = newCfo + newCff;
         const usTot = usCfo + usCff;
 
-        document.getElementById("g-cfo-as").innerText =
-          asCfo.toFixed(2) + " Cr";
-        document.getElementById("g-cfo-in").innerText =
-          newCfo.toFixed(2) + " Cr";
-        document.getElementById("g-cfo-us").innerText =
-          usCfo.toFixed(2) + " Cr";
+        safeWriteId("g-cfo-as", formatCr(asCfo));
+        safeWriteId("g-cfo-in", formatCr(newCfo));
+        safeWriteId("g-cfo-us", formatCr(usCfo));
 
-        document.getElementById("g-cff-as").innerText =
-          asCff.toFixed(2) + " Cr";
-        document.getElementById("g-cff-in").innerText =
-          newCff.toFixed(2) + " Cr";
-        document.getElementById("g-cff-us").innerText =
-          usCff.toFixed(2) + " Cr";
+        safeWriteId("g-cff-as", formatCr(asCff));
+        safeWriteId("g-cff-in", formatCr(newCff));
+        safeWriteId("g-cff-us", formatCr(usCff));
 
-        document.getElementById("g-tot-as").innerText =
-          asTot.toFixed(2) + " Cr";
-        document.getElementById("g-tot-in").innerText =
-          newTot.toFixed(2) + " Cr";
-        document.getElementById("g-tot-us").innerText =
-          usTot.toFixed(2) + " Cr";
+        safeWriteId("g-tot-as", formatCr(asTot));
+        safeWriteId("g-tot-in", formatCr(newTot));
+        safeWriteId("g-tot-us", formatCr(usTot));
 
         // Ratios
         const asDebt = bondFace;
@@ -2137,113 +2133,100 @@
         const calcAsRoe = asEquity > 0 ? (asPat / asEquity) * 100 : 0;
         const calcNewRoe = newEquity > 0 ? (newPat / newEquity) * 100 : 0;
 
-        document
-          .querySelectorAll(".val-as-de")
-          .forEach((el) => (el.innerText = asDe.toFixed(2)));
-        document
-          .querySelectorAll(".val-new-de")
-          .forEach((el) => (el.innerText = newDe.toFixed(2)));
-        document
-          .querySelectorAll(".val-as-ic")
-          .forEach((el) => (el.innerText = calcAsIc.toFixed(2) + "x"));
-        document
-          .querySelectorAll(".val-new-ic")
-          .forEach((el) => (el.innerText = calcNewIc.toFixed(2) + "x"));
-        document
-          .querySelectorAll(".val-as-roa")
-          .forEach((el) => (el.innerText = asRoa.toFixed(1) + "%"));
-        document
-          .querySelectorAll(".val-new-roa")
-          .forEach((el) => (el.innerText = newRoa.toFixed(1) + "%"));
-        document
-          .querySelectorAll(".val-as-roe")
-          .forEach((el) => (el.innerText = calcAsRoe.toFixed(1) + "%"));
-        document
-          .querySelectorAll(".val-new-roe")
-          .forEach((el) => (el.innerText = calcNewRoe.toFixed(1) + "%"));
+        safeWriteAll(".val-as-de", formatRatio(asDe, false));
+        safeWriteAll(".val-new-de", formatRatio(newDe, false));
+        safeWriteAll(".val-as-ic", formatRatio(calcAsIc, true));
+        safeWriteAll(".val-new-ic", formatRatio(calcNewIc, true));
+        safeWriteAll(".val-as-roa", formatPercent(asRoa));
+        safeWriteAll(".val-new-roa", formatPercent(newRoa));
+        safeWriteAll(".val-as-roe", formatPercent(calcAsRoe));
+        safeWriteAll(".val-new-roe", formatPercent(calcNewRoe));
 
         if (asDe < newDe) {
-          document
-            .querySelectorAll(".val-de-dir")
-            .forEach((el) => (el.innerHTML = "&uarr; (higher leverage)"));
+          safeWriteAll(".val-de-dir", "&uarr; (higher leverage)", true);
         } else {
-          document
-            .querySelectorAll(".val-de-dir")
-            .forEach((el) => (el.innerHTML = "&ndash;"));
+          safeWriteAll(".val-de-dir", "&ndash;", true);
         }
 
         if (calcAsIc > calcNewIc) {
-          document
-            .querySelectorAll(".val-ic-dir")
-            .forEach((el) => (el.innerHTML = "&darr; (weaker coverage)"));
+          safeWriteAll(".val-ic-dir", "&darr; (weaker coverage)", true);
         } else {
-          document
-            .querySelectorAll(".val-ic-dir")
-            .forEach((el) => (el.innerHTML = "&ndash;"));
+          safeWriteAll(".val-ic-dir", "&ndash;", true);
         }
 
         if (asRoa > newRoa) {
-          document
-            .querySelectorAll(".val-ro-dir")
-            .forEach((el) => (el.innerHTML = "&darr;"));
+          safeWriteAll(".val-ro-dir", "&darr;", true);
         } else {
-          document
-            .querySelectorAll(".val-ro-dir")
-            .forEach((el) => (el.innerHTML = "&ndash;"));
+          safeWriteAll(".val-ro-dir", "&ndash;", true);
         }
 
-        const now = new Date();
-        document.getElementById("last-updated").innerText =
-          now.toLocaleTimeString();
+        const lastUp = document.getElementById("last-updated");
+        if (lastUp) {
+          lastUp.innerText = new Date().toLocaleTimeString();
+        }
       }
 
+      // Alias updateCalculations to recalculateAll for backward compatibility
+      function updateCalculations() {
+        recalculateAll();
+      }
+
+      // Attach event listeners to all Section B input elements
       document.querySelectorAll("input.fi-input").forEach((input) => {
-        input.addEventListener("input", updateCalculations);
+        input.addEventListener("input", recalculateAll);
+        input.addEventListener("change", recalculateAll);
       });
 
-      document.getElementById("reset-btn").addEventListener("click", () => {
-        document.getElementById("fi-bond-face").value = "100";
-        document.getElementById("fi-bond-rate").value = "8";
-        document.getElementById("fi-bond-term").value = "5";
-        document.getElementById("fi-receivable").value = "50";
-        document.getElementById("fi-ecl-rate").value = "2";
-        document.getElementById("fi-deriv-notional").value = "100";
-        document.getElementById("fi-deriv-loss").value = "2";
-        document.getElementById("fi-revenue").value = "200";
-        document.getElementById("fi-opex").value = "150";
-        document.getElementById("fi-tax-rate").value = "25";
-        document.getElementById("fi-equity").value = "131.25";
-        document.getElementById("fi-assets").value = "250";
-        updateCalculations();
-      });
-
-      // Default Equity for ROE to match 24.0% with PAT 31.5 -> 131.25
-      document.getElementById("fi-equity").value = "131.25";
-      updateCalculations();
-
+      // Reset button event listeners
       const resetBtn = document.getElementById("reset-btn");
       if (resetBtn) {
         resetBtn.addEventListener("click", () => {
-          document.getElementById("fi-bond-face").value = 100;
-          document.getElementById("fi-bond-rate").value = 8;
-          document.getElementById("fi-bond-term").value = 5;
-          document.getElementById("fi-receivable").value = 50;
-          document.getElementById("fi-ecl-rate").value = 2;
-          document.getElementById("fi-deriv-notional").value = 100;
-          document.getElementById("fi-deriv-loss").value = 2;
-          document.getElementById("fi-revenue").value = 200;
-          document.getElementById("fi-opex").value = 150;
-          document.getElementById("fi-tax-rate").value = 25;
-          document.getElementById("fi-equity").value = 131.25;
-          document.getElementById("fi-assets").value = 250;
-          updateCalculations();
+          document.getElementById("fi-bond-face").value = "100";
+          document.getElementById("fi-bond-rate").value = "8";
+          document.getElementById("fi-bond-term").value = "5";
+          document.getElementById("fi-receivable").value = "50";
+          document.getElementById("fi-ecl-rate").value = "2";
+          document.getElementById("fi-deriv-notional").value = "100";
+          document.getElementById("fi-deriv-loss").value = "2";
+          document.getElementById("fi-revenue").value = "200";
+          document.getElementById("fi-opex").value = "150";
+          document.getElementById("fi-tax-rate").value = "25";
+          document.getElementById("fi-equity").value = "131.25";
+          document.getElementById("fi-assets").value = "250";
+          recalculateAll();
         });
       }
+
+      // Page Load Initialization
+      document.addEventListener("DOMContentLoaded", () => {
+        recalculateAll();
+      });
+
+      // Maintain dynamic equity setting at the bottom
+      document.getElementById("fi-equity").value = "131.25";
+      recalculateAll();
 
       const copyBtn = document.getElementById("copy-btn");
       if (copyBtn) {
         copyBtn.addEventListener("click", () => {
-          alert("Results functionality not implemented yet.");
+          // Robust clipboard functionality avoiding alerts inside iframe
+          const textToCopy = `Apex Instruments Ltd. Results Summary:
+- AS PAT: ${document.querySelector(".val-as-pat")?.innerText || ""}
+- New PAT: ${document.querySelector(".val-new-pat")?.innerText || ""}
+- Debt/Equity (AS): ${document.querySelector(".val-as-de")?.innerText || ""}
+- Debt/Equity (Ind AS): ${document.querySelector(".val-new-de")?.innerText || ""}`;
+          
+          navigator.clipboard.writeText(textToCopy).then(() => {
+            const originalText = copyBtn.innerText;
+            copyBtn.innerText = "✓ Copied!";
+            copyBtn.classList.add("bg-green-700");
+            setTimeout(() => {
+              copyBtn.innerText = originalText;
+              copyBtn.classList.remove("bg-green-700");
+            }, 2000);
+          }).catch(() => {
+            console.log("Clipboard copy failed.");
+          });
         });
       }
     </script>
