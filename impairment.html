@@ -1639,7 +1639,7 @@
                   <span id="h-roa-in"></span>
                 </td>
                 <td class="p-3"><span id="h-roa-us"></span></td>
-                <td class="p-3 text-red-600 font-bold">Mixed</td>
+                <td class="p-3 text-red-600 font-bold" id="h-dir-roa">Mixed</td>
                 <td class="p-3 font-sans text-xs text-slate-600 text-left">
                   Return on assets mechanically shifts as carrying amounts
                   change
@@ -1652,7 +1652,7 @@
                   <span id="h-roe-in"></span>
                 </td>
                 <td class="p-3"><span id="h-roe-us"></span></td>
-                <td class="p-3 text-red-600 font-bold">↓</td>
+                <td class="p-3 text-red-600 font-bold" id="h-dir-roe">↓</td>
                 <td class="p-3 font-sans text-xs text-slate-600 text-left">
                   Reported equity base drops, depressing returns
                 </td>
@@ -1666,7 +1666,7 @@
                   <span id="h-ato-in"></span>
                 </td>
                 <td class="p-3"><span id="h-ato-us"></span></td>
-                <td class="p-3 text-blue-600 font-bold">Mixed</td>
+                <td class="p-3 text-blue-600 font-bold" id="h-dir-ato">Mixed</td>
                 <td class="p-3 font-sans text-xs text-slate-600 text-left">
                   Velocity of assets appears faster due to written-down
                   denominator
@@ -1679,7 +1679,7 @@
                   <span id="h-mar-in"></span>
                 </td>
                 <td class="p-3"><span id="h-mar-us"></span></td>
-                <td class="p-3 text-slate-500 font-bold">-</td>
+                <td class="p-3 text-slate-500 font-bold" id="h-dir-mar">-</td>
                 <td class="p-3 font-sans text-xs text-slate-600 text-left">
                   EBITDA ignores non-cash impairment hits
                 </td>
@@ -1691,7 +1691,7 @@
                   <span id="h-de-in"></span>
                 </td>
                 <td class="p-3"><span id="h-de-us"></span></td>
-                <td class="p-3 text-slate-500 font-bold">-</td>
+                <td class="p-3 text-slate-500 font-bold" id="h-dir-de">-</td>
                 <td class="p-3 font-sans text-xs text-slate-600 text-left">
                   Leverage artificially worsens as retained earnings take the
                   hit
@@ -1820,7 +1820,7 @@
                 <td class="p-3 font-medium">
                   Exclude non-recurring impairment for core earnings
                 </td>
-                <td class="p-3">Normalize by adding back impairment</td>
+                <td class="p-3">Rep. <span id="j-ni-indas">-</span> vs Norm. <span id="j-ni-as">-</span></td>
               </tr>
               <tr class="hover:bg-slate-50">
                 <td class="p-3 font-semibold text-slate-800">ROA</td>
@@ -1831,7 +1831,7 @@
                 <td class="p-3 font-medium">
                   Use pre-impairment asset base for trend
                 </td>
-                <td class="p-3">Compare YoY using same asset base</td>
+                <td class="p-3">Rep. <span id="j-roa-indas">-</span> vs Norm. <span id="j-roa-as">-</span></td>
               </tr>
               <tr class="hover:bg-slate-50">
                 <td class="p-3 font-semibold text-slate-800">Asset turnover</td>
@@ -1840,7 +1840,7 @@
                 <td class="p-3 font-medium">
                   Reverse impairment for turnover comparability
                 </td>
-                <td class="p-3">Peer comps need adjusted assets</td>
+                <td class="p-3">Rep. <span id="j-ato-indas">-</span> vs Norm. <span id="j-ato-as">-</span></td>
               </tr>
               <tr class="hover:bg-slate-50">
                 <td class="p-3 font-semibold text-slate-800">Equity</td>
@@ -1849,7 +1849,7 @@
                 <td class="p-3 font-medium">
                   Track adjusted book value excluding impairment
                 </td>
-                <td class="p-3">Useful for distress analysis</td>
+                <td class="p-3">Rep. <span id="j-eq-indas">-</span> vs Norm. <span id="j-eq-as">-</span></td>
               </tr>
               <tr class="hover:bg-slate-50">
                 <td class="p-3 font-semibold text-slate-800">Operating CF</td>
@@ -1858,7 +1858,7 @@
                 <td class="p-3 font-medium">
                   Compare CFO before and after impairment
                 </td>
-                <td class="p-3">Cash flow not economically changed</td>
+                <td class="p-3">Rep. <span id="j-cfo-indas">-</span> vs Norm. <span id="j-cfo-as">-</span></td>
               </tr>
             </tbody>
           </table>
@@ -1891,7 +1891,7 @@
             <tbody class="divide-y divide-slate-100">
               <tr class="hover:bg-slate-50">
                 <td class="p-3 font-semibold text-slate-800">ROA</td>
-                <td class="p-3 text-red-600">Lower after impairment</td>
+                <td class="p-3 text-red-600">Lower after impairment (<span id="k-roa-val">-</span>)</td>
                 <td class="p-3 font-medium">
                   Recalculate using impaired asset base for future
                 </td>
@@ -1901,7 +1901,7 @@
               </tr>
               <tr class="hover:bg-slate-50">
                 <td class="p-3 font-semibold text-slate-800">Net margin</td>
-                <td class="p-3 text-red-600">Lower in impairment year</td>
+                <td class="p-3 text-red-600">Lower in impairment year (<span id="k-mar-val">-</span>)</td>
                 <td class="p-3 font-medium">
                   Exclude impairment for core margin
                 </td>
@@ -1910,7 +1910,7 @@
               <tr class="hover:bg-slate-50">
                 <td class="p-3 font-semibold text-slate-800">Asset turnover</td>
                 <td class="p-3 text-green-600">
-                  Higher (if revenue same, assets lower)
+                  Higher (if revenue same, assets lower) (<span id="k-ato-val">-</span>)
                 </td>
                 <td class="p-3 font-medium">
                   Normalize assets to pre-impairment level
@@ -1919,7 +1919,7 @@
               </tr>
               <tr class="hover:bg-slate-50">
                 <td class="p-3 font-semibold text-slate-800">Debt/Equity</td>
-                <td class="p-3 text-red-600">Higher (equity reduced)</td>
+                <td class="p-3 text-red-600">Higher (equity reduced) (<span id="k-de-val">-</span>)</td>
                 <td class="p-3 font-medium">
                   Rebuild equity excluding impairment
                 </td>
@@ -1931,7 +1931,7 @@
                 <td class="p-3 font-semibold text-slate-800">
                   Impairment / EBITDA
                 </td>
-                <td class="p-3 text-red-600">10% material</td>
+                <td class="p-3 text-red-600"><span id="k-imp-ebitda-val">-</span> material</td>
                 <td class="p-3 font-medium">Flag as exceptional item</td>
                 <td class="p-3">One-off, not recurring</td>
               </tr>
@@ -1981,7 +1981,7 @@
                   recoverable amount higher
                 </td>
                 <td class="p-3 bg-slate-50 font-medium">
-                  VIU uses 12% discount rate vs undiscounted AS test
+                  VIU uses <span id="l-rate-val">12%</span> discount rate vs undiscounted AS test
                 </td>
               </tr>
               <tr class="hover:bg-slate-50">
@@ -2417,11 +2417,51 @@
     </main>
 
     <script>
-      function formatNum(num) {
-        return Number(num).toFixed(2).replace(/\.00$/, "");
+      function formatMoney(val) {
+        if (val === null || val === undefined || isNaN(val) || val === "" || Number(val) === 0) {
+          return "—";
+        }
+        return val.toFixed(2) + " Cr";
       }
 
-      function calculate() {
+      function formatPercent(val) {
+        if (val === null || val === undefined || isNaN(val) || val === "" || Number(val) === 0) {
+          return "—";
+        }
+        return val.toFixed(1) + "%";
+      }
+
+      function formatMultiple(val) {
+        if (val === null || val === undefined || isNaN(val) || val === "" || Number(val) === 0) {
+          return "—";
+        }
+        return val.toFixed(2) + "x";
+      }
+
+      function formatMoneySign(val, prefix = "") {
+        if (val === null || val === undefined || isNaN(val) || val === "" || Number(val) === 0) {
+          return "—";
+        }
+        if (val < 0) {
+          return "-" + prefix + Math.abs(val).toFixed(2) + " Cr";
+        }
+        return prefix + val.toFixed(2) + " Cr";
+      }
+
+      function recalculateAll() {
+        const protectedSection = document.getElementById("section-p");
+
+        // SAFETY GUARD: Prevent any write operation within the protected Section P
+        const writeElement = (id, val) => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          if (protectedSection && protectedSection.contains(el)) {
+            console.warn(`Prevented unauthorized write to protected element: ${id}`);
+            return;
+          }
+          el.textContent = val;
+        };
+
         const carry =
           parseFloat(document.getElementById("inp-carrying").value) || 0;
         const life = parseFloat(document.getElementById("inp-life").value) || 1;
@@ -2437,6 +2477,8 @@
         const depr = parseFloat(document.getElementById("inp-depr").value) || 0;
         const taxRate =
           parseFloat(document.getElementById("inp-tax").value) || 0;
+        const rate =
+          parseFloat(document.getElementById("inp-rate").value) || 0;
 
         // Calculations
 
@@ -2460,127 +2502,92 @@
 
         const hasImpairment = asLoss > 0 || ifrsLoss > 0 || usLoss > 0;
         const msgContainer = document.getElementById("msg-container");
-        if (hasImpairment) {
-          msgContainer.classList.add("hidden");
-        } else {
-          msgContainer.classList.remove("hidden");
+        if (msgContainer) {
+          if (hasImpairment) {
+            msgContainer.classList.add("hidden");
+          } else {
+            msgContainer.classList.remove("hidden");
+          }
         }
 
         // Section B Updates
-        document.getElementById("calc-imp-as").textContent =
-          formatNum(asLoss) + " Cr";
-        document.getElementById("calc-imp-ifrs").textContent =
-          formatNum(ifrsLoss) + " Cr";
-        document.getElementById("calc-imp-us").textContent =
-          formatNum(usLoss) + " Cr";
+        writeElement("calc-imp-as", formatMoney(asLoss));
+        writeElement("calc-imp-ifrs", formatMoney(ifrsLoss));
+        writeElement("calc-imp-us", formatMoney(usLoss));
 
         // Section C Updates
-        document.getElementById("c-as-carry1").textContent = formatNum(carry);
-        document.getElementById("c-as-undisc").textContent =
-          formatNum(undiscounted);
-        document.getElementById("c-as-trigger").textContent = asImpRequired
-          ? "Impairment required"
-          : "No impairment";
-        document.getElementById("c-as-loss").textContent = formatNum(asLoss);
-        document.getElementById("c-as-new-carry").textContent =
-          formatNum(asNewCarry);
-        document.getElementById("c-as-new-depr").textContent =
-          asNewDepr.toFixed(2);
-        document.getElementById("c-as-jrn1").textContent = formatNum(asLoss);
-        document.getElementById("c-as-jrn2").textContent = formatNum(asLoss);
+        writeElement("c-as-carry1", formatMoney(carry));
+        writeElement("c-as-undisc", formatMoney(undiscounted));
+        writeElement("c-as-trigger", asImpRequired ? "Impairment required" : "No impairment");
+        writeElement("c-as-loss", formatMoney(asLoss));
+        writeElement("c-as-new-carry", formatMoney(asNewCarry));
+        writeElement("c-as-new-depr", formatMoney(asNewDepr));
+        writeElement("c-as-jrn1", formatMoney(asLoss));
+        writeElement("c-as-jrn2", formatMoney(asLoss));
 
-        document.getElementById("c-ifrs-fvlcd").textContent = formatNum(fvlcd);
-        document.getElementById("c-ifrs-viu").textContent = formatNum(viu);
-        document.getElementById("c-ifrs-recov").textContent =
-          formatNum(ifrsRecov);
-        document.getElementById("c-ifrs-carry").textContent = formatNum(carry);
-        document.getElementById("c-ifrs-recov2").textContent =
-          formatNum(ifrsRecov);
-        document.getElementById("c-ifrs-loss").textContent =
-          formatNum(ifrsLoss);
-        document.getElementById("c-ifrs-new-carry").textContent =
-          formatNum(ifrsNewCarry);
-        document.getElementById("c-ifrs-new-depr").textContent =
-          ifrsNewDepr.toFixed(2);
-        document.getElementById("c-ifrs-jrn1").textContent =
-          formatNum(ifrsLoss);
-        document.getElementById("c-ifrs-jrn2").textContent =
-          formatNum(ifrsLoss);
+        writeElement("c-ifrs-fvlcd", formatMoney(fvlcd));
+        writeElement("c-ifrs-viu", formatMoney(viu));
+        writeElement("c-ifrs-recov", formatMoney(ifrsRecov));
+        writeElement("c-ifrs-carry", formatMoney(carry));
+        writeElement("c-ifrs-recov2", formatMoney(ifrsRecov));
+        writeElement("c-ifrs-loss", formatMoney(ifrsLoss));
+        writeElement("c-ifrs-new-carry", formatMoney(ifrsNewCarry));
+        writeElement("c-ifrs-new-depr", formatMoney(ifrsNewDepr));
+        writeElement("c-ifrs-jrn1", formatMoney(ifrsLoss));
+        writeElement("c-ifrs-jrn2", formatMoney(ifrsLoss));
 
-        document.getElementById("c-us-carry").textContent = formatNum(carry);
-        document.getElementById("c-us-undisc").textContent =
-          formatNum(undiscounted);
-        document.getElementById("c-us-fail").textContent = usImpRequired
-          ? "Fail - Step 2 required"
-          : "Pass - No impairment";
-        document.getElementById("c-us-carry2").textContent = formatNum(carry);
-        document.getElementById("c-us-fv").textContent = formatNum(usFv);
-        document.getElementById("c-us-loss").textContent = formatNum(usLoss);
-        document.getElementById("c-us-new-carry").textContent =
-          formatNum(usNewCarry);
-        document.getElementById("c-us-jrn1").textContent = formatNum(usLoss);
-        document.getElementById("c-us-jrn2").textContent = formatNum(usLoss);
+        writeElement("c-us-carry", formatMoney(carry));
+        writeElement("c-us-undisc", formatMoney(undiscounted));
+        writeElement("c-us-fail", usImpRequired ? "Fail - Step 2 required" : "Pass - No impairment");
+        writeElement("c-us-carry2", formatMoney(carry));
+        writeElement("c-us-fv", formatMoney(usFv));
+        writeElement("c-us-loss", formatMoney(usLoss));
+        writeElement("c-us-new-carry", formatMoney(usNewCarry));
+        writeElement("c-us-jrn1", formatMoney(usLoss));
+        writeElement("c-us-jrn2", formatMoney(usLoss));
 
         // Section D
-        document.getElementById("d-as-test").textContent = asImpRequired
-          ? "fail"
-          : "pass";
-        document.getElementById("d-as-rv").textContent = formatNum(fvlcd);
-        document.getElementById("d-as-loss").textContent = formatNum(asLoss);
-        document.getElementById("d-as-ca").textContent = formatNum(asNewCarry);
+        writeElement("d-as-test", asImpRequired ? "fail" : "pass");
+        writeElement("d-as-rv", formatMoney(fvlcd));
+        writeElement("d-as-loss", formatMoney(asLoss));
+        writeElement("d-as-ca", formatMoney(asNewCarry));
 
-        document.getElementById("d-ind-test").textContent =
-          viu > fvlcd ? "Yes" : "No";
-        document.getElementById("d-ind-viu").textContent = formatNum(viu);
-        document.getElementById("d-ind-rv").textContent = formatNum(ifrsRecov);
-        document.getElementById("d-ind-loss").textContent = formatNum(ifrsLoss);
-        document.getElementById("d-ind-ca").textContent =
-          formatNum(ifrsNewCarry);
+        writeElement("d-ind-test", viu > fvlcd ? "Yes" : "No");
+        writeElement("d-ind-viu", formatMoney(viu));
+        writeElement("d-ind-rv", formatMoney(ifrsRecov));
+        writeElement("d-ind-loss", formatMoney(ifrsLoss));
+        writeElement("d-ind-ca", formatMoney(ifrsNewCarry));
 
-        document.getElementById("d-ifrs-rv").textContent = formatNum(ifrsRecov);
-        document.getElementById("d-ifrs-loss").textContent =
-          formatNum(ifrsLoss);
-        document.getElementById("d-ifrs-ca").textContent =
-          formatNum(ifrsNewCarry);
+        writeElement("d-ifrs-rv", formatMoney(ifrsRecov));
+        writeElement("d-ifrs-loss", formatMoney(ifrsLoss));
+        writeElement("d-ifrs-ca", formatMoney(ifrsNewCarry));
 
-        document.getElementById("d-us-test").textContent = usImpRequired
-          ? "fail"
-          : "pass";
-        document.getElementById("d-us-ucf").textContent =
-          formatNum(undiscounted);
-        document.getElementById("d-us-rv").textContent = formatNum(usFv);
-        document.getElementById("d-us-loss").textContent = formatNum(usLoss);
-        document.getElementById("d-us-ca").textContent = formatNum(usNewCarry);
+        writeElement("d-us-test", usImpRequired ? "fail" : "pass");
+        writeElement("d-us-ucf", formatMoney(undiscounted));
+        writeElement("d-us-rv", formatMoney(usFv));
+        writeElement("d-us-loss", formatMoney(usLoss));
+        writeElement("d-us-ca", formatMoney(usNewCarry));
 
         // Section E
         const fields = ["as", "ind", "ifrs", "us"];
         const ebitBase = ebitda;
-        const ebitdas = [ebitBase, ebitBase, ebitBase, ebitBase];
         const losses = [asLoss, ifrsLoss, ifrsLoss, usLoss];
 
         for (let i = 0; i < 4; i++) {
           let f = fields[i];
-          document.getElementById("e-" + f + "-base").textContent =
-            formatNum(ebitBase) + " Cr";
-          document.getElementById("e-" + f + "-imp").textContent =
-            "-" + formatNum(losses[i]) + " Cr";
-          document.getElementById("e-" + f + "-depr").textContent =
-            "-" + formatNum(depr) + " Cr";
-          document.getElementById("e-" + f + "-rebitda").textContent =
-            formatNum(ebitBase) + " Cr";
+          writeElement("e-" + f + "-base", formatMoney(ebitBase));
+          writeElement("e-" + f + "-imp", formatMoneySign(-losses[i]));
+          writeElement("e-" + f + "-depr", formatMoneySign(-depr));
+          writeElement("e-" + f + "-rebitda", formatMoney(ebitBase));
           let ebit = ebitBase - losses[i] - depr;
-          document.getElementById("e-" + f + "-ebit").textContent =
-            formatNum(ebit) + " Cr";
-          document.getElementById("e-" + f + "-pbt").textContent =
-            formatNum(ebit) + " Cr";
+          writeElement("e-" + f + "-ebit", formatMoneySign(ebit));
+          writeElement("e-" + f + "-pbt", formatMoneySign(ebit));
           let tax = (ebit * taxRate) / 100;
-          document.getElementById("e-" + f + "-tax").textContent =
-            "-" + formatNum(tax) + " Cr";
+          writeElement("e-" + f + "-tax", formatMoneySign(-tax));
           let pat = ebit - tax;
-          document.getElementById("e-" + f + "-pat").textContent =
-            formatNum(pat) + " Cr";
+          writeElement("e-" + f + "-pat", formatMoneySign(pat));
         }
-        document.getElementById("e-tax-rate").textContent = formatNum(taxRate);
+        writeElement("e-tax-rate", formatPercent(taxRate));
 
         // Section F
         const fFields = ["as", "ind", "ifrs", "us"];
@@ -2588,43 +2595,29 @@
         const fCarry = [asNewCarry, ifrsNewCarry, ifrsNewCarry, usNewCarry];
         for (let i = 0; i < 4; i++) {
           let f = fFields[i];
-          document.getElementById("f-" + f + "-ga").textContent =
-            formatNum(carry) + " Cr";
-          document.getElementById("f-" + f + "-acc").textContent =
-            "-" + formatNum(fLoss[i]) + " Cr";
-          document.getElementById("f-" + f + "-na").textContent =
-            formatNum(fCarry[i]) + " Cr";
+          writeElement("f-" + f + "-ga", formatMoney(carry));
+          writeElement("f-" + f + "-acc", formatMoneySign(-fLoss[i]));
+          writeElement("f-" + f + "-na", formatMoney(fCarry[i]));
         }
 
         // Section G
-        // Assuming impairment is generally a non-cash charge that does not immediately provide a current tax shield
-        // but for the sake of the tables tracking 'PAT', if PAT reflects tax, CFO = PAT + Impairment + Depr
-        const cfoAs =
-          (ebitBase - asLoss - depr) * (1 - taxRate / 100) + asLoss + depr;
-        const cfoInd =
-          (ebitBase - ifrsLoss - depr) * (1 - taxRate / 100) + ifrsLoss + depr;
-        const cfoUs =
-          (ebitBase - usLoss - depr) * (1 - taxRate / 100) + usLoss + depr;
+        const cfoAs = (ebitBase - asLoss - depr) * (1 - taxRate / 100) + asLoss + depr;
+        const cfoInd = (ebitBase - ifrsLoss - depr) * (1 - taxRate / 100) + ifrsLoss + depr;
+        const cfoUs = (ebitBase - usLoss - depr) * (1 - taxRate / 100) + usLoss + depr;
 
-        document.getElementById("g-cfo-as").textContent =
-          formatNum(cfoAs) + " Cr";
-        document.getElementById("g-cfo-in").textContent =
-          formatNum(cfoInd) + " Cr";
-        document.getElementById("g-cfo-us").textContent =
-          formatNum(cfoUs) + " Cr";
+        writeElement("g-cfo-as", formatMoney(cfoAs));
+        writeElement("g-cfo-in", formatMoney(cfoInd));
+        writeElement("g-cfo-us", formatMoney(cfoUs));
 
-        document.getElementById("g-cff-as").textContent = "0.00 Cr";
-        document.getElementById("g-cff-in").textContent = "0.00 Cr";
-        document.getElementById("g-cff-us").textContent = "0.00 Cr";
+        writeElement("g-cff-as", formatMoney(0));
+        writeElement("g-cff-in", formatMoney(0));
+        writeElement("g-cff-us", formatMoney(0));
 
-        document.getElementById("g-tot-as").textContent =
-          formatNum(cfoAs) + " Cr";
-        document.getElementById("g-tot-in").textContent =
-          formatNum(cfoInd) + " Cr";
-        document.getElementById("g-tot-us").textContent =
-          formatNum(cfoUs) + " Cr";
+        writeElement("g-tot-as", formatMoney(cfoAs));
+        writeElement("g-tot-in", formatMoney(cfoInd));
+        writeElement("g-tot-us", formatMoney(cfoUs));
 
-        // Section H
+        // Section H (Ratios)
         const hEbits = [
           ebitBase - asLoss - depr,
           ebitBase - ifrsLoss - depr,
@@ -2632,21 +2625,11 @@
         ];
         const hPat = hEbits.map((ebit) => ebit - (ebit * taxRate) / 100);
 
-        // Fetch inputs for Section H
-        const rev = parseFloat(document.getElementById("inp-rev"))
-          ? parseFloat(document.getElementById("inp-rev").value)
-          : 400;
-        const initAssets = parseFloat(document.getElementById("inp-assets"))
-          ? parseFloat(document.getElementById("inp-assets").value)
-          : 500;
-        const initEq = parseFloat(document.getElementById("inp-eq"))
-          ? parseFloat(document.getElementById("inp-eq").value)
-          : 200;
-        const debt = parseFloat(document.getElementById("inp-debt"))
-          ? parseFloat(document.getElementById("inp-debt").value)
-          : 100;
+        const rev = parseFloat(document.getElementById("inp-rev") ? document.getElementById("inp-rev").value : "") || 400;
+        const initAssets = parseFloat(document.getElementById("inp-assets") ? document.getElementById("inp-assets").value : "") || 500;
+        const initEq = parseFloat(document.getElementById("inp-eq") ? document.getElementById("inp-eq").value : "") || 200;
+        const debt = parseFloat(document.getElementById("inp-debt") ? document.getElementById("inp-debt").value : "") || 100;
 
-        // Effective assets = Initial Assets - Carrying Amount (original) + New Carry (after impairment)
         const assetsAs = initAssets - carry + asNewCarry;
         const assetsIn = initAssets - carry + ifrsNewCarry;
         const assetsUs = initAssets - carry + usNewCarry;
@@ -2655,50 +2638,94 @@
         const eqIn = initEq - (carry - ifrsNewCarry);
         const eqUs = initEq - (carry - usNewCarry);
 
-        document.getElementById("h-roa-as").textContent =
-          assetsAs !== 0 ? ((hPat[0] / assetsAs) * 100).toFixed(2) + "%" : "-";
-        document.getElementById("h-roa-in").textContent =
-          assetsIn !== 0 ? ((hPat[1] / assetsIn) * 100).toFixed(2) + "%" : "-";
-        document.getElementById("h-roa-us").textContent =
-          assetsUs !== 0 ? ((hPat[2] / assetsUs) * 100).toFixed(2) + "%" : "-";
+        const roaAs = assetsAs !== 0 ? (hPat[0] / assetsAs) * 100 : 0;
+        const roaIn = assetsIn !== 0 ? (hPat[1] / assetsIn) * 100 : 0;
+        const roaUs = assetsUs !== 0 ? (hPat[2] / assetsUs) * 100 : 0;
 
-        document.getElementById("h-roe-as").textContent =
-          eqAs !== 0 ? ((hPat[0] / eqAs) * 100).toFixed(2) + "%" : "-";
-        document.getElementById("h-roe-in").textContent =
-          eqIn !== 0 ? ((hPat[1] / eqIn) * 100).toFixed(2) + "%" : "-";
-        document.getElementById("h-roe-us").textContent =
-          eqUs !== 0 ? ((hPat[2] / eqUs) * 100).toFixed(2) + "%" : "-";
+        const roeAs = eqAs !== 0 ? (hPat[0] / eqAs) * 100 : 0;
+        const roeIn = eqIn !== 0 ? (hPat[1] / eqIn) * 100 : 0;
+        const roeUs = eqUs !== 0 ? (hPat[2] / eqUs) * 100 : 0;
 
-        document.getElementById("h-ato-as").textContent =
-          assetsAs !== 0 ? (rev / assetsAs).toFixed(2) + "x" : "-";
-        document.getElementById("h-ato-in").textContent =
-          assetsIn !== 0 ? (rev / assetsIn).toFixed(2) + "x" : "-";
-        document.getElementById("h-ato-us").textContent =
-          assetsUs !== 0 ? (rev / assetsUs).toFixed(2) + "x" : "-";
+        const atoAs = assetsAs !== 0 ? rev / assetsAs : 0;
+        const atoIn = assetsIn !== 0 ? rev / assetsIn : 0;
+        const atoUs = assetsUs !== 0 ? rev / assetsUs : 0;
 
-        const marAs = (ebitBase / rev) * 100;
-        document.getElementById("h-mar-as").textContent =
-          marAs.toFixed(2) + "%";
-        document.getElementById("h-mar-in").textContent =
-          marAs.toFixed(2) + "%";
-        document.getElementById("h-mar-us").textContent =
-          marAs.toFixed(2) + "%";
+        const marAs = rev !== 0 ? (ebitBase / rev) * 100 : 0;
 
-        document.getElementById("h-de-as").textContent =
-          eqAs !== 0 ? (debt / eqAs).toFixed(2) + "x" : "-";
-        document.getElementById("h-de-in").textContent =
-          eqIn !== 0 ? (debt / eqIn).toFixed(2) + "x" : "-";
-        document.getElementById("h-de-us").textContent =
-          eqUs !== 0 ? (debt / eqUs).toFixed(2) + "x" : "-";
+        const deAs = eqAs !== 0 ? debt / eqAs : 0;
+        const deIn = eqIn !== 0 ? debt / eqIn : 0;
+        const deUs = eqUs !== 0 ? debt / eqUs : 0;
+
+        writeElement("h-roa-as", formatPercent(roaAs));
+        writeElement("h-roa-in", formatPercent(roaIn));
+        writeElement("h-roa-us", formatPercent(roaUs));
+
+        writeElement("h-roe-as", formatPercent(roeAs));
+        writeElement("h-roe-in", formatPercent(roeIn));
+        writeElement("h-roe-us", formatPercent(roeUs));
+
+        writeElement("h-ato-as", formatMultiple(atoAs));
+        writeElement("h-ato-in", formatMultiple(atoIn));
+        writeElement("h-ato-us", formatMultiple(atoUs));
+
+        writeElement("h-mar-as", formatPercent(marAs));
+        writeElement("h-mar-in", formatPercent(marAs));
+        writeElement("h-mar-us", formatPercent(marAs));
+
+        writeElement("h-de-as", formatMultiple(deAs));
+        writeElement("h-de-in", formatMultiple(deIn));
+        writeElement("h-de-us", formatMultiple(deUs));
+
+        // Direction column update
+        const getDir = (indVal, asVal) => {
+          if (indVal === null || indVal === undefined || isNaN(indVal) ||
+              asVal === null || asVal === undefined || isNaN(asVal)) {
+            return "→";
+          }
+          if (indVal > asVal) return "↑";
+          if (indVal < asVal) return "↓";
+          return "→";
+        };
+
+        writeElement("h-dir-roa", getDir(roaIn, roaAs));
+        writeElement("h-dir-roe", getDir(roeIn, roeAs));
+        writeElement("h-dir-ato", getDir(atoIn, atoAs));
+        writeElement("h-dir-mar", getDir(marAs, marAs));
+        writeElement("h-dir-de", getDir(deIn, deAs));
+
+        // Section J (Trend Distortion Matrix) Example column updates
+        writeElement("j-ni-indas", formatMoney(hPat[1]));
+        writeElement("j-ni-as", formatMoney(hPat[0]));
+
+        writeElement("j-roa-indas", formatPercent(roaIn));
+        writeElement("j-roa-as", formatPercent(roaAs));
+
+        writeElement("j-ato-indas", formatMultiple(atoIn));
+        writeElement("j-ato-as", formatMultiple(atoAs));
+
+        writeElement("j-eq-indas", formatMoney(eqIn));
+        writeElement("j-eq-as", formatMoney(eqAs));
+
+        writeElement("j-cfo-indas", formatMoney(cfoInd));
+        writeElement("j-cfo-as", formatMoney(cfoAs));
+
+        // Section K (Ratio Interpretation Guide) Reported value updates
+        writeElement("k-roa-val", formatPercent(roaIn));
+        let patMarginIn = rev !== 0 ? (hPat[1] / rev) * 100 : 0;
+        writeElement("k-mar-val", formatPercent(patMarginIn));
+        writeElement("k-ato-val", formatMultiple(atoIn));
+        writeElement("k-de-val", formatMultiple(deIn));
+        writeElement("k-imp-ebitda-val", formatPercent(ebitda !== 0 ? (ifrsLoss / ebitda) * 100 : 0));
+
+        // Section L
+        writeElement("l-rate-val", rate + "%");
 
         const now = new Date();
-        document.getElementById("timestamp-text").textContent =
-          "Generated for Accounting Standards Comparison Hub | Premium Guide | Last recalculated at: " +
-          now.toLocaleTimeString();
+        writeElement("timestamp-text", "Generated for Accounting Standards Comparison Hub | Premium Guide | Last recalculated at: " + now.toLocaleTimeString());
       }
 
       document.querySelectorAll("input").forEach((input) => {
-        input.addEventListener("input", calculate);
+        input.addEventListener("input", recalculateAll);
       });
 
       document.getElementById("reset-btn").addEventListener("click", () => {
@@ -2720,7 +2747,7 @@
         if (inpEq) inpEq.value = 200;
         const inpDebt = document.getElementById("inp-debt");
         if (inpDebt) inpDebt.value = 100;
-        calculate();
+        recalculateAll();
       });
 
       const copyBtn = document.getElementById("copy-btn");
@@ -2749,7 +2776,7 @@ US GAAP FV: ${document.getElementById("inp-us-fv").value} Cr`;
       }
 
       // Initial calc
-      calculate();
+      recalculateAll();
     </script>
 
     <script>

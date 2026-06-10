@@ -1,0 +1,822 @@
+{
+  "title": "Statement of Cash Flows",
+  "description": "Premium Analysis Guide: AS vs Ind AS vs IFRS vs US GAAP",
+  "sections": [
+    {
+      "sectionTitle": "SECTION A: Core Technical Comparison Table",
+      "headers": [
+        "Parameter",
+        "AS (Old Indian GAAP)",
+        "Ind AS (Ind AS 7)",
+        "IFRS (IAS 7)",
+        "US GAAP (ASC 230)",
+        "Logic Shift"
+      ],
+      "tableData": [
+        [
+          "Core objective",
+          "Provide information about historical changes in cash.",
+          "Provide information about historical changes in cash and cash equivalents.",
+          "Provide information about historical changes in cash and cash equivalents.",
+          "Provide information about cash receipts and cash payments.",
+          "Consistent across all frameworks."
+        ],
+        [
+          "Applicability / Scope",
+          "Exemptions exist for SMCs and certain non-corporate entities.",
+          "Mandatory for all entities preparing financial statements under Ind AS.",
+          "Mandatory for all entities.",
+          "Mandatory for all entities.",
+          "Universal application in modern frameworks."
+        ],
+        [
+          "Classification structure",
+          "Operating, Investing, Financing.",
+          "Operating, Investing, Financing.",
+          "Operating, Investing, Financing.",
+          "Operating, Investing, Financing.",
+          "Consistent core structure across all frameworks."
+        ],
+        [
+          "Definition - Cash and cash equivalents",
+          "Short-term, highly liquid investments convertible to known cash.",
+          "Short-term, highly liquid investments readily convertible to known cash.",
+          "Short-term, highly liquid investments readily convertible to known cash.",
+          "Similar, but explicit rules on restricted cash.",
+          "Generally aligned across standards."
+        ],
+        [
+          "Bank overdrafts treatment",
+          "Classified as financing liabilities. Not part of cash equivalents.",
+          "Included in cash equivalents if repayable on demand and form an integral part of cash management.",
+          "Included in cash equivalents if repayable on demand and form an integral part of cash management.",
+          "Excluded from cash equivalents. Treated as financing activities.",
+          "Significant difference between IFRS/Ind AS and US GAAP/AS 3."
+        ],
+        [
+          "Restricted cash treatment",
+          "Not specifically addressed.",
+          "Judgment required; generally excluded from cash equivalents if restricted.",
+          "Judgment required; generally excluded from cash equivalents if restricted.",
+          "Must be included in the total cash balance shown in the cash flow statement; reconciled to balance sheet.",
+          "US GAAP is prescriptive; IFRS/Ind AS require judgment."
+        ],
+        [
+          "Operating activities - Direct vs Indirect method",
+          "Direct and Indirect permitted.",
+          "Direct method explicitly encouraged, but Indirect permitted.",
+          "Direct method encouraged, Indirect permitted.",
+          "Direct method encouraged, Indirect permitted (if Direct used, reconciliation to net income required).",
+          "Indirect method is the practical standard globally."
+        ],
+        [
+          "Operating activities - Starting point (Indirect method)",
+          "Net profit or loss.",
+          "Profit or loss (flexible).",
+          "Profit or loss (flexible).",
+          "Net income only.",
+          "US GAAP is strict on using Net Income."
+        ],
+        [
+          "Interest paid classification",
+          "Financing activity (for non-financial enterprises).",
+          "Operating OR Financing activity (policy choice).",
+          "Operating OR Financing activity (policy choice).",
+          "Operating activity (no choice).",
+          "Major comparability issue across standards and peers."
+        ],
+        [
+          "Interest received classification",
+          "Investing activity (for non-financial enterprises).",
+          "Operating OR Investing activity (policy choice).",
+          "Operating OR Investing activity (policy choice).",
+          "Operating activity (no choice).",
+          "US GAAP includes all interest in operating."
+        ],
+        [
+          "Dividends paid classification",
+          "Financing activity.",
+          "Financing OR Operating activity (policy choice).",
+          "Financing OR Operating activity (policy choice).",
+          "Financing activity (no choice).",
+          "IFRS/Ind AS flexibility allows variation."
+        ],
+        [
+          "Dividends received classification",
+          "Investing activity.",
+          "Operating OR Investing activity (policy choice).",
+          "Operating OR Investing activity (policy choice).",
+          "Operating activity (no choice).",
+          "US GAAP treats as operating return on investment."
+        ],
+        [
+          "Taxes paid classification",
+          "Operating activity; separate disclosure.",
+          "Operating activity unless specifically identifiable with investing/financing.",
+          "Operating activity unless specifically identifiable with investing/financing.",
+          "Operating activity (no allocation permitted).",
+          "US GAAP bans allocation to investing/financing."
+        ],
+        [
+          "Extraordinary items classification",
+          "Classified according to nature and separately disclosed.",
+          "Prohibited.",
+          "Prohibited.",
+          "Prohibited.",
+          "Elimination of extraordinary items globally."
+        ],
+        [
+          "Lease payments classification (Lessee)",
+          "Not specifically addressed (finance leases = financing).",
+          "Principal = Financing; Interest = Operating/Financing.",
+          "Principal = Financing; Interest = Operating/Financing.",
+          "Operating lease = Operating activity; Finance lease = Financing (principal) & Operating (interest).",
+          "US GAAP operating leases remain in operating cash flows."
+        ],
+        [
+          "Foreign currency cash flows",
+          "Recorded at exchange rate on transaction date.",
+          "Recorded at exchange rate on transaction date; unrealized gains/losses separately presented.",
+          "Recorded at exchange rate on transaction date; unrealized gains/losses separately presented.",
+          "Similar to Ind AS/IFRS.",
+          "Consistent approach."
+        ],
+        [
+          "Non-cash transactions",
+          "Excluded.",
+          "Excluded; disclosed elsewhere.",
+          "Excluded; disclosed elsewhere.",
+          "Excluded; disclosed elsewhere.",
+          "Consistent principle."
+        ],
+        [
+          "Changes in ownership interests in subsidiaries (no loss of control)",
+          "Not specifically addressed.",
+          "Financing activity.",
+          "Financing activity.",
+          "Financing activity.",
+          "Aligned. Transactions with owners in capacity as owners."
+        ],
+        [
+          "Acquisition/loss of subsidiaries",
+          "Investing activity (net of cash acquired/disposed).",
+          "Investing activity (net of cash acquired/disposed).",
+          "Investing activity (net of cash acquired/disposed).",
+          "Investing activity (net of cash acquired/disposed).",
+          "Consistent logic."
+        ],
+        [
+          "Investments in associates/joint ventures (equity method)",
+          "Not specifically addressed.",
+          "Include only cash flows between investor and investee (e.g., dividends).",
+          "Include only cash flows between investor and investee (e.g., dividends).",
+          "Include only cash flows between investor and investee (e.g., dividends).",
+          "Consistent focus on actual cash movements."
+        ],
+        [
+          "Deferred/contingent consideration in business combinations",
+          "Not specifically addressed.",
+          "Generally Investing (if related to original transaction/liability).",
+          "Generally Investing (if related to original transaction/liability).",
+          "Operating (if soon after acquisition - <= 3 months) or Financing (later).",
+          "US GAAP is prescriptive and different."
+        ],
+        [
+          "Disclosure of changes in financing liabilities",
+          "Not explicitly required.",
+          "Explicitly required (roll-forward of debt/lease liabilities, separating cash and non-cash changes).",
+          "Explicitly required.",
+          "Not explicitly required as a single roll-forward, but expected via other disclosures.",
+          "IFRS/Ind AS requirement adds significant transparency."
+        ],
+        [
+          "Overall disclosure volume",
+          "Low to moderate.",
+          "High.",
+          "High.",
+          "High.",
+          "Modern frameworks demand more data."
+        ],
+        [
+          "Derivative cash flows - hedging relationships",
+          "Not specifically addressed.",
+          "Classified in same category as the cash flows of the hedged item.",
+          "Classified in same category as the cash flows of the hedged item.",
+          "Generally same as Ind AS/IFRS, but some complex exceptions.",
+          "Consistent matching principle."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION C: Side-by-Side Treatment",
+      "headers": [
+        "AS 3 (Old Indian GAAP)",
+        "Ind AS 7",
+        "IAS 7 (IFRS)",
+        "US GAAP (ASC 230)"
+      ],
+      "tableData": [
+        [
+          "Interest & Dividends (Non-Financial) Interest paid: Financing activity (non-financial enterprise) Interest received: Investing activity (non-financial enterprise) Dividends paid: Financing activity Dividends received: Investing activity Taxes Paid Operating activity (separate disclosure) Extraordinary Items Required separate classification Bank Overdrafts Not included in cash equivalents Indirect Method Start Point Net profit/loss",
+          "Interest & Dividends (Non-Financial) Interest paid: Operating OR Financing (policy choice) Interest received: Operating OR Investing (policy choice) Dividends paid: Financing OR Operating (policy choice) Dividends received: Operating OR Investing (policy choice) Taxes Paid Operating unless specifically identifiable with investing/financing Extraordinary Items Not applicable (prohibited) Bank Overdrafts & Disclosures Included if criteria met Changes in financing liabilities: Required disclosure",
+          "Interest & Dividends (Non-Financial) Same as Ind AS 7 (fully converged). Provides choices for interest and dividends classification. Bank Overdrafts Bank overdrafts integral to cash management included in cash equivalents. Extraordinary Items Extraordinary items prohibited.",
+          "Interest & Dividends (Non-Financial) Interest paid: Operating activity (no choice) Interest received: Operating activity (no choice) Dividends paid: Financing activity (no choice) Dividends received: Operating activity (no choice) Taxes Paid Always operating (no allocation) Bank Overdrafts & Disclosures Bank overdraft: Not included (financing activity) Restricted cash: Included in total cash but separately disclosed Indirect Start Point Net income only"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION D: Side-by-Side Impact Table (Year 1 - Cash Flow\n          Classification)",
+      "headers": [
+        "Cash Flow Item",
+        "AS 3",
+        "Ind AS 7",
+        "IAS 7",
+        "US GAAP (ASC 230)"
+      ],
+      "tableData": [
+        [
+          "Bank overdraft in cash equivalents",
+          "Not included",
+          "Included if criteria met",
+          "Same as Ind AS",
+          "Not included (financing activity)"
+        ],
+        [
+          "Interest paid - non-financial",
+          "Financing",
+          "Operating OR Financing (policy choice)",
+          "Same as Ind AS",
+          "Operating (no choice)"
+        ],
+        [
+          "Interest received - non-financial",
+          "Investing",
+          "Operating OR Investing (policy choice)",
+          "Same as Ind AS",
+          "Operating (no choice)"
+        ],
+        [
+          "Dividends paid - non-financial",
+          "Financing",
+          "Financing OR Operating (policy choice)",
+          "Same as Ind AS",
+          "Financing (no choice)"
+        ],
+        [
+          "Dividends received - non-financial",
+          "Investing",
+          "Operating OR Investing (policy choice)",
+          "Same as Ind AS",
+          "Operating (no choice)"
+        ],
+        [
+          "Taxes paid",
+          "Operating (separate disclosure)",
+          "Operating unless specifically identifiable",
+          "Same as Ind AS",
+          "Operating only (no allocation)"
+        ],
+        [
+          "Extraordinary items classification",
+          "Required separate classification",
+          "Not applicable (prohibited)",
+          "Not applicable",
+          "Not applicable"
+        ],
+        [
+          "Indirect method starting point",
+          "Net profit/loss",
+          "Profit or loss (flexible)",
+          "Profit or loss (flexible)",
+          "Net income only"
+        ],
+        [
+          "Lease payments - operating lease (lessee)",
+          "Not specifically addressed",
+          "Principal = financing; Interest = operating/financing",
+          "Same as Ind AS",
+          "Operating activity"
+        ],
+        [
+          "Changes in financing liabilities disclosure",
+          "Not required",
+          "Required",
+          "Required",
+          "Not explicitly required"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION E: P&L Impact - Cash Flow Statement (No direct P&L\n            impact)",
+      "headers": [
+        "Metric",
+        "AS 3",
+        "Ind AS 7",
+        "IAS 7",
+        "US GAAP",
+        "Key Difference"
+      ],
+      "tableData": [
+        [
+          "Operating Cash Flow (CFO) - Example",
+          "89 Cr",
+          "85 Cr*",
+          "85 Cr*",
+          "89 Cr",
+          "Varies based on policy choices for interest/dividends"
+        ],
+        [
+          "Investing Cash Flow (CFI)",
+          "(31) Cr",
+          "(31) Cr",
+          "(31) Cr",
+          "(35) Cr",
+          "US GAAP excludes interest received from CFI"
+        ],
+        [
+          "Financing Cash Flow (CFF)",
+          "2 Cr",
+          "14 Cr*",
+          "14 Cr*",
+          "9 Cr",
+          "Varies based on interest/dividend classification"
+        ],
+        [
+          "Net Cash Flow",
+          "60 Cr",
+          "68 Cr*",
+          "68 Cr*",
+          "63 Cr",
+          "Differences due to overdraft inclusion"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION F: Balance Sheet vs Cash Flow Statement Presentation (Year\n            1)",
+      "headers": [
+        "Item",
+        "AS 3",
+        "Ind AS 7 / IAS 7",
+        "US GAAP",
+        "Interpretation"
+      ],
+      "tableData": [
+        [
+          "Cash & Bank Balances (Balance Sheet)",
+          "30.00 Cr",
+          "30.00 Cr",
+          "30.00 Cr",
+          "Assets are identical across frameworks"
+        ],
+        [
+          "Bank Overdraft (Balance Sheet Liability)",
+          "5.00 Cr",
+          "5.00 Cr",
+          "5.00 Cr",
+          "Always a current liability"
+        ],
+        [
+          "Opening C&CE (Cash Flow Statement)",
+          "30.00 Cr",
+          "25.00 Cr",
+          "30.00 Cr",
+          "Ind AS/IFRS reduces opening cash by overdraft amount"
+        ],
+        [
+          "Closing C&CE (Cash Flow Statement)",
+          "90.00 Cr",
+          "85.00 Cr",
+          "93.00 Cr",
+          "Derived after applying net cash flows to opening C&CE"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION G: Cash Flow Impact - Reconciliation",
+      "headers": [
+        "Component",
+        "AS 3",
+        "Ind AS 7",
+        "IAS 7",
+        "US GAAP"
+      ],
+      "tableData": [
+        [
+          "Total cash generated (economic)",
+          "63 Cr",
+          "63 Cr",
+          "63 Cr",
+          "63 Cr"
+        ],
+        [
+          "Presentation as operating CF",
+          "89 Cr",
+          "85 Cr",
+          "85 Cr",
+          "89 Cr"
+        ],
+        [
+          "Presentation as investing CF",
+          "31 Cr inflow from interest",
+          "31 Cr (depends on choice)",
+          "Same as Ind AS",
+          "0 from interest (interest in operating)"
+        ],
+        [
+          "Presentation as financing CF",
+          "2 Cr",
+          "14 Cr (depends on choice)",
+          "Same as Ind AS",
+          "9 Cr"
+        ],
+        [
+          "Cash and cash equivalents closing",
+          "90 Cr",
+          "103 Cr (including overdraft)",
+          "103 Cr",
+          "93 Cr"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION H: Ratio Impact",
+      "headers": [
+        "Ratio",
+        "AS 3",
+        "Ind AS / IFRS",
+        "US GAAP",
+        "Direction",
+        "Interpretation"
+      ],
+      "tableData": [
+        [
+          "OCF Margin (CFO/Rev)",
+          "",
+          "",
+          "",
+          "Mixed",
+          "Varies heavily depending on interest/dividend classification"
+        ],
+        [
+          "Free Cash Flow (CFO - Capex)",
+          "",
+          "",
+          "",
+          "Mixed",
+          "Economic FCF unchanged, but standard FCF varies by label"
+        ],
+        [
+          "CF Coverage (CFO/Debt)",
+          "",
+          "",
+          "",
+          "Mixed",
+          "Can appear distorted by operating vs financing choices"
+        ],
+        [
+          "Cash ROA (CFO/Assets)",
+          "",
+          "",
+          "",
+          "Mixed",
+          "Normalize by using Total Net Cash Flow for pure comparability"
+        ],
+        [
+          "Div Coverage (CFO/Div)",
+          "",
+          "",
+          "",
+          "Mixed",
+          "Significant shifts depending on if dividends drop CFO or CFF"
+        ],
+        [
+          "Int Coverage (CFO/Int)",
+          "",
+          "",
+          "",
+          "Mixed",
+          "Interest reduces numerator in some regimes, denominator in others"
+        ],
+        [
+          "Liquidity (CCE/CL)",
+          "",
+          "",
+          "",
+          "Mixed",
+          "Overdraft netted in CCE for Ind AS vs separated in others"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION I: Earnings Quality - Signals Table",
+      "headers": [
+        "Signal Observed",
+        "What It Means Technically",
+        "Analyst Interpretation",
+        "Action"
+      ],
+      "tableData": [
+        [
+          "CFO > Net Income significantly",
+          "Non-cash charges or working capital sources exceed uses",
+          "Quality of earnings may be high if working capital changes are sustainable; but one-time working capital benefits may reverse",
+          "Analyze sustainability of working capital changes"
+        ],
+        [
+          "CFO < Net Income consistently",
+          "Aggressive revenue recognition, build-up of receivables, or high non-cash charges",
+          "Red flag - earnings not converting to cash; potential quality issues",
+          "Stress-test revenue recognition policies"
+        ],
+        [
+          "Interest classified as operating (Ind AS/IAS 7 policy choice)",
+          "Company elected to show higher operating cash flow by excluding interest from CFO (if classified as financing)",
+          "Presentation choice - not economic; creates artificially higher CFO compared to peers with different policy",
+          "Reclassify consistently"
+        ],
+        [
+          "Dividends classified as operating (Ind AS/IAS 7 policy choice)",
+          "Rare - may be used by entities wanting to show lower financing outflows",
+          "Unusual policy - check if appropriate for business model; may mislead on dividend sustainability",
+          "Normalize by reclassifying dividends"
+        ],
+        [
+          "Bank overdraft included in cash equivalents (Ind AS/IAS 7)",
+          "Company has right of offset and overdraft is integral to cash management",
+          "Legitimate under IFRS/Ind AS but reduces reported net debt artificially",
+          "Recalculate net debt excluding overdraft"
+        ],
+        [
+          "Restricted cash included in total cash (US GAAP)",
+          "Legal or contractual restrictions exist but cash is still reported in cash flow statement",
+          "Not available for general use - liquidity may be overstated",
+          "Adjust available cash by excluding restricted portion"
+        ],
+        [
+          "Disclosure of changes in financing liabilities (IFRS/Ind AS only)",
+          "Company provides roll-forward of debt, leases, and other financing obligations",
+          "Good governance - allows tracking of non-cash changes (e.g., new leases, conversions)",
+          "Use this disclosure to understand true financing cash needs"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION J: Trend Distortion Matrix",
+      "headers": [
+        "Metric",
+        "Distortion Type",
+        "Duration",
+        "Correction Method",
+        "Example"
+      ],
+      "tableData": [
+        [
+          "Operating Cash Flow (CFO)",
+          "Classification-driven level shift (if interest/dividend classification changes)",
+          "Persistent as long as policy remains",
+          "Calculate cash flow from operations before interest and taxes by adding back interest and taxes to CFO",
+          "Ind AS company with interest in financing has higher CFO than IFRS peer with interest in operating - normalize"
+        ],
+        [
+          "Free Cash Flow (FCF)",
+          "No economic distortion (only classification)",
+          "Persistent",
+          "Use consistent definition across periods: FCF = CFO (standardized) - Capex",
+          "Ignore classification; economic FCF identical"
+        ],
+        [
+          "Cash and cash equivalents balance",
+          "Level shift (if overdraft included)",
+          "Persistent",
+          "Calculate unrestricted cash available for operations by deducting overdrafts and restricted cash",
+          "Ind AS shows higher cash balance due to overdraft"
+        ],
+        [
+          "Net debt",
+          "Level shift (if overdraft netted against cash)",
+          "Persistent",
+          "Calculate gross debt separately from cash",
+          "Ind AS net debt lower due to cash overdraft netting"
+        ],
+        [
+          "CFO/Interest coverage",
+          "Significant distortion (interest classification changes denominator)",
+          "Persistent",
+          "Use cash flow before interest and taxes / interest paid for all periods",
+          "Company with interest in financing shows differing coverage - same economics"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION K: Ratio Interpretation Guide",
+      "headers": [
+        "Ratio",
+        "Reported Value",
+        "What Analyst Should Do",
+        "Correct Interpretation"
+      ],
+      "tableData": [
+        [
+          "Operating Cash Flow Margin (CFO/Revenue)",
+          "Higher under US GAAP; varies under IFRS/Ind AS",
+          "Recast all to common basis: CFO before interest and taxes",
+          "Economic cash generation from operations is identical; only labels differ"
+        ],
+        [
+          "Cash Flow to Net Income (CFO/NI)",
+          ">1.0 generally good; distorted by classification",
+          "Calculate cash flow before interest and taxes / EBIT for apples-to-apples",
+          "True cash conversion quality independent of financing classification"
+        ],
+        [
+          "Free Cash Flow (CFO - Capex)",
+          "Appears different due to classification",
+          "Calculate total net cash flow from all activities - non-operating investing",
+          "Economic FCF is identical - ignore classification differences"
+        ],
+        [
+          "Cash Flow Coverage (CFO/Total Debt)",
+          "Appears stronger if interest in financing (CFO not reduced)",
+          "Use (CFO + interest paid)/Total Debt or use EBITDA/Total Debt",
+          "Coverage unaffected by classification; use pre-interest cash flow"
+        ],
+        [
+          "Net Debt / EBITDA",
+          "Appears lower under Ind AS (overdraft in cash)",
+          "Add back overdrafts to net debt; exclude restricted cash",
+          "Leverage higher than reported - adjust for netting"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION L: Analyst Concerns & Answers",
+      "headers": [
+        "Analyst question",
+        "Concern",
+        "Answer",
+        "Evidence"
+      ],
+      "tableData": [
+        [
+          "Why does operating cash flow differ between two similar companies under IFRS?",
+          "Classification inconsistency",
+          "Under IAS 7/Ind AS 7, companies can choose to classify interest as operating OR financing, and dividends as operating OR financing",
+          "Two identical companies can show different CFO solely due to policy choice"
+        ],
+        [
+          "Should I include bank overdrafts in cash when analyzing liquidity?",
+          "Overstated available cash",
+          "Under IFRS/Ind AS, overdrafts included if repayable on demand AND integral to cash management; under US GAAP, never included",
+          "For cross-border comparability, exclude overdrafts from cash for all companies"
+        ],
+        [
+          "How do I compare US GAAP and IFRS cash flow statements?",
+          "Cross-border comparability",
+          "Normalize to common classification - move all interest and dividends to operating for US GAAP companies; for IFRS, reclassify interest and dividends to match US GAAP or use pre-interest CF",
+          "Prepare bridge table: IFRS CFO + interest in financing = comparable to US GAAP CFO"
+        ],
+        [
+          "Why does Ind AS 7 encourage direct method but no one uses it?",
+          "Practicality vs principle",
+          "Direct method requires tracking gross cash receipts/payments - more costly; most ERP systems not configured to provide this data easily",
+          "Most Indian companies use indirect method despite encouragement"
+        ],
+        [
+          "How do I treat restricted cash in analysis?",
+          "Liquidity overstatement",
+          "US GAAP includes restricted cash in total cash in cash flow statement but reconciles to balance sheet; IFRS requires judgment",
+          "Exclude restricted cash from available-for-use liquidity metrics"
+        ],
+        [
+          "What's the most important disclosure in Ind AS 7 that AS 3 lacked?",
+          "Missing transparency",
+          "Changes in financing liabilities - shows both cash and non-cash changes to debt, leases, and other obligations",
+          "Critical for understanding true financing cash needs and non-cash financing activities"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION M: Investor Perception Analysis",
+      "headers": [
+        "Investor Type",
+        "What they see",
+        "Likely reaction",
+        "Sophisticated response"
+      ],
+      "tableData": [
+        [
+          "Retail",
+          "CFO number in financial highlights",
+          "Compare CFO across companies without understanding classification differences",
+          "May draw incorrect conclusions about relative performance"
+        ],
+        [
+          "Value Investors",
+          "Free cash flow generation",
+          "Focus on total cash flow, not operating classification; adjust for working capital sustainability",
+          "Reclassify all cash flows to consistent basis before comparing; ignore presentation differences"
+        ],
+        [
+          "Institutional Long-Only",
+          "CFO trends and cash conversion",
+          "Understand classification differences; request policy election disclosures",
+          "Use standardized cash flow before interest and taxes for peer comparisons; value based on total FCF"
+        ],
+        [
+          "Credit / Lenders",
+          "CFO coverage ratios for covenant testing",
+          "Most impacted - classification differences can artificially inflate or deflate coverage ratios",
+          "Write covenants based on cash flow available for debt service = CFO + interest + taxes - maintenance Capex"
+        ],
+        [
+          "PE / VC",
+          "Cash burn rate and runway",
+          "Focus on total cash flow from all activities; less concerned with classification",
+          "Use simple cash balance change; operating classification irrelevant for cash runway analysis"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION N: Reporting Signals Decoder",
+      "headers": [
+        "Management Action",
+        "Signal",
+        "What It Really Means",
+        "Your Move"
+      ],
+      "tableData": [
+        [
+          "Interest classified as financing (IFRS/Ind AS)",
+          "Conservative policy choice",
+          "CFO higher than if classified as operating; may be trying to show stronger operating performance",
+          "Reclassify interest to operating for apples-to-apples with US GAAP peers"
+        ],
+        [
+          "Interest classified as operating (IFRS/Ind AS)",
+          "More conservative CFO presentation",
+          "CFO lower but more comparable to US GAAP; may be trying to show realistic operating cash flow",
+          "No adjustment needed for US GAAP comparison"
+        ],
+        [
+          "Dividends classified as operating (IFRS/Ind AS - rare)",
+          "Highly unusual - potential red flag",
+          "Inflates financing cash flow (less negative) by hiding dividend outflows in operating; may mislead on dividend sustainability",
+          "Always reclassify dividends to financing for analysis"
+        ],
+        [
+          "Changes classification policy between periods",
+          "Red flag - lack of consistency",
+          "May be trying to manage reported CFO trends; requires disclosure and retrospective restatement",
+          "Restate prior periods to same policy; question management motivation"
+        ],
+        [
+          "No disclosure of changes in financing liabilities (IFRS/Ind AS)",
+          "Non-compliance with Ind AS 7",
+          "Hiding non-cash financing activities (e.g., new leases, debt conversions)",
+          "Request disclosure; adjust analysis to include non-cash financing"
+        ],
+        [
+          "Uses direct method (rare)",
+          "Very good governance",
+          "Provides transparent gross cash receipts/payments; most transparent presentation",
+          "Highly positive signal - use direct method data for more accurate cash flow forecasting"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION P: Red Flags vs Green Flags (Visual Indicator Matrix)",
+      "headers": [
+        "Scenario",
+        "Flag",
+        "Action"
+      ],
+      "tableData": [
+        [
+          "Consistently huge gap between Operating Cash Flow and Net Income",
+          "🔴RED",
+          "Check for aggressive working capital management or aggressive revenue recognition."
+        ],
+        [
+          "CFO positive only because of delayed payments to suppliers (payable stretch)",
+          "🔴RED",
+          "Unsustainable. Recompute CFO assuming normal payable days."
+        ],
+        [
+          "Capitalizing routine operating expenses into Investing Cash Flow",
+          "🔴RED",
+          "Manually move these outflows back to CFO to find true cash generation."
+        ],
+        [
+          "CFO covers Capex and Dividends comfortably over a 3-year cycle",
+          "🟢GREEN",
+          "Strong indicator of a self-sustaining business model."
+        ],
+        [
+          "Clear breakdown of cash flows by segment or geographical region",
+          "🟢GREEN",
+          "Use granularity to model segment-specific terminal growth rates."
+        ]
+      ]
+    }
+  ]
+}

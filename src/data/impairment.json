@@ -1,0 +1,670 @@
+{
+  "title": "Impairment",
+  "description": "Premium Analysis Guide: AS vs Ind AS vs IFRS vs US GAAP",
+  "sections": [
+    {
+      "sectionTitle": "SECTION A: Core Technical Comparison Table",
+      "headers": [
+        "Parameter",
+        "AS (Old Indian GAAP)",
+        "Ind AS (Ind AS 36)",
+        "IFRS (IAS 36)",
+        "US GAAP (ASC 350 & 360)",
+        "Logic shift"
+      ],
+      "tableData": [
+        [
+          "Core philosophy",
+          "Impairment recognized if carrying amount > undiscounted future cash flows; loss = difference to fair value.",
+          "Single-step model: impair if carrying amount > recoverable amount (higher of fair value less costs to sell and value in use).",
+          "Same as Ind AS.",
+          "Two-step for long-lived assets: (1) Recoverability test (undiscounted CFs), (2) Loss = fair value - carrying amount. Goodwill: qualitative or quantitative test at reporting unit level.",
+          "From undiscounted CF triggers to discounted recoverable amount / fair value."
+        ],
+        [
+          "Trigger for impairment",
+          "Significant change in operations/market, decline in asset value, or physical damage.",
+          "Indications at each reporting date (external + internal).",
+          "Same as Ind AS.",
+          "Goodwill tested annually or more often if trigger; long-lived assets tested only when triggers exist.",
+          "IFRS/Ind AS more proactive; US GAAP annual goodwill test required."
+        ],
+        [
+          "Unit of account",
+          "Individual asset or cash generating unit (CGU) loosely defined.",
+          "CGU = smallest group generating independent cash inflows.",
+          "Same as Ind AS.",
+          "Long-lived assets: asset group level; Goodwill: reporting unit (one level below segment).",
+          "IFRS CGU is more operational; US GAAP reporting unit is more financial-segment-aligned."
+        ],
+        [
+          "Recoverable amount definition",
+          "Not explicitly defined; loss = carrying amount - fair value (if estimable).",
+          "Higher of fair value less costs of disposal (FVLCD) and value in use (VIU = PV of future CFs).",
+          "Same as Ind AS.",
+          "Fair value (market price or DCF) used in step 2; no value in use concept.",
+          "Ind AS/IFRS use VIU; US GAAP fair value only."
+        ],
+        [
+          "Discounting",
+          "Not required for recoverability test.",
+          "Required for VIU (pre-tax discount rate).",
+          "Same as Ind AS.",
+          "Used only in step 2 fair value measurement.",
+          "Discounting embedded in core impairment math under new standards."
+        ],
+        [
+          "Reversal of impairment",
+          "Allowed if conditions improve.",
+          "Prohibited for goodwill; allowed for other assets if recoverable amount increases.",
+          "Same as Ind AS.",
+          "Prohibited for all assets (once impaired, carrying amount cannot be increased).",
+          "Key divergence: US GAAP most conservative; AS most flexible."
+        ],
+        [
+          "Goodwill impairment",
+          "Amortized + tested for impairment if trigger.",
+          "Not amortized; tested annually; one-step: compare CGU carrying amount (incl. goodwill) vs recoverable amount.",
+          "Same as Ind AS.",
+          "Not amortized; tested annually; two-step (or qualitative option): compare reporting unit fair value vs carrying amount.",
+          "Goodwill treated as a permanent asset under new standards, but tested rigorously."
+        ],
+        [
+          "Allocation of goodwill",
+          "Not systematically required.",
+          "Allocate to CGUs expected to benefit from synergy.",
+          "Same as Ind AS.",
+          "Allocate to reporting units at acquisition.",
+          "Systematic allocation required under all new standards."
+        ],
+        [
+          "Intangible impairment",
+          "Same as tangible; no special rules.",
+          "Same rules as tangibles; indefinite life intangibles tested annually.",
+          "Same as Ind AS.",
+          "Indefinite life intangibles tested annually like goodwill; finite life tested on triggers.",
+          "Indefinite-lived intangibles get separate attention under new rules."
+        ],
+        [
+          "Disclosure volume",
+          "Minimal: only amount and basis.",
+          "Extensive: CGU details, discount rates, sensitivity analysis, assumptions.",
+          "Same as Ind AS.",
+          "Extensive but less required sensitivity than IFRS; fair value hierarchy disclosure.",
+          "IFRS/Ind AS more narrative-heavy; US GAAP more quantitative fair value focus."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION C: Side-by-Side Treatment",
+      "headers": [
+        "AS 28 (Old Indian GAAP)",
+        "Ind AS 36",
+        "IAS 36 (IFRS)",
+        "US GAAP (ASC 360)"
+      ],
+      "tableData": [
+        [
+          "Triggering Test (Step 1) Carrying amount (50 Cr) > Undiscounted CFs (48 Cr) - Impairment required Measurement (Step 2) Impairment loss = Carrying amount - Fair value = 20 Cr Dr Impairment loss 20 CrCr Accumulated impairment 20 Cr Post-Impairment Carrying Amount 30 Cr Future Depreciation 6.00 Cr/year",
+          "Trigger & Recoverable Amount Recoverable amount = Higher of FVLCD (30 Cr) and VIU (34 Cr) = 34 Cr Measurement Impairment loss = Carrying amount (50 Cr) - Recoverable amount (34 Cr) = 16 Cr Dr Impairment loss 16 CrCr Accumulated impairment 16 Cr Post-Impairment Carrying Amount 34 Cr Future Depreciation 6.80 Cr/year",
+          "In Accordance with IAS 36 Fully aligned with Ind AS 36. Single-step impairment comparison with recoverable amount (higher of value-in-use and fair value less costs to sell): No preliminary recoverability test step matches US GAAP style Reversals allowed if recovery estimates change Same outcomes as Ind AS 36: Impairment loss of 16 Cr, with future depreciation adjusted to 6.80 Cr/year.",
+          "Triggering Test (Step 1) Carrying amount (50 Cr) > Undiscounted CFs (48 Cr) - Fail - Step 2 required Measurement (Step 2) Impairment loss = Carrying amount - Fair value = 50 Cr - 32 Cr = 18 Cr Dr Impairment loss 18 CrCr Accumulated impairment 18 Cr Post-Impairment Carrying Amount 32 Cr"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION D: Side-by-Side Impact Table (Year 1)",
+      "headers": [
+        "Framework",
+        "Trigger used",
+        "Recoverable amount / Fair value",
+        "Impairment loss (P&L)",
+        "New carrying amount",
+        "Reversal allowed?"
+      ],
+      "tableData": [
+        [
+          "AS (Old)",
+          "Undiscounted CF test (fail)",
+          "Fair value 30 Cr",
+          "20 Cr",
+          "30 Cr",
+          "Yes"
+        ],
+        [
+          "Ind AS 36",
+          "VIU > FVLCD? No, VIU 34 Cr",
+          "34 Cr",
+          "16 Cr",
+          "34 Cr",
+          "No for goodwill; yes for others"
+        ],
+        [
+          "IFRS 36",
+          "Same as Ind AS",
+          "34 Cr",
+          "16 Cr",
+          "34 Cr",
+          "Same as Ind AS"
+        ],
+        [
+          "US GAAP",
+          "Step 1 fail (undiscounted CFs 48 Cr)",
+          "Fair value 32 Cr",
+          "18 Cr",
+          "32 Cr",
+          "No for all assets"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION E: P&L Impact - Year 1",
+      "headers": [
+        "Line item",
+        "AS (Old)",
+        "Ind AS 36",
+        "IFRS 36",
+        "US GAAP (ASC 360)"
+      ],
+      "tableData": [
+        [
+          "Base EBITDA",
+          "80.00 Cr",
+          "80.00 Cr",
+          "80.00 Cr",
+          "80.00 Cr"
+        ],
+        [
+          "Impairment loss",
+          "-20.00 Cr",
+          "-16.00 Cr",
+          "-16.00 Cr",
+          "-18.00 Cr"
+        ],
+        [
+          "Depreciation (normal)",
+          "-10.00 Cr",
+          "-10.00 Cr",
+          "-10.00 Cr",
+          "-10.00 Cr"
+        ],
+        [
+          "Reported EBITDA",
+          "80.00 Cr",
+          "80.00 Cr",
+          "80.00 Cr",
+          "80.00 Cr"
+        ],
+        [
+          "EBIT",
+          "50.00 Cr",
+          "54.00 Cr",
+          "54.00 Cr",
+          "52.00 Cr"
+        ],
+        [
+          "Interest",
+          "Nil",
+          "Nil",
+          "Nil",
+          "Nil"
+        ],
+        [
+          "PBT",
+          "50.00 Cr",
+          "54.00 Cr",
+          "54.00 Cr",
+          "52.00 Cr"
+        ],
+        [
+          "Tax @ 25%",
+          "-12.50 Cr",
+          "-13.50 Cr",
+          "-13.50 Cr",
+          "-13.00 Cr"
+        ],
+        [
+          "PAT",
+          "37.50 Cr",
+          "40.50 Cr",
+          "40.50 Cr",
+          "39.00 Cr"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION F: Balance Sheet Impact - Year 1",
+      "headers": [
+        "Item",
+        "AS (Old)",
+        "Ind AS 36",
+        "IFRS 36",
+        "US GAAP"
+      ],
+      "tableData": [
+        [
+          "Gross asset",
+          "50 Cr",
+          "50 Cr",
+          "50 Cr",
+          "50 Cr"
+        ],
+        [
+          "Accumulated impairment",
+          "-20 Cr",
+          "-16 Cr",
+          "-16 Cr",
+          "-18 Cr"
+        ],
+        [
+          "Net asset carrying amount",
+          "30 Cr",
+          "34 Cr",
+          "34 Cr",
+          "32 Cr"
+        ],
+        [
+          "Total assets",
+          "Lower",
+          "Higher",
+          "Higher",
+          "Medium"
+        ],
+        [
+          "Total liabilities",
+          "Unchanged",
+          "Unchanged",
+          "Unchanged",
+          "Unchanged"
+        ],
+        [
+          "Equity",
+          "Lower",
+          "Lower",
+          "Lower",
+          "Lower"
+        ],
+        [
+          "Hidden risk",
+          "Understated impairment",
+          "Fairly stated",
+          "Fairly stated",
+          "Conservative"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION G: Cash Flow Impact (Year 1)",
+      "headers": [
+        "Item",
+        "AS (Old)",
+        "Ind AS / IFRS",
+        "US GAAP",
+        "Interpretation"
+      ],
+      "tableData": [
+        [
+          "Operating Cash Flow (CFO)",
+          "",
+          "",
+          "",
+          "Net operating cash unimpacted by non-cash impairment"
+        ],
+        [
+          "Financing Cash Flow (CFF)",
+          "0.00 Cr",
+          "0.00 Cr",
+          "0.00 Cr",
+          "No financing cash flow impact"
+        ],
+        [
+          "Total Net Cash Flow",
+          "",
+          "",
+          "",
+          "Total cash drain is identical across all frameworks"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION H: Ratio Impact (Year 1)",
+      "headers": [
+        "Ratio",
+        "AS (Old)",
+        "Ind AS / IFRS",
+        "US GAAP",
+        "Direction",
+        "Interpretation"
+      ],
+      "tableData": [
+        [
+          "ROA (Net Income / Assets)",
+          "",
+          "",
+          "",
+          "Mixed",
+          "Return on assets mechanically shifts as carrying amounts change"
+        ],
+        [
+          "ROE",
+          "",
+          "",
+          "",
+          "↓",
+          "Reported equity base drops, depressing returns"
+        ],
+        [
+          "Asset turnover",
+          "",
+          "",
+          "",
+          "Mixed",
+          "Velocity of assets appears faster due to written-down denominator"
+        ],
+        [
+          "EBITDA margin",
+          "",
+          "",
+          "",
+          "-",
+          "EBITDA ignores non-cash impairment hits"
+        ],
+        [
+          "Debt/Equity",
+          "",
+          "",
+          "",
+          "-",
+          "Leverage artificially worsens as retained earnings take the hit"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION I: Earnings Quality - Signals Table",
+      "headers": [
+        "Signal observed",
+        "What it means technically",
+        "Analyst interpretation",
+        "Action"
+      ],
+      "tableData": [
+        [
+          "Impairment loss lower under Ind AS/IFRS than AS",
+          "Discounting in VIU reduces loss compared to undiscounted CF test",
+          "New standard may show smaller hits but still real economics",
+          "Recompute impairment using standardized discount rate across peers"
+        ],
+        [
+          "US GAAP impairment higher than IFRS",
+          "Fair value only, no VIU benefit",
+          "US GAAP more conservative for tangible assets",
+          "Flag cross-border comparability issues"
+        ],
+        [
+          "Goodwill never reversed",
+          "IFRS/Ind AS prohibit reversal for goodwill; US GAAP prohibits all reversals",
+          "Once impaired, permanent reduction",
+          "Do not expect future write-ups; track acquisition discipline"
+        ],
+        [
+          "Frequent impairment triggers",
+          "Management may be delaying recognition",
+          "Possible earnings management",
+          "Compare timing of triggers to peer and industry cycle"
+        ],
+        [
+          "No sensitivity disclosure (IFRS/Ind AS)",
+          "Poor quality reporting",
+          "Risk that assumptions are aggressive",
+          "Request discount rate and growth assumption details"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION J: Trend Distortion Matrix",
+      "headers": [
+        "Metric",
+        "Distortion type",
+        "Duration",
+        "Correction method",
+        "Example"
+      ],
+      "tableData": [
+        [
+          "Net Income",
+          "One-time hit",
+          "Impairment year only",
+          "Exclude non-recurring impairment for core earnings",
+          "Rep. - vs Norm. -"
+        ],
+        [
+          "ROA",
+          "Permanent downward level shift",
+          "Remaining life of asset",
+          "Use pre-impairment asset base for trend",
+          "Rep. - vs Norm. -"
+        ],
+        [
+          "Asset turnover",
+          "Permanent upward if large impairment",
+          "Remaining life",
+          "Reverse impairment for turnover comparability",
+          "Rep. - vs Norm. -"
+        ],
+        [
+          "Equity",
+          "Permanent reduction",
+          "Forever",
+          "Track adjusted book value excluding impairment",
+          "Rep. - vs Norm. -"
+        ],
+        [
+          "Operating CF",
+          "Inflation (add-back)",
+          "Impairment year",
+          "Compare CFO before and after impairment",
+          "Rep. - vs Norm. -"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION K: Ratio Interpretation Guide",
+      "headers": [
+        "Ratio",
+        "Reported value",
+        "What analyst should do",
+        "Correct interpretation"
+      ],
+      "tableData": [
+        [
+          "ROA",
+          "Lower after impairment (-)",
+          "Recalculate using impaired asset base for future",
+          "Impairment signals past overpayment or obsolescence"
+        ],
+        [
+          "Net margin",
+          "Lower in impairment year (-)",
+          "Exclude impairment for core margin",
+          "Underlying operations unchanged"
+        ],
+        [
+          "Asset turnover",
+          "Higher (if revenue same, assets lower) (-)",
+          "Normalize assets to pre-impairment level",
+          "No real efficiency gain"
+        ],
+        [
+          "Debt/Equity",
+          "Higher (equity reduced) (-)",
+          "Rebuild equity excluding impairment",
+          "Leverage looks worse but cash flow unaffected"
+        ],
+        [
+          "Impairment / EBITDA",
+          "- material",
+          "Flag as exceptional item",
+          "One-off, not recurring"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION L: Analyst Concerns & Answers",
+      "headers": [
+        "Analyst question",
+        "Concern",
+        "Answer",
+        "Evidence"
+      ],
+      "tableData": [
+        [
+          "Why is impairment lower under Ind AS/IFRS than AS?",
+          "Understating loss",
+          "Discounting in VIU reduces present value of future CFs, so recoverable amount higher",
+          "VIU uses 12% discount rate vs undiscounted AS test"
+        ],
+        [
+          "Can management manipulate impairment timing?",
+          "Earnings smoothing",
+          "Yes, triggers are judgmental; but auditors challenge large misses",
+          "Compare impairment timing to industry downturns"
+        ],
+        [
+          "Why no reversal under US GAAP?",
+          "Permanent conservatism",
+          "US GAAP prohibits reversal for all assets; IFRS allows reversal for tangibles",
+          "Check if asset value truly recovers"
+        ],
+        [
+          "How to compare goodwill impairment across IFRS and US GAAP?",
+          "Cross-standard mismatch",
+          "IFRS one-step (CGU vs recoverable); US GAAP two-step (fair value vs carrying amount of reporting unit)",
+          "Recompute goodwill using unified fair value approach"
+        ],
+        [
+          "What discount rate is appropriate?",
+          "Management bias",
+          "Pre-tax, market-based, reflecting asset-specific risk",
+          "Use WACC or peer discount rates for sanity check"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION M: Investor Perception Analysis",
+      "headers": [
+        "Investor Type",
+        "What they see",
+        "Likely reaction",
+        "Sophisticated response"
+      ],
+      "tableData": [
+        [
+          "Retail",
+          "Large impairment loss",
+          "Negative, sell stock",
+          "Recognize impairment is often non-cash and past-looking"
+        ],
+        [
+          "Value",
+          "Lower book value, lower ROE",
+          "Think company overpaid for assets",
+          "Rebuild ROIC on post-impairment asset base"
+        ],
+        [
+          "Institutional long-only",
+          "Better disclosure under IFRS/Ind AS",
+          "Positive for governance",
+          "Use impairment as signal of management honesty"
+        ],
+        [
+          "Credit / Lenders",
+          "Lower equity cushion",
+          "More cautious",
+          "Monitor covenants that include book value"
+        ],
+        [
+          "PE / VC",
+          "Impairment = past mistake",
+          "Due diligence on acquisition history",
+          "Underwrite future cash flows ignoring sunk cost"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION N: Reporting Signals Decoder",
+      "headers": [
+        "Management Action",
+        "Signal",
+        "What It Really Means",
+        "Your Move"
+      ],
+      "tableData": [
+        [
+          "Takes large goodwill impairment right after acquisition",
+          "Red flag",
+          "Overpaid; synergy assumptions failed",
+          "Review deal diligence"
+        ],
+        [
+          "Reverses impairment (IFRS only)",
+          "Green or Yellow",
+          "Asset value recovered; but management may be optimistic",
+          "Verify recovery with external data"
+        ],
+        [
+          "Uses high discount rate for VIU",
+          "Conservative bias",
+          "Lowers VIU - higher impairment",
+          "Compare to WACC and peers"
+        ],
+        [
+          "Avoids sensitivity tables (IFRS)",
+          "Opacity",
+          "May hide fragile assumptions",
+          "Request 1% change impact"
+        ],
+        [
+          "Impairs exactly at threshold",
+          "Yellow",
+          "Cookie-cutter compliance",
+          "Test with your own CF model"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION P: Red Flags vs Green Flags (Visual Indicator Matrix)",
+      "headers": [
+        "Scenario",
+        "Flag",
+        "Action"
+      ],
+      "tableData": [
+        [
+          "Repeated 'one-time' impairment charges over multiple years",
+          "🔴RED",
+          "Sign of structural capital misallocation. Apply a permanent 'management discount' to valuation."
+        ],
+        [
+          "Impairment occurs immediately after a change in CEO/CFO or acquisition",
+          "🔴RED",
+          "Classic 'kitchen sinking' to reset the baseline for future bonuses."
+        ],
+        [
+          "Discount rate used in impairment testing is suspiciously low",
+          "🔴RED",
+          "Management is artificially shielding assets from impairment. Recalculate with market rates."
+        ],
+        [
+          "Detailed sensitivity analysis provided for carrying amounts",
+          "🟢GREEN",
+          "Allows you to independently stress-test the balance sheet carrying values."
+        ],
+        [
+          "Impairment taken proactively ahead of industry cycle deterioration",
+          "🟢GREEN",
+          "Sign of honest, conservative management facing reality early."
+        ]
+      ]
+    }
+  ]
+}

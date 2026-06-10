@@ -1,0 +1,631 @@
+{
+  "title": "Property, Plant and Equipment",
+  "description": "Premium Analysis Guide: AS vs Ind AS vs IFRS vs US GAAP",
+  "sections": [
+    {
+      "sectionTitle": "SECTION A: Core Technical Comparison Table",
+      "headers": [
+        "Parameter",
+        "AS 10 (Old Indian GAAP)",
+        "Ind AS 16",
+        "IAS 16 (IFRS)",
+        "US GAAP ASC 360",
+        "Logic shift"
+      ],
+      "tableData": [
+        [
+          "Core philosophy",
+          "Focuses on historical cost with limited revaluation use.",
+          "Cost model or revaluation model, with component accounting.",
+          "Same broad model as Ind AS.",
+          "Mostly historical cost, with some limited fair value options.",
+          "From simple cost tracking to more judgment-based asset measurement."
+        ],
+        [
+          "Initial recognition",
+          "PPE recognized when future economic benefits are probable and cost can be measured reliably.",
+          "Same.",
+          "Same.",
+          "Same.",
+          "Recognition rules are broadly aligned."
+        ],
+        [
+          "Initial measurement",
+          "At cost, including purchase price, non-refundable taxes, freight, installation, and directly attributable costs.",
+          "Same.",
+          "Same.",
+          "Same.",
+          "Cost includes all directly attributable costs."
+        ],
+        [
+          "Subsequent measurement",
+          "Usually carried at cost less depreciation and impairment.",
+          "Cost model or revaluation model.",
+          "Same as Ind AS.",
+          "Cost less depreciation and impairment; revaluation model generally not allowed for PPE.",
+          "Ind AS/IFRS allow fair value uplift through revaluation."
+        ],
+        [
+          "Depreciation",
+          "Based on useful life and residual value; component accounting less emphasized historically.",
+          "Separate significant components depreciated separately.",
+          "Same.",
+          "Component accounting is also required where appropriate.",
+          "More precise matching of cost to consumption."
+        ],
+        [
+          "Useful life review",
+          "Less formalized.",
+          "Reviewed at least annually.",
+          "Same.",
+          "Reviewed when events indicate change.",
+          "Estimates are updated more actively under Ind AS/IFRS."
+        ],
+        [
+          "Residual value review",
+          "Less structured.",
+          "Reviewed at least annually.",
+          "Same.",
+          "Reviewed periodically, usually when indicators change.",
+          "More frequent reassessment under Ind AS/IFRS."
+        ],
+        [
+          "Impairment",
+          "Trigger-based impairment under older standards.",
+          "Ind AS 36: recoverable amount approach.",
+          "Same.",
+          "ASC 360: recoverability test, then impairment loss if carrying value exceeds fair value.",
+          "Different impairment mechanics can affect timing and size of losses."
+        ],
+        [
+          "Borrowing costs",
+          "Generally capitalized when directly attributable to qualifying assets.",
+          "Capitalize directly attributable borrowing costs during construction.",
+          "Same.",
+          "Similar capitalization for qualifying assets.",
+          "Construction assets often carry interest into cost."
+        ],
+        [
+          "Government grants",
+          "Often recognized based on specific guidance, sometimes netted against asset cost.",
+          "IAS 20-style treatment: deferred income or deduction from asset cost depending on policy.",
+          "Same.",
+          "Similar, but presentation can differ.",
+          "Grant accounting affects opening PPE carrying value."
+        ],
+        [
+          "Exchange differences",
+          "Treated under foreign currency rules.",
+          "Certain FX differences on foreign currency borrowings may be capitalized in some cases.",
+          "Same.",
+          "FX treatment follows US GAAP foreign currency rules.",
+          "Capitalization of FX is more limited and rule-based."
+        ],
+        [
+          "Revaluation surplus",
+          "Not a common feature.",
+          "Allowed for classes of PPE; revaluation surplus goes to OCI.",
+          "Same.",
+          "Generally not permitted for PPE.",
+          "Major divergence between Ind AS/IFRS and US GAAP."
+        ],
+        [
+          "Disposal accounting",
+          "Gain/loss recognized in P&L.",
+          "Same.",
+          "Same.",
+          "Same.",
+          "Broadly aligned at exit."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION C: Side-by-Side Treatment",
+      "headers": [
+        "AS 10 (Old Indian GAAP)",
+        "Ind AS 16 / Ind AS 37",
+        "IFRS 16 / IAS 37",
+        "ASC 360 / ASC 410"
+      ],
+      "tableData": [
+        [
+          "Asset recognized at cost + freight. ARO usually ignored or cash basis. Depreciation generally WDV or SLM over schedule 2 rates.",
+          "Cost + Freight + PV of ARO capitalized. Component accounting mandatory. Depreciation matches consumption profile precisely.",
+          "Identical to Ind AS.",
+          "Cost + ARO capitalized. Component accounting applied. Impairment models differ slightly (recoverability test)."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION D: Side-by-Side Impact Table (Project Only)",
+      "headers": [
+        "Framework",
+        "Initial PPE",
+        "Initial liability / provision",
+        "Year 1 dep"
+      ],
+      "tableData": [
+        [
+          "AS",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "Ind AS",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "IFRS",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "US GAAP",
+          "-",
+          "-",
+          "-"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION E: P&L Impact - Year 1",
+      "headers": [
+        "Line item",
+        "AS (Old)",
+        "Ind AS",
+        "IFRS",
+        "US GAAP"
+      ],
+      "tableData": [
+        [
+          "Base EBITDA",
+          "-",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "Depreciation",
+          "-",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "Reported EBITDA",
+          "-",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "EBIT",
+          "-",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "Accretion (Interest)",
+          "Nil",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "PBT",
+          "-",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "Tax @ 25%",
+          "-",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "PAT (Profit After Tax)",
+          "-",
+          "-",
+          "-",
+          "-"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION F: Balance Sheet Impact - End of Year 1",
+      "headers": [
+        "Line item",
+        "AS (Old)",
+        "Ind AS",
+        "IFRS",
+        "US GAAP"
+      ],
+      "tableData": [
+        [
+          "PPE CV (Net)",
+          "-",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "ARO / Prov. Liab",
+          "-",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "Total Assets",
+          "-",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "Total Liabilities",
+          "-",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "Equity / Net Worth",
+          "-",
+          "-",
+          "-",
+          "-"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION G: Cash Flow Impact - Year 1",
+      "headers": [
+        "CF Component",
+        "AS (Old)",
+        "Ind AS / IFRS",
+        "US GAAP"
+      ],
+      "tableData": [
+        [
+          "Capex (CFI)",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "CFO Effect",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "CFF Effect",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "Net CF Impact",
+          "-",
+          "-",
+          "-"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION H: Ratio Impact - Year 1",
+      "headers": [
+        "Ratio",
+        "AS",
+        "Ind AS",
+        "IFRS",
+        "US GAAP",
+        "Direction (vs AS)"
+      ],
+      "tableData": [
+        [
+          "EBITDA Margin",
+          "-",
+          "-",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "Debt/Equity",
+          "-",
+          "-",
+          "-",
+          "-",
+          "-"
+        ],
+        [
+          "ROA",
+          "-",
+          "-",
+          "-",
+          "-",
+          "-"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION I: Earnings Quality - Signals Table",
+      "headers": [
+        "Signal observed",
+        "What it means technically",
+        "Analyst interpretation",
+        "Action"
+      ],
+      "tableData": [
+        [
+          "Asset base expands after adoption",
+          "More complete capitalization of PPE and obligations.",
+          "ROA and turnover may look weaker due to larger denominator.",
+          "Compare returns on a PPE-adjusted basis."
+        ],
+        [
+          "Depreciation rises",
+          "Cost is spread more systematically over useful life.",
+          "Depreciation is now more aligned with actual consumption.",
+          "Check whether useful lives and residuals are realistic."
+        ],
+        [
+          "Impairment loss appears",
+          "Carrying value exceeds recoverable amount or fair value.",
+          "Management may have overestimated asset life or future usage.",
+          "Review utilization, margins, and assumptions."
+        ],
+        [
+          "Revaluation surplus increases equity",
+          "Fair value uplift is recognized in OCI rather than P&L.",
+          "Balance sheet may look stronger without immediate cash impact.",
+          "Separate accounting uplift from operating performance."
+        ],
+        [
+          "Dismantling/restoration provision appears",
+          "Future outflow is now recognized today.",
+          "Hidden end-of-life costs are becoming visible.",
+          "Check whether the liability is fully measured."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION J: Trend Distortion Matrix",
+      "headers": [
+        "Metric",
+        "Distortion type",
+        "Duration",
+        "Correction method",
+        "Example"
+      ],
+      "tableData": [
+        [
+          "EBITDA",
+          "None",
+          "Ongoing",
+          "No direct impact from depreciation.",
+          "EBITDA stays stable."
+        ],
+        [
+          "EBIT",
+          "Structural",
+          "Useful life",
+          "Normalize for depreciation policy changes.",
+          "EBIT declines."
+        ],
+        [
+          "ROA",
+          "Permanent",
+          "Asset life",
+          "Include revised PPE denominator.",
+          "ROA declines."
+        ],
+        [
+          "Asset turnover",
+          "Permanent",
+          "Asset life",
+          "Use comparable asset base across peers.",
+          "Turnover weakens."
+        ],
+        [
+          "Equity",
+          "Revaluation",
+          "Until disposal",
+          "Separate revaluation reserve from earned equity.",
+          "Equity rises via OCI."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION K: Ratio Interpretation Guide",
+      "headers": [
+        "Ratio",
+        "Rep. Value",
+        "What analyst should do",
+        "Correct interpretation"
+      ],
+      "tableData": [
+        [
+          "ROA",
+          "Lower",
+          "Add PPE consistently into denominator.",
+          "Returns comparable only after adjustment."
+        ],
+        [
+          "Asset turnover",
+          "Lower",
+          "Recast on same asset base.",
+          "Lower turnover may reflect accounting, not weaker demand."
+        ],
+        [
+          "EBIT margin",
+          "Lower",
+          "Separate depreciation from cash profitability.",
+          "Operating economics may be unchanged."
+        ],
+        [
+          "Debt/Equity",
+          "Higher",
+          "Include restoration and other obs in leverage ratios.",
+          "Leverage is more truthful, not worse quality."
+        ],
+        [
+          "Reval reserve",
+          "Higher eq",
+          "Treat as non-cash uplift.",
+          "Equity improved on paper, not in cash."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION L: Analyst Concerns & Answers",
+      "headers": [
+        "Analyst question",
+        "Concern",
+        "Answer",
+        "Evidence"
+      ],
+      "tableData": [
+        [
+          "\"Is PPE growth real or accounting?\"",
+          "Fear that growth is standard-driven.",
+          "Largely timing: same PPE components, recognized over time now. Growth moved from X% to Y%.",
+          "Same total project profit; cash flows unchanged."
+        ],
+        [
+          "\"Has margin quality improved?\"",
+          "Window-dressing.",
+          "Lifetime margins unchanged; only period allocation changed. Margin moved from X% to Y%.",
+          "Component margin tables in notes."
+        ],
+        [
+          "\"Are PPE component assets riskier than inventory?\"",
+          "Uncollectible risk.",
+          "No - represent enforceable rights to payment.",
+          "Right to payment disclosed."
+        ],
+        [
+          "\"Are IFRS and US GAAP outcomes different?\"",
+          "Lack of global comparability.",
+          "For these PPE components, Ind AS, IFRS and ASC 360 are identical.",
+          "PPE profiles of peers."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION M: Investor Perception Analysis",
+      "headers": [
+        "Investor Type",
+        "What they see",
+        "Likely reaction",
+        "Sophisticated response"
+      ],
+      "tableData": [
+        [
+          "Retail",
+          "Big jump in PPE/EPS.",
+          "Buy aggressively, assuming breakout.",
+          "Recognize accounting effect, avoid over-paying."
+        ],
+        [
+          "Value",
+          "Higher book, higher ROE.",
+          "Confused; looks expensive.",
+          "Rebuild normalized earnings and re-test value."
+        ],
+        [
+          "Inst. Long-Only",
+          "Read transition note, focus on reported EPS.",
+          "Increase weight if they trust management.",
+          "Ask for pre/post-transition bridges, model normalized."
+        ],
+        [
+          "Credit/Lenders",
+          "Better coverage ratios.",
+          "More comfortable short term.",
+          "Adjust for timing; ensure covenant headroom valid."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION N: Reporting Signals Decoder",
+      "headers": [
+        "Management Action",
+        "Signal",
+        "What It Really Means",
+        "Your Move"
+      ],
+      "tableData": [
+        [
+          "Emphasising \"strong rev growth\" without explaining standard",
+          "Optics",
+          "Growth may be mostly accounting.",
+          "🟡Yellow flag - demand bridge to old basis."
+        ],
+        [
+          "Providing detailed PPE disaggregation",
+          "Transparency",
+          "Likely higher earnings quality; fewer hidden issues.",
+          "🟢Green flag - reward in multiple."
+        ],
+        [
+          "Avoiding disclosure of PPE component assets breakdown",
+          "Opacity",
+          "May be hiding loss-making or delayed projects.",
+          "🔴Red flag - stress test assumptions."
+        ],
+        [
+          "Explicitly stating \"IFRS, Ind AS and US GAAP are the same\"",
+          "Global Lens",
+          "Management understands global investor needs.",
+          "Lean in - cross-border comparisons safer."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION P: Red Flags vs Green Flags (Visual Indicator Matrix)",
+      "headers": [
+        "Scenario",
+        "Flag",
+        "Action"
+      ],
+      "tableData": [
+        [
+          "Frequent changes to estimated useful lives to boost immediate profit",
+          "🔴RED",
+          "Quality of earnings is very low. Normalize depreciation to historical averages."
+        ],
+        [
+          "Capitalizing major repairs that were previously expensed",
+          "🔴RED",
+          "Artificial margin padding. Strip capitalized repairs from EBITDA."
+        ],
+        [
+          "Gross block balloons while revenue stagnates (falling asset turnover)",
+          "🔴RED",
+          "Capital deployed is generating no returns. Flag for severe future impairment risk."
+        ],
+        [
+          "Clean separation and componentization of major assets",
+          "🟢GREEN",
+          "Trust the reported maintenance capex figures as realistic."
+        ],
+        [
+          "Depreciation policy precisely matches the economic life of assets",
+          "🟢GREEN",
+          "P&L reflects true economic burn rate of capital."
+        ]
+      ]
+    }
+  ]
+}

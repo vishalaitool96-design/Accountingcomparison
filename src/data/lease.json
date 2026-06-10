@@ -1,0 +1,664 @@
+{
+  "title": "Lease Accounting",
+  "description": "Premium Analysis Guide: AS vs Ind AS 116 vs IFRS 16 vs US GAAP ASC\n            842",
+  "sections": [
+    {
+      "sectionTitle": "SECTION A: Core Technical Comparison Table",
+      "headers": [
+        "Parameter",
+        "AS (Old Indian GAAP)",
+        "Ind AS (Ind AS 116)",
+        "IFRS (IFRS 16)",
+        "US GAAP (ASC 842)",
+        "Logic shift"
+      ],
+      "tableData": [
+        [
+          "Core philosophy",
+          "Focuses on whether risks and rewards are transferred; operating vs finance distinction is central.",
+          "Most leases go on balance sheet using right-of-use (ROU) model; lessee recognizes ROU asset and lease liability.",
+          "Same ROU model as Ind AS.",
+          "Most leases also go on balance sheet, but retains dual classification for lessee.",
+          "From off-balance-sheet rental expense to asset + liability recognition."
+        ],
+        [
+          "Lessee accounting model",
+          "Operating leases usually expensed straight-line; finance leases capitalized by substance.",
+          "Single lessee model for most leases.",
+          "Same single model.",
+          "Dual model: finance lease vs operating lease classification remains.",
+          "From two-way classification to a more asset-liability-centric model."
+        ],
+        [
+          "Recognition on balance sheet",
+          "Operating leases often stayed off balance sheet, except finance leases.",
+          "Recognize ROU asset and lease liability at commencement for most leases.",
+          "Same as Ind AS.",
+          "Recognize ROU asset and lease liability for most leases, but P&L differs by classification.",
+          "Hidden commitments become visible on the balance sheet."
+        ],
+        [
+          "Initial measurement",
+          "Finance lease assets/liab at lower of fair value and PV of minimum lease payments.",
+          "Lease liab = PV of payments; ROU asset = liab adjusted for prepayments, incentives, initial direct costs.",
+          "Same as Ind AS.",
+          "Same initial measurement logic, with classification affecting later expense pattern.",
+          "From fixed capitalization rules to discounted PV of lease cash flows."
+        ],
+        [
+          "Subsequent measurement (Lessee)",
+          "Operating rentals expensed straight-line; finance lease liability reduced over time.",
+          "Interest expense on liability + depreciation of ROU asset.",
+          "Same as Ind AS.",
+          "Finance: interest + amortization; Operating: straight-line lease expense with separate ROU/liab.",
+          "Expense recognition depends on economic use of right-to-use."
+        ],
+        [
+          "P&L pattern",
+          "Straight-line rent for operating, front-loaded interest for finance leases.",
+          "Front-loaded total expense due to interest + depreciation, except short-term/low-value relief.",
+          "Same as Ind AS.",
+          "Operating lease expense usually straight-line; finance lease expense front-loaded.",
+          "Timing of expense is much more explicit and economically linked."
+        ],
+        [
+          "Exemptions (Short-term & Low-value)",
+          "Limited comparable old GAAP concept. Not central.",
+          "Short-term (12m or less) and low-value assets may be expensed instead of capitalized.",
+          "Same as Ind AS.",
+          "Similar short-term exemption. No equivalent broad low-value exemption.",
+          "Removes immaterial leases from balance sheet to reduce noise."
+        ],
+        [
+          "Lease term",
+          "Based on contract/enforceable period, but less formalized.",
+          "Includes non-cancellable period + extension/termination options if reasonably certain.",
+          "Same as Ind AS.",
+          "Similar \"reasonably certain\" framework.",
+          "Forces analysts to model options, not just legal minimum term."
+        ],
+        [
+          "Variable payments & Index-linked",
+          "Less structured. Not explicitly modeled.",
+          "Included in liab only if based on index/rate or fixed in substance. Remeasured when index changes.",
+          "Same as Ind AS.",
+          "For operating leases, liab generally not remeasured for CPI changes (expensed as incurred).",
+          "Variable economics separated; Key difference between IFRS & US GAAP."
+        ],
+        [
+          "Lease modifications",
+          "Less formalized.",
+          "Depends on whether new lease or reassessment is triggered.",
+          "Same as Ind AS.",
+          "Similar, but classification effects under US GAAP can differ.",
+          "Focus shift from form to reassessment of lease economics."
+        ],
+        [
+          "Lessor accounting",
+          "Generally mirrors transfer of risks and rewards.",
+          "Lessor keeps classification model: finance vs operating lease.",
+          "Same as Ind AS.",
+          "Same broad lessor model.",
+          "Lessee changed dramatically; lessor changed less."
+        ],
+        [
+          "Sale & leaseback",
+          "Limited older guidance; substance over form.",
+          "Specific accounting; gains recognized only to extent of transferred rights.",
+          "Same as Ind AS.",
+          "Similar, but detailed US guidance may differ in form.",
+          "Transactions judged on control transfer and retained rights."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION C: Side-by-Side Treatment",
+      "headers": [
+        "AS 19 (Old Indian GAAP)",
+        "Ind AS 116",
+        "IFRS 16",
+        "ASC 842 (US GAAP)"
+      ],
+      "tableData": [
+        [
+          "Operating Lease Classified as operating. Lease rentals expensed in P&L on straight-line basis (12.00 Cr / year). No right-of-use asset or lease liability recognized on balance sheet.",
+          "Capitalization Model Single lessee model. Capitalizes lease into Right-of-Use (ROU) asset (45.47 Cr) and Lease Liability (45.47 Cr). Produces a front-loaded expense pattern.",
+          "Capitalization Model Single lessee model. Fully aligned with Ind AS 116. Capitalized ROU asset and lease liability, with front-loaded depreciation and interest expense.",
+          "Operating Class On-balance sheet operating lease. Recognizes ROU asset and lease liability. However, lease expense is recognized straight-line (12.00 Cr / year)."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION D: Side-by-Side Impact Table (Year 1)",
+      "headers": [
+        "Framework",
+        "ROU Asset (Initial)",
+        "Lease Liab (Initial)",
+        "Lease Expense / P&L Impact"
+      ],
+      "tableData": [
+        [
+          "AS",
+          "Nil",
+          "Nil",
+          "12.00 Cr rent expense(Off-balance-sheet)"
+        ],
+        [
+          "Ind AS 116",
+          "45.47 Cr",
+          "45.47 Cr",
+          "9.09 Cr (Dep) + 4.55 Cr (Int) =13.64 Cr"
+        ],
+        [
+          "IFRS 16",
+          "45.47 Cr",
+          "45.47 Cr",
+          "9.09 Cr (Dep) + 4.55 Cr (Int) =13.64 Cr"
+        ],
+        [
+          "US GAAP (Op. Lease)",
+          "45.47 Cr",
+          "45.47 Cr",
+          "12.00 Cr straight-line operatinglease expense"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION E: P&L Impact - Year 1",
+      "headers": [
+        "Line item",
+        "AS (Old)",
+        "Ind AS 116",
+        "IFRS 16",
+        "US GAAP (Op. Lease)"
+      ],
+      "tableData": [
+        [
+          "Base EBITDA",
+          "80.00 Cr",
+          "80.00 Cr",
+          "80.00 Cr",
+          "80.00 Cr"
+        ],
+        [
+          "Lease exp / Depn",
+          "-12.00 Cr (Rent)",
+          "-9.09 Cr (Dep)",
+          "-9.09 Cr (Dep)",
+          "-12.00 Cr (Rent)"
+        ],
+        [
+          "Reported EBITDA",
+          "68.00 Cr",
+          "70.91 Cr",
+          "70.91 Cr",
+          "68.00 Cr"
+        ],
+        [
+          "EBIT",
+          "68.00 Cr",
+          "70.91 Cr",
+          "70.91 Cr",
+          "68.00 Cr"
+        ],
+        [
+          "Interest",
+          "Nil",
+          "-4.55 Cr",
+          "-4.55 Cr",
+          "Nil"
+        ],
+        [
+          "PBT",
+          "68.00 Cr",
+          "66.36 Cr",
+          "66.36 Cr",
+          "68.00 Cr"
+        ],
+        [
+          "Tax @ 25%",
+          "-17.00 Cr",
+          "-16.59 Cr",
+          "-16.59 Cr",
+          "-17.00 Cr"
+        ],
+        [
+          "PAT (Profit After Tax)",
+          "51.00 Cr",
+          "49.77 Cr",
+          "49.77 Cr",
+          "51.00 Cr"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION F: Balance Sheet Impact - Year 1",
+      "headers": [
+        "Item",
+        "AS (Old)",
+        "Ind AS 116",
+        "IFRS 16",
+        "US GAAP"
+      ],
+      "tableData": [
+        [
+          "ROU Asset (Gross)",
+          "Not recorded",
+          "45.47 Cr",
+          "45.47 Cr",
+          "45.47 Cr"
+        ],
+        [
+          "Accumulated Depreciation",
+          "Not recorded",
+          "9.09 Cr",
+          "9.09 Cr",
+          "9.09 Cr"
+        ],
+        [
+          "ROU Asset (Net)",
+          "0.00 Cr",
+          "36.38 Cr",
+          "36.38 Cr",
+          "36.38 Cr"
+        ],
+        [
+          "Lease Liability (Current)",
+          "0.00 Cr",
+          "7.98 Cr",
+          "7.98 Cr",
+          "7.98 Cr"
+        ],
+        [
+          "Lease Liability (Non-Current)",
+          "0.00 Cr",
+          "30.04 Cr",
+          "30.04 Cr",
+          "30.04 Cr"
+        ],
+        [
+          "Lease Liability (Total)",
+          "0.00 Cr",
+          "38.02 Cr",
+          "38.02 Cr",
+          "38.02 Cr"
+        ],
+        [
+          "Total Assets",
+          "Lower",
+          "Higher (+36.38 Cr)",
+          "Higher (+36.38 Cr)",
+          "Higher (+36.38 Cr)"
+        ],
+        [
+          "Total Liabilities",
+          "Lower",
+          "Higher (+38.02 Cr)",
+          "Higher (+38.02 Cr)",
+          "Higher (+38.02 Cr)"
+        ],
+        [
+          "Equity Impact",
+          "Higher",
+          "Lower by 1.23 Cr",
+          "Lower by 1.23 Cr",
+          "Same as AS"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION G: Cash Flow Impact (Year 1)",
+      "headers": [
+        "Item",
+        "AS (Old)",
+        "Ind AS 116 / IFRS 16",
+        "US GAAP",
+        "Interpretation"
+      ],
+      "tableData": [
+        [
+          "Operating Cash Flow (CFO)",
+          "-12.00 Cr",
+          "-4.55 Cr",
+          "-12.00 Cr",
+          "Higher CFO under Ind AS/IFRS due to reclassification of principal"
+        ],
+        [
+          "Financing Cash Flow (CFF)",
+          "0.00 Cr",
+          "-7.45 Cr",
+          "0.00 Cr",
+          "Principal shown as financing outflow under Ind AS/IFRS"
+        ],
+        [
+          "Total Net Cash Flow",
+          "-12.00 Cr",
+          "-12.00 Cr",
+          "-12.00 Cr",
+          "Total cash drain is identical across all frameworks"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION H: Ratio Impact - Year 1",
+      "headers": [
+        "Ratio",
+        "AS",
+        "Ind AS 116",
+        "IFRS 16",
+        "US GAAP",
+        "Direction",
+        "What It Means"
+      ],
+      "tableData": [
+        [
+          "EBITDA Margin",
+          "34.0%",
+          "35.5%",
+          "35.5%",
+          "34.0%",
+          "↑ (Ind AS/IFRS)",
+          "Mechanical improvement from rent reclassification"
+        ],
+        [
+          "Debt/Equity",
+          "0.00",
+          "0.13",
+          "0.13",
+          "0.13",
+          "↑ (Leverage)",
+          "Previously hidden debt now visible"
+        ],
+        [
+          "Interest Coverage",
+          "N/A",
+          "15.6x",
+          "15.6x",
+          "N/A",
+          "↓ (Weaker)",
+          "Financing cost now explicit"
+        ],
+        [
+          "ROA (Return on Assets)",
+          "10.2%",
+          "7.3%",
+          "7.3%",
+          "7.3%",
+          "↓",
+          "Asset base expanded"
+        ],
+        [
+          "ROE (Return on Equity)",
+          "17.0%",
+          "16.6%",
+          "16.6%",
+          "17.0%",
+          "Mixed",
+          "Slight dilution under Ind AS/IFRS"
+        ],
+        [
+          "Fixed Charge Coverage",
+          "N/A",
+          "4.2x",
+          "4.2x",
+          "N/A",
+          "New metric",
+          "Operating lease now treated as fixed charge"
+        ],
+        [
+          "Lease-Adjusted EBITDA",
+          "34.0%",
+          "34.0%",
+          "34.0%",
+          "34.0%",
+          "Stable",
+          "Best metric for peer comparison"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION I: Earnings Quality - Signals Table",
+      "headers": [
+        "Signal observed",
+        "What it means technically",
+        "Analyst interpretation",
+        "Action"
+      ],
+      "tableData": [
+        [
+          "Higher EBITDA but lower Net Income in early lease years",
+          "Operating lease rent is replaced by ROU depreciation and interest. Total expense is front-loaded.",
+          "Operating cash flows look stronger, but bottom line is penalized initially despite no economic change.",
+          "Assess EBITDA excluding lease impact for historical comparability."
+        ],
+        [
+          "Significant expansion in Total Debt",
+          "Operating leases are capitalized on the balance sheet as Lease Liabilities.",
+          "Leverage ratios (e.g. Debt/Equity) appear to deteriorate significantly.",
+          "Distinguish between true interest-bearing debt and operational lease liabilities when evaluating covenants."
+        ],
+        [
+          "Higher Operating Cash Flow (CFO), Lower Financing CF (CFF)",
+          "Lease principal payments were moved from CFO under AS 19 to CFF under Ind AS 116 / IFRS 16.",
+          "Core operating generation appears artificially enhanced vs past periods.",
+          "Deduct lease principal payments from CFO to calculate true Free Cash Flow."
+        ],
+        [
+          "Lower Return on Assets (ROA)",
+          "Recognition of ROU asset expands the total asset base denominator.",
+          "Asset turnover drops, making capital efficiency look worse mechanically.",
+          "Normalize ROA by using pre-Ind AS 116 asset base or adjusting net income."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION J: Trend Distortion Matrix",
+      "headers": [
+        "Metric",
+        "Distortion type",
+        "Duration",
+        "Correction method",
+        "Example"
+      ],
+      "tableData": [
+        [
+          "EBITDA",
+          "One-time level shift upwards",
+          "Permanent (while leases active)",
+          "Deduct actual cash rent paid to normalize.",
+          "Rep. 34.0% vs Norm. 22.0%"
+        ],
+        [
+          "Net Income",
+          "Depression in early years, elevation in later years",
+          "Over individual lease term",
+          "Adjust interest to reflect straight-line economic cost.",
+          "Rep. 8.00 Cr vs Norm. 10.00 Cr in Yr 1"
+        ],
+        [
+          "Total Debt",
+          "One-time structural step-up",
+          "Permanent",
+          "Strip out lease liabilities for traditional debt covenants.",
+          "Rep. 145.00 Cr vs Norm. 100.00 Cr"
+        ],
+        [
+          "Operating Cash Flow",
+          "Structural positive shift",
+          "Permanent",
+          "Deduct lease principal & interest payments from CFO.",
+          "Rep. 32.00 Cr vs Norm. 20.00 Cr"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION K: Ratio Interpretation Guide",
+      "headers": [
+        "Ratio",
+        "Rep. Value",
+        "What analyst should do",
+        "Correct interpretation"
+      ],
+      "tableData": [
+        [
+          "Debt/Equity",
+          "Higher under Ind AS",
+          "Exclude lease liabilities for classical debt covenants.",
+          "A spike is a reporting illusion; real debt didn't change unless new leases were signed."
+        ],
+        [
+          "EBITDA Margin",
+          "Higher under Ind AS",
+          "Subtract right-of-use asset depreciation or actual lease payments.",
+          "EBITDA is artificially boosted because rent is shifted below the EBITDA line."
+        ],
+        [
+          "Return on Assets (ROA)",
+          "Lower under Ind AS",
+          "Remove ROU Assets from the asset base.",
+          "The asset base expanded mechanically, making capital efficiency look worse initially."
+        ],
+        [
+          "Interest Coverage",
+          "Lower under Ind AS",
+          "Exclude the implied lease interest expense.",
+          "Interest expense includes a non-cash lease interest component; true cash-interest coverage is stronger."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION L: Analyst Concerns & Answers",
+      "headers": [
+        "Analyst question",
+        "Concern",
+        "Answer",
+        "Evidence"
+      ],
+      "tableData": [
+        [
+          "\"Is the company taking on more debt?\"",
+          "Total debt on BS surged suddenly without any new operational borrowing.",
+          "No. Operating leases were simply pushed onto the balance sheet.",
+          "Check Notes to Accounts for Lease Liabilities vs Traditional Bank Debt."
+        ],
+        [
+          "\"Is margin structurally improving?\"",
+          "EBITDA margin jumped by ~10-15% this year.",
+          "No. Rent expense was removed from EBITDA and replaced by depreciation and interest below the line.",
+          "Compare 'Pre-Ind AS 116 EBITDA' or deduct cash rent paid."
+        ],
+        [
+          "\"Did operating cash flow get better?\"",
+          "CFO is much higher than last year.",
+          "No. The principal portion of rent is now a Financing outflow, inflating Operating flows artificially.",
+          "Look at Cash CFF outflow for \"Principal portion of lease payments\"."
+        ],
+        [
+          "\"Why did Earnings per Share drop?\"",
+          "Net income is lower despite identical business operations.",
+          "Early years of a lease term have higher interest expense, front-loading the P&L hit compared to straight-line rent.",
+          "ROU Amortization schedule showing front-loaded total expense."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION M: Investor Perception Analysis",
+      "headers": [
+        "Investor Type",
+        "What they see",
+        "Likely reaction",
+        "Sophisticated response"
+      ],
+      "tableData": [
+        [
+          "Retail",
+          "Debt exploded to 145 Cr.",
+          "Panic sell; fear of bankruptcy or rate risk.",
+          "Strip out lease liabilities; traditional debt is 0."
+        ],
+        [
+          "Value",
+          "Net profit margin dipped.",
+          "Assume business deteriorating.",
+          "Calculate pre-lease true cash margins."
+        ],
+        [
+          "Growth",
+          "EBITDA margin jumped to 34%.",
+          "Aggressively buy false profitability breakout.",
+          "Subtract actual rent paid to find normalized operating leverage."
+        ],
+        [
+          "Quant",
+          "CFO surge.",
+          "Algorithmic buy based on cash generation.",
+          "Deduct financing lease outflows to find FCF."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION N: Reporting Signals Decoder",
+      "headers": [
+        "Management Action",
+        "Signal",
+        "What It Really Means",
+        "Your Move"
+      ],
+      "tableData": [
+        [
+          "Highlighting \"Pre-Ind AS 116 EBITDA\"",
+          "Transparency",
+          "Management is trying to provide comparable underlying performance, rather than hiding behind the standard's artificial boost.",
+          "🟢Green flag - Trust the adjusted metric."
+        ],
+        [
+          "Bragging about sudden CFO growth without mentioning leases",
+          "Optics",
+          "Attempting to pass off a standard-driven geography shift (CFO to CFF) as operational improvement.",
+          "🟡Yellow flag - Demand FCF calculations."
+        ],
+        [
+          "Refocusing debt covenants to exclude lease liabilities",
+          "Pragmatic",
+          "Ensuring operational covenants aren't triggered by accounting changes. Standard corporate treasury practice.",
+          "🟢Green flag - Focus on core debt."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION P: Red Flags vs Green Flags (Visual Indicator Matrix)",
+      "headers": [
+        "Scenario",
+        "Flag",
+        "Action"
+      ],
+      "tableData": [
+        [
+          "Spike in 'short-term lease' expenses kept off balance sheet.",
+          "🔴RED",
+          "Ensure management isn't structuring leases to <12 months just to evade capitalization."
+        ],
+        [
+          "Unusually high discount rates applied to lease liabilities.",
+          "🔴RED",
+          "Compare to actual borrowing rates. High rates artificially shrink the reported lease liability."
+        ],
+        [
+          "Aggressive sale-and-leaseback transactions with inflated lease terms",
+          "🔴RED",
+          "Assess true economic motives: raising cheap off-balance sheet finance rather than operational needs."
+        ],
+        [
+          "Clear reconciliation provided between pre and post Ind AS 116.",
+          "🟢GREEN",
+          "Use management's reconciliation for accurate historical peer comparisons."
+        ],
+        [
+          "Consistent alignment between lease terms and useful life of right-of-use assets",
+          "🟢GREEN",
+          "Represents realistic economic usage without artificial tweaking."
+        ]
+      ]
+    }
+  ]
+}

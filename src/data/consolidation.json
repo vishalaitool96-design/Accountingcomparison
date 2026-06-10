@@ -1,0 +1,750 @@
+{
+  "title": "Consolidation",
+  "description": "Premium Analysis Guide: AS 21 vs Ind AS 110 vs IFRS 10 vs US GAAP\n            ASC 810",
+  "sections": [
+    {
+      "sectionTitle": "SECTION A: Core Technical Comparison Table",
+      "headers": [
+        "Parameter",
+        "AS 21 (Old Indian GAAP)",
+        "Ind AS 110",
+        "IFRS 10",
+        "US GAAP ASC 810",
+        "Logic shift"
+      ],
+      "tableData": [
+        [
+          "Core Philosophy",
+          "Legal control (voting rights)",
+          "Economic control (power + returns)",
+          "Same as Ind AS 110",
+          "Dual model: VIE (power/economics) OR Voting (>50%)",
+          "From form to substance"
+        ],
+        [
+          "Definition of Control",
+          ">50% voting power OR Board control",
+          "(1) Power (2) Exposure to variable returns (3) Link power to returns",
+          "Same as Ind AS 110",
+          "VIE: Power + Economics | Voting: >50% voting rights",
+          "From simple majority to 3-element test"
+        ],
+        [
+          "Control Assessment",
+          "Bright-line test (voting %)",
+          "Principle-based (requires judgment)",
+          "Same as Ind AS 110",
+          "Two separate models (VIE vs Voting)",
+          "From mechanical to analytical"
+        ],
+        [
+          "Consolidation Requirement",
+          "Optional (unless mandated by law)",
+          "Mandatory if control exists",
+          "Mandatory if control exists",
+          "Mandatory if control exists",
+          "From voluntary to mandatory"
+        ],
+        [
+          "Special Purpose Entities (SPEs)",
+          "Not addressed (loophole)",
+          "Must consolidate if control exists",
+          "Same as Ind AS 110",
+          "VIE model specifically targets SPEs",
+          "Closes off-balance sheet financing"
+        ],
+        [
+          "Potential Voting Rights",
+          "Ignored (only actual votes count)",
+          "Considered if substantive (convertibles, options)",
+          "Same as Ind AS 110",
+          "Considered in VIE model; ignored in voting model",
+          "From current to potential control"
+        ],
+        [
+          "De Facto Control",
+          "Not recognized",
+          "Recognized (control without majority voting if de facto power exists)",
+          "Same as Ind AS 110",
+          "Recognized under VIE model",
+          "Captures shadow control"
+        ],
+        [
+          "Exclusions from Consolidation",
+          "Allowed if: (1) Temporary (2) Severe restrictions on transfer",
+          "Not allowed (except held-for-sale per Ind AS 105)",
+          "Same as Ind AS 110",
+          "Not allowed",
+          "Eliminates cherry-picking"
+        ],
+        [
+          "Uniform Accounting Policies",
+          "Desirable but not mandatory (can differ if disclosed)",
+          "Mandatory (must align all subsidiaries to parent policies)",
+          "Same as Ind AS 110",
+          "Mandatory",
+          "From flexibility to consistency"
+        ],
+        [
+          "NCI Presentation",
+          "Presented separately between Liabilities and Equity",
+          "Presented within Equity section",
+          "Same as Ind AS 110",
+          "Presented within Equity section",
+          "NCI = owners, not creditors"
+        ],
+        [
+          "NCI Measurement",
+          "At proportionate share of net assets",
+          "Choice: Proportionate share OR Fair value (full goodwill)",
+          "Same as Ind AS 110",
+          "Fair value (full goodwill method) mandatory",
+          "From proportionate to fair value option"
+        ],
+        [
+          "Loss of Control",
+          "Not specifically addressed",
+          "Recognize gain/loss in P&L; remeasure retained interest at FV",
+          "Same as Ind AS 110",
+          "Recognize gain/loss in P&L",
+          "Creates one-time gains/losses"
+        ],
+        [
+          "Investment Entities Exemption",
+          "Not applicable",
+          "Investment entities don't consolidate; measure at FV through P&L",
+          "Same as Ind AS 110",
+          "Similar exemption",
+          "PE/VC funds measure at fair value"
+        ],
+        [
+          "Consolidation Procedure",
+          "Line-by-line addition; eliminate interco",
+          "Same",
+          "Same",
+          "Same",
+          "Unchanged"
+        ],
+        [
+          "Date of Consolidation",
+          "Acquisition date (ambiguous)",
+          "Date control obtained",
+          "Same as Ind AS 110",
+          "Date control obtained",
+          "Clarifies timing"
+        ],
+        [
+          "Structured Entities",
+          "Not addressed",
+          "Specific disclosure for unconsolidated structured entities",
+          "Same as Ind AS 110",
+          "Addressed under VIE model",
+          "Reveals off-BS risks"
+        ],
+        [
+          "Convergence Level",
+          "Old Indian standard",
+          "99% converged with IFRS 10",
+          "Global standard",
+          "70% converged (dual model differs)",
+          "Ind AS = IFRS; US GAAP differs"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION C: Side-by-Side Treatment",
+      "headers": [
+        "AS 21 (Old Indian GAAP)",
+        "Ind AS 110",
+        "IFRS 10",
+        "US GAAP (ASC 810)"
+      ],
+      "tableData": [
+        [
+          "SubCo 45% voting, no formal majority - NO consolidation SPV 0% equity, SPEs not addressed - NO consolidation TechVenture 35% voting, veto control ignored - NO consolidation Result: All three as equity method investments; SPV completely off-balance-sheet",
+          "SubCo Power (5 out of 7 directors board control) + Returns (45% exposure) + Link - YES consolidation (de facto control) SPV Power (directs leasing activities) + Returns (absorbs all profits/losses) + Link (created for ABC Ltd's benefit) - YES consolidation (structured entity control) TechVenture Veto is protective, not power - NO consolidation (equity method)",
+          "In Accordance with IFRS 10 Historically aligned precisely with Ind AS 110. Single consolidation model based on: Power over the investee Exposure or rights to variable returns Ability to use power to affect returns Same outcomes as Ind AS 110: SubCo consolidated, SPV consolidated, TechVenture treated under equity method.",
+          "SubCo Not a VIE, Voting Interest model, 45% < 50% - NO consolidation SPV VIE (thinly capitalized), VIE Model - YES consolidation (primary beneficiary) TechVenture Not a VIE, Voting Interest model, 35% < 50% - NO consolidation"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION D: Side-by-Side Impact Table (Consolidated Balance Sheet\n          Comparison)",
+      "headers": [
+        "Item",
+        "AS 21 (Standalone)",
+        "Ind AS 110 / IFRS 10",
+        "US GAAP ASC 810"
+      ],
+      "tableData": [
+        [
+          "Total Assets",
+          "200.00 Cr",
+          "359.00 Cr (+79.5%)",
+          "325.00 Cr (ABC Ltd + SPV only)"
+        ],
+        [
+          "Debt",
+          "50.00 Cr",
+          "180.00 Cr (+260.0%)",
+          "150.00 Cr (ABC Ltd + SPV)"
+        ],
+        [
+          "Equity (excl. NCI)",
+          "150.00 Cr",
+          "113.00 Cr",
+          "175.00 Cr"
+        ],
+        [
+          "NCI",
+          "Nil",
+          "66.00 Cr",
+          "Nil"
+        ],
+        [
+          "Debt/Equity",
+          "0.33",
+          "1.59",
+          "0.86"
+        ],
+        [
+          "Hidden/Off-BS Debt",
+          "100.00 Cr (SPV)",
+          "Nil (All on BS)",
+          "30.00 Cr (SubCo liabilities)"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION E: P&L Impact - Year 1",
+      "headers": [
+        "P&L Line Item",
+        "AS 21",
+        "Ind AS 110 / IFRS 10",
+        "Variance",
+        "US GAAP ASC 810"
+      ],
+      "tableData": [
+        [
+          "Revenue",
+          "500.00 Cr",
+          "800.00 Cr (+SubCo 250, +SPV 50)",
+          "+300.00 Cr (+60.0%)",
+          "550.00 Cr (+SPV only)"
+        ],
+        [
+          "EBITDA",
+          "105.50 Cr",
+          "180.00 Cr (Consolidated)",
+          "+74.50 Cr (+70.6%)",
+          "130.00 Cr"
+        ],
+        [
+          "Depreciation",
+          "15.00 Cr",
+          "35.00 Cr (+ Subsidiaries)",
+          "+20.00 Cr",
+          "20.00 Cr"
+        ],
+        [
+          "EBIT",
+          "90.50 Cr",
+          "145.00 Cr",
+          "+54.50 Cr",
+          "110.00 Cr"
+        ],
+        [
+          "Interest",
+          "15.00 Cr",
+          "35.00 Cr (+SPV 15, +SubCo 5)",
+          "+20.00 Cr",
+          "30.00 Cr"
+        ],
+        [
+          "PBT",
+          "75.50 Cr",
+          "110.00 Cr",
+          "+34.50 Cr",
+          "80.00 Cr"
+        ],
+        [
+          "Tax",
+          "22.50 Cr",
+          "33.00 Cr",
+          "+10.50 Cr",
+          "24.00 Cr"
+        ],
+        [
+          "PAT",
+          "53.00 Cr",
+          "77.00 Cr",
+          "+24.00 Cr",
+          "56.00 Cr"
+        ],
+        [
+          "Less: NCI",
+          "Nil",
+          "-22.00 Cr (55% of SubCo profit)",
+          "-22.00 Cr",
+          "Nil"
+        ],
+        [
+          "PAT attributable to parent",
+          "53.00 Cr",
+          "55.00 Cr",
+          "+2.00 Cr (+3.8%)",
+          "56.00 Cr"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION F: Balance Sheet Impact",
+      "headers": [
+        "Balance Sheet Item",
+        "AS 21",
+        "Ind AS 110 / IFRS 10",
+        "Change",
+        "Impact"
+      ],
+      "tableData": [
+        [
+          "Standalone Assets",
+          "1,000.00 Cr",
+          "1,000.00 Cr",
+          "--",
+          "--"
+        ],
+        [
+          "Consolidated Assets",
+          "Nil",
+          "+1,300.00 Cr (SubCo 750, SPV 550)",
+          "+1,300.00 Cr",
+          "Asset inflation"
+        ],
+        [
+          "Less: Invest. Eliminated",
+          "-50.00 Cr",
+          "-50.00 Cr",
+          "--",
+          "--"
+        ],
+        [
+          "Add: Goodwill",
+          "Nil",
+          "20.00 Cr",
+          "+20.00 Cr",
+          "Acquisition premium"
+        ],
+        [
+          "Total Assets",
+          "1,000.00 Cr",
+          "2,270.00 Cr",
+          "+1,270.00 Cr",
+          "Massive BS expansion"
+        ],
+        [
+          "Standalone Debt",
+          "250.00 Cr",
+          "250.00 Cr",
+          "--",
+          "--"
+        ],
+        [
+          "Subsidiary Liabilities",
+          "Off-BS",
+          "+650.00 Cr (SubCo 150, SPV 500)",
+          "+650.00 Cr",
+          "Debt revelation"
+        ],
+        [
+          "Total Liabilities",
+          "250.00 Cr",
+          "900.00 Cr",
+          "+650.00 Cr",
+          "Leverage spike"
+        ],
+        [
+          "Parent Equity",
+          "750.00 Cr",
+          "1,040.00 Cr",
+          "+290.00 Cr",
+          "Subsidiary net assets"
+        ],
+        [
+          "NCI",
+          "Nil",
+          "330.00 Cr (55% of SubCo)",
+          "+330.00 Cr",
+          "Third-party ownership"
+        ],
+        [
+          "Total Equity",
+          "750.00 Cr",
+          "1,370.00 Cr",
+          "+620.00 Cr",
+          "NCI is equity, not liab"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION G: Cash Flow Impact (Year 1)",
+      "headers": [
+        "Item",
+        "AS 21 (Old)",
+        "Ind AS 110 / IFRS 10",
+        "US GAAP",
+        "Interpretation"
+      ],
+      "tableData": [
+        [
+          "Operating Cash Flow (CFO)",
+          "52.50 Cr",
+          "87.00 Cr",
+          "87.00 Cr",
+          "Full consolidation of subsidiary CFO"
+        ],
+        [
+          "Investing Cash Flow (CFI)",
+          "-30.00 Cr",
+          "-60.00 Cr",
+          "-60.00 Cr",
+          "Full consolidation of subsidiary capex"
+        ],
+        [
+          "Financing Cash Flow (CFF)",
+          "-15.00 Cr",
+          "-42.00 Cr",
+          "-42.00 Cr",
+          "Dividends to NCI and debt repayments"
+        ],
+        [
+          "Total Net Cash Flow",
+          "7.50 Cr",
+          "-15.00 Cr",
+          "-15.00 Cr",
+          "Net entity CF including consolidated businesses"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION H: Ratio Impact - Year 1",
+      "headers": [
+        "Ratio",
+        "AS 21 (Old)",
+        "Ind AS 110 / IFRS 10",
+        "US GAAP",
+        "Direction",
+        "Interpretation"
+      ],
+      "tableData": [
+        [
+          "EBITDA Margin",
+          "21.1%",
+          "22.5%",
+          "22.5%",
+          "↑",
+          "Higher margin business consolidated"
+        ],
+        [
+          "Net Margin",
+          "10.6%",
+          "6.9%",
+          "6.9%",
+          "↓",
+          "NCI share reduces parent net margin"
+        ],
+        [
+          "Debt/Equity",
+          "0.33x",
+          "0.66x",
+          "0.66x",
+          "↑",
+          "Full debt of sub added to BS"
+        ],
+        [
+          "Net Debt/EBITDA",
+          "2.37x",
+          "5.00x",
+          "5.00x",
+          "↑",
+          "Leverage appears worse"
+        ],
+        [
+          "Interest Coverage",
+          "6.0x",
+          "4.1x",
+          "4.1x",
+          "↓",
+          "Coverage ratio deteriorates"
+        ],
+        [
+          "ROE (Parent)",
+          "7.1%",
+          "5.3%",
+          "5.3%",
+          "↓",
+          "Parent ROE diluted on consolidation"
+        ],
+        [
+          "EPS",
+          "Rs. 5.30",
+          "Rs. 5.50",
+          "Rs. 5.50",
+          "↑",
+          "Absolute earnings may rise slightly"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION I: Earnings Quality - Signals Table",
+      "headers": [
+        "Signal observed",
+        "What it means technically",
+        "Action"
+      ],
+      "tableData": [
+        [
+          "Revenue +60%",
+          "SubCo and SPV revenues consolidated",
+          "Restate prior year pro forma"
+        ],
+        [
+          "PAT barely moves",
+          "Consolidation adds gross profit but also NCI",
+          "Positive: No manipulation"
+        ],
+        [
+          "NCI = 330 Cr",
+          "55% of SubCo owned by third parties",
+          "Monitor NCI dividends"
+        ],
+        [
+          "Debt jumps 260%",
+          "Previously hidden debt now visible",
+          "Positive: Transparency"
+        ],
+        [
+          "Goodwill 20 Cr",
+          "Paid premium over net assets",
+          "Alert: Test annually"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION J: Trend Distortion Matrix",
+      "headers": [
+        "Metric",
+        "Distortion type",
+        "Duration",
+        "Correction method",
+        "Example"
+      ],
+      "tableData": [
+        [
+          "Revenue",
+          "One-time level shift upwards",
+          "Permanent",
+          "Restate prior year pro forma.",
+          "Rep. 800 Cr vs Norm. 500 Cr"
+        ],
+        [
+          "EBITDA margin",
+          "Dilution (if sub margin < parent)",
+          "Permanent",
+          "Disclose \"EBITDA before NCI\" or separated.",
+          "Rep. 22.5% vs Norm. 21.1%"
+        ],
+        [
+          "Net Margin",
+          "Optical drop",
+          "Permanent",
+          "Calculate \"Margin attributable to parent\".",
+          "Rep. 6.9% vs Norm. 10.6%"
+        ],
+        [
+          "Debt Ratio",
+          "Structural spike",
+          "Permanent",
+          "Separate Parent vs Group (non-recourse) debt.",
+          "Rep. 0.66x vs Norm. 0.33x"
+        ],
+        [
+          "ROE/ROA",
+          "Level shift downwards",
+          "Permanent",
+          "Use \"Parent ROE\" vs \"Group ROE\".",
+          "Rep. 5.3% vs Norm. 7.1%"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION K: Ratio Interpretation Guide",
+      "headers": [
+        "Ratio",
+        "Reported Value",
+        "What Analyst Should Do",
+        "Correct Interpretation"
+      ],
+      "tableData": [
+        [
+          "Debt/Eq = 0.66, Net Margin = 6.9%",
+          "Appears moderately leveraged / poor",
+          "Separate parent debt (250 Cr) from sub debt. Calculate margin to parent (55/800 = 6.875%)",
+          "Parent lev = 0.33. Sub debt = operational. Slight dilution acceptable"
+        ],
+        [
+          "ROE = 5.3%",
+          "Appears weak",
+          "Use parent equity only (1,040.00 Cr): 55/1040 = 5.3%",
+          "Correct, but monitor NCI%"
+        ],
+        [
+          "Interest Coverage = 4.1x",
+          "Borderline weak",
+          "Separate parent interest (15) from sub (20)",
+          "Parent cov = 6.0x (strong)"
+        ],
+        [
+          "Book Value = 104",
+          "Higher than 75",
+          "Correct - parent's share of sub assets reflected",
+          "True economic value revealed"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION L: Analyst Concerns & Answers",
+      "headers": [
+        "Analyst question",
+        "Concern",
+        "Answer",
+        "Evidence"
+      ],
+      "tableData": [
+        [
+          "Debt tripled - is company overleveraged?",
+          "Fear of overleverage.",
+          "Partially - 650 Cr sub debt was always there (footnotes)",
+          "AS 21 disclosed 650 Cr as contingent liabilities"
+        ],
+        [
+          "Margin collapsed to 6.9% - why?",
+          "Optical profitability drop.",
+          "NCI dilution - 22 Cr profit belongs to minority",
+          "NCI share 55%"
+        ],
+        [
+          "Can parent access sub cash?",
+          "Fear of restricted cash or trap.",
+          "Depends - covenants, regulations may restrict",
+          "Check Ind AS 110 restrictions"
+        ],
+        [
+          "Is NCI a claim on assets?",
+          "General reporting concern.",
+          "No - NCI only claims sub's assets, not parent's",
+          "NCI in equity"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION M: Investor Perception Analysis",
+      "headers": [
+        "Investor Type",
+        "What they see",
+        "Likely reaction",
+        "Sophisticated response"
+      ],
+      "tableData": [
+        [
+          "Retail",
+          "Debt tripled",
+          "Panic sell, misinterpret consolidation",
+          "Doesn't understand consolidation accounting"
+        ],
+        [
+          "Value",
+          "Margin collapsed to 6.9%",
+          "Overcorrection, think company is worse",
+          "Debt existed before, just transparent now"
+        ],
+        [
+          "Institutional Analyst",
+          "Consolidated financials",
+          "Sees through accounting presentation",
+          "Uses parent-only metrics for comparison"
+        ],
+        [
+          "Credit",
+          "Higher leverage ratios",
+          "More cautious",
+          "Separate recourse vs non-recourse debt"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION N: Reporting Signals Decoder",
+      "headers": [
+        "Management Action",
+        "Signal",
+        "What It Really Means",
+        "Your Move"
+      ],
+      "tableData": [
+        [
+          "Provides consolidated AND standalone FS",
+          "Best practice",
+          "Helps see parent vs group",
+          "Green flag - use both for analysis"
+        ],
+        [
+          "Discloses NCI with dividend policy",
+          "Transparency",
+          "Shows how much profit truly belongs to parent",
+          "Monitor NCI cash drain"
+        ],
+        [
+          "Goodwill appears without acquisition disclosure",
+          "Possible red flag",
+          "May have acquired control creeping",
+          "Check related party transactions"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION P: Red Flags vs Green Flags (Visual Indicator Matrix)",
+      "headers": [
+        "Scenario",
+        "Flag",
+        "Action"
+      ],
+      "tableData": [
+        [
+          "NCI share of profits >30% while parent holds debt",
+          "🔴RED",
+          "High risk of cash trap. Parent may struggle to service debt if subs pay no dividends."
+        ],
+        [
+          "Constant changes in subsidiary stake percentages",
+          "🔴RED",
+          "Watch out for earnings management via manufactured step-up gains."
+        ],
+        [
+          "Large non-recourse debt in subsidiaries",
+          "🔴RED",
+          "Treat as off-balance-sheet risk for the parent; covenant breach in sub affects group optics."
+        ],
+        [
+          "NCI as % of total equity <10%",
+          "🟢GREEN",
+          "Parent has almost full control over the free cash flows of the group."
+        ],
+        [
+          "Clear narrative bridge from standalone performance to group consolidated performance",
+          "🟢GREEN",
+          "Build explicit sum-of-the-parts valuations."
+        ]
+      ]
+    }
+  ]
+}

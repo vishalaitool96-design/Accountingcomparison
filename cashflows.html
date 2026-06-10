@@ -1892,7 +1892,7 @@
                   sustainable; but one-time working capital benefits may reverse
                 </td>
                 <td class="p-3 font-semibold text-blue-700">
-                  Analyze sustainability of working capital changes
+                  Analyze sustainability of working capital changes <span class="text-indigo-600 font-bold block mt-1" id="cf-i-1"></span>
                 </td>
               </tr>
               <tr class="hover:bg-slate-50">
@@ -1906,8 +1906,7 @@
                   issues
                 </td>
                 <td class="p-3 font-semibold text-blue-700">
-                  Stress-test revenue recognition policies and receivable
-                  collection
+                  Stress-test revenue recognition policies <span class="text-indigo-600 font-bold block mt-1" id="cf-i-2"></span>
                 </td>
               </tr>
               <tr class="hover:bg-slate-50">
@@ -1923,8 +1922,7 @@
                   higher CFO compared to peers with different policy
                 </td>
                 <td class="p-3 font-semibold text-blue-700">
-                  Reclassify consistently using cash flow from operations before
-                  interest and taxes
+                  Reclassify consistently <span class="text-indigo-600 font-bold block mt-1" id="cf-i-3"></span>
                 </td>
               </tr>
               <tr class="hover:bg-slate-50">
@@ -1940,8 +1938,7 @@
                   mislead on dividend sustainability
                 </td>
                 <td class="p-3 font-semibold text-blue-700">
-                  Normalize by reclassifying dividends to financing for
-                  comparability
+                  Normalize by reclassifying dividends <span class="text-indigo-600 font-bold block mt-1" id="cf-i-4"></span>
                 </td>
               </tr>
               <tr class="hover:bg-slate-50">
@@ -1957,8 +1954,7 @@
                   artificially
                 </td>
                 <td class="p-3 font-semibold text-blue-700">
-                  Recalculate net debt excluding overdraft from cash for
-                  leverage analysis
+                  Recalculate net debt excluding overdraft <span class="text-indigo-600 font-bold block mt-1" id="cf-i-5"></span>
                 </td>
               </tr>
               <tr class="hover:bg-slate-50">
@@ -2032,7 +2028,7 @@
                 </td>
                 <td class="p-3 text-slate-600">
                   Ind AS company with interest in financing has higher CFO than
-                  IFRS peer with interest in operating - normalize
+                  IFRS peer with interest in operating - normalize <span class="text-indigo-600 font-bold ml-1" id="cf-j-1"></span>
                 </td>
               </tr>
               <tr class="hover:bg-slate-50">
@@ -2046,7 +2042,7 @@
                   (standardized) - Capex
                 </td>
                 <td class="p-3 text-slate-600">
-                  Ignore classification; economic FCF identical
+                  Ignore classification; economic FCF identical <span class="text-indigo-600 font-bold ml-1" id="cf-j-2"></span>
                 </td>
               </tr>
               <tr class="hover:bg-slate-50">
@@ -2060,7 +2056,7 @@
                   deducting overdrafts and restricted cash
                 </td>
                 <td class="p-3 text-slate-600">
-                  Ind AS shows higher cash balance due to overdraft inclusion
+                  Ind AS shows higher cash balance due to overdraft <span class="text-indigo-600 font-bold ml-1" id="cf-j-3"></span>
                 </td>
               </tr>
               <tr class="hover:bg-slate-50">
@@ -2073,7 +2069,7 @@
                   Calculate gross debt separately from cash
                 </td>
                 <td class="p-3 text-slate-600">
-                  Ind AS net debt lower due to cash overdraft netting
+                  Ind AS net debt lower due to cash overdraft netting <span class="text-indigo-600 font-bold ml-1" id="cf-j-4"></span>
                 </td>
               </tr>
               <tr class="hover:bg-slate-50">
@@ -2088,8 +2084,7 @@
                   all periods
                 </td>
                 <td class="p-3 text-slate-600">
-                  Company with interest in financing shows 2x coverage vs
-                  operating classification - same economics
+                  Company with interest in financing shows differing coverage <span class="text-indigo-600 font-bold ml-1" id="cf-j-5"></span> - same economics
                 </td>
               </tr>
             </tbody>
@@ -2126,7 +2121,7 @@
                   Operating Cash Flow Margin (CFO/Revenue)
                 </td>
                 <td class="p-3">
-                  Higher under US GAAP; varies under IFRS/Ind AS
+                  Higher under US GAAP; varies under IFRS/Ind AS <br><span class="text-indigo-600 font-bold" id="cf-k-1"></span>
                 </td>
                 <td class="p-3 font-bold text-blue-700">
                   Recast all to common basis: CFO before interest and taxes
@@ -2139,8 +2134,7 @@
               <tr class="hover:bg-slate-50">
                 <td class="p-3 font-bold">Cash Flow to Net Income (CFO/NI)</td>
                 <td class="p-3">
-                  >1.0 generally good; but distorted by classification
-                  differences
+                  >1.0 generally good; distorted by classification <br><span class="text-indigo-600 font-bold" id="cf-k-2"></span>
                 </td>
                 <td class="p-3 font-bold text-blue-700">
                   Calculate cash flow before interest and taxes / EBIT for
@@ -2154,7 +2148,7 @@
               <tr class="hover:bg-slate-50">
                 <td class="p-3 font-bold">Free Cash Flow (CFO - Capex)</td>
                 <td class="p-3">
-                  Appears different due to CFO classification differences
+                  Appears different due to classification <br><span class="text-indigo-600 font-bold" id="cf-k-3"></span>
                 </td>
                 <td class="p-3 font-bold text-blue-700">
                   Calculate total net cash flow from all activities -
@@ -2745,12 +2739,39 @@
     </main>
 
     <script>
+      function formatVal(num, type) {
+        if (num === "" || num === null || num === undefined || isNaN(num) || num === 0) {
+          if (num === 0 && type !== 'ratio' && type !== 'percent') return "0.00"; // fallback for 0 if not handled
+          return "—";
+        }
+        if (type === "monetary") {
+          return parseFloat(num).toFixed(2);
+        }
+        if (type === "percent") {
+          return parseFloat(num).toFixed(1) + "%";
+        }
+        if (type === "ratio") {
+          return parseFloat(num).toFixed(2) + "x";
+        }
+        return formatRawNumber(num);
+      }
+
+      function formatRawNumber(num) {
+        if (num === "" || num === null || num === undefined || isNaN(num)) {
+          return "—";
+        }
+        return Number(num).toFixed(2);
+      }
+
       function formatNumber(num) {
         if (num === null || num === undefined || isNaN(num)) return "0.00";
         return Number(num).toFixed(2);
       }
 
-      function updateCalculations() {
+      function recalculateAll() {
+        const protectedSection = document.getElementById('section-p');
+        // Never write inside protectedSection
+
         const pbt = parseFloat(document.getElementById("inp-pbt").value) || 0;
         const dep = parseFloat(document.getElementById("inp-dep").value) || 0;
         const profSale =
@@ -3018,6 +3039,65 @@
         document.getElementById("h-liq-us").textContent =
           currLiab !== 0 ? ((usClose / currLiab) * 1).toFixed(2) + "x" : "-";
 
+        
+        // Extrapolations for Sections I, J, K, L
+        // Section J Overrides
+        const j1 = document.getElementById('cf-j-1');
+        if (j1) j1.textContent = "(Ind AS: " + formatNumber(indCfo) + " Cr vs IFRS: " + formatNumber(indCfo) + " Cr)";
+        
+        const j2 = document.getElementById('cf-j-2');
+        if (j2) j2.textContent = "(FCF: " + formatNumber(indCfo - purchM) + " Cr)";
+        
+        const j3 = document.getElementById('cf-j-3');
+        if (j3) j3.textContent = "(Ind AS Cash: " + formatNumber(indClose) + " Cr vs AS: " + formatNumber(asClose) + " Cr)";
+        
+        const j4 = document.getElementById('cf-j-4');
+        if (j4) j4.textContent = "(Difference: " + formatNumber(od) + " Cr)";
+        
+        const j5 = document.getElementById('cf-j-5');
+        const asCov = intExp !== 0 ? (asCfo / intExp).toFixed(2) : 0;
+        const indCov = intExp !== 0 ? (indCfo / intExp).toFixed(2) : 0;
+        if (j5) j5.textContent = "(Ind AS: " + indCov + "x vs AS 3: " + asCov + "x)";
+
+        // Section K
+        const k1 = document.getElementById('cf-k-1');
+        if (k1 && rev !== 0) k1.textContent = "(AS 3: " + (asCfo/rev*100).toFixed(1) + "% | Ind AS: " + (indCfo/rev*100).toFixed(1) + "% | US: " + (usCfo/rev*100).toFixed(1) + "%)";
+        
+        const k2 = document.getElementById('cf-k-2');
+        if (k2 && pbt !== 0) k2.textContent = "(AS 3: " + (asCfo/pbt).toFixed(2) + "x | Ind AS: " + (indCfo/pbt).toFixed(2) + "x | US: " + (usCfo/pbt).toFixed(2) + "x)";
+
+        const k3 = document.getElementById('cf-k-3');
+        if (k3) k3.textContent = "(AS 3 FCF: " + formatNumber(asCfo - purchM) + " | Ind AS: " + formatNumber(indCfo - purchM) + " | US: " + formatNumber(usCfo - purchM) + ")";
+        
+        const k4 = document.getElementById('cf-k-4');
+        const asDebt = totalDebt !== 0 ? (asCfo/totalDebt).toFixed(2) : "0.00";
+        const indDebt = totalDebt !== 0 ? (indCfo/totalDebt).toFixed(2) : "0.00";
+        if (k4) k4.textContent = "(AS 3: " + asDebt + "x | Ind AS: " + indDebt + "x)";
+
+        const k5 = document.getElementById('cf-k-5');
+        if (k5 && assets !== 0) k5.textContent = "(AS 3: " + (asCfo/assets*100).toFixed(1) + "% | Ind AS: " + (indCfo/assets*100).toFixed(1) + "%)";
+
+        const k6 = document.getElementById('cf-k-6');
+        if (k6 && divPaid !== 0) k6.textContent = "(AS 3: " + (asCfo/divPaid).toFixed(2) + "x | Ind AS: " + (indCfo/divPaid).toFixed(2) + "x)";
+
+        // Section I
+        const i1 = document.getElementById('cf-i-1');
+        if (i1) i1.textContent = "Current CFO/PBT: " + (pbt !== 0 ? (indCfo/pbt).toFixed(2) : "0.00") + "x";
+        
+        const i3 = document.getElementById('cf-i-3');
+        if (i3) i3.textContent = "Difference: " + formatNumber(Math.abs(indCfo - asCfo)) + " Cr";
+
+        const i5 = document.getElementById('cf-i-5');
+        if (i5) i5.textContent = "Overdraft impact: " + formatNumber(od) + " Cr";
+
+        // Section L
+        const l1 = document.getElementById('cf-l-1');
+        if (l1) l1.textContent = "Delta observed: " + formatNumber(Math.abs(indCfo - asCfo)) + " Cr";
+        const l2 = document.getElementById('cf-l-2');
+        if (l2) l2.textContent = "Reported FCF: " + formatNumber(indCfo - purchM) + " Cr";
+        const l3 = document.getElementById('cf-l-3');
+        if (l3) l3.textContent = "Unrestricted cash: " + formatNumber(asClose) + " Cr";
+
         const now = new Date();
         document.getElementById("calc-timestamp").textContent =
           "Last calculated: " + now.toLocaleTimeString();
@@ -3026,8 +3106,8 @@
       function attachListeners() {
         const inputs = document.querySelectorAll("input, select");
         inputs.forEach((inp) => {
-          inp.addEventListener("input", updateCalculations);
-          inp.addEventListener("change", updateCalculations);
+          inp.addEventListener("input", recalculateAll);
+          inp.addEventListener("change", recalculateAll);
         });
 
         document.getElementById("reset-btn").addEventListener("click", () => {
@@ -3060,13 +3140,13 @@
           const inpCl = document.getElementById("inp-cl");
           if (inpCl) inpCl.value = 50;
 
-          updateCalculations();
+          recalculateAll();
         });
       }
 
       document.addEventListener("DOMContentLoaded", () => {
         attachListeners();
-        updateCalculations();
+        recalculateAll();
       });
     </script>
 

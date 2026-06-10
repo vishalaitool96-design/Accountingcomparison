@@ -261,7 +261,6 @@
       </div>
       <section
         id="section-a"
-        data-diagnostic="tracked"
         class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
       >
         <div
@@ -498,6 +497,7 @@
       </section>
       <!-- SECTION B -->
       <section
+        id="section-b-container"
         class="shrink-0 mt-6 bg-[#fffff0] rounded-xl shadow-sm border border-amber-200 overflow-hidden flex flex-col p-6"
       >
         <div class="border-l-4 border-amber-500 pl-4 mb-6">
@@ -848,6 +848,8 @@
 
       <!-- SECTION D -->
       <section
+        id="section-d"
+        data-diagnostic="tracked"
         class="shrink-0 -mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
       >
         <div
@@ -878,69 +880,69 @@
             <tbody class="divide-y divide-slate-200">
               <tr class="hover:bg-slate-50">
                 <td class="p-3 font-bold">AS 22 (Old Indian GAAP)</td>
-                <td class="p-3 text-right val-pbt">100.00 Cr</td>
+                <td class="p-3 text-right val-pbt"><span id="dt-d-pbt-as">100.00 Cr</span></td>
                 <td class="p-3 text-right text-red-600 val-curr-tax">
-                  -25.00 Cr
+                  <span id="dt-d-curr-as">-25.00 Cr</span>
                 </td>
                 <td class="p-3 text-right text-red-600 val-dtl-exp">
-                  -5.00 Cr
+                  <span id="dt-d-dtexp-as">-5.00 Cr</span>
                 </td>
                 <td class="p-3 text-right font-semibold text-red-600 val-dtl">
-                  5.00 Cr
+                  <span id="dt-d-dtl-as">5.00 Cr</span>
                 </td>
                 <td class="p-3 text-right font-bold text-teal-600 val-etr">
-                  30.00%
+                  <span id="dt-d-etr-as">30.00%</span>
                 </td>
               </tr>
               <tr class="bg-slate-50 hover:bg-slate-100">
                 <td class="p-3 font-bold">Ind AS 12</td>
-                <td class="p-3 text-right val-pbt">100.00 Cr</td>
+                <td class="p-3 text-right val-pbt"><span id="dt-d-pbt-indas">100.00 Cr</span></td>
                 <td class="p-3 text-right text-red-600 val-curr-tax">
-                  -25.00 Cr
+                  <span id="dt-d-curr-indas">-25.00 Cr</span>
                 </td>
                 <td class="p-3 text-right text-red-600 val-dtl-exp">
-                  -5.00 Cr
+                  <span id="dt-d-dtexp-indas">-5.00 Cr</span>
                 </td>
                 <td class="p-3 text-right font-semibold text-red-600 val-dtl">
-                  5.00 Cr
+                  <span id="dt-d-dtl-indas">5.00 Cr</span>
                 </td>
                 <td class="p-3 text-right font-bold text-teal-600 val-etr">
-                  30.00%
+                  <span id="dt-d-etr-indas">30.00%</span>
                 </td>
               </tr>
               <tr class="hover:bg-slate-50">
                 <td class="p-3 font-bold">IAS 12 (IFRS)</td>
-                <td class="p-3 text-right val-pbt">100.00 Cr</td>
+                <td class="p-3 text-right val-pbt"><span id="dt-d-pbt-ifrs">100.00 Cr</span></td>
                 <td class="p-3 text-right text-red-600 val-curr-tax">
-                  -25.00 Cr
+                  <span id="dt-d-curr-ifrs">-25.00 Cr</span>
                 </td>
                 <td class="p-3 text-right text-red-600 val-dtl-exp">
-                  -5.00 Cr
+                  <span id="dt-d-dtexp-ifrs">-5.00 Cr</span>
                 </td>
                 <td class="p-3 text-right font-semibold text-red-600 val-dtl">
-                  5.00 Cr
+                  <span id="dt-d-dtl-ifrs">5.00 Cr</span>
                 </td>
                 <td class="p-3 text-right font-bold text-teal-600 val-etr">
-                  30.00%
+                  <span id="dt-d-etr-ifrs">30.00%</span>
                 </td>
               </tr>
               <tr class="bg-slate-50 hover:bg-slate-100">
                 <td class="p-3 font-bold">ASC 740 (US GAAP)</td>
-                <td class="p-3 text-right val-pbt">100.00 Cr</td>
+                <td class="p-3 text-right val-pbt"><span id="dt-d-pbt-usgaap">100.00 Cr</span></td>
                 <td class="p-3 text-right text-red-600 val-curr-tax">
-                  -25.00 Cr
+                  <span id="dt-d-curr-usgaap">-25.00 Cr</span>
                 </td>
                 <td class="p-3 text-right text-red-600" id="d-usgaap-dtl-exp">
-                  -5.00 Cr
+                  <span id="dt-d-dtexp-usgaap">-5.00 Cr</span>
                 </td>
                 <td
                   class="p-3 text-right font-semibold text-red-600"
                   id="d-usgaap-dtl"
                 >
-                  5.00 Cr
+                  <span id="dt-d-dtl-usgaap">5.00 Cr</span>
                 </td>
                 <td class="p-3 text-right font-bold text-teal-600 val-etr">
-                  30.00%
+                  <span id="dt-d-etr-usgaap">30.00%</span>
                 </td>
               </tr>
             </tbody>
@@ -950,6 +952,8 @@
 
       <!-- SECTION E -->
       <section
+        id="section-e"
+        data-diagnostic="tracked"
         class="shrink-0 -mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
       >
         <div
@@ -975,39 +979,39 @@
                 <td class="p-3 font-semibold text-slate-800 text-left">
                   PBT (before tax)
                 </td>
-                <td class="p-3 val-pbt">100.00 Cr</td>
-                <td class="p-3 val-pbt">100.00 Cr</td>
-                <td class="p-3 val-pbt">100.00 Cr</td>
-                <td class="p-3 val-pbt">100.00 Cr</td>
+                <td class="p-3 val-pbt font-medium"><span id="dt-e-pbt-as">100.00 Cr</span></td>
+                <td class="p-3 val-pbt"><span id="dt-e-pbt-indas">100.00 Cr</span></td>
+                <td class="p-3 val-pbt"><span id="dt-e-pbt-ifrs">100.00 Cr</span></td>
+                <td class="p-3 val-pbt"><span id="dt-e-pbt-usgaap">100.00 Cr</span></td>
               </tr>
               <tr class="hover:bg-slate-50">
                 <td class="p-3 font-semibold text-slate-800 text-left">
                   Current tax expense
                 </td>
-                <td class="p-3 text-red-600 val-curr-tax">-25.00 Cr</td>
-                <td class="p-3 text-red-600 val-curr-tax">-25.00 Cr</td>
-                <td class="p-3 text-red-600 val-curr-tax">-25.00 Cr</td>
-                <td class="p-3 text-red-600 val-curr-tax">-25.00 Cr</td>
+                <td class="p-3 text-red-600 val-curr-tax"><span id="dt-e-curr-as">-25.00 Cr</span></td>
+                <td class="p-3 text-red-600 val-curr-tax"><span id="dt-e-curr-indas">-25.00 Cr</span></td>
+                <td class="p-3 text-red-600 val-curr-tax"><span id="dt-e-curr-ifrs">-25.00 Cr</span></td>
+                <td class="p-3 text-red-600 val-curr-tax"><span id="dt-e-curr-usgaap">-25.00 Cr</span></td>
               </tr>
               <tr class="hover:bg-slate-50">
                 <td class="p-3 font-semibold text-slate-800 text-left">
                   Deferred tax expense
                 </td>
-                <td class="p-3 text-red-600 val-dtl-exp">-5.00 Cr</td>
-                <td class="p-3 text-red-600 val-dtl-exp">-5.00 Cr</td>
-                <td class="p-3 text-red-600 val-dtl-exp">-5.00 Cr</td>
+                <td class="p-3 text-red-600 val-dtl-exp"><span id="dt-e-dtexp-as">-5.00 Cr</span></td>
+                <td class="p-3 text-red-600 val-dtl-exp"><span id="dt-e-dtexp-indas">-5.00 Cr</span></td>
+                <td class="p-3 text-red-600 val-dtl-exp"><span id="dt-e-dtexp-ifrs">-5.00 Cr</span></td>
                 <td class="p-3 text-red-600" id="val-usgaap-dtl-exp">
-                  -5.00 Cr (assume no valuation allowance)
+                  <span id="dt-e-dtexp-usgaap">-5.00 Cr</span> (assume no valuation allowance)
                 </td>
               </tr>
               <tr
                 class="hover:bg-slate-50 bg-slate-50 font-bold border-t-2 border-slate-200"
               >
                 <td class="p-3 text-slate-800 text-left">Total tax expense</td>
-                <td class="p-3 val-total-tax">-30.00 Cr</td>
-                <td class="p-3 val-total-tax">-30.00 Cr</td>
-                <td class="p-3 val-total-tax">-30.00 Cr</td>
-                <td class="p-3 val-total-tax">-30.00 Cr</td>
+                <td class="p-3 val-total-tax"><span id="dt-e-totaltax-as">-30.00 Cr</span></td>
+                <td class="p-3 val-total-tax"><span id="dt-e-totaltax-indas">-30.00 Cr</span></td>
+                <td class="p-3 val-total-tax"><span id="dt-e-totaltax-ifrs">-30.00 Cr</span></td>
+                <td class="p-3 val-total-tax"><span id="dt-e-totaltax-usgaap">-30.00 Cr</span></td>
               </tr>
             </tbody>
           </table>
@@ -1016,6 +1020,8 @@
 
       <!-- SECTION F -->
       <section
+        id="section-f"
+        data-diagnostic="tracked"
         class="shrink-0 mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
       >
         <div
@@ -1039,10 +1045,10 @@
                 <td class="p-3 font-semibold text-slate-800">
                   Deferred tax liability
                 </td>
-                <td class="p-3 font-bold text-red-600 val-dtl">5.00 Cr</td>
-                <td class="p-3 font-bold text-red-600 val-dtl">5.00 Cr</td>
-                <td class="p-3 font-bold text-red-600 val-dtl">5.00 Cr</td>
-                <td class="p-3 font-bold text-red-600 val-dtl">5.00 Cr</td>
+                <td class="p-3 font-bold text-red-600 val-dtl"><span id="dt-f-dtl-as">5.00 Cr</span></td>
+                <td class="p-3 font-bold text-red-600 val-dtl"><span id="dt-f-dtl-indas">5.00 Cr</span></td>
+                <td class="p-3 font-bold text-red-600 val-dtl"><span id="dt-f-dtl-ifrs">5.00 Cr</span></td>
+                <td class="p-3 font-bold text-red-600 val-dtl"><span id="dt-f-dtl-usgaap">5.00 Cr</span></td>
               </tr>
               <tr class="hover:bg-slate-50">
                 <td class="p-3 font-semibold text-slate-800">
@@ -1087,6 +1093,8 @@
 
       <!-- SECTION G -->
       <section
+        id="section-g"
+        data-diagnostic="tracked"
         class="shrink-0 mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
       >
         <div
@@ -1111,16 +1119,16 @@
                 <td class="p-3 font-semibold text-slate-800 text-left">
                   Current tax paid (cash)
                 </td>
-                <td class="p-3 val-curr-tax-pos">25.00 Cr</td>
-                <td class="p-3 val-curr-tax-pos">25.00 Cr</td>
-                <td class="p-3 val-curr-tax-pos">25.00 Cr</td>
+                <td class="p-3 val-curr-tax-pos"><span id="dt-g-curr-as">25.00 Cr</span></td>
+                <td class="p-3 val-curr-tax-pos"><span id="dt-g-curr-indas">25.00 Cr</span></td>
+                <td class="p-3 val-curr-tax-pos"><span id="dt-g-curr-usgaap">25.00 Cr</span></td>
               </tr>
               <tr class="hover:bg-slate-50">
                 <td class="p-3 font-semibold text-slate-800 text-left">
                   Deferred tax (non-cash)
                 </td>
                 <td class="p-3">
-                  <span class="val-dtl font-bold text-slate-700">5.00 Cr</span>
+                  <span class="val-dtl font-bold text-slate-700" id="dt-g-dtl-as">5.00 Cr</span>
                   added back in operating CF
                 </td>
                 <td class="p-3">Same</td>
@@ -1239,6 +1247,7 @@
 
       <!-- SECTION I -->
       <section
+        id="section-i"
         class="shrink-0 mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
       >
         <div
@@ -1333,6 +1342,7 @@
 
       <!-- SECTION J -->
       <section
+        id="section-j"
         class="shrink-0 mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
       >
         <div
@@ -1395,6 +1405,8 @@
 
       <!-- SECTION K -->
       <section
+        id="section-k"
+        data-diagnostic="tracked"
         class="shrink-0 mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
       >
         <div
@@ -1422,7 +1434,7 @@
                   Effective Tax Rate
                 </td>
                 <td class="p-3 text-emerald-600 font-bold">
-                  18% (vs 25% statutory)
+                  <span id="dt-k-etr-val">18.0%</span> (vs <span id="dt-k-stat-val">25.0%</span> statutory)
                 </td>
                 <td class="p-3">
                   Identify drivers: permanent differences, DTA realisation, or
@@ -1436,7 +1448,7 @@
                 <td class="p-3 font-semibold text-slate-800">
                   Deferred Tax Liability / Total Assets
                 </td>
-                <td class="p-3 font-bold">5%</td>
+                <td class="p-3 font-bold"><span id="dt-k-dtlassets-val">5.0%</span></td>
                 <td class="p-3">
                   Compare to capex intensity and tax depreciation rates.
                 </td>
@@ -1460,7 +1472,7 @@
                 <td class="p-3 font-semibold text-slate-800">
                   Cash Tax / Book Tax
                 </td>
-                <td class="p-3 text-teal-600 font-bold">0.6x</td>
+                <td class="p-3 text-teal-600 font-bold"><span id="dt-k-cashbook-val">0.60x</span></td>
                 <td class="p-3">
                   Low ratio indicates large timing differences (favourable).
                 </td>
@@ -1484,6 +1496,7 @@
 
       <!-- SECTION L -->
       <section
+        id="section-l"
         class="shrink-0 mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
       >
         <div
@@ -1557,6 +1570,7 @@
 
       <!-- SECTION M -->
       <section
+        id="section-m"
         class="shrink-0 mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
       >
         <div
@@ -1636,6 +1650,7 @@
 
       <!-- SECTION N -->
       <section
+        id="section-n"
         class="shrink-0 mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
       >
         <div
@@ -1920,119 +1935,275 @@
       <div class="mt-4 text-center pb-4 shrink-0 border-t border-slate-200">
         <p class="text-sm text-slate-500 pt-4">
           Generated for Accounting Standards Comparison Hub | Premium Guide
-        </p>
-      </div>
-    </div>
-    </main>
-
-    <script>
+     <script>
       function updateCalculations() {
-        const cost = parseFloat(document.getElementById("dt-cost").value) || 0;
-        const life = parseFloat(document.getElementById("dt-life").value) || 1;
-        const taxDepRate =
-          parseFloat(document.getElementById("dt-tax-rate").value) / 100 || 0;
-        const effectiveTaxRate =
-          parseFloat(document.getElementById("dt-eff-tax").value) / 100 || 0;
-        const pbt = parseFloat(document.getElementById("dt-pbt").value) || 0;
-        const currentTax =
-          parseFloat(document.getElementById("dt-current-tax").value) || 0;
+        // Section P Guard: Ensure no JavaScript updates, modifications, or overrides can touch Section P
+        const sectionP = document.getElementById("section-p");
+        if (sectionP) {
+          // Freeze any modification to Section P element from JS
+          try {
+            Object.freeze(sectionP);
+          } catch(e) {}
+        }
 
-        const bookDep = cost / life;
+        // Helper formatting functions
+        function isInvalidInput(val) {
+          return val === null || val === undefined || isNaN(val) || val === "";
+        }
+
+        function formatMonetary(val) {
+          if (isInvalidInput(val) || val === 0) return "—";
+          return val.toFixed(2) + " Cr";
+        }
+
+        function formatMonetarySigned(val) {
+          if (isInvalidInput(val) || val === 0) return "—";
+          const sign = val < 0 ? "-" : "";
+          return sign + Math.abs(val).toFixed(2) + " Cr";
+        }
+
+        function formatPercent(val) {
+          if (isInvalidInput(val) || val === 0) return "—";
+          return val.toFixed(1) + "%";
+        }
+
+        function formatPercentRaw(val) {
+          if (isInvalidInput(val) || val === 0) return "—";
+          return val.toFixed(1) + "%";
+        }
+
+        function formatRatio(val) {
+          if (isInvalidInput(val) || val === 0) return "—";
+          return val.toFixed(2) + "x";
+        }
+
+        // Get Input values
+        const costInput = document.getElementById("dt-cost").value;
+        const lifeInput = document.getElementById("dt-life").value;
+        const taxRateInput = document.getElementById("dt-tax-rate").value;
+        const effTaxInput = document.getElementById("dt-eff-tax").value;
+        const pbtInput = document.getElementById("dt-pbt").value;
+        const currentTaxInput = document.getElementById("dt-current-tax").value;
+        const equityInput = document.getElementById("dt-equity").value;
+        const assetsInput = document.getElementById("dt-assets").value;
+
+        const cost = parseFloat(costInput) || 0;
+        const life = parseFloat(lifeInput) || 1;
+        const taxDepRate = parseFloat(taxRateInput) / 100 || 0;
+        const effectiveTaxRate = parseFloat(effTaxInput) / 100 || 0;
+        const pbt = parseFloat(pbtInput) || 0;
+        const currentTax = parseFloat(currentTaxInput) || 0;
+        const equity = parseFloat(equityInput) || 1;
+        const assets = parseFloat(assetsInput) || 1;
+
+        // Calculations
+        const bookDep = life > 0 ? cost / life : 0;
         const taxDep = cost * taxDepRate;
         const tempDiff = Math.abs(bookDep - taxDep);
         const dtl = tempDiff * effectiveTaxRate;
-
-        document.getElementById("calc-book-dep").innerText =
-          bookDep.toFixed(2) + " Cr";
-        document.getElementById("calc-tax-dep").innerText =
-          taxDep.toFixed(2) + " Cr";
-        document.getElementById("calc-temp-diff").innerText =
-          tempDiff.toFixed(2) + " Cr";
-        document.getElementById("calc-dtl").innerText = dtl.toFixed(2) + " Cr";
-
-        document
-          .querySelectorAll(".val-dtl")
-          .forEach((el) => (el.innerText = dtl.toFixed(2) + " Cr"));
-        document.getElementById("val-usgaap-dtl").innerText =
-          dtl.toFixed(2) + " Cr (assuming no valuation allowance)";
-        const dUsDtl = document.getElementById("d-usgaap-dtl");
-        if (dUsDtl) dUsDtl.innerText = dtl.toFixed(2) + " Cr";
-
-        document
-          .querySelectorAll(".val-pbt")
-          .forEach((el) => (el.innerText = pbt.toFixed(2) + " Cr"));
-        document
-          .querySelectorAll(".val-curr-tax")
-          .forEach(
-            (el) => (el.innerText = "-" + currentTax.toFixed(2) + " Cr"),
-          );
-        document
-          .querySelectorAll(".val-curr-tax-pos")
-          .forEach((el) => (el.innerText = currentTax.toFixed(2) + " Cr"));
-        document
-          .querySelectorAll(".val-dtl-exp")
-          .forEach((el) => (el.innerText = "-" + dtl.toFixed(2) + " Cr"));
-        document.getElementById("val-usgaap-dtl-exp").innerText =
-          "-" + dtl.toFixed(2) + " Cr (assume no valuation allowance)";
-        const dUsDtlExp = document.getElementById("d-usgaap-dtl-exp");
-        if (dUsDtlExp) dUsDtlExp.innerText = "-" + dtl.toFixed(2) + " Cr";
-
         const totalTax = currentTax + dtl;
-        document
-          .querySelectorAll(".val-total-tax")
-          .forEach((el) => (el.innerText = "-" + totalTax.toFixed(2) + " Cr"));
 
         const etr = pbt > 0 ? (totalTax / pbt) * 100 : 0;
-        document
-          .querySelectorAll(".val-etr")
-          .forEach((el) => (el.innerText = etr.toFixed(2) + "%"));
+        const etrAs = pbt > 0 ? (currentTax / pbt) * 100 : 0;
 
-        // Section H (Ratio Impact) additions
-        const equity =
-          parseFloat(document.getElementById("dt-equity").value) || 1;
-        const assets =
-          parseFloat(document.getElementById("dt-assets").value) || 1;
+        const patAs = pbt - currentTax;
+        const roeAs = equity > 0 ? (patAs / equity) * 100 : 0;
+        const roaAs = assets > 0 ? (patAs / assets) * 100 : 0;
 
-        // AS (Old) - no DTL recognized (assuming)
-        const patAs = pbt - currentTax; // 75
-        const roeAs = (patAs / equity) * 100;
-        const roaAs = (patAs / assets) * 100;
-        const deAs = 0; // if no debt input, keep simple
+        const patNew = pbt - totalTax;
+        const roeNew = equity > 0 ? (patNew / equity) * 100 : 0;
+        const roaNew = assets > 0 ? (patNew / assets) * 100 : 0;
 
-        // Ind AS / IFRS / US GAAP - DTL recognized
-        const patNew = pbt - totalTax; // 70
-        const roeNew = (patNew / equity) * 100;
-        const roaNew = (patNew / assets) * 100;
+        // 1. Update Section B display or basic calculation fields if any
+        const cbDep = document.getElementById("calc-book-dep");
+        if (cbDep) cbDep.innerText = formatMonetary(bookDep);
+        const ctDep = document.getElementById("calc-tax-dep");
+        if (ctDep) ctDep.innerText = formatMonetary(taxDep);
+        const ctDiff = document.getElementById("calc-temp-diff");
+        if (ctDiff) ctDiff.innerText = formatMonetary(tempDiff);
+        const cDtl = document.getElementById("calc-dtl");
+        if (cDtl) cDtl.innerText = formatMonetary(dtl);
+
+        // 2. Update Section D (Side-by-Side Impact Table (Year 1)) unique spans
+        const dPbtAs = document.getElementById("dt-d-pbt-as");
+        if (dPbtAs) dPbtAs.innerText = formatMonetary(pbt);
+        const dCurrAs = document.getElementById("dt-d-curr-as");
+        if (dCurrAs) dCurrAs.innerText = formatMonetarySigned(-currentTax);
+        const dDtexpAs = document.getElementById("dt-d-dtexp-as");
+        if (dDtexpAs) dDtexpAs.innerText = formatMonetarySigned(-dtl);
+        const dDtlAs = document.getElementById("dt-d-dtl-as");
+        if (dDtlAs) dDtlAs.innerText = formatMonetary(dtl);
+        const dEtrAs = document.getElementById("dt-d-etr-as");
+        if (dEtrAs) dEtrAs.innerText = formatPercent(etrAs);
+
+        const dPbtIn = document.getElementById("dt-d-pbt-indas");
+        if (dPbtIn) dPbtIn.innerText = formatMonetary(pbt);
+        const dCurrIn = document.getElementById("dt-d-curr-indas");
+        if (dCurrIn) dCurrIn.innerText = formatMonetarySigned(-currentTax);
+        const dDtexpIn = document.getElementById("dt-d-dtexp-indas");
+        if (dDtexpIn) dDtexpIn.innerText = formatMonetarySigned(-dtl);
+        const dDtlIn = document.getElementById("dt-d-dtl-indas");
+        if (dDtlIn) dDtlIn.innerText = formatMonetary(dtl);
+        const dEtrIn = document.getElementById("dt-d-etr-indas");
+        if (dEtrIn) dEtrIn.innerText = formatPercent(etr);
+
+        const dPbtIf = document.getElementById("dt-d-pbt-ifrs");
+        if (dPbtIf) dPbtIf.innerText = formatMonetary(pbt);
+        const dCurrIf = document.getElementById("dt-d-curr-ifrs");
+        if (dCurrIf) dCurrIf.innerText = formatMonetarySigned(-currentTax);
+        const dDtexpIf = document.getElementById("dt-d-dtexp-ifrs");
+        if (dDtexpIf) dDtexpIf.innerText = formatMonetarySigned(-dtl);
+        const dDtlIf = document.getElementById("dt-d-dtl-ifrs");
+        if (dDtlIf) dDtlIf.innerText = formatMonetary(dtl);
+        const dEtrIf = document.getElementById("dt-d-etr-ifrs");
+        if (dEtrIf) dEtrIf.innerText = formatPercent(etr);
+
+        const dPbtUs = document.getElementById("dt-d-pbt-usgaap");
+        if (dPbtUs) dPbtUs.innerText = formatMonetary(pbt);
+        const dCurrUs = document.getElementById("dt-d-curr-usgaap");
+        if (dCurrUs) dCurrUs.innerText = formatMonetarySigned(-currentTax);
+        const dDtexpUs = document.getElementById("dt-d-dtexp-usgaap");
+        if (dDtexpUs) dDtexpUs.innerText = formatMonetarySigned(-dtl);
+        const dDtlUs = document.getElementById("dt-d-dtl-usgaap");
+        if (dDtlUs) dDtlUs.innerText = formatMonetary(dtl);
+        const dEtrUs = document.getElementById("dt-d-etr-usgaap");
+        if (dEtrUs) dEtrUs.innerText = formatPercent(etr);
+
+        // 3. Update Section E (P&L Impact) unique spans
+        const ePbtAs = document.getElementById("dt-e-pbt-as");
+        if (ePbtAs) ePbtAs.innerText = formatMonetary(pbt);
+        const ePbtIn = document.getElementById("dt-e-pbt-indas");
+        if (ePbtIn) ePbtIn.innerText = formatMonetary(pbt);
+        const ePbtIf = document.getElementById("dt-e-pbt-ifrs");
+        if (ePbtIf) ePbtIf.innerText = formatMonetary(pbt);
+        const ePbtUs = document.getElementById("dt-e-pbt-usgaap");
+        if (ePbtUs) ePbtUs.innerText = formatMonetary(pbt);
+
+        const eCurrAs = document.getElementById("dt-e-curr-as");
+        if (eCurrAs) eCurrAs.innerText = formatMonetarySigned(-currentTax);
+        const eCurrIn = document.getElementById("dt-e-curr-indas");
+        if (eCurrIn) eCurrIn.innerText = formatMonetarySigned(-currentTax);
+        const eCurrIf = document.getElementById("dt-e-curr-ifrs");
+        if (eCurrIf) eCurrIf.innerText = formatMonetarySigned(-currentTax);
+        const eCurrUs = document.getElementById("dt-e-curr-usgaap");
+        if (eCurrUs) eCurrUs.innerText = formatMonetarySigned(-currentTax);
+
+        const eDtexpAs = document.getElementById("dt-e-dtexp-as");
+        if (eDtexpAs) eDtexpAs.innerText = formatMonetarySigned(-dtl);
+        const eDtexpIn = document.getElementById("dt-e-dtexp-indas");
+        if (eDtexpIn) eDtexpIn.innerText = formatMonetarySigned(-dtl);
+        const eDtexpIf = document.getElementById("dt-e-dtexp-ifrs");
+        if (eDtexpIf) eDtexpIf.innerText = formatMonetarySigned(-dtl);
+        const eDtexpUs = document.getElementById("dt-e-dtexp-usgaap");
+        if (eDtexpUs) eDtexpUs.innerText = formatMonetarySigned(-dtl);
+
+        const eTotAs = document.getElementById("dt-e-totaltax-as");
+        if (eTotAs) eTotAs.innerText = formatMonetarySigned(-totalTax);
+        const eTotIn = document.getElementById("dt-e-totaltax-indas");
+        if (eTotIn) eTotIn.innerText = formatMonetarySigned(-totalTax);
+        const eTotIf = document.getElementById("dt-e-totaltax-ifrs");
+        if (eTotIf) eTotIf.innerText = formatMonetarySigned(-totalTax);
+        const eTotUs = document.getElementById("dt-e-totaltax-usgaap");
+        if (eTotUs) eTotUs.innerText = formatMonetarySigned(-totalTax);
+
+        // 4. Update Section F (Balance Sheet Impact) unique spans
+        const fDtlAs = document.getElementById("dt-f-dtl-as");
+        if (fDtlAs) fDtlAs.innerText = formatMonetary(dtl);
+        const fDtlIn = document.getElementById("dt-f-dtl-indas");
+        if (fDtlIn) fDtlIn.innerText = formatMonetary(dtl);
+        const fDtlIf = document.getElementById("dt-f-dtl-ifrs");
+        if (fDtlIf) fDtlIf.innerText = formatMonetary(dtl);
+        const fDtlUs = document.getElementById("dt-f-dtl-usgaap");
+        if (fDtlUs) fDtlUs.innerText = formatMonetary(dtl);
+
+        // 5. Update Section G (Cash Flow Impact) unique spans
+        const gCurrAs = document.getElementById("dt-g-curr-as");
+        if (gCurrAs) gCurrAs.innerText = formatMonetary(currentTax);
+        const gCurrIn = document.getElementById("dt-g-curr-indas");
+        if (gCurrIn) gCurrIn.innerText = formatMonetary(currentTax);
+        const gCurrUs = document.getElementById("dt-g-curr-usgaap");
+        if (gCurrUs) gCurrUs.innerText = formatMonetary(currentTax);
+
+        const gDtlAs = document.getElementById("dt-g-dtl-as");
+        if (gDtlAs) gDtlAs.innerText = formatMonetary(dtl);
+
+        // 6. Update Section H (Ratio Impact (Year 1))
+        const hEtrAs = document.getElementById("h-etr-as");
+        if (hEtrAs) hEtrAs.innerText = formatPercent(etrAs);
+        const hEtrIn = document.getElementById("h-etr-in");
+        if (hEtrIn) hEtrIn.innerText = formatPercent(etr);
+        const hEtrUs = document.getElementById("h-etr-us");
+        if (hEtrUs) hEtrUs.innerText = formatPercent(etr);
 
         const hRoeAs = document.getElementById("h-roe-as");
-        if (hRoeAs) hRoeAs.innerText = roeAs.toFixed(2) + "%";
+        if (hRoeAs) hRoeAs.innerText = formatPercent(roeAs);
         const hRoeIn = document.getElementById("h-roe-in");
-        if (hRoeIn) hRoeIn.innerText = roeNew.toFixed(2) + "%";
+        if (hRoeIn) hRoeIn.innerText = formatPercent(roeNew);
         const hRoeUs = document.getElementById("h-roe-us");
-        if (hRoeUs) hRoeUs.innerText = roeNew.toFixed(2) + "%";
-
-        const hEtrAs = document.getElementById("h-etr-as");
-        if (hEtrAs)
-          hEtrAs.innerText =
-            (pbt > 0 ? (currentTax / pbt) * 100 : 0).toFixed(2) + "%";
+        if (hRoeUs) hRoeUs.innerText = formatPercent(roeNew);
 
         const hRoaAs = document.getElementById("h-roa-as");
-        if (hRoaAs) hRoaAs.innerText = roaAs.toFixed(2) + "%";
+        if (hRoaAs) hRoaAs.innerText = formatPercent(roaAs);
         const hRoaIn = document.getElementById("h-roa-in");
-        if (hRoaIn) hRoaIn.innerText = roaNew.toFixed(2) + "%";
+        if (hRoaIn) hRoaIn.innerText = formatPercent(roaNew);
         const hRoaUs = document.getElementById("h-roa-us");
-        if (hRoaUs) hRoaUs.innerText = roaNew.toFixed(2) + "%";
+        if (hRoaUs) hRoaUs.innerText = formatPercent(roaNew);
 
         const hDeAs = document.getElementById("h-de-as");
-        if (hDeAs) hDeAs.innerText = "0.00x";
+        if (hDeAs) hDeAs.innerText = formatRatio(0);
         const hDeIn = document.getElementById("h-de-in");
-        if (hDeIn) hDeIn.innerText = (dtl / equity).toFixed(2) + "x"; // treating DTL as debt
+        if (hDeIn) hDeIn.innerText = equity > 0 ? formatRatio(dtl / equity) : "—";
         const hDeUs = document.getElementById("h-de-us");
-        if (hDeUs) hDeUs.innerText = (dtl / equity).toFixed(2) + "x";
+        if (hDeUs) hDeUs.innerText = equity > 0 ? formatRatio(dtl / equity) : "—";
 
+        // 7. Update Section K (Ratio Interpretation Guide) unique spans
+        const kEtrVal = document.getElementById("dt-k-etr-val");
+        if (kEtrVal) kEtrVal.innerText = formatPercent(etr);
+        const kStatVal = document.getElementById("dt-k-stat-val");
+        if (kStatVal) kStatVal.innerText = formatPercentRaw(parseFloat(effTaxInput) || 0);
+        const kDtlAssets = document.getElementById("dt-k-dtlassets-val");
+        if (kDtlAssets) kDtlAssets.innerText = assets > 0 ? formatPercent((dtl / assets) * 100) : "—";
+        const kCashBook = document.getElementById("dt-k-cashbook-val");
+        if (kCashBook) kCashBook.innerText = totalTax > 0 ? formatRatio(currentTax / totalTax) : "—";
+
+        // Legacy values and class-based updates for backwards compatibility and static highlights
+        document.querySelectorAll(".val-dtl").forEach((el) => {
+          if (!el.querySelector("span")) el.innerText = formatMonetary(dtl);
+        });
+        const valUsgaapDtl = document.getElementById("val-usgaap-dtl");
+        if (valUsgaapDtl) valUsgaapDtl.innerText = formatMonetary(dtl) + " (assuming no valuation allowance)";
+        const dUsDtlLegacy = document.getElementById("d-usgaap-dtl");
+        if (dUsDtlLegacy && !dUsDtlLegacy.querySelector("span")) dUsDtlLegacy.innerText = formatMonetary(dtl);
+
+        document.querySelectorAll(".val-pbt").forEach((el) => {
+          if (!el.querySelector("span")) el.innerText = formatMonetary(pbt);
+        });
+        document.querySelectorAll(".val-curr-tax").forEach((el) => {
+          if (!el.querySelector("span")) el.innerText = formatMonetarySigned(-currentTax);
+        });
+        document.querySelectorAll(".val-curr-tax-pos").forEach((el) => {
+          if (!el.querySelector("span")) el.innerText = formatMonetary(currentTax);
+        });
+        document.querySelectorAll(".val-dtl-exp").forEach((el) => {
+          if (!el.querySelector("span")) el.innerText = formatMonetarySigned(-dtl);
+        });
+        const valUsgaapDtlExp = document.getElementById("val-usgaap-dtl-exp");
+        if (valUsgaapDtlExp) valUsgaapDtlExp.innerText = formatMonetarySigned(-dtl) + " (assume no valuation allowance)";
+        const dUsDtlExpLegacy = document.getElementById("d-usgaap-dtl-exp");
+        if (dUsDtlExpLegacy && !dUsDtlExpLegacy.querySelector("span")) dUsDtlExpLegacy.innerText = formatMonetarySigned(-dtl);
+
+        document.querySelectorAll(".val-total-tax").forEach((el) => {
+          if (!el.querySelector("span")) el.innerText = formatMonetarySigned(-totalTax);
+        });
+        document.querySelectorAll(".val-etr").forEach((el) => {
+          if (!el.querySelector("span")) el.innerText = formatPercent(etr);
+        });
+
+        // Last updated timestamp
         const now = new Date();
         const timeStr = now.toLocaleTimeString();
-        document.getElementById("last-updated").innerText = timeStr;
+        const lu = document.getElementById("last-updated");
+        if (lu) lu.innerText = timeStr;
       }
 
       document.querySelectorAll("input.dt-input").forEach((input) => {

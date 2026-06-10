@@ -25,6 +25,49 @@
       .custom-scrollbar::-webkit-scrollbar-thumb:hover {
         background: #94a3b8;
       }
+
+      /* DIAGNOSTIC PANEL STYLES */
+      #diagnostic-panel {
+        transition:
+          max-height 0.3s ease-in-out,
+          opacity 0.3s ease-in-out,
+          padding 0.3s ease-in-out,
+          margin 0.3s ease-in-out,
+          border-width 0.3s ease-in-out;
+        overflow: hidden;
+        margin-top: 1rem;
+      }
+      #diagnostic-panel.panel-closed {
+        max-height: 0;
+        opacity: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        border-width: 0;
+      }
+      #diagnostic-panel:not(.panel-closed) {
+        max-height: 480px;
+        opacity: 1;
+      }
+
+      .update-highlight {
+        animation: green-flash 1s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      @keyframes green-flash {
+        0% {
+          background-color: transparent;
+        }
+        50% {
+          background-color: rgba(34, 197, 94, 0.2);
+        }
+        100% {
+          background-color: transparent;
+        }
+      }
+      .share-menu {
+        display: none !important;
+      }
     </style>
   </head>
   <body
@@ -148,46 +191,67 @@
             <li class="relative pl-4"><span class="absolute left-0 top-[0.4rem] w-1.5 h-1.5 rounded-full bg-slate-400"></span>Variable consideration (like bonuses or penalties) must be estimated and constrained under the new standards, rather than waiting for certainty.</li>
         </ul>
       </div>
+      <!-- Redesigned Diagnostic Panel -->
       <div
         id="diagnostic-panel"
-        class="hidden mt-4 bg-indigo-50 border-l-4 border-indigo-600 p-4 text-sm text-indigo-900 shadow-sm rounded-r-lg flex flex-col gap-2 shrink-0"
+        class="bg-white border-l-4 border-indigo-600 p-5 text-slate-800 shadow-md rounded-r-lg flex flex-col gap-3 shrink-0 panel-closed"
       >
-        <h3 class="font-bold text-lg mb-2">Diagnostic Mode Console</h3>
+        <div class="flex justify-between items-center mb-1">
+          <h3 class="font-bold text-lg text-slate-800">
+            Live section update tracker
+          </h3>
+        </div>
+
+        <p class="text-slate-600 text-xs mb-1">
+          Change any value in Section B (Transaction Fact Pattern) above to see which sections updated
+          automatically.
+        </p>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
-          <div class="bg-white p-3 rounded shadow-sm border border-indigo-100">
-            <h4 class="font-bold text-indigo-800 mb-1">
-              Live Updating Sections
+          <div>
+            <h4
+              class="font-bold text-slate-700 mb-2 text-[10px] sm:text-xs uppercase tracking-wider"
+            >
+              These sections recalculate when you change inputs:
             </h4>
-            <p class="text-xs text-slate-600 font-mono">
-              Section C, D, E, F, G, H, I, J, K
-            </p>
+            <div class="flex flex-wrap gap-2 text-[11px]" id="diag-live-sections">
+              <!-- Dynamically populated -->
+            </div>
           </div>
-          <div class="bg-white p-3 rounded shadow-sm border border-indigo-100">
-            <h4 class="font-bold text-indigo-800 mb-1">Static Sections</h4>
-            <p class="text-xs text-slate-600 font-mono">
-              Section A, B, L, M, N, O, P
-            </p>
+          <div>
+            <h4
+              class="font-bold text-slate-700 mb-2 text-[10px] sm:text-xs uppercase tracking-wider"
+            >
+              These sections are fixed and do not change:
+            </h4>
+            <div class="flex flex-wrap gap-2 text-[11px]" id="diag-static-sections">
+              <!-- Dynamically populated -->
+            </div>
           </div>
         </div>
 
-        <div class="mt-4 border-t border-indigo-200 pt-2">
-          <h4 class="font-bold mb-1 flex justify-between">
-            Recent Updates
-            <span id="diag-errors" class="text-red-600 hidden">Errors!</span>
-          </h4>
+        <div class="border-t border-slate-100 pt-3 flex flex-col min-h-0">
+          <div class="flex justify-between items-center mb-2">
+            <h4 class="font-bold text-slate-700">Recent updates</h4>
+            <button
+              id="diag-clear-btn"
+              class="text-[11px] text-slate-500 hover:text-slate-700 cursor-pointer transition-colors bg-transparent border-none"
+            >
+              Clear log
+            </button>
+          </div>
           <div
-            id="diag-console"
-            class="bg-indigo-900 text-indigo-100 font-mono p-3 rounded text-xs h-32 overflow-y-auto whitespace-pre-wrap"
+            id="diag-history-log"
+            class="bg-slate-50 border border-slate-100 text-slate-800 p-3 rounded h-32 overflow-y-auto flex flex-col gap-2"
           >
-            System initialized.
+            <div class="text-slate-500 text-xs italic">System initialized.</div>
           </div>
         </div>
       </div>
 
       <!-- SECTION A: Core Technical Comparison Table -->
       <section
-        id="section-b"
-        data-diagnostic="tracked"
+        id="section-a"
         class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
       >
         <div
@@ -530,8 +594,7 @@
       <div class="shrink-0 mt-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
         <!-- SECTION B: Transaction Fact Pattern -->
         <section
-          id="section-c"
-          data-diagnostic="tracked"
+          id="section-b-container"
           class="shrink-0 mt-6 bg-amber-50 rounded-xl shadow-sm border border-amber-200 overflow-hidden flex flex-col"
         >
           <div
@@ -692,7 +755,7 @@
 
         <!-- SECTION C: Side-by-Side Treatment -->
         <section
-          id="section-d"
+          id="section-c"
           data-diagnostic="tracked"
           class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
         >
@@ -861,7 +924,7 @@
 
       <!-- SECTION D: Side-by-Side Impact Table -->
       <section
-        id="section-e"
+        id="section-d"
         data-diagnostic="tracked"
         class="shrink-0 -mt-4 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
       >
@@ -945,7 +1008,7 @@
       <div class="shrink-0 mt-6 grid grid-cols-1 xl:grid-cols-2 gap-8">
         <!-- SECTION E: P&amp;L Impact -->
         <section
-          id="section-f"
+          id="section-e"
           data-diagnostic="tracked"
           class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
         >
@@ -1070,7 +1133,7 @@
 
         <!-- SECTION F: Balance Sheet Impact -->
         <section
-          id="section-g"
+          id="section-f"
           data-diagnostic="tracked"
           class="shrink-0 mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
         >
@@ -2565,6 +2628,278 @@
                 if (el) observer.observe(el);
             });
         }
+      });
+    </script>
+
+    <!-- Dynamic Recalculation Engine -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const I = {
+          price: document.getElementById("input-price"),
+          advPct: document.getElementById("input-adv-pct"),
+          shipPct: document.getElementById("input-ship-pct"),
+          accPct: document.getElementById("input-acc-pct"),
+          dur: document.getElementById("input-duration"),
+          totCost: document.getElementById("input-total-cost"),
+          costInc: document.getElementById("input-cost-incurred"),
+          progPct: document.getElementById("input-progress-pct"),
+          bRev: document.getElementById("input-base-rev"),
+          bEbit: document.getElementById("input-base-ebit"),
+          pRev: document.getElementById("input-prev-rev"),
+          eq: document.getElementById("input-equity"),
+          ass: document.getElementById("input-assets"),
+          shr: document.getElementById("input-shares")
+        };
+
+        const W = document.getElementById("validation-warning");
+        const timestamp = document.getElementById("update-timestamp");
+
+        function formatMonetary(n, showSign = false) {
+          const num = parseFloat(n);
+          if (isNaN(num) || num === 0) return "—";
+          const sign = showSign && num > 0 ? "+" : "";
+          return sign + "Rs. " + num.toFixed(2).replace(/\.00$/, "") + " Cr";
+        }
+
+        function formatPercentage(n, showSign = false) {
+          const num = parseFloat(n);
+          if (isNaN(num) || num === 0) return "—";
+          const sign = showSign && num > 0 ? "+" : "";
+          return sign + num.toFixed(1) + "%";
+        }
+
+        function formatRatio(n, showSign = false) {
+          const num = parseFloat(n);
+          if (isNaN(num) || num === 0) return "—";
+          const sign = showSign && num > 0 ? "+" : "";
+          return sign + num.toFixed(2) + "x";
+        }
+
+        function get(id) { return document.getElementById(id); }
+
+        function set(id, val) {
+          const el = get(id);
+          if (!el) return;
+          // Guard Section P
+          if (el.closest('#section-p')) {
+            console.warn(`Blocked attempt to write to protected Section P element: ${id}`);
+            return;
+          }
+          el.innerHTML = val;
+        }
+
+        window.recalculateAll = function() {
+          try {
+            const price = parseFloat(I.price.value) || 0;
+            const advPct = parseFloat(I.advPct.value) || 0;
+            const shipPct = parseFloat(I.shipPct.value) || 0;
+            const accPct = parseFloat(I.accPct.value) || 0;
+            const dur = parseFloat(I.dur.value) || 0;
+            const totCost = parseFloat(I.totCost.value) || 0;
+            let costInc = Math.max(0, parseFloat(I.costInc.value) || 0);
+            const progPct = Math.min(parseFloat(I.progPct.value) || 0, 100);
+            const bRev = parseFloat(I.bRev.value) || 0;
+            const bEbit = parseFloat(I.bEbit.value) || 0;
+            const pRev = parseFloat(I.pRev.value) || 0;
+            const eq = parseFloat(I.eq.value) || 0;
+            const ass = parseFloat(I.ass.value) || 0;
+            const shr = parseFloat(I.shr.value) || 1;
+
+            if (timestamp) {
+              const d = new Date();
+              timestamp.innerText = "Last updated: " + d.toLocaleTimeString();
+            }
+
+            // Validations
+            let warnings = [];
+            if (price < 0 || totCost < 0 || costInc < 0) {
+              warnings.push("Values cannot be negative.");
+            }
+            if (costInc > totCost) {
+              warnings.push("Cost incurred exceeds total estimated cost.");
+            }
+            if (Math.abs(advPct + shipPct + accPct - 100) > 0.01) {
+              warnings.push("Payment terms do not sum to 100%.");
+            }
+
+            if (W) {
+              if (warnings.length > 0) {
+                W.innerHTML = warnings.join("<br>");
+                W.classList.remove("hidden");
+              } else {
+                W.classList.add("hidden");
+              }
+            }
+
+            // CORE CALCULATIONS
+            let asY1Rev = 0; // Completed contract (18 months duration means recognized in Y2)
+            let indY1Rev = price * (progPct / 100); // Over-time percentage of completion
+            
+            let asY1Cost = 0; // WIP in BS, not in PL
+            let indY1Cost = costInc; // Recognized over time
+            
+            let y1p_as = asY1Rev - asY1Cost;
+            let y1p_ind = indY1Rev - indY1Cost;
+
+            let asAdvCash = price * (advPct / 100);
+            let ca = price * (progPct / 100);
+            let cl = asAdvCash;
+
+            // Section C updates
+            set("c-as-y1-text", formatMonetary(asY1Rev) + " revenue in Year 1");
+            set("c-ind-y1-text", formatMonetary(indY1Rev) + " revenue (" + progPct.toFixed(1) + "% of " + formatMonetary(price) + ")");
+            set("c-as-y2-text", "Remaining " + formatMonetary(price - asY1Rev) + " in Year 2");
+            set("c-ind-y2-text", formatMonetary(price - indY1Rev) + " revenue in Year 2");
+
+            set("je-as-y1", "<p>Dr Bank " + formatMonetary(asAdvCash) + "<br>&nbsp;&nbsp;Cr Advance " + formatMonetary(asAdvCash) + "<br>Dr WIP " + formatMonetary(costInc) + "<br>&nbsp;&nbsp;Cr Cash/Payables " + formatMonetary(costInc) + "</p>");
+            set("je-as-y2", "<p>Equipment accepted.<br>Rem. costs: " + formatMonetary(totCost - costInc) + " (Total " + formatMonetary(totCost) + ").<br>Revenue: " + formatMonetary(price - asY1Rev) + ".<br>Profit: " + formatMonetary((price - asY1Rev) - (totCost - costInc)) + ".</p>");
+            set("je-ind-y1", "<p>Dr Bank " + formatMonetary(asAdvCash) + "<br>Dr Contract Asset " + formatMonetary(ca > cl ? ca - cl : 0) + "<br>Dr Contract Liab " + formatMonetary(cl > ca ? cl - ca : 0) + "<br>&nbsp;&nbsp;Cr Revenue " + formatMonetary(ca) + "</p>");
+            set("je-ind-y2", "<p>Rem. progress " + (100 - progPct).toFixed(1) + "%.<br>Revenue = " + formatMonetary(price - ca) + ".<br>Costs = " + formatMonetary(totCost - costInc) + ".<br>Profit = " + formatMonetary((price - ca) - (totCost - costInc)) + ".</p>");
+
+            // Section D updates
+            set("d-as-r1", formatMonetary(asY1Rev)); set("d-ind-r1", formatMonetary(indY1Rev)); set("d-ifrs-r1", formatMonetary(indY1Rev)); set("d-asc-r1", formatMonetary(indY1Rev));
+            set("d-as-c1", formatMonetary(asY1Cost)); set("d-ind-c1", formatMonetary(indY1Cost)); set("d-ifrs-c1", formatMonetary(indY1Cost)); set("d-asc-c1", formatMonetary(indY1Cost));
+            set("d-as-p1", formatMonetary(y1p_as)); set("d-ind-p1", formatMonetary(y1p_ind)); set("d-ifrs-p1", formatMonetary(y1p_ind)); set("d-asc-p1", formatMonetary(y1p_ind));
+
+            let asY2Rev = price - asY1Rev; let asY2Cost = totCost - asY1Cost; let y2p_as = asY2Rev - asY2Cost;
+            let indY2Rev = price - indY1Rev; let indY2Cost = totCost - indY1Cost; let y2p_ind = indY2Rev - indY2Cost;
+            set("d-as-r2", formatMonetary(asY2Rev)); set("d-ind-r2", formatMonetary(indY2Rev)); set("d-ifrs-r2", formatMonetary(indY2Rev)); set("d-asc-r2", formatMonetary(indY2Rev));
+            set("d-as-c2", formatMonetary(asY2Cost)); set("d-ind-c2", formatMonetary(indY2Cost)); set("d-ifrs-c2", formatMonetary(indY2Cost)); set("d-asc-c2", formatMonetary(indY2Cost));
+            set("d-as-p2", formatMonetary(y2p_as)); set("d-ind-p2", formatMonetary(y2p_ind)); set("d-ifrs-p2", formatMonetary(y2p_ind)); set("d-asc-p2", formatMonetary(y2p_ind));
+
+            // Section E updates
+            ["as","in","if","us"].forEach(s => { 
+              set("e-base-r-"+s, formatMonetary(bRev)); 
+              set("e-base-eb-"+s, formatMonetary(bEbit)); 
+            });
+            set("e-proj-r-as", formatMonetary(asY1Rev)); set("e-proj-eb-as", formatMonetary(y1p_as));
+            ["in","if","us"].forEach(s => { set("e-proj-r-"+s, formatMonetary(indY1Rev)); set("e-proj-eb-"+s, formatMonetary(y1p_ind)); });
+
+            let totR_as = bRev + asY1Rev; let totEb_as = bEbit + y1p_as; let t_as = totEb_as * 0.25; let pat_as = totEb_as - t_as;
+            let totR_in = bRev + indY1Rev; let totEb_in = bEbit + y1p_ind; let t_in = totEb_in * 0.25; let pat_in = totEb_in - t_in;
+
+            set("e-tot-r-as", formatMonetary(totR_as)); set("e-tot-eb-as", formatMonetary(totEb_as)); set("e-tax-as", formatMonetary(t_as)); set("e-pat-as", formatMonetary(pat_as));
+            ["in","if","us"].forEach(s => { 
+              set("e-tot-r-"+s, formatMonetary(totR_in)); 
+              set("e-tot-eb-"+s, formatMonetary(totEb_in)); 
+              set("e-tax-"+s, formatMonetary(t_in)); 
+              set("e-pat-"+s, formatMonetary(pat_in)); 
+            });
+
+            // Section F updates
+            ["as","in","if","us"].forEach(s => set("f-cash-"+s, formatMonetary(asAdvCash)));
+            set("f-asset-as", formatMonetary(costInc) + " (Inv)");
+            ["in","if","us"].forEach(s => {
+                 let ca1 = Math.max(0, indY1Rev - asAdvCash);
+                 set("f-asset-"+s, formatMonetary(ca1) + " (Asset)");
+                 let cl1 = Math.max(0, asAdvCash - indY1Rev);
+                 set("f-liab-"+s, formatMonetary(cl1));
+            });
+            set("f-liab-as", formatMonetary(Math.max(0, asAdvCash - asY1Rev)));
+            set("f-eq-as", formatMonetary(y1p_as, true));
+            ["in","if","us"].forEach(s => set("f-eq-"+s, formatMonetary(y1p_ind, true)));
+
+            // Section G updates
+            ["as","in","if","us"].forEach(s => {
+              set("g-in-"+s, formatMonetary(asAdvCash, true)); 
+              set("g-out-"+s, formatMonetary(-costInc, true)); 
+              set("g-net-"+s, formatMonetary(asAdvCash - costInc, true));
+            });
+
+            // Section H updates
+            let g_as = pRev ? ((totR_as - pRev) / pRev) * 100 : 0;
+            let g_in = pRev ? ((totR_in - pRev) / pRev) * 100 : 0;
+            let m_as = totR_as ? (totEb_as / totR_as) * 100 : 0;
+            let m_in = totR_in ? (totEb_in / totR_in) * 100 : 0;
+            let roe_as = eq ? (pat_as / eq) * 100 : 0;
+            let roe_in = eq ? (pat_in / eq) * 100 : 0;
+            let ato_as = ass ? (totR_as / ass) : 0;
+            let ato_in = ass ? (totR_in / ass) : 0;
+            let eps_as = pat_as / shr;
+            let eps_in = pat_in / shr;
+
+            set("h-gro-as", formatPercentage(g_as, true)); set("h-gro-in", formatPercentage(g_in, true));
+            set("h-dir-gro", g_in > g_as ? "↑" : (g_in < g_as ? "↓" : "="));
+            set("h-mar-as", formatPercentage(m_as)); set("h-mar-in", formatPercentage(m_in));
+            set("h-dir-mar", m_in > m_as ? "↑" : (m_in < m_as ? "↓" : "="));
+            set("h-roe-as", formatPercentage(roe_as)); set("h-roe-in", formatPercentage(roe_in));
+            set("h-dir-roe", roe_in > roe_as ? "↑" : (roe_in < roe_as ? "↓" : "="));
+            set("h-ato-as", formatRatio(ato_as)); set("h-ato-in", formatRatio(ato_in));
+            set("h-dir-ato", ato_in > ato_as ? "↑" : (ato_in < ato_as ? "↓" : "="));
+            set("h-eps-as", formatMonetary(eps_as)); set("h-eps-in", formatMonetary(eps_in));
+            set("h-dir-eps", eps_in > eps_as ? "↑" : (eps_in < eps_as ? "↓" : "="));
+
+            set("h1-gro", formatPercentage(g_in, true));
+            set("h1-mar", formatPercentage(m_in));
+            set("h1-ato", formatRatio(ato_in));
+            set("h1-eps", formatMonetary(eps_in));
+
+            // Section I updates
+            if (indY1Rev > asY1Rev) {
+               set("i-sig-1", "Sharp jump in revenue vs AS");
+               set("i-tech-1", "Over-time contracts recognized using cost-to-cost model vs AS zero rev.");
+            } else if (indY1Rev < asY1Rev) {
+               set("i-sig-1", "Drop in revenue vs AS");
+               set("i-tech-1", "Over-time constraints slowing down recognition compared to AS.");
+            } else {
+               set("i-sig-1", "Revenue equal in transition year vs AS");
+               set("i-tech-1", "No major shift in timing.");
+            }
+
+            // Section J updates
+            set("j-ex-gro", "Rep. " + formatPercentage(g_in, true) + " vs Norm. " + formatPercentage(g_as, true));
+            set("j-ex-mar", "Rep. " + formatPercentage(m_in) + " vs Norm. " + formatPercentage(m_as));
+            set("j-ex-roe", "Rep. " + formatPercentage(roe_in) + " vs Norm. " + formatPercentage(roe_as));
+            
+            let baseEps = (bEbit * 0.75) / shr;
+            let epsGrAs = baseEps ? ((eps_as - baseEps) / baseEps) * 100 : 0;
+            let epsGrIn = baseEps ? ((eps_in - baseEps) / baseEps) * 100 : 0;
+            set("j-ex-eps", "EPS " + formatPercentage(epsGrIn, true) + " vs " + formatPercentage(epsGrAs, true));
+
+            // Section K (Analyst concerns) updates
+            set("k-ans-1", "Largely timing: same contracts, recognized over time now. Growth moved from " + formatPercentage(g_as) + " to " + formatPercentage(g_in) + ".");
+            set("k-ans-2", "Lifetime margins unchanged; only period allocation changed. Margin moved from " + formatPercentage(m_as) + " to " + formatPercentage(m_in) + ".");
+            set("n-dyn-growth", formatPercentage(g_in, true));
+
+          } catch (err) {
+            console.error("Error in recalculateAll:", err);
+          }
+        };
+
+        // Cross links
+        I.costInc.addEventListener("input", () => {
+          const c = parseFloat(I.costInc.value) || 0;
+          const tot = parseFloat(I.totCost.value) || 0;
+          if (tot > 0) I.progPct.value = ((c / tot) * 100).toFixed(1);
+          window.recalculateAll();
+        });
+
+        I.progPct.addEventListener("input", () => {
+          const p = parseFloat(I.progPct.value) || 0;
+          const tot = parseFloat(I.totCost.value) || 0;
+          I.costInc.value = ((p / 100) * tot).toFixed(0);
+          window.recalculateAll();
+        });
+
+        // Other listeners
+        Object.values(I).forEach(el => {
+          if (el && el !== I.costInc && el !== I.progPct) {
+            el.addEventListener("input", window.recalculateAll);
+            el.addEventListener("change", window.recalculateAll);
+          }
+        });
+
+        document.getElementById("reset-btn")?.addEventListener("click", () => {
+          I.price.value = 150; I.advPct.value = 30; I.shipPct.value = 40; I.accPct.value = 30;
+          I.dur.value = 18; I.totCost.value = 120; I.costInc.value = 72; I.progPct.value = 60;
+          I.bRev.value = 400; I.bEbit.value = 40; I.pRev.value = 400; I.eq.value = 200;
+          I.ass.value = 500; I.shr.value = 10;
+          window.recalculateAll();
+          I.price.dispatchEvent(new Event("input", { bubbles: true }));
+        });
+
+        // Run once on load
+        window.recalculateAll();
       });
     </script>
 

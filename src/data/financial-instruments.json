@@ -1,0 +1,637 @@
+{
+  "title": "Financial Instruments",
+  "description": "Premium Analysis Guide: AS vs Ind AS 109 vs IFRS 9 vs US GAAP ASC\n            815/326",
+  "sections": [
+    {
+      "sectionTitle": "SECTION A: Core Technical Comparison Table",
+      "headers": [
+        "Parameter",
+        "AS (Old Indian GAAP)",
+        "Ind AS",
+        "IFRS",
+        "US GAAP",
+        "Logic shift"
+      ],
+      "tableData": [
+        [
+          "Core principle",
+          "Financial instruments are less comprehensively covered; classification and measurement are simpler and less rule-rich.",
+          "Financial instruments are based on contractual rights and obligations, with classification driven by business model and cash flow characteristics.",
+          "Same as Ind AS.",
+          "Financial instruments are covered by detailed recognition, measurement, and disclosure guidance.",
+          "From simplicity to principle-based, risk-sensitive accounting."
+        ],
+        [
+          "Definition",
+          "Includes instruments creating financial asset, liability, or equity relationships.",
+          "Same broad concept as IFRS.",
+          "A contract that gives rise to a financial asset of one entity and a financial liability or equity instrument of another.",
+          "Same general concept, but applied through US GAAP codification.",
+          "Unified definition across new standards."
+        ],
+        [
+          "Recognition",
+          "Often more limited and practice-driven.",
+          "Recognize when the entity becomes party to the contractual provisions.",
+          "Same as Ind AS.",
+          "Recognize when control/rights and obligations arise under applicable guidance.",
+          "Earlier and more consistent recognition."
+        ],
+        [
+          "Initial measurement",
+          "Usually at cost or fair value depending on guidance.",
+          "Generally fair value + transaction costs (except FVPL items).",
+          "Same as Ind AS.",
+          "Generally fair value + transaction costs (except for trading items).",
+          "Fair value becomes the starting point."
+        ],
+        [
+          "Asset Classification",
+          "Less formal.",
+          "Amortised cost, FVOCI, or FVTPL depending on business model and SPPI test.",
+          "Same as Ind AS.",
+          "Category-based model (e.g., HTM, trading, AFS) - different buckets from IFRS.",
+          "Business model + cash flow characteristics drive classification."
+        ],
+        [
+          "Liability Classification",
+          "Simplified.",
+          "Amortised cost, except liabilities at FVTPL.",
+          "Same as Ind AS.",
+          "Broadly similar intent, but detailed rules and presentation differ.",
+          "Limited FV option for liabilities."
+        ],
+        [
+          "Derivatives",
+          "Usually less systematically addressed.",
+          "Generally measured at fair value through P&L unless hedge accounting applies.",
+          "Same as Ind AS.",
+          "Generally measured at fair value through earnings, with hedge accounting under ASC 815.",
+          "Derivatives always on balance sheet at fair value."
+        ],
+        [
+          "Impairment model",
+          "Limited or less codified; often incurred loss.",
+          "Expected credit loss (ECL) model for applicable assets and loan commitments.",
+          "Same as Ind AS.",
+          "Expected credit loss model (CECL under ASC 326) - different mechanics.",
+          "Forward-looking ECL replaces incurred loss."
+        ],
+        [
+          "Derecognition",
+          "Less detailed.",
+          "Derecognize when contractual cash flow rights expire or are transferred and risks/ rewards are considered.",
+          "Same as Ind AS.",
+          "Similar concept, but detailed tests differ.",
+          "More rigorous transfer analysis."
+        ],
+        [
+          "Hedge accounting",
+          "Usually less advanced.",
+          "Formal hedge accounting model with qualifying criteria and documentation (IFRS 9).",
+          "Same as Ind AS.",
+          "Hedge accounting exists but under different rules (ASC 815) with more bright lines.",
+          "Economic hedging can reduce P&L volatility if documented."
+        ],
+        [
+          "Offsetting",
+          "Less developed.",
+          "Offset only when legally enforceable right and intention to settle net exist.",
+          "Same as Ind AS.",
+          "Similar principle, but detailed requirements differ.",
+          "Strict netting criteria."
+        ],
+        [
+          "Disclosures",
+          "Limited compared with newer regimes.",
+          "Extensive disclosures under Ind AS 107.",
+          "Same as Ind AS (IFRS 7).",
+          "Extensive disclosures under ASC 820, 825, etc.",
+          "Transparency vastly increased."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION C: Side-by-Side Treatment",
+      "headers": [
+        "AS Treatment (Indian GAAP)",
+        "Ind AS 109",
+        "IFRS 9",
+        "US GAAP (ASC 815, 326)"
+      ],
+      "tableData": [
+        [
+          "Bond: Recognised at 100 Cr. Interest expense accrued at 8% = 8 Cr per year. No fair value adjustment. Trade receivable: Recognised at 50 Cr. No ECL provision - only actual write-offs when known. Interest rate swap: Not recognised on balance sheet. No fair value change in P&L. Year 1 P&L: Interest expense 8 Cr. No derivative loss. No credit loss expense. Total financial expense = 8 Cr. Year 1 Balance Sheet: Bond liability 100 Cr. Receivable 50 Cr. No derivative asset/liability.",
+          "Bond: Amortised cost - 100 Cr principal, interest expense = 8 Cr. Trade receivable: Amortised cost with ECL. Expected credit loss allowance = 2% × 50 Cr = 1 Cr. Net receivable = 49 Cr. Interest rate swap: Recognised at FVTPL. Fair value loss 2 Cr recognised in P&L. Swap liability of 2 Cr on BS. Year 1 P&L: Interest 8 Cr + derivative loss 2 Cr + credit loss expense 1 Cr = 11 Cr total financial expense.",
+          "Bond: Amortised cost - 100 Cr principal, interest expense = 8 Cr. Trade receivable: Amortised cost with ECL. Expected credit loss allowance = 2% × 50 Cr = 1 Cr. Net receivable = 49 Cr. Interest rate swap: Recognised at FVTPL. Fair value loss 2 Cr recognised in P&L. Swap liability of 2 Cr on BS. Year 1 P&L: Interest 8 Cr + derivative loss 2 Cr + credit loss expense 1 Cr = 11 Cr total financial expense.",
+          "Bond: Amortisation cost (8 Cr interest). Trade receivable: CECL allowance of 1 Cr. Interest rate swap: FVTPL with fair value loss of 2 Cr through earnings. Year 1 P&L: Total financial expense matches Ind AS/IFRS: 11 Cr."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION D: Side-by-Side Impact Table (Year 1)",
+      "headers": [
+        "Framework",
+        "Debt interest (P&L)",
+        "Derivative loss (P&L)",
+        "Credit loss (P&L)",
+        "Total expense (P&L)",
+        "Derivative liab (BS)",
+        "Receivable net (BS)"
+      ],
+      "tableData": [
+        [
+          "AS",
+          "8.00 Cr",
+          "Nil",
+          "Nil",
+          "8.00 Cr",
+          "Nil",
+          "50.00 Cr"
+        ],
+        [
+          "Ind AS 109",
+          "8.00 Cr",
+          "2.00 Cr",
+          "1.00 Cr",
+          "11.00 Cr",
+          "2.00 Cr",
+          "49.00 Cr"
+        ],
+        [
+          "IFRS 9",
+          "8.00 Cr",
+          "2.00 Cr",
+          "1.00 Cr",
+          "11.00 Cr",
+          "2.00 Cr",
+          "49.00 Cr"
+        ],
+        [
+          "US GAAP",
+          "8.00 Cr",
+          "2.00 Cr",
+          "1.00 Cr",
+          "11.00 Cr",
+          "2.00 Cr",
+          "49.00 Cr"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION E: P&L Impact - Year 1",
+      "headers": [
+        "Line item",
+        "AS",
+        "Ind AS 109",
+        "IFRS 9",
+        "US GAAP"
+      ],
+      "tableData": [
+        [
+          "Base Revenue",
+          "200.00 Cr",
+          "200.00 Cr",
+          "200.00 Cr",
+          "200.00 Cr"
+        ],
+        [
+          "Opex (excl. financial items)",
+          "150.00 Cr",
+          "150.00 Cr",
+          "150.00 Cr",
+          "150.00 Cr"
+        ],
+        [
+          "Interest expense (bond)",
+          "-8.00 Cr",
+          "-8.00 Cr",
+          "-8.00 Cr",
+          "-8.00 Cr"
+        ],
+        [
+          "Derivative FV loss",
+          "Nil",
+          "-2.00 Cr",
+          "-2.00 Cr",
+          "-2.00 Cr"
+        ],
+        [
+          "Credit loss expense (ECL)",
+          "Nil",
+          "-1.00 Cr",
+          "-1.00 Cr",
+          "-1.00 Cr"
+        ],
+        [
+          "PBT",
+          "42.00 Cr",
+          "39.00 Cr",
+          "39.00 Cr",
+          "39.00 Cr"
+        ],
+        [
+          "Tax @ 25%",
+          "-10.50 Cr",
+          "-9.75 Cr",
+          "-9.75 Cr",
+          "-9.75 Cr"
+        ],
+        [
+          "PAT",
+          "31.50 Cr",
+          "29.25 Cr",
+          "29.25 Cr",
+          "29.25 Cr"
+        ],
+        [
+          "EPS (10 Cr shares)",
+          "3.15",
+          "2.93",
+          "2.93",
+          "2.93"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION F: Balance Sheet Impact - Year 1",
+      "headers": [
+        "Item",
+        "AS",
+        "Ind AS / IFRS",
+        "US GAAP"
+      ],
+      "tableData": [
+        [
+          "Trade receivable (gross)",
+          "50.00 Cr",
+          "50.00 Cr",
+          "50.00 Cr"
+        ],
+        [
+          "Less: ECL allowance",
+          "Nil",
+          "1.00 Cr",
+          "1.00 Cr"
+        ],
+        [
+          "Trade receivable (net)",
+          "50.00 Cr",
+          "49.00 Cr",
+          "49.00 Cr"
+        ],
+        [
+          "Derivative asset/(liability)",
+          "Nil (Hidden)",
+          "(2.00 Cr)",
+          "(2.00 Cr)"
+        ],
+        [
+          "Bond liability",
+          "100.00 Cr",
+          "100.00 Cr",
+          "100.00 Cr"
+        ],
+        [
+          "Total assets (simplified)",
+          "Higher",
+          "Lower",
+          "Lower"
+        ],
+        [
+          "Total liabilities",
+          "Lower",
+          "Higher",
+          "Higher"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION G: Cash Flow Impact (Year 1)",
+      "headers": [
+        "Item",
+        "AS (Old)",
+        "Ind AS / IFRS",
+        "US GAAP",
+        "Interpretation"
+      ],
+      "tableData": [
+        [
+          "Operating Cash Flow (CFO)",
+          "",
+          "",
+          "",
+          "Assuming Ind/IFRS policy choice to classify interest paid as financing"
+        ],
+        [
+          "Financing Cash Flow (CFF)",
+          "",
+          "",
+          "",
+          "Interest paid shifted to financing under Ind AS/IFRS policy"
+        ],
+        [
+          "Total Net Cash Flow",
+          "",
+          "",
+          "",
+          "Total cash drain is identical across all frameworks"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION H: Ratio Impact",
+      "headers": [
+        "Ratio",
+        "AS",
+        "Ind AS / IFRS",
+        "US GAAP",
+        "Direction"
+      ],
+      "tableData": [
+        [
+          "Debt / Equity",
+          "0.76",
+          "0.79",
+          "0.79",
+          "↑ (higher leverage)"
+        ],
+        [
+          "Interest coverage",
+          "6.25x",
+          "5.88x",
+          "5.88x",
+          "↓ (weaker coverage)"
+        ],
+        [
+          "ROA",
+          "12.6%",
+          "11.7%",
+          "11.7%",
+          "↓"
+        ],
+        [
+          "ROE",
+          "24.0%",
+          "22.6%",
+          "22.6%",
+          "↓"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION I: Earnings Quality - Signals Table",
+      "headers": [
+        "Signal observed",
+        "What it means technically",
+        "Analyst interpretation",
+        "Action"
+      ],
+      "tableData": [
+        [
+          "Derivative gains/losses swing sharply",
+          "Fair value changes flow through P&L (no hedge accounting)",
+          "Earnings are sensitive to market rates",
+          "Separate operating results from market remeasurement"
+        ],
+        [
+          "Credit loss allowance appears",
+          "Forward-looking ECL/CECL recognises expected defaults",
+          "Counterparty risk is now explicit",
+          "Review ageing, macro assumptions, and concentration"
+        ],
+        [
+          "No derivative on balance sheet (AS)",
+          "Off-BS risk - not visible",
+          "Leverage and risk understated",
+          "Reconstruct derivative exposure from notes"
+        ],
+        [
+          "Interest expense stable",
+          "Bond at amortised cost - no fair value volatility",
+          "Low risk from own debt",
+          "Acceptable; focus on derivative risk"
+        ],
+        [
+          "Frequent reclassification of instruments",
+          "Management may be shaping presentation",
+          "Potential earnings management",
+          "Inspect policy choices and business model"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION J: Trend Distortion Matrix",
+      "headers": [
+        "Metric",
+        "Distortion type",
+        "Duration",
+        "Correction method",
+        "Example"
+      ],
+      "tableData": [
+        [
+          "Profit",
+          "Fair value volatility",
+          "Ongoing",
+          "Normalise for market movements",
+          "Swap loss 2 Cr not core operating"
+        ],
+        [
+          "Equity",
+          "OCI / ECL effects",
+          "Medium-term",
+          "Include OCI in total return",
+          "ECL reduces retained earnings"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION K: Ratio Interpretation Guide",
+      "headers": [
+        "Ratio",
+        "Reported value (Ind AS)",
+        "What analyst should do",
+        "Correct interpretation"
+      ],
+      "tableData": [
+        [
+          "Debt/Equity",
+          "0.79",
+          "Include derivative liabilities and ECL allowances",
+          "Leverage is more truthful, not necessarily worse"
+        ],
+        [
+          "Interest coverage",
+          "5.88x",
+          "Separate derivative fair value changes from core interest",
+          "Real coverage may be higher if swap is economic hedge"
+        ],
+        [
+          "ROA",
+          "11.7%",
+          "Add back ECL and derivative losses to profit, adjust assets",
+          "Operating returns are higher than reported"
+        ],
+        [
+          "ROE",
+          "22.6%",
+          "Compare on adjusted earnings (exclude non-operating FV changes)",
+          "Volatility reflects accounting, not business deterioration"
+        ],
+        [
+          "EPS",
+          "2.93",
+          "Strip out non-operating fair value effects",
+          "Underlying EPS closer to AS but with credit cost"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION L: Analyst Concerns & Answers",
+      "headers": [
+        "Analyst question",
+        "Concern",
+        "Answer",
+        "Evidence"
+      ],
+      "tableData": [
+        [
+          "Did the company become riskier?",
+          "Fear of increased leverage",
+          "No, risk was already there (derivative, credit). Now it's visible",
+          "Swap liability 2 Cr and ECL allowance recognised"
+        ],
+        [
+          "Why is PAT lower under new standards?",
+          "Earnings quality doubt",
+          "Because derivative losses and expected credit losses are now expensed, not hidden",
+          "11 Cr total expense vs 8 Cr under AS"
+        ],
+        [
+          "Are IFRS and US GAAP comparable for derivatives?",
+          "Global comparability",
+          "Broadly yes for fair value, but hedge accounting mechanics differ",
+          "Both recognise 2 Cr loss; US GAAP has more bright lines"
+        ],
+        [
+          "Is the swap liability equal to debt?",
+          "Covenant worries",
+          "Economically similar to a financing obligation but not contractually debt",
+          "Fair value of derivative is 2 Cr liability"
+        ],
+        [
+          "What matters most for valuation?",
+          "Need right metric",
+          "Normalise earnings by removing market-driven derivative P&L, add ECL to receivables",
+          "Use adjusted EBIT and adjusted debt"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION M: Investor Perception Analysis",
+      "headers": [
+        "Investor Type",
+        "What they see",
+        "Likely reaction",
+        "Sophisticated response"
+      ],
+      "tableData": [
+        [
+          "Retail",
+          "Lower PAT (29.25 Cr vs 31.5 Cr)",
+          "Negative - think performance worsened",
+          "Recognise that derivative loss and ECL are non-cash or expected, not realised"
+        ],
+        [
+          "Value",
+          "Higher liabilities (102 Cr) and lower ROE",
+          "Cautious - perceive higher risk",
+          "Rebuild ROIC with adjusted debt and normalised earnings"
+        ],
+        [
+          "Growth",
+          "Better transparency of derivative and credit risk",
+          "Mixed - likes disclosure but dislikes volatility",
+          "Focus on hedge strategy and credit quality"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION N: Reporting Signals Decoder",
+      "headers": [
+        "Management Action",
+        "Signal",
+        "What It Really Means",
+        "Your Move"
+      ],
+      "tableData": [
+        [
+          "Emphasises \"stable interest expense\" after adoption",
+          "Optics",
+          "Bond at amortised cost hides no volatility; derivative volatility may be elsewhere",
+          "Check derivative P&L separately"
+        ],
+        [
+          "Avoids disclosing ECL assumptions",
+          "Opacity",
+          "May be hiding aggressive credit loss estimates",
+          "Request ageing and forward-looking assumptions"
+        ],
+        [
+          "Explains swap fair value loss in detail",
+          "Governance",
+          "Management understands market risk and communicates it",
+          "Positive sign"
+        ],
+        [
+          "Presents adjusted earnings excluding derivative swings",
+          "Transparency",
+          "Wants to show core operating performance",
+          "Accept but verify adjustments"
+        ],
+        [
+          "Frequent redesignation of instruments (e.g., FVOCI vs FVTPL)",
+          "Judgment risk",
+          "Possibly managing P&L volatility",
+          "Review business model rationale each period"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION P: Red Flags vs Green Flags (Visual Indicator Matrix)",
+      "headers": [
+        "Scenario",
+        "Flag",
+        "Action"
+      ],
+      "tableData": [
+        [
+          "Large derivative liabilities with weak disclosure",
+          "🔴RED",
+          "Assume speculative activity, discount multiple."
+        ],
+        [
+          "Rising ECL allowance but stable macro",
+          "🔴RED",
+          "Inspect underwriting standards immediately."
+        ],
+        [
+          "Derivative liability rising faster than notional",
+          "🔴RED",
+          "Request scenario stress test on margin calls."
+        ],
+        [
+          "Clear ECL methodology and sensitivity analysis",
+          "🟢GREEN",
+          "Rely on reported figures for true economic cost."
+        ],
+        [
+          "Index-linked or inflation-linked derivatives clearly explained",
+          "🟢GREEN",
+          "Treat as genuine prudent hedging rather than speculation."
+        ]
+      ]
+    }
+  ]
+}

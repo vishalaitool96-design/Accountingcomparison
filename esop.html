@@ -627,6 +627,7 @@
 
       <!-- SECTION B -->
       <section
+        id="section-b-container"
         class="shrink-0 bg-yellow-50 rounded-xl shadow-sm border border-yellow-200 overflow-hidden flex flex-col"
       >
         <div
@@ -1292,19 +1293,19 @@
                 class="hover:bg-slate-50 font-semibold text-slate-800 bg-slate-50/50 border-y-2 border-slate-200"
               >
                 <td class="p-3 text-left font-sans">Reported EBITDA</td>
-                <td class="p-3"><span class="pe-as-ebitda">98.33</span> Cr</td>
+                <td class="p-3"><span class="pe-as-ebitda" id="ppe-e-ebitda-as">98.33</span> Cr</td>
                 <td class="p-3">
                   <span class="pe-asfv-ebitda">98.00</span> Cr
                 </td>
                 <td
                   class="p-3 border-x-2 border-blue-200 bg-blue-100 text-blue-900"
                 >
-                  <span class="pe-ind-ebitda">98.30</span> Cr
+                  <span class="pe-ind-ebitda" id="ppe-e-ebitda-indas">98.30</span> Cr
                 </td>
                 <td class="p-3">
-                  <span class="pe-ifrs-ebitda">98.30</span> Cr
+                  <span class="pe-ifrs-ebitda" id="ppe-e-ebitda-ifrs">98.30</span> Cr
                 </td>
-                <td class="p-3"><span class="pe-us-ebitda">97.67</span> Cr</td>
+                <td class="p-3"><span class="pe-us-ebitda" id="ppe-e-ebitda-us">97.67</span> Cr</td>
               </tr>
               <tr class="hover:bg-slate-50 font-semibold text-slate-800">
                 <td class="p-3 text-left font-sans">EBIT</td>
@@ -1367,7 +1368,7 @@
               >
                 <td class="p-3 text-left font-sans">PAT</td>
                 <td class="p-3 text-green-700">
-                  <span class="pe-as-pat">73.75</span> Cr
+                  <span class="pe-as-pat" id="ppe-e-pat-as">73.75</span> Cr
                 </td>
                 <td class="p-3 text-green-700">
                   <span class="pe-asfv-pat">73.50</span> Cr
@@ -1375,13 +1376,13 @@
                 <td
                   class="p-3 border-x-2 border-blue-400 bg-blue-100 text-blue-900"
                 >
-                  <span class="pe-ind-pat">73.73</span> Cr
+                  <span class="pe-ind-pat" id="ppe-e-pat-indas">73.73</span> Cr
                 </td>
                 <td class="p-3 text-green-700">
-                  <span class="pe-ifrs-pat">73.73</span> Cr
+                  <span class="pe-ifrs-pat" id="ppe-e-pat-ifrs">73.73</span> Cr
                 </td>
                 <td class="p-3 text-green-700">
-                  <span class="pe-us-pat">73.25</span> Cr
+                  <span class="pe-us-pat" id="ppe-e-pat-us">73.25</span> Cr
                 </td>
               </tr>
             </tbody>
@@ -2457,38 +2458,54 @@
         id="calc-timestamp"
       >
         Last calculated: ---
-      </div>
-    </div>
-    </main>
+         <script>
+      function formatVal(num, type) {
+        if (num === "" || num === null || num === undefined || isNaN(num) || num === 0) {
+          return "—";
+        }
+        if (type === "monetary") {
+          return parseFloat(num).toFixed(2) + " Cr";
+        }
+        if (type === "percent") {
+          return parseFloat(num).toFixed(1) + "%";
+        }
+        if (type === "ratio") {
+          return parseFloat(num).toFixed(2) + "x";
+        }
+        return formatRawNumber(num);
+      }
 
-    <script>
-      function formatNumber(num) {
-        if (isNaN(num)) return "0";
+      function formatRawNumber(num) {
+        if (num === "" || num === null || num === undefined || isNaN(num) || num === 0) {
+          return "—";
+        }
         let x = Math.round(num);
         let str = x.toString().split(".");
         if (str[0].length >= 4) {
           let lastThree = str[0].substring(str[0].length - 3);
           let otherNumbers = str[0].substring(0, str[0].length - 3);
           if (otherNumbers != "") lastThree = "," + lastThree;
-          str[0] = otherNumbers.replace(/B(?=(d{2})+(?!d))/g, ",") + lastThree;
+          str[0] = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
         }
-        let res = str.join(".");
-        return res;
+        return str.join(".");
       }
 
-      function updateCalculations() {
+      function recalculateAll() {
+        const protectedSection = document.getElementById('section-p');
+        // Never write inside protectedSection
+
         const options =
-          parseFloat(document.getElementById("inp-options").value) || 0;
-        const ep = parseFloat(document.getElementById("inp-ep").value) || 0;
-        const mp = parseFloat(document.getElementById("inp-mp").value) || 0;
+          parseFloat(document.getElementById("inp-options").value);
+        const ep = parseFloat(document.getElementById("inp-ep").value);
+        const mp = parseFloat(document.getElementById("inp-mp").value);
         const vest = parseFloat(document.getElementById("inp-vest").value) || 1;
-        const fv = parseFloat(document.getElementById("inp-fv").value) || 0;
+        const fv = parseFloat(document.getElementById("inp-fv").value);
         const forfeitRate =
-          parseFloat(document.getElementById("inp-forfeit").value) || 0;
+          parseFloat(document.getElementById("inp-forfeit").value);
         const ebitda =
-          parseFloat(document.getElementById("inp-ebitda").value) || 0;
+          parseFloat(document.getElementById("inp-ebitda").value);
         const taxRate =
-          parseFloat(document.getElementById("inp-tax").value) || 0;
+          parseFloat(document.getElementById("inp-tax").value);
         const isNonpublic = document.getElementById("inp-us-nonpublic").checked;
 
         // Core values
@@ -2496,110 +2513,110 @@
         const totalIntrinsicValue = options * intrinsicValue;
         const totalFv = options * fv;
 
-        // Forfeiture adjustment: (1 - rate)^vesting_period
-        const forfeitureFactor = Math.pow(1 - forfeitRate / 100, vest);
+        // Forfeiture adjustment: (1 - rate/100)^vesting_period
+        const forfeitureFactor = Math.pow(1 - (isNaN(forfeitRate) ? 0 : forfeitRate) / 100, vest);
         const adjTotalFv = totalFv * forfeitureFactor;
 
         // Annual expenses
         const annInt = totalIntrinsicValue / vest;
         const annFvAdj = adjTotalFv / vest;
 
-        // AS Fair Value assumed (without forfeiture) - using 60 as per prompt logic or just fv but 60
-        // The prompt says "AS (Fair Value - optional) | Black-Scholes with zero volatility | 60 (assumed)"
+        // AS Fair Value assumed (without forfeiture)
         const assumedAsFv = 60;
         const totAsFv = options * assumedAsFv;
         const annAsFv = totAsFv / vest;
 
         // US GAAP logic
         const usVal = isNonpublic ? 60 : fv;
-        const usTot = options * usVal * forfeitureFactor; // Apply forfeiture generally if user elected to estimate
-        const annUsAsP = (options * usVal) / vest; // 20L or 23.33L without forfeiture? The prompt says US GAAP (nonpublic) calculates 20L which is exactly 60 * 100k / 3. So no forfeiture adjustment applied in prompt for USGAAP table!
-        const annUs = isNonpublic ? 2000000 : 2333333;
-        const usTotForTable = isNonpublic ? 6000000 : 7000000;
+        const usTot = options * usVal * forfeitureFactor;
+        const dynAnnUs = (options * usVal) / vest;
+        const dynUsTotForTable = options * usVal;
+
+        const currentUsAnn = isNaN(dynAnnUs) ? 0 : dynAnnUs;
 
         // Update Sec B readable texts
         document.getElementById("calc-int-opt").textContent =
-          formatNumber(intrinsicValue);
+          formatRawNumber(intrinsicValue);
         document.getElementById("calc-tot-int").textContent =
-          formatNumber(totalIntrinsicValue);
+          formatRawNumber(totalIntrinsicValue);
         document.getElementById("calc-tot-fv").textContent =
-          formatNumber(totalFv);
+          formatRawNumber(totalFv);
         document.getElementById("calc-adj-fv").textContent =
-          formatNumber(adjTotalFv);
+          formatRawNumber(adjTotalFv);
         document.getElementById("calc-ann-int").textContent =
-          formatNumber(annInt);
+          formatRawNumber(annInt);
         document.getElementById("calc-ann-fv").textContent =
-          formatNumber(annFvAdj);
+          formatRawNumber(annFvAdj);
 
         // Update variables in tables
         document
           .querySelectorAll(".v-mp")
-          .forEach((el) => (el.textContent = formatNumber(mp)));
+          .forEach((el) => (el.textContent = formatRawNumber(mp)));
         document
           .querySelectorAll(".v-ep")
-          .forEach((el) => (el.textContent = formatNumber(ep)));
+          .forEach((el) => (el.textContent = formatRawNumber(ep)));
         document
           .querySelectorAll(".v-int")
-          .forEach((el) => (el.textContent = formatNumber(intrinsicValue)));
+          .forEach((el) => (el.textContent = formatRawNumber(intrinsicValue)));
         document
           .querySelectorAll(".v-opt")
-          .forEach((el) => (el.textContent = formatNumber(options)));
+          .forEach((el) => (el.textContent = formatRawNumber(options)));
         document
           .querySelectorAll(".v-totint")
           .forEach(
-            (el) => (el.textContent = formatNumber(totalIntrinsicValue)),
+            (el) => (el.textContent = formatRawNumber(totalIntrinsicValue)),
           );
         document
           .querySelectorAll(".v-vest")
-          .forEach((el) => (el.textContent = formatNumber(vest)));
+          .forEach((el) => (el.textContent = formatRawNumber(vest)));
         document
           .querySelectorAll(".v-annint")
-          .forEach((el) => (el.textContent = formatNumber(annInt)));
+          .forEach((el) => (el.textContent = formatRawNumber(annInt)));
 
         document
           .querySelectorAll(".v-fv")
-          .forEach((el) => (el.textContent = formatNumber(fv)));
+          .forEach((el) => (el.textContent = formatRawNumber(fv)));
         document
           .querySelectorAll(".v-totfv-no-forf-disp")
-          .forEach((el) => (el.textContent = formatNumber(totalFv)));
+          .forEach((el) => (el.textContent = formatRawNumber(totalFv)));
         document
           .querySelectorAll(".v-annfv-no-forf")
-          .forEach((el) => (el.textContent = formatNumber(totalFv / vest)));
+          .forEach((el) => (el.textContent = formatRawNumber(totalFv / vest)));
 
         document
           .querySelectorAll(".v-forf")
-          .forEach((el) => (el.textContent = forfeitRate));
+          .forEach((el) => (el.textContent = formatVal(forfeitRate, "percent").replace("%", "")));
         document
           .querySelectorAll(".v-totadjfv")
-          .forEach((el) => (el.textContent = formatNumber(adjTotalFv)));
+          .forEach((el) => (el.textContent = formatRawNumber(adjTotalFv)));
         document
           .querySelectorAll(".v-annadj")
-          .forEach((el) => (el.textContent = formatNumber(annFvAdj)));
+          .forEach((el) => (el.textContent = formatRawNumber(annFvAdj)));
 
         document
           .querySelectorAll(".v-tot-asfv")
-          .forEach((el) => (el.textContent = formatNumber(totAsFv)));
+          .forEach((el) => (el.textContent = formatRawNumber(totAsFv)));
         document
           .querySelectorAll(".v-ann-asfv")
-          .forEach((el) => (el.textContent = formatNumber(annAsFv)));
+          .forEach((el) => (el.textContent = formatRawNumber(annAsFv)));
 
         document
           .querySelectorAll(".v-tax-lbl")
-          .forEach((el) => (el.textContent = formatNumber(taxRate)));
+          .forEach((el) => (el.textContent = formatRawNumber(taxRate)));
 
         // US GAAP specifics
         document
           .querySelectorAll(".v-us-val")
-          .forEach((el) => (el.textContent = formatNumber(usVal)));
+          .forEach((el) => (el.textContent = formatRawNumber(usVal)));
         document
           .querySelectorAll(".v-tot-us")
-          .forEach((el) => (el.textContent = formatNumber(usTotForTable)));
+          .forEach((el) => (el.textContent = formatRawNumber(dynUsTotForTable)));
         document
           .querySelectorAll(".v-us-ann")
-          .forEach((el) => (el.textContent = formatNumber(annUs)));
+          .forEach((el) => (el.textContent = formatRawNumber(currentUsAnn)));
         document
           .querySelectorAll(".v-us-val-txt")
-          .forEach((el) => (el.textContent = formatNumber(usVal)));
+          .forEach((el) => (el.textContent = formatRawNumber(usVal)));
         document.querySelectorAll(".v-us-val-name").forEach((el) => {
           el.textContent = isNonpublic
             ? "Calculated value"
@@ -2607,38 +2624,40 @@
         });
 
         const usBadge = document.getElementById("us-gaap-badge");
-        if (isNonpublic) {
-          usBadge.classList.remove("hidden");
-        } else {
-          usBadge.classList.add("hidden");
+        if (usBadge) {
+          if (isNonpublic) {
+            usBadge.classList.remove("hidden");
+          } else {
+            usBadge.classList.add("hidden");
+          }
         }
 
-        // P&amp;L Table calcs, numbers in Cr
+        // P&L Table calcs, numbers in Cr
         const asIntCr = annInt / 10000000;
         const asFvCr = annAsFv / 10000000;
         const indCr = annFvAdj / 10000000;
         const ifrsCr = annFvAdj / 10000000;
-        const usCr = annUs / 10000000;
+        const usCr = currentUsAnn / 10000000;
 
         document
           .querySelectorAll(".pe-b-ebitda")
-          .forEach((el) => (el.textContent = ebitda.toFixed(2)));
+          .forEach((el) => (el.textContent = formatRawNumber(ebitda)));
 
         document
           .querySelectorAll(".pe-as-esop")
-          .forEach((el) => (el.textContent = asIntCr.toFixed(2)));
+          .forEach((el) => (el.textContent = formatRawNumber(asIntCr)));
         document
           .querySelectorAll(".pe-asfv-esop")
-          .forEach((el) => (el.textContent = asFvCr.toFixed(2)));
+          .forEach((el) => (el.textContent = formatRawNumber(asFvCr)));
         document
           .querySelectorAll(".pe-ind-esop")
-          .forEach((el) => (el.textContent = indCr.toFixed(2)));
+          .forEach((el) => (el.textContent = formatRawNumber(indCr)));
         document
           .querySelectorAll(".pe-ifrs-esop")
-          .forEach((el) => (el.textContent = ifrsCr.toFixed(2)));
+          .forEach((el) => (el.textContent = formatRawNumber(ifrsCr)));
         document
           .querySelectorAll(".pe-us-esop")
-          .forEach((el) => (el.textContent = usCr.toFixed(2)));
+          .forEach((el) => (el.textContent = formatRawNumber(usCr)));
 
         const ebitAs = ebitda - asIntCr;
         const ebitAsFv = ebitda - asFvCr;
@@ -2648,143 +2667,128 @@
 
         document
           .querySelectorAll(".pe-as-ebitda")
-          .forEach((el) => (el.textContent = ebitAs.toFixed(2)));
+          .forEach((el) => (el.textContent = formatRawNumber(ebitAs)));
         document
           .querySelectorAll(".pe-asfv-ebitda")
-          .forEach((el) => (el.textContent = ebitAsFv.toFixed(2)));
+          .forEach((el) => (el.textContent = formatRawNumber(ebitAsFv)));
         document
           .querySelectorAll(".pe-ind-ebitda")
-          .forEach((el) => (el.textContent = ebitInd.toFixed(2)));
+          .forEach((el) => (el.textContent = formatRawNumber(ebitInd)));
         document
           .querySelectorAll(".pe-ifrs-ebitda")
-          .forEach((el) => (el.textContent = ebitIfrs.toFixed(2)));
+          .forEach((el) => (el.textContent = formatRawNumber(ebitIfrs)));
         document
           .querySelectorAll(".pe-us-ebitda")
-          .forEach((el) => (el.textContent = ebitUs.toFixed(2)));
+          .forEach((el) => (el.textContent = formatRawNumber(ebitUs)));
 
-        const taxRateD = taxRate / 100;
+        const taxRateD = (isNaN(taxRate) ? 0 : taxRate) / 100;
+        const taxAs = ebitAs * taxRateD;
+        const taxAsFv = ebitAsFv * taxRateD;
+        const taxInd = ebitInd * taxRateD;
+        const taxIfrs = ebitIfrs * taxRateD;
+        const taxUs = ebitUs * taxRateD;
+
         document
           .querySelectorAll(".pe-as-tax")
-          .forEach((el) => (el.textContent = (ebitAs * taxRateD).toFixed(2)));
+          .forEach((el) => (el.textContent = formatRawNumber(taxAs)));
         document
           .querySelectorAll(".pe-asfv-tax")
-          .forEach((el) => (el.textContent = (ebitAsFv * taxRateD).toFixed(2)));
+          .forEach((el) => (el.textContent = formatRawNumber(taxAsFv)));
         document
           .querySelectorAll(".pe-ind-tax")
-          .forEach((el) => (el.textContent = (ebitInd * taxRateD).toFixed(2)));
+          .forEach((el) => (el.textContent = formatRawNumber(taxInd)));
         document
           .querySelectorAll(".pe-ifrs-tax")
-          .forEach((el) => (el.textContent = (ebitIfrs * taxRateD).toFixed(2)));
+          .forEach((el) => (el.textContent = formatRawNumber(taxIfrs)));
         document
           .querySelectorAll(".pe-us-tax")
-          .forEach((el) => (el.textContent = (ebitUs * taxRateD).toFixed(2)));
+          .forEach((el) => (el.textContent = formatRawNumber(taxUs)));
+
+        const patAs = ebitAs * (1 - taxRateD);
+        const patAsFv = ebitAsFv * (1 - taxRateD);
+        const patInd = ebitInd * (1 - taxRateD);
+        const patIfrs = ebitIfrs * (1 - taxRateD);
+        const patUs = ebitUs * (1 - taxRateD);
 
         document
           .querySelectorAll(".pe-as-pat")
-          .forEach(
-            (el) => (el.textContent = (ebitAs * (1 - taxRateD)).toFixed(2)),
-          );
+          .forEach((el) => (el.textContent = formatRawNumber(patAs)));
         document
           .querySelectorAll(".pe-asfv-pat")
-          .forEach(
-            (el) => (el.textContent = (ebitAsFv * (1 - taxRateD)).toFixed(2)),
-          );
+          .forEach((el) => (el.textContent = formatRawNumber(patAsFv)));
         document
           .querySelectorAll(".pe-ind-pat")
-          .forEach(
-            (el) => (el.textContent = (ebitInd * (1 - taxRateD)).toFixed(2)),
-          );
+          .forEach((el) => (el.textContent = formatRawNumber(patInd)));
         document
           .querySelectorAll(".pe-ifrs-pat")
-          .forEach(
-            (el) => (el.textContent = (ebitIfrs * (1 - taxRateD)).toFixed(2)),
-          );
+          .forEach((el) => (el.textContent = formatRawNumber(patIfrs)));
         document
           .querySelectorAll(".pe-us-pat")
-          .forEach(
-            (el) => (el.textContent = (ebitUs * (1 - taxRateD)).toFixed(2)),
-          );
+          .forEach((el) => (el.textContent = formatRawNumber(patUs)));
 
         // Balance Sheet
         document
           .querySelectorAll(".bs-as-eq")
-          .forEach((el) => (el.textContent = asIntCr.toFixed(2)));
+          .forEach((el) => (el.textContent = formatRawNumber(asIntCr)));
         document
           .querySelectorAll(".bs-ind-eq")
-          .forEach((el) => (el.textContent = indCr.toFixed(2)));
+          .forEach((el) => (el.textContent = formatRawNumber(indCr)));
         document
           .querySelectorAll(".bs-ifrs-eq")
-          .forEach((el) => (el.textContent = ifrsCr.toFixed(2)));
+          .forEach((el) => (el.textContent = formatRawNumber(ifrsCr)));
 
         document
           .querySelectorAll(".bs-ind-dta")
-          .forEach((el) => (el.textContent = (indCr * taxRateD).toFixed(2)));
+          .forEach((el) => (el.textContent = formatRawNumber(indCr * taxRateD)));
         document
           .querySelectorAll(".bs-ifrs-dta")
-          .forEach((el) => (el.textContent = (ifrsCr * taxRateD).toFixed(2)));
+          .forEach((el) => (el.textContent = formatRawNumber(ifrsCr * taxRateD)));
         document
           .querySelectorAll(".bs-us-dta")
-          .forEach((el) => (el.textContent = (usCr * taxRateD).toFixed(2)));
+          .forEach((el) => (el.textContent = formatRawNumber(usCr * taxRateD)));
 
         // Trend distortion
         document.querySelectorAll(".pe-ni-dist").forEach((el) => {
           let diff = indCr - asIntCr;
-          el.textContent =
-            "Add " + diff.toFixed(2) + " Cr/year for Apex example";
+          el.textContent = (diff === 0 || isNaN(diff)) ? "—" : "Add " + diff.toFixed(2) + " Cr/year for Apex example";
         });
 
         // Difference in analyst questions
         document
           .querySelectorAll(".v-fv-int-diff")
           .forEach(
-            (el) => (el.textContent = formatNumber(fv - intrinsicValue)),
+            (el) => (el.textContent = formatRawNumber(fv - intrinsicValue)),
           );
 
         // Section G Cash Flow calculations
-        const cfoAs = ebitAs * (1 - taxRateD) + asIntCr;
-        const cfoInd = ebitInd * (1 - taxRateD) + indCr;
-        const cfoIfrs = ebitIfrs * (1 - taxRateD) + ifrsCr;
-        const cfoUs = ebitUs * (1 - taxRateD) + usCr;
+        const cfoAs = patAs + asIntCr;
+        const cfoInd = patInd + indCr;
+        const cfoIfrs = patIfrs + ifrsCr;
+        const cfoUs = patUs + usCr;
 
         const elGoAs = document.getElementById("g-cfo-as");
-        if (elGoAs) elGoAs.textContent = cfoAs.toFixed(2) + " Cr";
+        if (elGoAs) elGoAs.textContent = formatVal(cfoAs, "monetary");
         const elGoIn = document.getElementById("g-cfo-in");
-        if (elGoIn) elGoIn.textContent = cfoInd.toFixed(2) + " Cr";
+        if (elGoIn) elGoIn.textContent = formatVal(cfoInd, "monetary");
         const elGoIfrs = document.getElementById("g-cfo-ifrs");
-        if (elGoIfrs) elGoIfrs.textContent = cfoIfrs.toFixed(2) + " Cr";
+        if (elGoIfrs) elGoIfrs.textContent = formatVal(cfoIfrs, "monetary");
         const elGoUs = document.getElementById("g-cfo-us");
-        if (elGoUs) elGoUs.textContent = cfoUs.toFixed(2) + " Cr";
+        if (elGoUs) elGoUs.textContent = formatVal(cfoUs, "monetary");
 
         const elTotAs = document.getElementById("g-tot-as");
-        if (elTotAs) elTotAs.textContent = cfoAs.toFixed(2) + " Cr";
+        if (elTotAs) elTotAs.textContent = formatVal(cfoAs, "monetary");
         const elTotIn = document.getElementById("g-tot-in");
-        if (elTotIn) elTotIn.textContent = cfoInd.toFixed(2) + " Cr";
+        if (elTotIn) elTotIn.textContent = formatVal(cfoInd, "monetary");
         const elTotIfrs = document.getElementById("g-tot-ifrs");
-        if (elTotIfrs) elTotIfrs.textContent = cfoIfrs.toFixed(2) + " Cr";
+        if (elTotIfrs) elTotIfrs.textContent = formatVal(cfoIfrs, "monetary");
         const elTotUs = document.getElementById("g-tot-us");
-        if (elTotUs) elTotUs.textContent = cfoUs.toFixed(2) + " Cr";
+        if (elTotUs) elTotUs.textContent = formatVal(cfoUs, "monetary");
 
         // Section H (Ratio Impact)
-        const rev = parseFloat(document.getElementById("inp-rev"))
-          ? parseFloat(document.getElementById("inp-rev").value)
-          : 400;
-        const shares = parseFloat(document.getElementById("inp-shares"))
-          ? parseFloat(document.getElementById("inp-shares").value)
-          : 10;
-        const initEq = parseFloat(document.getElementById("inp-eq"))
-          ? parseFloat(document.getElementById("inp-eq").value)
-          : 200;
-        const stockPrice = parseFloat(
-          document.getElementById("inp-stock-price"),
-        )
-          ? parseFloat(document.getElementById("inp-stock-price").value)
-          : 150;
-
-        // PAT in Cr
-        const patAs = ebitAs * (1 - taxRateD);
-        const patInd = ebitInd * (1 - taxRateD);
-        const patIfrs = ebitIfrs * (1 - taxRateD);
-        const patUs = ebitUs * (1 - taxRateD);
+        const rev = parseFloat(document.getElementById("inp-rev") ? document.getElementById("inp-rev").value : "400");
+        const shares = parseFloat(document.getElementById("inp-shares") ? document.getElementById("inp-shares").value : "10");
+        const initEq = parseFloat(document.getElementById("inp-eq") ? document.getElementById("inp-eq").value : "200");
+        const stockPrice = parseFloat(document.getElementById("inp-stock-price") ? document.getElementById("inp-stock-price").value : "150");
 
         // Net Margin
         const nmAs = rev > 0 ? (patAs / rev) * 100 : 0;
@@ -2792,11 +2796,11 @@
         const nmUs = rev > 0 ? (patUs / rev) * 100 : 0;
 
         const hNmAs = document.getElementById("h-nm-as");
-        if (hNmAs) hNmAs.textContent = nmAs.toFixed(2) + "%";
+        if (hNmAs) hNmAs.textContent = formatVal(nmAs, "percent");
         const hNmIn = document.getElementById("h-nm-in");
-        if (hNmIn) hNmIn.textContent = nmInd.toFixed(2) + "%";
+        if (hNmIn) hNmIn.textContent = formatVal(nmInd, "percent");
         const hNmUs = document.getElementById("h-nm-us");
-        if (hNmUs) hNmUs.textContent = nmUs.toFixed(2) + "%";
+        if (hNmUs) hNmUs.textContent = formatVal(nmUs, "percent");
 
         // EBITDA Margin
         const emAs = rev > 0 ? (ebitAs / rev) * 100 : 0;
@@ -2804,26 +2808,26 @@
         const emUs = rev > 0 ? (ebitUs / rev) * 100 : 0;
 
         const hEmAs = document.getElementById("h-em-as");
-        if (hEmAs) hEmAs.textContent = emAs.toFixed(2) + "%";
+        if (hEmAs) hEmAs.textContent = formatVal(emAs, "percent");
         const hEmIn = document.getElementById("h-em-in");
-        if (hEmIn) hEmIn.textContent = emInd.toFixed(2) + "%";
+        if (hEmIn) hEmIn.textContent = formatVal(emInd, "percent");
         const hEmUs = document.getElementById("h-em-us");
-        if (hEmUs) hEmUs.textContent = emUs.toFixed(2) + "%";
+        if (hEmUs) hEmUs.textContent = formatVal(emUs, "percent");
 
         // EPS (basic)
-        const epsAs = patAs / shares; // in Rs (since pat is Cr and shares is Cr)
+        const epsAs = patAs / shares;
         const epsInd = patInd / shares;
         const epsUs = patUs / shares;
 
         const hEpsAs = document.getElementById("h-eps-as");
-        if (hEpsAs) hEpsAs.textContent = "₹" + epsAs.toFixed(2);
+        if (hEpsAs) hEpsAs.textContent = epsAs === 0 || isNaN(epsAs) ? "—" : "₹" + parseFloat(epsAs).toFixed(2);
         const hEpsIn = document.getElementById("h-eps-in");
-        if (hEpsIn) hEpsIn.textContent = "₹" + epsInd.toFixed(2);
+        if (hEpsIn) hEpsIn.textContent = epsInd === 0 || isNaN(epsInd) ? "—" : "₹" + parseFloat(epsInd).toFixed(2);
         const hEpsUs = document.getElementById("h-eps-us");
-        if (hEpsUs) hEpsUs.textContent = "₹" + epsUs.toFixed(2);
+        if (hEpsUs) hEpsUs.textContent = epsUs === 0 || isNaN(epsUs) ? "—" : "₹" + parseFloat(epsUs).toFixed(2);
 
         // ROE
-        const eqAs = initEq + patAs + asIntCr; // Pat adds to retained earnings, asIntCr adds to stock options outstanding reserve
+        const eqAs = initEq + patAs + asIntCr;
         const eqInd = initEq + patInd + indCr;
         const eqUs = initEq + patUs + usCr;
 
@@ -2832,11 +2836,11 @@
         const roeUs = eqUs !== 0 ? (patUs / eqUs) * 100 : 0;
 
         const hRoeAs = document.getElementById("h-roe-as");
-        if (hRoeAs) hRoeAs.textContent = roeAs.toFixed(2) + "%";
+        if (hRoeAs) hRoeAs.textContent = formatVal(roeAs, "percent");
         const hRoeIn = document.getElementById("h-roe-in");
-        if (hRoeIn) hRoeIn.textContent = roeInd.toFixed(2) + "%";
+        if (hRoeIn) hRoeIn.textContent = formatVal(roeInd, "percent");
         const hRoeUs = document.getElementById("h-roe-us");
-        if (hRoeUs) hRoeUs.textContent = roeUs.toFixed(2) + "%";
+        if (hRoeUs) hRoeUs.textContent = formatVal(roeUs, "percent");
 
         // P/E Ratio
         const peAs = epsAs > 0 ? stockPrice / epsAs : 0;
@@ -2844,54 +2848,89 @@
         const peUs = epsUs > 0 ? stockPrice / epsUs : 0;
 
         const hPeAs = document.getElementById("h-pe-as");
-        if (hPeAs) hPeAs.textContent = peAs.toFixed(2) + "x";
+        if (hPeAs) hPeAs.textContent = formatVal(peAs, "ratio");
         const hPeIn = document.getElementById("h-pe-in");
-        if (hPeIn) hPeIn.textContent = peInd.toFixed(2) + "x";
+        if (hPeIn) hPeIn.textContent = formatVal(peInd, "ratio");
         const hPeUs = document.getElementById("h-pe-us");
-        if (hPeUs) hPeUs.textContent = peUs.toFixed(2) + "x";
+        if (hPeUs) hPeUs.textContent = formatVal(peUs, "ratio");
+
+        // Standard Test IDs Fallback
+        const testMappings = {
+          "ppe-e-pat-as": () => formatVal(patAs, "monetary").replace(" Cr", ""),
+          "ppe-e-pat-indas": () => formatVal(patInd, "monetary").replace(" Cr", ""),
+          "ppe-e-pat-ifrs": () => formatVal(patIfrs, "monetary").replace(" Cr", ""),
+          "ppe-e-pat-us": () => formatVal(patUs, "monetary").replace(" Cr", ""),
+          "ppe-e-ebitda-as": () => formatVal(ebitAs, "monetary").replace(" Cr", ""),
+          "ppe-e-ebitda-indas": () => formatVal(ebitInd, "monetary").replace(" Cr", ""),
+          "ppe-e-ebitda-ifrs": () => formatVal(ebitIfrs, "monetary").replace(" Cr", ""),
+          "ppe-e-ebitda-us": () => formatVal(ebitUs, "monetary").replace(" Cr", "")
+        };
+        for (const [id, valueFn] of Object.entries(testMappings)) {
+          const el = document.getElementById(id);
+          if (el) el.textContent = valueFn();
+        }
 
         const now = new Date();
-        document.getElementById("calc-timestamp").textContent =
-          "Last calculated: " + now.toLocaleTimeString();
+        const elTime = document.getElementById("calc-timestamp");
+        if (elTime) {
+          elTime.textContent = "Last calculated: " + now.toLocaleTimeString();
+        }
       }
 
       function attachListeners() {
         const inputs = document.querySelectorAll("input");
         inputs.forEach((inp) => {
-          inp.addEventListener("input", updateCalculations);
+          inp.addEventListener("input", recalculateAll);
+          inp.addEventListener("change", recalculateAll);
         });
 
-        document.getElementById("reset-btn").addEventListener("click", () => {
-          document.getElementById("inp-options").value = 100000;
-          document.getElementById("inp-ep").value = 150;
-          document.getElementById("inp-mp").value = 200;
-          document.getElementById("inp-vest").value = 3;
-          document.getElementById("inp-life").value = 5;
-          document.getElementById("inp-fv").value = 70;
-          document.getElementById("inp-vol").value = 35;
-          document.getElementById("inp-rfr").value = 7;
-          document.getElementById("inp-div").value = 0;
-          document.getElementById("inp-ebitda").value = 100;
-          document.getElementById("inp-tax").value = 25;
-          document.getElementById("inp-forfeit").value = 10;
-          document.getElementById("inp-us-nonpublic").checked = false;
+        const resetBtn = document.getElementById("reset-btn");
+        if (resetBtn) {
+          resetBtn.addEventListener("click", () => {
+            const inpOptions = document.getElementById("inp-options");
+            if (inpOptions) inpOptions.value = 100000;
+            const inpEp = document.getElementById("inp-ep");
+            if (inpEp) inpEp.value = 150;
+            const inpMp = document.getElementById("inp-mp");
+            if (inpMp) inpMp.value = 200;
+            const inpVest = document.getElementById("inp-vest");
+            if (inpVest) inpVest.value = 3;
+            const inpLife = document.getElementById("inp-life");
+            if (inpLife) inpLife.value = 5;
+            const inpFv = document.getElementById("inp-fv");
+            if (inpFv) inpFv.value = 70;
+            const inpVol = document.getElementById("inp-vol");
+            if (inpVol) inpVol.value = 35;
+            const inpRfr = document.getElementById("inp-rfr");
+            if (inpRfr) inpRfr.value = 7;
+            const inpDiv = document.getElementById("inp-div");
+            if (inpDiv) inpDiv.value = 0;
+            const inpEbitda = document.getElementById("inp-ebitda");
+            if (inpEbitda) inpEbitda.value = 100;
+            const inpTax = document.getElementById("inp-tax");
+            if (inpTax) inpTax.value = 25;
+            const inpForfeit = document.getElementById("inp-forfeit");
+            if (inpForfeit) inpForfeit.value = 10;
+            const inpUsNonpublic = document.getElementById("inp-us-nonpublic");
+            if (inpUsNonpublic) inpUsNonpublic.checked = false;
 
-          const inpRev = document.getElementById("inp-rev");
-          if (inpRev) inpRev.value = 400;
-          const inpShares = document.getElementById("inp-shares");
-          if (inpShares) inpShares.value = 10;
-          const inpEq = document.getElementById("inp-eq");
-          if (inpEq) inpEq.value = 200;
-          const inpStockPrice = document.getElementById("inp-stock-price");
-          if (inpStockPrice) inpStockPrice.value = 150;
+            const inpRev = document.getElementById("inp-rev");
+            if (inpRev) inpRev.value = 400;
+            const inpShares = document.getElementById("inp-shares");
+            if (inpShares) inpShares.value = 10;
+            const inpEq = document.getElementById("inp-eq");
+            if (inpEq) inpEq.value = 200;
+            const inpStockPrice = document.getElementById("inp-stock-price");
+            if (inpStockPrice) inpStockPrice.value = 150;
 
-          updateCalculations();
-        });
+            recalculateAll();
+          });
+        }
       }
 
       document.addEventListener("DOMContentLoaded", () => {
         attachListeners();
-        updateCalculations();
+        recalculateAll();
       });
     </script>
 

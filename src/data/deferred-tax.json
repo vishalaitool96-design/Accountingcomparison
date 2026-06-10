@@ -1,0 +1,597 @@
+{
+  "title": "Deferred Tax Accounting",
+  "description": "Premium Analysis Guide: AS vs Ind AS 12 vs IFRS 12 vs US GAAP ASC\n            740",
+  "sections": [
+    {
+      "sectionTitle": "SECTION A: Core Technical Comparison Table",
+      "headers": [
+        "Parameter",
+        "AS (Old Indian GAAP)",
+        "Ind AS (Ind AS 12)",
+        "IFRS (IAS 12)",
+        "US GAAP (ASC 740)",
+        "Logic Shift"
+      ],
+      "tableData": [
+        [
+          "Core philosophy",
+          "Income statement approach; deferred tax is an adjunct to tax expense.",
+          "Balance sheet approach; deferred tax = temporary differences between carrying amount and tax base.",
+          "Same balance sheet approach as Ind AS.",
+          "Same balance sheet approach, but with specific exceptions (e.g., outside basis differences).",
+          "From timing of expense recognition to full measurement of future tax consequences of assets/liabilities."
+        ],
+        [
+          "Recognition of deferred tax",
+          "Recognised only for timing differences that reverse in future periods.",
+          "Recognised for all temporary differences (including those from initial recognition exceptions).",
+          "Same as Ind AS.",
+          "Similar, but includes an exception for leveraged leases and certain outside basis differences.",
+          "Broader scope – includes more items like revaluations, business combinations, and ROU assets."
+        ],
+        [
+          "Measurement",
+          "Using enacted tax rates (substantively enacted not always clearly defined).",
+          "Using enacted or substantively enacted tax rates expected to apply when temporary difference reverses.",
+          "Same as Ind AS.",
+          "Uses enacted tax rates (substantively enacted not permitted).",
+          "Ind AS/IFRS allow slightly forward-looking rates; US GAAP is stricter."
+        ],
+        [
+          "Recognition of deferred tax assets (DTAs)",
+          "Recognised only if virtual certainty of future profits (for carry-forward losses).",
+          "Recognised to extent probable that taxable profit available.",
+          "Same as Ind AS.",
+          "Recognised if more likely than not (>50%) that benefit will be realised.",
+          "US GAAP threshold is lower (more likely than not) vs Ind AS/IFRS (probable = higher threshold)."
+        ],
+        [
+          "Re-assessment of DTAs",
+          "Limited re-assessment; not systematically required each period.",
+          "Re-assessed at each reporting date.",
+          "Same as Ind AS.",
+          "Same, with valuation allowance adjustments each period.",
+          "Dynamic adjustment reflects changing profit forecasts."
+        ],
+        [
+          "Tax rate changes",
+          "Effect recognised in P&L in period of change.",
+          "Effect recognised in P&L or OCI depending on where original item was recognised.",
+          "Same as Ind AS.",
+          "Same principle.",
+          "More precise matching of tax effect to underlying transaction."
+        ],
+        [
+          "Business combinations",
+          "Deferred tax on asset/liability differences recognised but not fully integrated.",
+          "Recognise deferred tax on all temporary differences in acquisition accounting; affects goodwill.",
+          "Same as Ind AS.",
+          "Similar, with additional detailed guidance on tax-deductible goodwill.",
+          "Acquisition accounting now reflects true tax position of acquired entity."
+        ],
+        [
+          "Presentation on balance sheet",
+          "Current/non-current classification based on nature of timing difference.",
+          "Always non-current; no offset between different tax jurisdictions.",
+          "Same as Ind AS.",
+          "Can offset current and non-current if legally enforceable right and same jurisdiction.",
+          "Ind AS/IFRS more conservative (no netting across types)."
+        ],
+        [
+          "Intra-period allocation",
+          "Allocated to P&L only; no allocation to OCI or equity.",
+          "Allocated to P&L, OCI, or equity based on where original transaction was recognised.",
+          "Same as Ind AS.",
+          "Same.",
+          "Tax effect follows the item – critical for comprehensive income analysis."
+        ],
+        [
+          "Disclosures",
+          "Basic: breakdown of timing differences and rates.",
+          "Extensive: reconciliation of expected vs actual tax rate, unrecognised DTAs, expiry dates, etc.",
+          "Same as Ind AS.",
+          "Even more detailed: valuation allowance movements, uncertain tax positions tabular rollforward.",
+          "Ind AS/IFRS and US GAAP provide far greater transparency into tax risk."
+        ],
+        [
+          "Uncertain tax positions",
+          "No specific guidance; general provision concept.",
+          "No specific standard; use IFRIC 23 (recognition based on probable outcome).",
+          "Same IFRIC 23 guidance.",
+          "Detailed two-step: more likely than not to sustain → measurement at largest benefit >50% likely.",
+          "US GAAP most prescriptive; Ind AS/ IFRS more principles-based."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION C: Side-by-Side Treatment",
+      "headers": [
+        "AS 22 (Old Indian GAAP)",
+        "Ind AS 12",
+        "IAS 12 (IFRS)",
+        "ASC 740 (US GAAP)"
+      ],
+      "tableData": [
+        [
+          "Temporary Difference Only timing differences Deferred Tax Liability (End Y1) 5.00 Cr P&L Tax Expense Impact 5.00 Cr Note Misses other temp diffs",
+          "Temporary Difference All taxable temporary differences Deferred Tax Liability (End Y1) 5.00 Cr P&L Tax Expense Impact 5.00 Cr Note Comprehensive",
+          "Temporary Difference All taxable temporary differences Deferred Tax Liability (End Y1) 5.00 Cr P&L Tax Expense Impact 5.00 Cr Note Same as Ind AS",
+          "Temporary Difference All taxable temp diffs, plus valuation allowance Deferred Tax Liability (End Y1) 5.00 Cr (assuming no valuation allowance) P&L Tax Expense Impact 5.00 Cr Note Threshold for DTAs stricter"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION D: Side-by-Side Impact Table (Year 1)",
+      "headers": [
+        "Framework",
+        "PBT",
+        "Current Tax",
+        "Deferred Tax Expense",
+        "Deferred Tax Liability (BS)",
+        "Effective Tax Rate (ETR)"
+      ],
+      "tableData": [
+        [
+          "AS 22 (Old Indian GAAP)",
+          "100.00 Cr",
+          "-25.00 Cr",
+          "-5.00 Cr",
+          "5.00 Cr",
+          "30.00%"
+        ],
+        [
+          "Ind AS 12",
+          "100.00 Cr",
+          "-25.00 Cr",
+          "-5.00 Cr",
+          "5.00 Cr",
+          "30.00%"
+        ],
+        [
+          "IAS 12 (IFRS)",
+          "100.00 Cr",
+          "-25.00 Cr",
+          "-5.00 Cr",
+          "5.00 Cr",
+          "30.00%"
+        ],
+        [
+          "ASC 740 (US GAAP)",
+          "100.00 Cr",
+          "-25.00 Cr",
+          "-5.00 Cr",
+          "5.00 Cr",
+          "30.00%"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION E: P&L Impact - Year 1",
+      "headers": [
+        "Line Item",
+        "AS (Old)",
+        "Ind AS 12",
+        "IFRS",
+        "US GAAP (ASC 740)"
+      ],
+      "tableData": [
+        [
+          "PBT (before tax)",
+          "100.00 Cr",
+          "100.00 Cr",
+          "100.00 Cr",
+          "100.00 Cr"
+        ],
+        [
+          "Current tax expense",
+          "-25.00 Cr",
+          "-25.00 Cr",
+          "-25.00 Cr",
+          "-25.00 Cr"
+        ],
+        [
+          "Deferred tax expense",
+          "-5.00 Cr",
+          "-5.00 Cr",
+          "-5.00 Cr",
+          "-5.00 Cr (assume no valuation allowance)"
+        ],
+        [
+          "Total tax expense",
+          "-30.00 Cr",
+          "-30.00 Cr",
+          "-30.00 Cr",
+          "-30.00 Cr"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION F: Balance Sheet Impact - Year 1",
+      "headers": [
+        "Item",
+        "AS (Old)",
+        "Ind AS 12",
+        "IFRS",
+        "US GAAP"
+      ],
+      "tableData": [
+        [
+          "Deferred tax liability",
+          "5.00 Cr",
+          "5.00 Cr",
+          "5.00 Cr",
+          "5.00 Cr"
+        ],
+        [
+          "Deferred tax asset (if any)",
+          "Not recognised unless virtual certainty",
+          "Probable threshold",
+          "Same",
+          "More likely than not (>50%)"
+        ],
+        [
+          "Presentation",
+          "Current or non-current",
+          "Always non-current",
+          "Same",
+          "Current/non-current can be offset"
+        ],
+        [
+          "Valuation allowance",
+          "None",
+          "None here",
+          "None",
+          "Could apply if DTA uncertain"
+        ],
+        [
+          "Total assets/liabs",
+          "Lower (less DTA recognised)",
+          "Potentially higher",
+          "Same",
+          "Similar but valuation allowance reduces DTA"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION G: Cash Flow Impact",
+      "headers": [
+        "CF Component",
+        "AS (Old)",
+        "Ind AS / IFRS",
+        "US GAAP"
+      ],
+      "tableData": [
+        [
+          "Current tax paid (cash)",
+          "25.00 Cr",
+          "25.00 Cr",
+          "25.00 Cr"
+        ],
+        [
+          "Deferred tax (non-cash)",
+          "5.00 Cr added back in operating CF",
+          "Same",
+          "Same"
+        ],
+        [
+          "Total operating cash flow",
+          "Same across all standards",
+          "Same",
+          "Same"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION H: Ratio Impact (Year 1)",
+      "headers": [
+        "Ratio",
+        "AS (Old)",
+        "Ind AS / IFRS",
+        "US GAAP",
+        "Direction",
+        "Interpretation"
+      ],
+      "tableData": [
+        [
+          "Effective Tax Rate (ETR)",
+          "30.00%",
+          "30.00%",
+          "30.00%",
+          "-",
+          "Same here but diverges with uncertain positions"
+        ],
+        [
+          "ROE (PAT/Equity)",
+          "",
+          "",
+          "",
+          "↓",
+          "AS may overstate ROE if DTL not recognized properly"
+        ],
+        [
+          "Debt/Equity",
+          "",
+          "",
+          "",
+          "↑",
+          "AS understates leverage due to lack of deferred liabilities"
+        ],
+        [
+          "Return on Assets (ROA)",
+          "",
+          "",
+          "",
+          "↓",
+          "AS looks more efficient incorrectly"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION I: Earnings Quality - Signals Table",
+      "headers": [
+        "Signal Observed",
+        "What It Means Technically",
+        "Analyst Interpretation",
+        "Action"
+      ],
+      "tableData": [
+        [
+          "Large DTA with no valuation allowance",
+          "Management highly confident of future profits",
+          "Could be optimistic; check historical forecast accuracy.",
+          "Stress-test future profitability; compare to industry."
+        ],
+        [
+          "Valuation allowance increases suddenly",
+          "Prior DTA no longer considered realisable",
+          "Past earnings may have been overstated; negative signal.",
+          "Reduce reliance on deferred tax assets in valuation."
+        ],
+        [
+          "ETR significantly below statutory rate",
+          "Permanent differences or unrecognised DTAs",
+          "May be sustainable (e.g., tax incentives) or low-quality (one-off).",
+          "Identify drivers; normalise ETR for forecasting."
+        ],
+        [
+          "Deferred tax liability shrinking despite growth",
+          "Reversing temp differences faster than new ones created",
+          "Business may be slowing capex; watch for under-investment.",
+          "Compare capex trend with DTL movement."
+        ],
+        [
+          "No reconciliation of expected vs actual tax rate",
+          "Poor disclosure",
+          "Management hiding volatile tax items.",
+          "Request full tax note; treat as amber flag."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION J: Trend Distortion Matrix",
+      "headers": [
+        "Metric",
+        "Distortion Type",
+        "Duration",
+        "Correction Method",
+        "Example"
+      ],
+      "tableData": [
+        [
+          "Effective Tax Rate (ETR)",
+          "Transient spike/dip",
+          "One quarter/year",
+          "Normalise by removing one-off tax settlements or rate changes.",
+          "Strip out prior year adjustment."
+        ],
+        [
+          "Net Income",
+          "Overstated (if DTA recognised aggressively)",
+          "Reverses when DTA written off",
+          "Exclude unrecognised DTA benefit from adjusted earnings.",
+          "Add back valuation allowance increase."
+        ],
+        [
+          "ROE",
+          "Understated (if large DTL)",
+          "Life of asset",
+          "Add back DTL to equity for return calc.",
+          "Equity + DTL for economic ROE."
+        ],
+        [
+          "Cash tax vs book tax",
+          "Persistent gap",
+          "Indefinite",
+          "Focus on cash tax paid for liquidity.",
+          "Use cash tax / operating CF."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION K: Ratio Interpretation Guide",
+      "headers": [
+        "Ratio",
+        "Reported Value",
+        "What Analyst Should Do",
+        "Correct Interpretation"
+      ],
+      "tableData": [
+        [
+          "Effective Tax Rate",
+          "18.0% (vs 25.0% statutory)",
+          "Identify drivers: permanent differences, DTA realisation, or one-offs.",
+          "May be lower quality if driven by aggressive DTA recognition."
+        ],
+        [
+          "Deferred Tax Liability / Total Assets",
+          "5.0%",
+          "Compare to capex intensity and tax depreciation rates.",
+          "High DTL often means accelerated tax benefits – positive for cash flow."
+        ],
+        [
+          "Valuation Allowance / DTA",
+          "40%",
+          "Benchmark against peer write-off history.",
+          "High ratio suggests management lacks confidence in future profits."
+        ],
+        [
+          "Cash Tax / Book Tax",
+          "0.60x",
+          "Low ratio indicates large timing differences (favourable).",
+          "Sustainable cash advantage if timing differences are long-dated."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION L: Analyst Concerns & Answers",
+      "headers": [
+        "Analyst question",
+        "Concern",
+        "Answer",
+        "Evidence"
+      ],
+      "tableData": [
+        [
+          "Is the low ETR real earnings quality?",
+          "Risk of one-off or aggressive DTA.",
+          "Not always; check reconciliation of statutory to actual rate.",
+          "Permanent differences (e.g., exempt income) are high quality."
+        ],
+        [
+          "Why is DTA growing but no valuation allowance?",
+          "Management too optimistic.",
+          "Requires judgement; compare forecast accuracy over 3-5 years.",
+          "Historical misses → amber flag."
+        ],
+        [
+          "Do I treat DTL as debt?",
+          "Leverage distortion.",
+          "No – DTL is future tax, not contractual obligation to lender.",
+          "But DTL reduces free cash flow when it reverses."
+        ],
+        [
+          "How do I compare across standards?",
+          "AS vs Ind AS vs US GAAP.",
+          "Reconstruct DTA/DTL using balance sheet approach for all.",
+          "Ignore AS presentation; normalise to Ind AS/IFRS."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION M: Investor Perception Analysis",
+      "headers": [
+        "Investor Type",
+        "What they see",
+        "Likely reaction",
+        "Sophisticated response"
+      ],
+      "tableData": [
+        [
+          "Retail",
+          "Large DTA → \"future tax benefit\"",
+          "Over-optimistic.",
+          "DTA is worthless without profits to utilise it."
+        ],
+        [
+          "Value",
+          "Low ETR → \"higher earnings\"",
+          "May overpay if unsustainable.",
+          "Normalise ETR to statutory rate for valuation."
+        ],
+        [
+          "Institutional Long-Only",
+          "Valuation allowance volatility",
+          "Negative – signals earnings uncertainty.",
+          "Prefer stable cash tax over volatile deferred tax."
+        ],
+        [
+          "Credit / Lenders",
+          "DTL as quasi-liability",
+          "May tighten covenants.",
+          "Exclude DTL from debt; focus on cash tax payable."
+        ],
+        [
+          "PE / VC",
+          "Unrecognised DTAs from losses",
+          "See tax asset as latent value.",
+          "Model probability of utilisation before ascribing value."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION N: Reporting Signals Decoder",
+      "headers": [
+        "Management Action",
+        "Signal",
+        "What It Really Means",
+        "Your Move"
+      ],
+      "tableData": [
+        [
+          "Emphasises \"low ETR from permanent benefits\"",
+          "Positive spin",
+          "May be sustainable if truly permanent (e.g., tax holidays).",
+          "Verify expiry date of tax incentives."
+        ],
+        [
+          "Avoids disclosing valuation allowance movement",
+          "Opacity",
+          "DTA may be at risk; management hiding impairment.",
+          "Request full rollforward of valuation allowance."
+        ],
+        [
+          "Provides detailed tax reconciliation and uncertain position table",
+          "Transparency",
+          "High-quality tax governance; management not hiding risk.",
+          "Green flag; rely more on reported ETR."
+        ],
+        [
+          "Suddenly reverses large DTA without explanation",
+          "Earnings management",
+          "Prior periods likely overstated profit.",
+          "Recast prior year earnings; treat as red flag."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION P: Red Flags vs Green Flags (Visual Indicator Matrix)",
+      "headers": [
+        "Scenario",
+        "Flag",
+        "Action"
+      ],
+      "tableData": [
+        [
+          "Large DTA with no valuation allowance despite recent losses",
+          "🔴RED",
+          "Demand to see the precise forecast showing probable recovery."
+        ],
+        [
+          "Valuation allowance increases every year",
+          "🔴RED",
+          "Write down core earnings metrics; management is hiding deterioration."
+        ],
+        [
+          "No disclosure of uncertain tax positions in cross-border firms",
+          "🔴RED",
+          "Assume maximum liability scenario for valuation."
+        ],
+        [
+          "ETR below statutory rate for >3 years with no permanent benefit explanation",
+          "🔴RED",
+          "Normalize ETR to statutory rate for all DCF projections."
+        ],
+        [
+          "DTA with reasonable valuation allowance linked to clear forecast",
+          "🟢GREEN",
+          "Trust management's conservatism."
+        ],
+        [
+          "Clear waterfall of uncertain tax positions (FIN 48 equivalent)",
+          "🟢GREEN",
+          "Use provided probabilities directly in DCF risk-weighting."
+        ]
+      ]
+    }
+  ]
+}

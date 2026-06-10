@@ -1,0 +1,692 @@
+{
+  "title": "Revenue Recognition",
+  "description": "Premium Analysis Guide: AS vs Ind AS 115 vs IFRS 15 vs US GAAP ASC\n            606",
+  "sections": [
+    {
+      "sectionTitle": "SECTION A: Core Technical Comparison Table",
+      "headers": [
+        "Parameter",
+        "AS 9 (Old Indian GAAP)",
+        "Ind AS 115",
+        "IFRS 15",
+        "US GAAP ASC 606",
+        "Logic shift"
+      ],
+      "tableData": [
+        [
+          "Core philosophy",
+          "Revenue recognized when risks and rewards are transferred and income is earned and realizable.",
+          "Revenue recognized when control of goods or services transfers to the customer, based on a five-step model.",
+          "Same five-step control-based model as Ind AS; principle-based.",
+          "Same five-step model as IFRS but with more detailed US guidance.",
+          "From \"earned/realized\" and risks & rewards to control and performance obligations."
+        ],
+        [
+          "Contract focus",
+          "Limited explicit focus on \"contract with customer\"; emphasis on individual transactions and invoicing.",
+          "Explicit definition of contract with customer with enforceable rights and obligations.",
+          "Same as Ind AS; strong contract-based framework.",
+          "Same as IFRS; legal contract and enforceable rights drive analysis.",
+          "Shift from invoice driven to contract driven analysis."
+        ],
+        [
+          "Recognition criteria / Measurement-initial",
+          "Revenue when significant risks and rewards are transferred, collection certain. Usually at invoice/contract price, adjusted for known rebates.",
+          "Identify contract and performance obligations, recognize revenue when/as obligations are satisfied. Measure transaction price, estimate variables.",
+          "Same model; revenue over time or at a point in time based on control transfer. Same transaction price model.",
+          "Same model and criteria; more detailed application guidance. Explicit treatment of variables & financing.",
+          "From a single event (delivery) to a pattern of performance. From \"billed value\" to transaction price estimation."
+        ],
+        [
+          "Measurement-subsequent",
+          "Limited concept of subsequent re-measurement except for provisions/discounts; revenue rarely revisited.",
+          "Adjust revenue prospectively if estimates (variable consideration, progress, etc.) change.",
+          "Same; high reliance on updates of estimates.",
+          "Same; strong use of updated estimates and cumulative catch-up adjustments.",
+          "From static to dynamic measurement linked to updated estimates."
+        ],
+        [
+          "Over time vs point in time",
+          "No formal over-time model; long-term contracts mainly via AS 7/AS 9 with completion method or POC in limited cases.",
+          "Distinct criteria to determine over time vs point in time; cost-to-cost or output methods to measure progress.",
+          "Same criteria and progress methods.",
+          "Same; extensive guidance for construction/long-term arrangements.",
+          "Introduces systematic over-time recognition linked to performance progress."
+        ],
+        [
+          "Multiple-element arrangements",
+          "Sparse guidance; often split by legal contract/milestone; risk of arbitrary allocation.",
+          "Identify distinct performance obligations and allocate transaction price based on standalone selling prices.",
+          "Same performance-obligation framework.",
+          "Same; lots of industry examples (software, telecom, etc.).",
+          "From ad-hoc allocation to principled allocation based on standalone prices."
+        ],
+        [
+          "Variable consideration",
+          "Limited and conservative; often recognized only when no significant uncertainty.",
+          "Estimate variable consideration (discounts, penalties) and apply constraint to avoid significant revenue reversal.",
+          "Same estimation + constraint model.",
+          "Same; specific guidance for royalties, sales-or usage-based fees.",
+          "Introduces probability-weighted / expected value thinking with explicit constraint."
+        ],
+        [
+          "Contract assets & liabilities",
+          "Advances and unbilled revenue shown, but not under a unified conceptual framework.",
+          "Explicit contract assets (unbilled rights) and contract liabilities (deferred revenue).",
+          "Same definitions and presentation.",
+          "Same; terminology similar (\"contract asset\" and \"contract liability\").",
+          "From generic advances/unbilled to structured contract positions."
+        ],
+        [
+          "Principal vs agent",
+          "Limited, less developed guidance; focus on legal form and risk.",
+          "Control-based principal vs agent assessment (gross vs net revenue).",
+          "Same control-based assessment.",
+          "Same; detailed examples in ASC 606.",
+          "From legal/title focus to control and exposure analysis."
+        ],
+        [
+          "Significant financing component",
+          "Not systematically addressed; interest element often not separated unless explicit.",
+          "Identify and adjust for significant financing component in transaction price when cash timing diverges.",
+          "Same model.",
+          "Same; interest income/expense split is explicit.",
+          "From ignoring time value to explicit financing vs revenue split."
+        ],
+        [
+          "Non-cash consideration",
+          "Limited explicit guidance.",
+          "Measure at fair value and include in transaction price.",
+          "Same fair value basis.",
+          "Same; measure at fair value, or indirectly by reference to standalone selling price.",
+          "From \"billed cash only\" mindset to full economic consideration."
+        ],
+        [
+          "Contract modifications",
+          "Treated as revision of contract terms with limited principle-level guidance.",
+          "Distinct rules for separate contracts vs modifications, depending on scope/price.",
+          "Same modification framework.",
+          "Same; extensive examples.",
+          "From ad-hoc to structured modification accounting."
+        ],
+        [
+          "Transition rules",
+          "Not applicable currently (legacy).",
+          "Options for full retrospective or modified retrospective adoption.",
+          "Similar options for transition.",
+          "Similar full or modified retrospective transition.",
+          "One-time step-change with optional reliefs."
+        ],
+        [
+          "Disclosures - qualitative & quant.",
+          "Limited requirements, high-level splits by broad categories only.",
+          "Extensive narrative. Disaggregation by type, geography, market, timing, and contract balances.",
+          "Similar depth and themes as Ind AS. Same disaggregation requirements.",
+          "Equally comprehensive; SEC overlays add more granularity.",
+          "From minimal to multi-dimensional revenue analytics in notes."
+        ],
+        [
+          "Convergence with IFRS",
+          "Low (AS 9 is pre-IFRS model).",
+          "Substantially converged with IFRS 15, with limited Indian carve-outs.",
+          "Baseline global standard.",
+          "Not word-for-word converged, but outcome converged in most contracts.",
+          "Global move to a unified revenue logic."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION C: Side-by-Side Treatment",
+      "headers": [
+        "AS 9",
+        "Ind AS 115",
+        "IFRS 15",
+        "ASC 606"
+      ],
+      "tableData": [
+        [
+          "Year 1No revenue in Year 1",
+          "Year 1Rs. 90 Cr revenue (60% of Rs. 150 Cr)",
+          "Year 1Same as Ind AS 115",
+          "Year 1Same as Ind AS 115"
+        ],
+        [
+          "Year 2Full Rs. 150 Cr in Year 2",
+          "Year 2Rs. 60 Cr revenue",
+          "Year 2Same as Ind AS 115",
+          "Year 2Same as Ind AS 115"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION D: Side-by-Side Impact Table (Project Only)",
+      "headers": [
+        "P&L Impact",
+        "AS 9",
+        "Ind AS 115",
+        "IFRS 15",
+        "ASC 606"
+      ],
+      "tableData": [
+        [
+          "FY 25-26 Revenue",
+          "Rs. 0",
+          "Rs. 90 Cr",
+          "Rs. 90 Cr",
+          "Rs. 90 Cr"
+        ],
+        [
+          "FY 25-26 Cost",
+          "Rs. 0",
+          "Rs. 72 Cr",
+          "Rs. 72 Cr",
+          "Rs. 72 Cr"
+        ],
+        [
+          "FY 25-26 Profit",
+          "Rs. 0",
+          "Rs. 18 Cr",
+          "Rs. 18 Cr",
+          "Rs. 18 Cr"
+        ],
+        [
+          "FY 26-27 Revenue",
+          "Rs. 150 Cr",
+          "Rs. 60 Cr",
+          "Rs. 60 Cr",
+          "Rs. 60 Cr"
+        ],
+        [
+          "FY 26-27 Cost",
+          "Rs. 120 Cr",
+          "Rs. 48 Cr",
+          "Rs. 48 Cr",
+          "Rs. 48 Cr"
+        ],
+        [
+          "FY 26-27 Profit",
+          "Rs. 30 Cr",
+          "Rs. 12 Cr",
+          "Rs. 12 Cr",
+          "Rs. 12 Cr"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION E: P&L Impact - Year 1",
+      "headers": [
+        "Line item - FY 25-26",
+        "AS 9",
+        "Ind AS 115",
+        "IFRS 15",
+        "ASC 606"
+      ],
+      "tableData": [
+        [
+          "Revenue - base",
+          "Rs. 400 Cr",
+          "Rs. 400 Cr",
+          "Rs. 400 Cr",
+          "Rs. 400 Cr"
+        ],
+        [
+          "Revenue - project",
+          "Rs. 0 Cr",
+          "Rs. 90 Cr",
+          "Rs. 90 Cr",
+          "Rs. 90 Cr"
+        ],
+        [
+          "Total revenue",
+          "Rs. 400 Cr",
+          "Rs. 490 Cr",
+          "Rs. 490 Cr",
+          "Rs. 490 Cr"
+        ],
+        [
+          "EBIT - base",
+          "Rs. 40 Cr",
+          "Rs. 40 Cr",
+          "Rs. 40 Cr",
+          "Rs. 40 Cr"
+        ],
+        [
+          "EBIT - project",
+          "Rs. 0 Cr",
+          "Rs. 18 Cr",
+          "Rs. 18 Cr",
+          "Rs. 18 Cr"
+        ],
+        [
+          "Total EBIT",
+          "Rs. 40 Cr",
+          "Rs. 58 Cr",
+          "Rs. 58 Cr",
+          "Rs. 58 Cr"
+        ],
+        [
+          "Tax (25%)",
+          "Rs. 10 Cr",
+          "Rs. 14.5 Cr",
+          "Rs. 14.5 Cr",
+          "Rs. 14.5 Cr"
+        ],
+        [
+          "PAT (Profit After Tax)",
+          "Rs. 30 Cr",
+          "Rs. 43.5 Cr",
+          "Rs. 43.5 Cr",
+          "Rs. 43.5 Cr"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION F: Balance Sheet Impact - End of Year 1",
+      "headers": [
+        "Item",
+        "AS 9",
+        "Ind AS 115",
+        "IFRS 15",
+        "ASC 606",
+        "Interpretation"
+      ],
+      "tableData": [
+        [
+          "Project reported profit (Year 1)",
+          "£0",
+          "£18 Cr",
+          "£18 Cr",
+          "£18 Cr",
+          "Earlier profit recognition under new standards"
+        ],
+        [
+          "Inventory / WIP",
+          "£72 Cr (inventory)",
+          "£0 (no WIP)",
+          "£0 (no WIP)",
+          "£0 (no WIP)",
+          "Reclassified to contract asset"
+        ],
+        [
+          "Contract Asset",
+          "£0",
+          "£45 Cr",
+          "£45 Cr",
+          "£45 Cr",
+          "New balance sheet line item"
+        ],
+        [
+          "Advance from Customer",
+          "£45 Cr (liability)",
+          "£0",
+          "£0",
+          "£0",
+          "Liability utilised against revenue"
+        ],
+        [
+          "Retained Earnings (project portion)",
+          "£0",
+          "+£18 Cr",
+          "+£18 Cr",
+          "+£18 Cr",
+          "Higher equity under new standards"
+        ],
+        [
+          "Total Assets (project impact)",
+          "+£45 Cr (WIP + cash)",
+          "+£18 Cr (contract asset – cash outflow)",
+          "+£18 Cr (contract asset – cash outflow)",
+          "+£18 Cr (contract asset – cash outflow)",
+          "AS 9 shows higher asset base due to WIP capitalisation without profit"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION G: Cash Flow Impact (Year 1)",
+      "headers": [
+        "Item",
+        "AS 9",
+        "Ind AS 115",
+        "IFRS 15",
+        "ASC 606",
+        "Interpretation"
+      ],
+      "tableData": [
+        [
+          "Operating Cash Flow (CFO)",
+          "-Rs. 27 Cr",
+          "-Rs. 27 Cr",
+          "-Rs. 27 Cr",
+          "-Rs. 27 Cr",
+          "Net operating cash flow from project"
+        ],
+        [
+          "Financing Cash Flow (CFF)",
+          "0.00 Cr",
+          "0.00 Cr",
+          "0.00 Cr",
+          "0.00 Cr",
+          "None"
+        ],
+        [
+          "Total Net Cash Flow",
+          "-Rs. 27 Cr",
+          "-Rs. 27 Cr",
+          "-Rs. 27 Cr",
+          "-Rs. 27 Cr",
+          "Total cash drain is identical across all frameworks"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION H: Ratio Impact (Year 1)",
+      "headers": [
+        "Ratio",
+        "AS 9",
+        "Ind AS/IFRS/US GAAP",
+        "Direction",
+        "Interpretation"
+      ],
+      "tableData": [
+        [
+          "Rev growth YOY",
+          "+0.0%",
+          "+22.5%",
+          "↑",
+          "Higher growth reported mechanically due to new rules"
+        ],
+        [
+          "EBIT margin",
+          "10.0%",
+          "11.8%",
+          "↑",
+          "Margin improves visibly"
+        ],
+        [
+          "ROE",
+          "15.0%",
+          "21.8%",
+          "↑",
+          "Return on equity jumps upward"
+        ],
+        [
+          "Asset turnover",
+          "0.80x",
+          "0.98x",
+          "↑",
+          "Velocity of assets appears faster"
+        ],
+        [
+          "EPS",
+          "Rs. 3.00",
+          "Rs. 4.35",
+          "↑",
+          "Absolute earnings per share sees one-time surge"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION I: Earnings Quality - Signals Table",
+      "headers": [
+        "Signal observed",
+        "What it means technically",
+        "Analyst interpretation",
+        "Action"
+      ],
+      "tableData": [
+        [
+          "Sharp jump in revenue in transition year vs AS",
+          "Over-time contracts now recognized using cost-to-cost model; earlier AS deferred revenue.",
+          "Earnings are front-loaded, not necessarily \"better\"; economics unchanged.",
+          "Normalize by spreading project revenue over life."
+        ],
+        [
+          "Higher contract assets replacing inventory and advances",
+          "Same project WIP now presented as contract asset instead of inventory/advance.",
+          "No real change in risk; just reflects enforceable right to payment.",
+          "Treat as working capital, adjust WC metrics."
+        ],
+        [
+          "Increase in disclosure volume on revenue",
+          "New standards require detailed contract and performance obligation disclosures.",
+          "More transparency → higher earnings quality if consistent.",
+          "Read revenue note like a mini-MD&A."
+        ],
+        [
+          "Margin stability despite revenue timing change",
+          "Revenue moved forward but margin % remains similar across project life.",
+          "Underlying project economics are stable; only timing shifted.",
+          "Focus on lifetime contract, not single-year spikes."
+        ],
+        [
+          "Greater judgment disclosures on variable consideration",
+          "Management now explicitly estimates and constrains variable consideration.",
+          "Earnings more judgment-sensitive; scope for optimism/conservatism.",
+          "Track estimate changes; challenge assumptions."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION J: Trend Distortion Matrix",
+      "headers": [
+        "Metric",
+        "Distortion type",
+        "Duration",
+        "Correction method",
+        "Example"
+      ],
+      "tableData": [
+        [
+          "Rev. growth",
+          "One-time level shift",
+          "2-3 years",
+          "Recompute under old milestone basis.",
+          "Rep. 28% vs Norm. 8%"
+        ],
+        [
+          "EBIT margin",
+          "Temp elevation / Depression",
+          "Until old rolls off",
+          "Adjust EBIT to align with milestones.",
+          "Rep. 11.8% vs Norm. 10.5%"
+        ],
+        [
+          "ROE",
+          "Trans. spike / drop",
+          "1-2 years",
+          "Recalculate using average norm. earnings.",
+          "Rep. 21.8% vs Norm. 16%"
+        ],
+        [
+          "WC days",
+          "Structural shift",
+          "Permanent",
+          "Combine contract assets and trade receivables.",
+          "Asset days look high vs Inv."
+        ],
+        [
+          "EPS growth",
+          "One-time boost / drag",
+          "1-2 cycles",
+          "Create pro forma EPS using old logic.",
+          "EPS +45% vs +15%"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION K: Ratio Interpretation Guide",
+      "headers": [
+        "Ratio",
+        "Rep. Value",
+        "What analyst should do",
+        "Correct interpretation"
+      ],
+      "tableData": [
+        [
+          "Rev Growth",
+          "+28%",
+          "Rebuild revenue or remove first-year impact of new over-time contracts.",
+          "Underlying growth closer to high single-digits."
+        ],
+        [
+          "EBITDA Margin",
+          "11.8%",
+          "Examine revenue note to see if margin expansion is pure timing.",
+          "Margin quality unchanged; expansion is standard-driven."
+        ],
+        [
+          "Asset T/O",
+          "0.90x",
+          "Adjust denominator to exclude contract assets for WIP.",
+          "Operational efficiency may not have improved."
+        ],
+        [
+          "EPS",
+          "Rs. 4.35",
+          "Build normalized EPS excluding standard-driven timing.",
+          "True earnings power between old and new metrics."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION L: Analyst Concerns & Answers",
+      "headers": [
+        "Analyst question",
+        "Concern",
+        "Answer",
+        "Evidence"
+      ],
+      "tableData": [
+        [
+          "\"Is revenue growth real or accounting?\"",
+          "Fear that growth is standard-driven.",
+          "Largely timing: same contracts, recognized over time now. Growth moved from X% to Y%.",
+          "Same total project profit; cash flows unchanged."
+        ],
+        [
+          "\"Has margin quality improved?\"",
+          "Window-dressing.",
+          "Lifetime margins unchanged; only period allocation changed. Margin moved from X% to Y%.",
+          "Contract margin tables in notes."
+        ],
+        [
+          "\"Are contract assets riskier than inventory?\"",
+          "Uncollectible risk.",
+          "No - represent enforceable rights to payment.",
+          "Right to payment disclosed."
+        ],
+        [
+          "\"Are IFRS and US GAAP outcomes different?\"",
+          "Lack of global comparability.",
+          "For these contracts, Ind AS, IFRS and ASC 606 are identical.",
+          "Revenue profiles of peers."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION M: Investor Perception Analysis",
+      "headers": [
+        "Investor Type",
+        "What they see",
+        "Likely reaction",
+        "Sophisticated response"
+      ],
+      "tableData": [
+        [
+          "Retail",
+          "Big jump in revenue/EPS.",
+          "Buy aggressively, assuming breakout.",
+          "Recognize accounting effect, avoid over-paying."
+        ],
+        [
+          "Value",
+          "Higher book, higher ROE.",
+          "Confused; looks expensive.",
+          "Rebuild normalized earnings and re-test value."
+        ],
+        [
+          "Inst. Long-Only",
+          "Read transition note, focus on reported EPS.",
+          "Increase weight if they trust management.",
+          "Ask for pre/post-transition bridges, model normalized."
+        ],
+        [
+          "Credit/Lenders",
+          "Better coverage ratios.",
+          "More comfortable short term.",
+          "Adjust for timing; ensure covenant headroom valid."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION N: Reporting Signals Decoder",
+      "headers": [
+        "Management Action",
+        "Signal",
+        "What It Really Means",
+        "Your Move"
+      ],
+      "tableData": [
+        [
+          "Emphasising \"strong rev growth\" without explaining standard",
+          "Optics",
+          "Growth may be mostly accounting.",
+          "🟡Yellow flag - demand bridge to old basis."
+        ],
+        [
+          "Providing detailed revenue disaggregation",
+          "Transparency",
+          "Likely higher earnings quality; fewer hidden issues.",
+          "🟢Green flag - reward in multiple."
+        ],
+        [
+          "Avoiding disclosure of contract assets breakdown",
+          "Opacity",
+          "May be hiding loss-making or delayed projects.",
+          "🔴Red flag - stress test assumptions."
+        ],
+        [
+          "Explicitly stating \"IFRS, Ind AS and US GAAP are the same\"",
+          "Global Lens",
+          "Management understands global investor needs.",
+          "Lean in - cross-border comparisons safer."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION P: Red Flags vs Green Flags (Visual Indicator Matrix)",
+      "headers": [
+        "Scenario",
+        "Flag",
+        "Action"
+      ],
+      "tableData": [
+        [
+          "Surge in unbilled revenue or contract assets decoupled from cash collection",
+          "🔴RED",
+          "High risk of future write-offs. Focus valuation strictly on cash generation."
+        ],
+        [
+          "Aggressive upfront recognition of multi-year software/service contracts",
+          "🔴RED",
+          "Earnings are front-loaded. Rebuild historical margins to a straight-line basis for comparability."
+        ],
+        [
+          "Frequent modifications to contract terms causing revenue spikes",
+          "🔴RED",
+          "Sign of managing earnings through contract clauses rather than operations."
+        ],
+        [
+          "Transparent disaggregation of revenue by 'point in time' vs 'over time'",
+          "🟢GREEN",
+          "Use to segment high-quality recurring revenue from transactional revenue."
+        ],
+        [
+          "Deferred revenue (contract liability) growing consistently with orderbook",
+          "🟢GREEN",
+          "Strong indicator of future cash flow visibility. Assign higher valuation multiple."
+        ]
+      ]
+    }
+  ]
+}

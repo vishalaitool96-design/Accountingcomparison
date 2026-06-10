@@ -1,0 +1,747 @@
+{
+  "title": "Share-Based Payments (ESOP)",
+  "description": "Premium Analysis Guide: AS vs Ind AS vs IFRS vs US GAAP",
+  "sections": [
+    {
+      "sectionTitle": "SECTION A: Core Technical Comparison Table",
+      "headers": [
+        "Parameter",
+        "AS (Old Indian GAAP)",
+        "Ind AS (Ind AS 102)",
+        "IFRS (IFRS 2)",
+        "US GAAP (ASC 718)",
+        "Logic Shift"
+      ],
+      "tableData": [
+        [
+          "Core philosophy",
+          "Choice between intrinsic value method and fair value method.",
+          "Fair value method is mandatory.",
+          "Fair value method is mandatory.",
+          "Fair value method is mandatory.",
+          "Shift from historical leniency (intrinsic value often zero) to true economic cost measurement."
+        ],
+        [
+          "Scope",
+          "Primarily focused on employee stock options and shares.",
+          "Broad. Covers all share-based payments (employees and non-employees).",
+          "Broad. Covers all share-based payments (employees and non-employees).",
+          "Broad. Now aligned with IFRS for non-employees (ASC 505-50 superseded and integrated into ASC 718).",
+          "Convergence across major frameworks."
+        ],
+        [
+          "Measurement basis for employee awards",
+          "Intrinsic value or Fair value at grant date.",
+          "Fair value at grant date.",
+          "Fair value at grant date.",
+          "Fair value at grant date.",
+          "Mandatory fair value recognition limits accounting arbitrage."
+        ],
+        [
+          "Measurement basis for non-employees",
+          "Not specifically addressed; often derived from employee guidance or AS 10.",
+          "Fair value of goods/services received. If not reliably estimable, fair value of equity instruments granted.",
+          "Fair value of goods/services received. If not reliably estimable, fair value of equity instruments granted.",
+          "Generally mirrors employee model (fair value of equity instruments), simplified compared to past rules.",
+          "Better capture of vendor payments via equity."
+        ],
+        [
+          "Graded vesting treatment",
+          "Choice between straight-line amortization or accelerated amortization (tracking each tranche).",
+          "Must treat each tranche as a separate award (accelerated amortization).",
+          "Must treat each tranche as a separate award (accelerated amortization).",
+          "Choice between straight-line (if only service condition) and accelerated amortization.",
+          "Ind AS/IFRS force up-front loading of expense; US GAAP retains flexibility."
+        ],
+        [
+          "Forfeiture treatment",
+          "Can estimate at grant date or account for as they occur.",
+          "Must estimate forfeitures at grant date and true-up subsequently based on actuals.",
+          "Must estimate forfeitures at grant date and true-up subsequently based on actuals.",
+          "Policy election: estimate forfeitures OR account for forfeitures when they occur.",
+          "US GAAP election differs from strict IFRS/Ind AS requirement."
+        ],
+        [
+          "Vesting vs non-vesting conditions",
+          "Not clearly bifurcated.",
+          "Service & performance conditions are \"vesting\". Market conditions & everything else are \"non-vesting\".",
+          "Same as Ind AS.",
+          "Similar concepts, slight differences in definitions of performance vs market conditions.",
+          "Market conditions (e.g., target share price) baked into grant date fair value; no expense reversal even if condition failed."
+        ],
+        [
+          "Grant date definition",
+          "When options are offered to employees.",
+          "Shared understanding of terms and conditions; requires appropriate approval.",
+          "Same as Ind AS.",
+          "Same as Ind AS.",
+          "Grant date fixing is stricter globally."
+        ],
+        [
+          "Modification accounting",
+          "Recognize incremental value.",
+          "Recognize minimum of original fair value PLUS any incremental value.",
+          "Same as Ind AS.",
+          "Recognize fair value of modified award (can be lower than original, though rare due to rules).",
+          "Re-pricing underwater options creates new expense under all modern standards."
+        ],
+        [
+          "Classification - equity vs liability",
+          "Primarily handled as equity-settled.",
+          "Strict assessment based on obligation to settle in cash. Liability awards remeasured at fair value every period.",
+          "Same as Ind AS.",
+          "Complex rules based on ASC 480 and fixed monetary amount. Liability awards remeasured based on fair value or intrinsic value depending on entity type.",
+          "Liability classification injects massive P&L volatility."
+        ],
+        [
+          "Group share-based payments",
+          "No specific detailed guidance.",
+          "Detailed rules. Subsidiary receiving services typically records equity-settled expense.",
+          "Detailed rules mirroring Ind AS.",
+          "Subsidiary generally records expense based on fair value.",
+          "Prevents subsidiaries from hiding compensation costs when parent issues the shares."
+        ],
+        [
+          "Employee Stock Purchase Plans (ESPPs)",
+          "Not specifically addressed.",
+          "Viewed as compensatory. Discount recorded as expense.",
+          "Viewed as compensatory. Discount recorded as expense.",
+          "Noncompensatory (no expense) if conditions met (e.g., discount <= 5%, offered to all).",
+          "US GAAP election can result in zero expense for ESPPs vs Ind AS/IFRS."
+        ],
+        [
+          "Disclosure volume",
+          "Low to moderate.",
+          "Extensive. Detailed assumptions, strike prices, WAEP, rollforwards.",
+          "Extensive.",
+          "Extensive.",
+          "Provides analysts with required data to rebuild true economic cost."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION A: Core Technical Comparison Table",
+      "headers": [
+        "Parameter",
+        "AS (Old Indian GAAP)",
+        "Ind AS / IFRS",
+        "US GAAP (ASC 718)"
+      ],
+      "tableData": [
+        [
+          "Volatility for unlisted companies",
+          "Could assume zero volatility (resulting in option value nearing intrinsic value).",
+          "Must estimate volatility (often using comparable peer group). Zero volatility forbidden.",
+          "Nonpublic entities have a practical expedient to use a \"calculated value\" using industry sector index volatility."
+        ],
+        [
+          "Performance targets after service period",
+          "Often accounted for simply over service period.",
+          "Treated as a non-vesting condition.",
+          "Treated as a performance condition."
+        ],
+        [
+          "Liquidity events (IPO/change in control)",
+          "Recognized when probable.",
+          "Expense recognized only when the implicit or explicit condition is satisfied.",
+          "Expense recognized only when the event actually occurs."
+        ],
+        [
+          "Payroll taxes",
+          "Expensed as incurred.",
+          "Accrued over the vesting period in proportion to the share-based payment expense.",
+          "Recognized on the date of the event triggering the liability (usually exercise)."
+        ],
+        [
+          "Net-share settlement for taxes",
+          "No specific rule.",
+          "Equity classification maintained if withholding is up to statutory tax limit.",
+          "Equity classification maintained if withholding is up to maximum statutory tax limit."
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION C: Side-by-Side Treatment",
+      "headers": [
+        "AS (Intrinsic Value)",
+        "AS (Fair Value Option)",
+        "Ind AS 102 & IFRS 2",
+        "US GAAP (ASC 718)"
+      ],
+      "tableData": [
+        [
+          "Intrinsic Value Model Intrinsic value: Market price (200) - Exercise price (150) = 50 per option Total Intrinsic Value 100,000 × 50 = 50,00,000 Annual Expense 50,00,000 / 3 years = 16,66,667 / year Dr Employee compensation exp 16,66,667Cr Stock options outstanding 16,66,667",
+          "Fair Value Model Fair value using Black-Scholes: 70 per option Total Fair Value 70,00,000 Annual Expense 70,00,000 / 3 = 23,33,333 / year Notes No forfeiture estimate explicitly required.",
+          "Fair Value Requirement Mandates fair value method only. Cannot use intrinsic value method (unless rare circumstances). Volatility Cannot assume zero volatility for unlisted companies. Forfeitures Treatment Must estimate forfeitures and adjust expense (10% annual forfeiture) Dr Employee compensation exp 17,01,000Cr Stock options outstanding 17,01,000",
+          "Fair Value Requirement Fair value method required. Nonpublic ON Nonpublic Entity Election May use calculated value if volatility not practicable (70 / option) Forfeiture Policy Election Can choose to estimate OR recognize when forfeitures occur Graded Vesting Election Can choose straight-line OR accelerated Assumed Expense 23,33,333 / year"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION D: Side-by-Side Impact Table (Year 1 - ESOP)",
+      "headers": [
+        "Framework",
+        "Measurement Method",
+        "Fair Value per Option",
+        "Total Grant Value",
+        "Annual Expense (3-yr vesting)",
+        "Forfeiture Treatment"
+      ],
+      "tableData": [
+        [
+          "AS (Intrinsic)",
+          "Intrinsic value (200-150)",
+          "50",
+          "50,00,000",
+          "16,66,667",
+          "Not explicitly required"
+        ],
+        [
+          "AS (Fair Value - optional)",
+          "Black-Scholes with zero volatility",
+          "60 (assumed)",
+          "60,00,000",
+          "20,00,000",
+          "Not explicitly required"
+        ],
+        [
+          "Ind AS 102",
+          "Black-Scholes with estimated volatility",
+          "70",
+          "51,03,000",
+          "17,01,000",
+          "Must estimate forfeitures"
+        ],
+        [
+          "IFRS 2",
+          "Black-Scholes with estimated volatility",
+          "70",
+          "51,03,000",
+          "17,01,000",
+          "Must estimate forfeitures"
+        ],
+        [
+          "US GAAP (public)",
+          "Black-Scholes with expected volatility",
+          "70",
+          "70,00,000",
+          "23,33,333",
+          "Policy election"
+        ],
+        [
+          "US GAAP (Selected)",
+          "Black-Scholes with expected volatility",
+          "70",
+          "70,00,000",
+          "23,33,333",
+          "Policy election"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION E: P&L Impact - Year 1 (ESOP)",
+      "headers": [
+        "Line Item",
+        "AS (Intrinsic)",
+        "AS (Fair Value)",
+        "Ind AS 102",
+        "IFRS 2",
+        "US GAAP (Selected)"
+      ],
+      "tableData": [
+        [
+          "Base EBITDA",
+          "100.00 Cr",
+          "100.00 Cr",
+          "100.00 Cr",
+          "100.00 Cr",
+          "100.00 Cr"
+        ],
+        [
+          "ESOP expense",
+          "-1.67 Cr",
+          "-2.00 Cr",
+          "-1.70 Cr",
+          "-1.70 Cr",
+          "-2.33 Cr"
+        ],
+        [
+          "Reported EBITDA",
+          "98.33 Cr",
+          "98.00 Cr",
+          "98.30 Cr",
+          "98.30 Cr",
+          "97.67 Cr"
+        ],
+        [
+          "EBIT",
+          "98.33 Cr",
+          "98.00 Cr",
+          "98.30 Cr",
+          "98.30 Cr",
+          "97.67 Cr"
+        ],
+        [
+          "Interest",
+          "Nil",
+          "Nil",
+          "Nil",
+          "Nil",
+          "Nil"
+        ],
+        [
+          "PBT",
+          "98.33 Cr",
+          "98.00 Cr",
+          "98.30 Cr",
+          "98.30 Cr",
+          "97.67 Cr"
+        ],
+        [
+          "Tax (25%)",
+          "-24.58 Cr",
+          "-24.50 Cr",
+          "-24.58 Cr",
+          "-24.58 Cr",
+          "-24.42 Cr"
+        ],
+        [
+          "PAT",
+          "73.75 Cr",
+          "73.50 Cr",
+          "73.73 Cr",
+          "73.73 Cr",
+          "73.25 Cr"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION F: Balance Sheet Impact - Year 1 (ESOP)",
+      "headers": [
+        "Item",
+        "AS (Intrinsic)",
+        "Ind AS 102",
+        "IFRS 2",
+        "US GAAP"
+      ],
+      "tableData": [
+        [
+          "Stock options outstanding (equity)",
+          "16.67 Cr",
+          "17.01 Cr",
+          "17.01 Cr",
+          "Variable by election"
+        ],
+        [
+          "Deferred tax asset (if recognized)",
+          "Not typically",
+          "4.25 Cr",
+          "4.25 Cr",
+          "5.83 Cr"
+        ],
+        [
+          "Total equity",
+          "Lower by expense",
+          "Lower by higher expense",
+          "Lower by higher expense",
+          "Medium"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION G: Cash Flow Impact (Year 1)",
+      "headers": [
+        "Item",
+        "AS (Old)",
+        "Ind AS 102",
+        "IFRS 2",
+        "US GAAP",
+        "Interpretation"
+      ],
+      "tableData": [
+        [
+          "Operating Cash Flow (CFO)",
+          "",
+          "",
+          "",
+          "",
+          "Net operating cash unimpacted by non-cash ESOP expense"
+        ],
+        [
+          "Financing Cash Flow (CFF)",
+          "0.00 Cr",
+          "0.00 Cr",
+          "0.00 Cr",
+          "0.00 Cr",
+          "No cash flow from equity issuance until exercise"
+        ],
+        [
+          "Total Net Cash Flow",
+          "",
+          "",
+          "",
+          "",
+          "Total cash drain is identical across all frameworks"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION H: Ratio Impact (Year 1)",
+      "headers": [
+        "Ratio",
+        "AS (Intrinsic)",
+        "Ind AS / IFRS",
+        "US GAAP",
+        "Direction",
+        "Interpretation"
+      ],
+      "tableData": [
+        [
+          "Net margin",
+          "",
+          "",
+          "",
+          "↓",
+          "Net profitability drops due to larger non-cash expense"
+        ],
+        [
+          "EBITDA margin",
+          "",
+          "",
+          "",
+          "↓",
+          "Margins depressed under standard fair value approach"
+        ],
+        [
+          "EPS (basic)",
+          "",
+          "",
+          "",
+          "↓",
+          "Higher compensation expense reduces earnings power"
+        ],
+        [
+          "ROE",
+          "",
+          "",
+          "",
+          "↓",
+          "Reported return on equity mechanically decreases"
+        ],
+        [
+          "P/E ratio",
+          "",
+          "",
+          "",
+          "↑",
+          "Valuation looks more expensive as EPS drops"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION I: Earnings Quality - Signals Table (ESOP)",
+      "headers": [
+        "Signal Observed",
+        "What It Means Technically",
+        "Analyst Interpretation",
+        "Action"
+      ],
+      "tableData": [
+        [
+          "ESOP expense increases after Ind AS adoption",
+          "Company previously used intrinsic value; now fair value required",
+          "Earnings are more truthful; prior periods understated compensation cost",
+          "Adjust historical comparables to fair value basis"
+        ],
+        [
+          "Volatility assumption = zero for unlisted (under AS)",
+          "Allowed exception under old GAAP",
+          "Options likely undervalued; expense too low",
+          "Recompute using peer volatility for true cost"
+        ],
+        [
+          "No forfeiture estimate (under AS)",
+          "Not required under old GAAP",
+          "Expense not adjusted for leavers; overstated liability",
+          "Estimate own forfeiture rate and adjust"
+        ],
+        [
+          "High use of graded vesting with straight-line (under AS)",
+          "Permitted under old GAAP",
+          "Expense recognized slower than economic vesting",
+          "Recompute using accelerated method for comparability"
+        ],
+        [
+          "Non-employee grants not disclosed (under AS)",
+          "Not required",
+          "Possible missing expense for vendor/consultant payments",
+          "Investigate share-based payments to suppliers"
+        ],
+        [
+          "ESPP treated as noncompensatory (US GAAP)",
+          "Permitted if conditions met",
+          "No expense recognized; IFRS peers would expense",
+          "Add back estimated ESPP cost for peer comparison"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION J: Trend Distortion Matrix - ESOP",
+      "headers": [
+        "Metric",
+        "Distortion Type",
+        "Duration",
+        "Correction Method",
+        "Example"
+      ],
+      "tableData": [
+        [
+          "Net Income",
+          "Permanent level shift (if switching from intrinsic to fair value)",
+          "Entire vesting period of all outstanding grants",
+          "Recast historical intrinsic-based expense to fair value",
+          ""
+        ],
+        [
+          "EPS",
+          "Permanent level shift",
+          "Vesting period",
+          "Use fair-value based EPS for all periods",
+          "Compare only on consistent basis"
+        ],
+        [
+          "EBITDA",
+          "Permanent level shift",
+          "Vesting period",
+          "Normalize to fair value method",
+          "Peer comps require same method"
+        ],
+        [
+          "Equity (stock options outstanding)",
+          "Balance sheet difference",
+          "Until exercise/expiry",
+          "Fair value method creates larger equity balance",
+          "Not economic difference"
+        ],
+        [
+          "Cash flow",
+          "No distortion (non-cash)",
+          "N/A",
+          "No correction needed",
+          "Total CF identical"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION K: Ratio Interpretation Guide - ESOP",
+      "headers": [
+        "Ratio",
+        "Reported Value",
+        "What Analyst Should Do",
+        "Correct Interpretation"
+      ],
+      "tableData": [
+        [
+          "P/E Ratio",
+          "Higher under fair value (lower earnings)",
+          "Recalculate using intrinsic method for old periods",
+          "Multiple expansion may be artificial"
+        ],
+        [
+          "EBITDA Margin",
+          "Lower under fair value",
+          "Compare only to peers using same method",
+          "Not a real operational deterioration"
+        ],
+        [
+          "ROE",
+          "Lower under fair value",
+          "Recognize equity increases by same amount as expense reduces retained earnings",
+          "Economic return unchanged"
+        ],
+        [
+          "Effective Tax Rate",
+          "Appears higher (pre-tax income lower)",
+          "No real tax impact (ESOP expense deductible per tax rules on exercise)",
+          "Tax rate distortion is timing only"
+        ],
+        [
+          "ESOP Expense / Revenue",
+          ">3% typically material",
+          "Compare to industry peers",
+          "High ratio may indicate over-reliance on equity compensation"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION L: Analyst Concerns & Answers - ESOP",
+      "headers": [
+        "Analyst question",
+        "Concern",
+        "Answer",
+        "Evidence"
+      ],
+      "tableData": [
+        [
+          "Why is ESOP expense higher under Ind AS than old GAAP?",
+          "Earnings decline",
+          "Old GAAP allowed intrinsic value (50/option); Ind AS requires fair value (70/option)",
+          "Difference of 20/option × options granted"
+        ],
+        [
+          "Can companies still use zero volatility for unlisted?",
+          "Understated expense",
+          "No - Ind AS 102 and IFRS 2 prohibit this exception",
+          "Must use comparable listed company volatility"
+        ],
+        [
+          "How do I compare Indian company under Ind AS with US company under ASC 718?",
+          "Cross-border comparability",
+          "Broadly similar, but US GAAP has more policy elections (forfeiture, graded vesting, ESPP noncompensatory)",
+          "Normalize using same policy choices"
+        ],
+        [
+          "Is ESOP expense real or just accounting?",
+          "Cash flow vs earnings",
+          "ESOP is real economic cost (dilution to existing shareholders) even though non-cash",
+          "Factor dilution into per-share metrics"
+        ],
+        [
+          "What about group ESOPs - parent shares to subsidiary employees?",
+          "Which entity records expense?",
+          "Ind AS 102 provides detailed guidance: subsidiary records equity-settled expense; parent may record cash-settled if reimbursed",
+          "Check group structure and recharge agreements"
+        ],
+        [
+          "How do modifications affect expense?",
+          "Earnings manipulation risk",
+          "IFRS: original grant date value + incremental value; US GAAP: entire modified award value",
+          "US GAAP may produce higher expense after modification"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION M: Investor Perception Analysis - ESOP",
+      "headers": [
+        "Investor Type",
+        "What they see",
+        "Likely reaction",
+        "Sophisticated response"
+      ],
+      "tableData": [
+        [
+          "Retail",
+          "Lower PAT under Ind AS",
+          "Negative, think company less profitable",
+          "Recognize change is accounting, not economics"
+        ],
+        [
+          "Value",
+          "Lower EPS, higher dilution",
+          "Reduce valuation multiples",
+          "Calculate fully diluted shares including in-the-money options"
+        ],
+        [
+          "Institutional Long-Only",
+          "Better transparency on compensation cost",
+          "Positive for governance",
+          "Use fair value expense for compensation analysis"
+        ],
+        [
+          "Credit / Lenders",
+          "Lower EBITDA, higher leverage ratios (if equity reduced)",
+          "More cautious if covenants based on reported numbers",
+          "Adjust EBITDA add-back for non-cash ESOP"
+        ],
+        [
+          "PE / VC",
+          "High ESOP expense reduces reported profits",
+          "May negotiate on adjusted EBITDA",
+          "Underwrite with add-back but track dilution"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION N: Reporting Signals Decoder - ESOP",
+      "headers": [
+        "Management Action",
+        "Signal",
+        "What It Really Means",
+        "Your Move"
+      ],
+      "tableData": [
+        [
+          "Switched from intrinsic to fair value before Ind AS adoption",
+          "Proactive governance",
+          "Wants comparable numbers; may be hiding that old expense was too low",
+          "Recast prior periods to fair value"
+        ],
+        [
+          "Uses graded vesting with straight-line amortization (under AS or US GAAP election)",
+          "Expense smoothing",
+          "Later years get less expense than economic vesting",
+          "Recompute accelerated for true cost"
+        ],
+        [
+          "Low volatility assumption for unlisted (under AS)",
+          "Aggressive",
+          "Understates fair value and expense",
+          "Benchmark to listed peers (20-40% typical)"
+        ],
+        [
+          "No forfeiture estimate (under AS)",
+          "Missing adjustment",
+          "Overstates liability if leavers exist",
+          "Estimate 5-15% annual attrition for startups"
+        ],
+        [
+          "Parent grants options to subsidiary employees - no recharge",
+          "Opaque",
+          "Expense may be missing from subsidiary or double-counted",
+          "Check both entities' financials"
+        ],
+        [
+          "ESPP treated as noncompensatory (US GAAP)",
+          "Potential understatement",
+          "No expense for plans that IFRS would expense",
+          "Add back estimated ESPP cost"
+        ]
+      ]
+    },
+    {
+      "sectionTitle": "SECTION P: Red Flags vs Green Flags (Visual Indicator Matrix)",
+      "headers": [
+        "Scenario",
+        "Flag",
+        "Action"
+      ],
+      "tableData": [
+        [
+          "ESOP expense systematically ignored in management 'Adjusted EBITDA'",
+          "🔴RED",
+          "Do not ignore it; treat recurring grants as cash compensation in valuation models."
+        ],
+        [
+          "Sudden massive modification of ESOP terms (repricing)",
+          "🔴RED",
+          "Management bailing themselves out of poor stock performance at shareholder expense."
+        ],
+        [
+          "ESOP vesting heavily skewed to short-term or time-based rather than performance",
+          "🔴RED",
+          "Misalignment with long-term shareholder value creation."
+        ],
+        [
+          "Clear linkage of ESOP vesting to long-term Return on Capital (ROCE) targets",
+          "🟢GREEN",
+          "High confidence in management's alignment with long-term business health."
+        ],
+        [
+          "Dilution accurately and conservatively modeled in long-term share count projections",
+          "🟢GREEN",
+          "Use fully diluted share count for DCF per-share values."
+        ]
+      ]
+    }
+  ]
+}
