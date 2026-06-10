@@ -1,4 +1,3 @@
-import { Link } from "wouter";
 import React, { useState } from 'react';
 
 interface LayoutProps {
@@ -12,7 +11,7 @@ export default function Layout({ children }: LayoutProps) {
     <div className="min-h-screen flex flex-col relative z-10 select-none">
       {/* EFFECT 4 — NAVIGATION REDESIGN */}
       <nav>
-        <Link href="/" className="nav-brand">FinStandards</Link>
+        <a href="index.html" className="nav-brand">FinStandards</a>
         <button 
           id="mobile-nav-toggle" 
           className="mobile-nav-btn" 
@@ -22,16 +21,16 @@ export default function Layout({ children }: LayoutProps) {
           {mobileOpen ? '✕' : '☰'}
         </button>
         <div className={`nav-links ${mobileOpen ? 'show' : ''}`} id="nav-links">
-          <Link href="/" className="nav-link active">Home</Link>
-          <Link href="/topic/lease" className="nav-link">Lease</Link>
-          <Link href="/topic/ppe" className="nav-link">PPE</Link>
-          <Link href="/topic/financial-instruments" className="nav-link">Financial Instruments</Link>
-          <Link href="/topic/revenue" className="nav-link">Revenue</Link>
-          <Link href="/topic/deferred-tax" className="nav-link">Deferred Tax</Link>
-          <Link href="/topic/consolidation" className="nav-link">Consolidation</Link>
-          <Link href="/topic/impairment" className="nav-link">Impairment</Link>
-          <Link href="/topic/esop" className="nav-link">ESOP</Link>
-          <Link href="/topic/cashflows" className="nav-link">Cash Flows</Link>
+          <a href="index.html" className="nav-link active">Home</a>
+          <a href="lease.html" className="nav-link">Lease</a>
+          <a href="ppe.html" className="nav-link">PPE</a>
+          <a href="financial-instruments.html" className="nav-link">Financial Instruments</a>
+          <a href="revenue.html" className="nav-link">Revenue</a>
+          <a href="deferred-tax.html" className="nav-link">Deferred Tax</a>
+          <a href="consolidation.html" className="nav-link">Consolidation</a>
+          <a href="impairment.html" className="nav-link">Impairment</a>
+          <a href="esop.html" className="nav-link">ESOP</a>
+          <a href="cashflows.html" className="nav-link">Cash Flows</a>
         </div>
       </nav>
 

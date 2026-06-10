@@ -1,4 +1,3 @@
-import { Link } from "wouter";
 import React, { useEffect, useRef, useState } from 'react';
 
 const topics = [
@@ -6,7 +5,7 @@ const topics = [
     num: "01",
     hue: 'card-01',
     title: "Lease Accounting",
-    link: "/topic/lease",
+    link: "lease.html",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
     ),
@@ -17,7 +16,7 @@ const topics = [
     num: "02",
     hue: 'card-02',
     title: "PPE",
-    link: "/topic/ppe",
+    link: "ppe.html",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M13 3l8 4v14"/><path d="M9 21v-4"/><path d="M17 21v-4"/></svg>
     ),
@@ -28,7 +27,7 @@ const topics = [
     num: "03",
     hue: 'card-03',
     title: "Financial Instruments",
-    link: "/topic/financial-instruments",
+    link: "financial-instruments.html",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
     ),
@@ -39,7 +38,7 @@ const topics = [
     num: "04",
     hue: 'card-04',
     title: "Revenue Recognition",
-    link: "/topic/revenue",
+    link: "revenue.html",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"/><path d="M19 9-5 5-4-4-3 3"/></svg>
     ),
@@ -50,7 +49,7 @@ const topics = [
     num: "05",
     hue: 'card-05',
     title: "Deferred Tax",
-    link: "/topic/deferred-tax",
+    link: "deferred-tax.html",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
     ),
@@ -61,7 +60,7 @@ const topics = [
     num: "06",
     hue: 'card-06',
     title: "Consolidation",
-    link: "/topic/consolidation",
+    link: "consolidation.html",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="8" height="8" x="3" y="3" rx="2"/><rect width="8" height="8" x="13" y="3" rx="2"/><rect width="8" height="8" x="8" y="13" rx="2"/></svg>
     ),
@@ -72,7 +71,7 @@ const topics = [
     num: "07",
     hue: 'card-07',
     title: "Impairment Accounting",
-    link: "/topic/impairment",
+    link: "impairment.html",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 22 22 2"/><path d="M17 2h5v5"/></svg>
     ),
@@ -83,7 +82,7 @@ const topics = [
     num: "08",
     hue: 'card-08',
     title: "Share-Based Payments (ESOP)",
-    link: "/topic/esop",
+    link: "esop.html",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
     ),
@@ -94,7 +93,7 @@ const topics = [
     num: "09",
     hue: 'card-09',
     title: "Cash Flows",
-    link: "/topic/cashflows",
+    link: "cashflows.html",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
     ),
@@ -127,7 +126,7 @@ function TopicCard({ topic }: { topic: typeof topics[0]; key?: string }) {
 
   return (
     <div className="card-perspective">
-      <Link 
+      <a 
         ref={cardRef}
         href={topic.link} 
         className={`card-3d ${topic.hue}`}
@@ -146,7 +145,7 @@ function TopicCard({ topic }: { topic: typeof topics[0]; key?: string }) {
           <span className="card-badge">{topic.badge}</span>
           <span className="compare-link">Compare <span className="compare-arrow">&rarr;</span></span>
         </div>
-      </Link>
+      </a>
     </div>
   );
 }
